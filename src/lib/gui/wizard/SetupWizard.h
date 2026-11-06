@@ -92,6 +92,7 @@ private:
     Idle,
     Connecting,
     Connected,
+    Reconnecting,
     Failed
   };
 
@@ -124,6 +125,7 @@ private:
 
   // Core process (runs only while the wizard is open)
   void startCore(bool asMain);
+  void applyServerConfig();
   void stopCore();
   void prepareMachine();
   void onConnectedClients(const QStringList &clients);
@@ -207,6 +209,8 @@ private:
   bool m_fixedCert = false;
 
   ExtraState m_extraState = ExtraState::Idle;
+  /// The main computer is adding us; keep retrying quietly until the timeout.
+  bool m_awaitingAdmission = false;
   int m_arrangeIndex = 0;
   QMap<QString, Side> m_sideFor;
 };
