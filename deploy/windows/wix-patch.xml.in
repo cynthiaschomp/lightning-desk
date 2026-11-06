@@ -18,6 +18,16 @@
     </ServiceInstall>
     <ServiceControl Id="ServiceControl" Name="@CMAKE_PROJECT_PROPER_NAME@" Remove="uninstall" Start="install" Stop="both"/>
     <RemoveFile Id="RmOldLog" On="install" Name="lightning-desk-daemon.log"/>
+    <!--
+      Lightning Desk: the shared settings folder (C:\ProgramData\Lightning Desk) holds the
+      TLS certificate, trusted computers and the server config the app rewrites on
+      every start. Create it at install time and let standard users change files in
+      it; otherwise the folder is created by SYSTEM/admin and the app cannot start.
+      SDDL: SYSTEM + Administrators full control, Users modify, inherited by children.
+    -->
+    <CreateFolder Directory="LIGHTNING_DESK_PROGRAMDATA">
+      <PermissionEx Sddl="D:PAI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1301bf;;;BU)"/>
+    </CreateFolder>
   </CPackWiXFragment>
 
   <CPackWiXFragment Id="CM_CP_lightning_desk_core.exe">
@@ -26,6 +36,10 @@
   </CPackWiXFragment>
 
   <CPackWiXFragment Id="#PRODUCT">
+    <StandardDirectory Id="CommonAppDataFolder">
+      <Directory Id="LIGHTNING_DESK_PROGRAMDATA" Name="@CMAKE_PROJECT_DISPLAY_NAME@"/>
+    </StandardDirectory>
+
     <Property Id="VC_REDIST_INSTALLED">
       <RegistrySearch
         Id="FindVCRedist"

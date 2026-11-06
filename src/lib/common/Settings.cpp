@@ -72,6 +72,8 @@ void rewriteLegacyPaths(const QString &file)
   static const QRegularExpression files(QStringLiteral(R"(([/\\])deskflow(?=(\.pem|\.log|-server\.conf|-daemon\.log)))")
   );
   text.replace(files, QStringLiteral("\\1%1").arg(kAppId));
+  static const QRegularExpression named(QStringLiteral(R"(([/\\])Deskflow(?=\.(conf|state)\b))"));
+  text.replace(named, QStringLiteral("\\1%1").arg(kAppName));
 
   if (text != original && f.open(QIODevice::WriteOnly | QIODevice::Truncate))
     f.write(text.toUtf8());
