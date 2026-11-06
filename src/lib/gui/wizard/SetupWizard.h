@@ -5,25 +5,37 @@
 #pragma once
 
 #include <QDialog>
+#include <QMap>
+#include <QPixmap>
 #include <QString>
+#include <QStringList>
+
+#include <memory>
 
 class QLabel;
 class QLineEdit;
+class QPlainTextEdit;
 class QProgressBar;
 class QPushButton;
 class QStackedWidget;
 class QButtonGroup;
+class QTimer;
 class QVBoxLayout;
 
 namespace deskflow::gui {
+
+class CoreProcess;
+class ServerConfig;
 
 /**
  * @brief Lightning Desk first-run setup wizard.
  *
  * Seven plain-language steps (Welcome, Which computer, Name, Link,
- * Arrange, Checks, Done). Never shows IPs, ports, fingerprints or the
- * words "server" / "client". Writes the same Settings the main window
- * uses, so finishing the wizard leaves a working configuration.
+ * Arrange, Checks, Done). Never shows the words "server" / "client" and
+ * keeps addresses and fingerprints out of the normal path. While the Link
+ * step is open the wizard runs the core itself, so computers appear in a
+ * live list as they connect, and an extra screen gets a real
+ * connected / failed result with troubleshooting text.
  */
 class SetupWizard : public QDialog
 {
@@ -31,7 +43,7 @@ class SetupWizard : public QDialog
 
 public:
   explicit SetupWizard(QWidget *parent = nullptr);
-  ~SetupWizard() override = default;
+  ~SetupWizard() override;
 
   /// True when the wizard has never been completed on this machine.
   static bool isFirstRun();
@@ -55,6 +67,9 @@ public:
 Q_SIGNALS:
   void finishedSetup(Role role);
 
+public Q_SLOTS:
+  void done(int result) override;
+
 private Q_SLOTS:
   void next();
   void back();
@@ -72,11 +87,22 @@ private:
     StepCount
   };
 
+  enum class ExtraState
+  {
+    Idle,
+    Connecting,
+    Connected,
+    Failed
+  };
+
+  // Layout helpers
   void buildUi();
   QWidget *buildWelcome();
   QWidget *buildWhichComputer();
   QWidget *buildName();
   QWidget *buildLink();
+  QWidget *buildLinkMain();
+  QWidget *buildLinkExtra();
   QWidget *buildArrange();
   QWidget *buildChecks();
   QWidget *buildDone();
@@ -86,35 +112,103 @@ private:
   QLabel *body(const QString &text, QWidget *parent = nullptr) const;
   QPushButton *choiceButton(const QString &heading, const QString &detail, const QString &hint) const;
   QPushButton *sideButton(const QString &text, Side side);
+  QWidget *statusRow(const QString &dotStyle, const QString &name, const QString &state) const;
 
+  // Flow
   void goTo(int step);
   void updateChrome();
   void applyStep(int step);
+  void enterLink();
   void runChecks();
   void addCheckRow(const QString &text, const QString &sub, bool fixed);
-  int gridIndexFor(Side side) const;
 
+  // Core process (runs only while the wizard is open)
+  void startCore(bool asMain);
+  void stopCore();
+  void prepareMachine();
+  void onConnectedClients(const QStringList &clients);
+  void onUnrecognisedClient(const QString &name);
+  void onPeerFingerprint(const QString &fingerprint);
+  void onLogLine(const QString &line);
+
+  // Main computer: link list
+  void refreshClientList();
+  void addAnother();
+  int nextFreeCell() const;
+  QString lanAddress() const;
+  QPixmap pairingQr() const;
+
+  // Extra screen: connect + status
+  void connectToMain();
+  void resolveAndConnect(const QString &host, bool triedLocal);
+  void setExtraStatus(ExtraState state, const QString &heading, const QString &detail);
+  void showExtraError(const QString &heading, const QString &why);
+
+  // Arrange
+  void loadArrangeFor(int index);
+  int cellFor(Side side) const;
+  QString sideWord(Side side) const;
+
+  // Chrome
   QStackedWidget *m_pages = nullptr;
   QProgressBar *m_progress = nullptr;
   QLabel *m_stepLabel = nullptr;
   QLabel *m_stepName = nullptr;
   QPushButton *m_back = nullptr;
+  QPushButton *m_skip = nullptr;
   QPushButton *m_next = nullptr;
 
+  // Pages
   QLineEdit *m_nameEdit = nullptr;
-  QLineEdit *m_linkNameEdit = nullptr;
+  QStackedWidget *m_linkStack = nullptr;
+
+  QLabel *m_codeLabel = nullptr;
+  QLabel *m_qrLabel = nullptr;
+  QLabel *m_backupLabel = nullptr;
+  QLabel *m_mainStatus = nullptr;
+  QVBoxLayout *m_clientListLayout = nullptr;
+  QPushButton *m_addAnotherBtn = nullptr;
+
+  QLineEdit *m_extraCodeEdit = nullptr;
+  QPushButton *m_connectBtn = nullptr;
+  QWidget *m_extraStatusCard = nullptr;
+  QLabel *m_extraStatusDot = nullptr;
+  QLabel *m_extraStatusTitle = nullptr;
+  QLabel *m_extraStatusDetail = nullptr;
+  QPlainTextEdit *m_extraDetails = nullptr;
+  QPushButton *m_copyDetailsBtn = nullptr;
+
+  QLabel *m_arrangeTitle = nullptr;
   QLabel *m_arrangeIntro = nullptr;
   QLabel *m_mainTile = nullptr;
+  QButtonGroup *m_sideGroup = nullptr;
+
   QLabel *m_doneHint = nullptr;
   QVBoxLayout *m_checksLayout = nullptr;
-  QButtonGroup *m_sideGroup = nullptr;
   QPushButton *m_mainChoice = nullptr;
   QPushButton *m_extraChoice = nullptr;
 
+  // State
   Role m_role = Role::Main;
-  Side m_side = Side::Right;
   QString m_name;
-  QString m_otherName;
+  QString m_mainName; // extra screen: the main computer it linked to
+
+  std::unique_ptr<ServerConfig> m_serverConfig;
+  std::unique_ptr<CoreProcess> m_core;
+  QTimer *m_connectTimeout = nullptr;
+
+  QStringList m_connected;  // main: connected right now
+  QStringList m_everLinked; // main: connected at least once, in order
+  QStringList m_pending;    // main: added to the layout, not connected yet
+  QStringList m_trusted;    // fingerprints auto-trusted this session
+  QStringList m_recentLog;
+  bool m_waiting = true;
+  bool m_fixedMode = false;
+  bool m_fixedCert = false;
+
+  ExtraState m_extraState = ExtraState::Idle;
+  int m_arrangeIndex = 0;
+  QMap<QString, Side> m_sideFor;
 };
 
 } // namespace deskflow::gui

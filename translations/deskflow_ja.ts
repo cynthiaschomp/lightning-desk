@@ -1485,27 +1485,11 @@ Every computer on your desk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>On each laptop, open Lightning Desk, choose &lt;b&gt;This is an extra screen&lt;/b&gt;, and type this code. That&apos;s it — no addresses, no certificates.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>YOUR DESK CODE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only works on your Wi‑Fi.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Main computer&apos;s code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Type it exactly as shown on the main computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Where does it sit on your desk?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1534,10 +1518,6 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>You&apos;re all set</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Copy &amp;amp; paste works across them &amp;nbsp;·&amp;nbsp; Drag files across too</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1585,14 +1565,6 @@ Every computer on your desk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tap the side of your main screen where &lt;b&gt;%1&lt;/b&gt; physically is. Your cursor will cross over on that edge.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>the other computer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Main computer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1613,23 +1585,11 @@ Every computer on your desk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Try it now: slide your mouse off the &lt;b&gt;%1&lt;/b&gt; edge of your main screen.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Fixed for you</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Runs on your desktop, not as a hidden service</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Connection is private and encrypted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computers trust each other from the desk code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1647,6 +1607,264 @@ Every computer on your desk.</source>
     <message>
         <source>Copy, paste and drag files across computers</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t connect to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We found it on your network, but it didn&apos;t answer within %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready — waiting for your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is now linked. Your mouse and keyboard will cross over as soon as the main computer finishes arranging your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 isn&apos;t ready for new computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Lightning Desk on &lt;b&gt;%1&lt;/b&gt; and go to the &lt;b&gt;Link your other computers&lt;/b&gt; step, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This name is already taken</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Another computer called &lt;b&gt;%1&lt;/b&gt; is already linked. Go back one step and give this computer a different name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Versions don&apos;t match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Lightning Desk on both computers to the same version, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Something went wrong while linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two computers couldn&apos;t agree on how to talk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No desk code was entered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk couldn&apos;t start its connection on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t start linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip for now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On each laptop, open Lightning Desk, choose &lt;b&gt;This is an extra screen&lt;/b&gt;, and type this code. Tablets can scan the QR code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trouble linking?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scan with a tablet to add it as a screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINKED SO FAR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+  Add another computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to your main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type the desk code shown on your main computer&apos;s screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For example CYN-01</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished">接続</translation>
+    </message>
+    <message>
+        <source>Copy details for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste works across them  ·  Drag files across too</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is linked to &lt;b&gt;%1&lt;/b&gt;. Slide the mouse off the edge of %1&apos;s screen to reach it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When you&apos;re ready, open Lightning Desk on a laptop and choose &lt;b&gt;This is an extra screen&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slide your mouse off the &lt;b&gt;%1&lt;/b&gt; edge to reach &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try it now:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No network found. Check this computer is on Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the code doesn&apos;t work, type &lt;b&gt;%1&lt;/b&gt; on the laptop instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t save the secure link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer couldn&apos;t write its list of trusted computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for the next computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the desk code first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;ll find it on the main computer&apos;s Link step.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This usually takes a few seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting up a private, encrypted link.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find %1 on your network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computer with that desk code answered on this Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;ul style=&apos;margin-left:-20px&apos;&gt;&lt;li&gt;On &lt;b&gt;%1&lt;/b&gt;, open Lightning Desk and stay on the &lt;b&gt;Link your other computers&lt;/b&gt; step.&lt;/li&gt;&lt;li&gt;Make sure both computers are on the same Wi‑Fi.&lt;/li&gt;&lt;li&gt;Check the desk code is typed exactly as shown.&lt;/li&gt;&lt;li&gt;Still stuck? On the main computer click &lt;b&gt;Trouble linking?&lt;/b&gt; and type the backup code here.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address tried: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where does &lt;b&gt;%1&lt;/b&gt; sit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer %1 of %2. Tap the side of your main screen where it physically is.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap the side of your main screen where it physically is. Your cursor will cross over on that edge.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private and encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready for other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n computer(s) linked</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>
