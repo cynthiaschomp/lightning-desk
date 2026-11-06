@@ -19,6 +19,18 @@ if(UNIX AND NOT APPLE)
   pkg_check_modules(LIBPORTAL REQUIRED QUIET "libportal >= ${REQUIRED_LIBPORTAL_VERSION}")
   message(STATUS "libportal version: ${LIBPORTAL_VERSION}")
 
+  # Lightning Desk: lets a client work on desktops with no RemoteDesktop portal
+  # (Hyprland, Sway and other wlroots compositors) via their virtual input protocols.
+  pkg_check_modules(LIBEIS QUIET "libeis-1.0 >= ${REQUIRED_LIBEI_VERSION}")
+  pkg_check_modules(WAYLAND_CLIENT QUIET "wayland-client >= 1.20")
+  if(LIBEIS_FOUND AND WAYLAND_CLIENT_FOUND)
+    set(HAVE_WLR_VIRTUAL_INPUT ON)
+    message(STATUS "wlroots virtual input (Hyprland, Sway, ...): ON")
+  else()
+    message(WARNING "wlroots virtual input: OFF (needs libeis-1.0 and wayland-client); "
+                    "clients on Hyprland/Sway will not be able to receive input")
+  endif()
+
   # Check if we have the restore ability in the IC portal
   include(CMakePushCheckState)
   include(CheckSymbolExists)
@@ -170,6 +182,14 @@ elseif(UNIX)
         PortalRemoteDesktop.cpp
         PortalRemoteDesktop.h
       )
+      if(HAVE_WLR_VIRTUAL_INPUT)
+        list(APPEND PLATFORM_SOURCES
+          WlrVirtualInput.cpp
+          WlrVirtualInput.h
+          WlrVirtualInputProtocols.cpp
+          WlrVirtualInputProtocols.h
+        )
+      endif()
       if(HAVE_LP_CLIPBOARD)
         list(APPEND PLATFORM_SOURCES
           PortalClipboard.cpp
@@ -210,6 +230,11 @@ if(UNIX)
     endif()
     if (HAVE_LP_SHORTCUTS)
       target_compile_definitions(platform PUBLIC HAVE_LIBPORTAL_SHORTCUTS)
+    endif()
+    if (HAVE_WLR_VIRTUAL_INPUT)
+      target_compile_definitions(platform PUBLIC HAVE_WLR_VIRTUAL_INPUT)
+      target_include_directories(platform PRIVATE ${LIBEIS_INCLUDE_DIRS} ${WAYLAND_CLIENT_INCLUDE_DIRS})
+      target_link_libraries(platform PRIVATE ${LIBEIS_LINK_LIBRARIES} ${WAYLAND_CLIENT_LINK_LIBRARIES})
     endif()
     target_include_directories(platform
       PUBLIC

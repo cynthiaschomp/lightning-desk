@@ -35,7 +35,9 @@ configure_file(
 
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "qt6-svg-plugins")
+# wl-clipboard: copy and paste on Hyprland/Sway clients (wlroots virtual input)
+set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "qt6-svg-plugins, wl-clipboard")
+set(CPACK_RPM_PACKAGE_SUGGESTS "wl-clipboard")
 set(CPACK_RPM_PACKAGE_LICENSE "GPLv2")
 set(CPACK_RPM_PACKAGE_GROUP "Applications/System")
 

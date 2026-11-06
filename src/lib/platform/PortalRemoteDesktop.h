@@ -1,5 +1,6 @@
 /*
  * Deskflow -- mouse and keyboard sharing utility
+ * SPDX-FileCopyrightText: (C) 2026 Schomp Technologies LLC
  * SPDX-FileCopyrightText: (C) 2024 Synergy App Ltd
  * SPDX-FileCopyrightText: (C) 2022 Red Hat, Inc.
  * SPDX-License-Identifier: GPL-2.0-only WITH LicenseRef-OpenSSL-Exception
@@ -16,6 +17,10 @@
 #include <QByteArray>
 
 namespace deskflow {
+
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+class WlrVirtualInput;
+#endif
 
 class PortalRemoteDesktop
 {
@@ -35,6 +40,9 @@ private:
   void handleSelectionTransfer(XdpSession *session, const char *mimeType, uint32_t serial) const;
   void handleSelectionOwnerChanged(XdpSession *session, char **mimeTypes, gboolean isOwner) const;
   void reconnect(unsigned int timeout = 1000);
+  /// No usable RemoteDesktop portal (e.g. Hyprland): drive the compositor's
+  /// wlroots virtual input protocols instead. Returns false if unavailable.
+  bool startWlrVirtualInput();
 
   static void handleSessionClosedCallback(XdpSession *session, gpointer data)
   {
@@ -68,6 +76,10 @@ private:
 
   /// The number of successful sessions we've had already
   guint m_sessionIteration = 0;
+
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+  WlrVirtualInput *m_wlrInput = nullptr;
+#endif
 };
 
 } // namespace deskflow
