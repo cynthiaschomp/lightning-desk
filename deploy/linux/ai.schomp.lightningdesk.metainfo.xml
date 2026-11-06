@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-	<id>org.deskflow.deskflow</id>
+	<id>ai.schomp.lightningdesk</id>
 	<metadata_license>CC0-1.0</metadata_license>
 	<project_license>GPL-2.0-only</project_license>
-	<name>Deskflow</name>
-	<developer id="org.deskflow">
-		<name>Deskflow Developers</name>
+	<name>Lightning Desk</name>
+	<developer id="ai.schomp">
+		<name>Schomp Technologies</name>
 	</developer>
 	<summary>Software Keyboard and mouse sharing</summary>
 	<summary xml:lang="zh_CN">用软件共享键鼠</summary>
@@ -21,40 +21,12 @@
 			한 대의 컴퓨터에 연결된 키보드, 마우스 또는 트랙패드로 주변의 다른 컴퓨터를 제어하고, 컴퓨터 사이를 끊김 없이 오가며 작업할 수 있습니다.
 		</p>
 	</description>
-	<launchable type="desktop-id">org.deskflow.deskflow.desktop</launchable>
-	<url type="homepage">https://deskflow.org</url>
-	<url type="bugtracker">https://github.com/deskflow/deskflow/issues</url>
-	<url type="faq">https://github.com/deskflow/deskflow/wiki/Project-FAQ</url>
-	<url type="help">https://github.com/deskflow/deskflow/wiki#user-guides</url>
-	<url type="vcs-browser">https://github.com/deskflow/deskflow</url>
-	<url type="contribute">https://github.com/deskflow/deskflow/wiki/Contributing</url>
-	<screenshots>
-		<screenshot type="default">
-			<image>https://deskflow.org/screenshots/deskflow-client.png</image>
-			<caption>Deskflow in client mode on KDE</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://deskflow.org/screenshots/deskflow-server.png</image>
-			<caption>Deskflow in server mode on KDE</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://deskflow.org/screenshots/deskflow-log.png</image>
-			<caption>Deskflow with the log visible on KDE</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://deskflow.org/screenshots/deskflow-client-dark.png</image>
-			<caption>Deskflow in client mode on KDE (dark mode)</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://deskflow.org/screenshots/deskflow-server-dark.png</image>
-			<caption>Deskflow in server mode on KDE (dark mode)</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://deskflow.org/screenshots/deskflow-log-dark.png</image>
-			<caption>Deskflow with the log visible on KDE (dark mode)</caption>
-		</screenshot>
-	</screenshots>
-	<provides> <id>org.deskflow.deskflow.desktop</id> </provides>
+	<launchable type="desktop-id">ai.schomp.lightningdesk.desktop</launchable>
+	<url type="homepage">https://github.com/cynthiaschomp/lightning-desk</url>
+	<url type="bugtracker">https://github.com/cynthiaschomp/lightning-desk/issues</url>
+	<url type="help">https://github.com/cynthiaschomp/lightning-desk#readme</url>
+	<url type="vcs-browser">https://github.com/cynthiaschomp/lightning-desk</url>
+	<provides> <id>ai.schomp.lightningdesk.desktop</id> </provides>
 	<categories>
 		<category>Utility</category>
 	</categories>
@@ -88,7 +60,7 @@
 					<li>Lots more check the release page</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.27.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.26.0" date="2026-02-16" urgency="high">
 			<description>
@@ -105,7 +77,7 @@
 					<li>New: Replace broken scroll speed with a scroll scaling options</li>
 					<li>Fix: Horizontal scrolling is working again on all platforms</li>
 					<li>Fix: Key repeat events are now sent as repeat not press and release</li>
-					<li>Fix: Deskflow-core correctly blocks new instances when run without the `--new-instance` option</li>
+					<li>Fix: Lightning Desk-core correctly blocks new instances when run without the `--new-instance` option</li>
 					<li>Fix: Server Mode, Only use the external config path if the option is enabled</li>
 					<li>Fix: Allow comma and semicolon to be used in the hotkey configuration</li>
 					<li>Fix: Gui can crash when clearing settings in debug mode</li>
@@ -127,7 +99,7 @@
 					<li>Consolidate Debug levels to remove DEBUG3-5 levels</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.26.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.25.0" date="2025-11-21" urgency="high">
 			<description>
@@ -157,7 +129,7 @@
 					<li>Fixed crash caused by hostnames with invalid characters returned default value</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.25.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.24.0" date="2025-09-11" urgency="high">
 			<description>
@@ -179,7 +151,7 @@
 					<li>Chore: Clean more sonar smells</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.24.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.23.0" date="2025-07-23" urgency="high">
 			<description>
@@ -199,7 +171,7 @@
 					<li>Chore: Clean more sonar smells</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.23.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.22.0" date="2025-05-28" urgency="high">
 			<description>
@@ -215,7 +187,7 @@
 					<li>Fix: Potential XDG-Portal release issue</li>
 					<li>Fix: Issue where the first start dialog could hang in the background</li>
 					<li>Fix: Edge cases that could cause incorrect settings causing client / server process to crash</li>
-					<li>Fix: Default server config file is Deskflow-server.conf</li>
+					<li>Fix: Default server config file is Lightning Desk-server.conf</li>
 					<li>Backport: Event Types from downstream</li>
 					<li>Backport: Cleaner error handling from downstream</li>
 					<li>Improve Windows Daemon</li>
@@ -223,7 +195,7 @@
 					<li>Chore: Clean up sonar scan code smells</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.22.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.21.2" date="2025-04-07" urgency="high">
 			<description>
@@ -233,7 +205,7 @@
 					<li>Fix: Windows settings in wrong locations</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.21.2</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.21.1" date="2025-03-31" urgency="high">
 			<description>
@@ -245,7 +217,7 @@
 					<li>Fix: Windows settings saving blocked for non admin users </li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.21.1</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.21.0" date="2025-03-27" urgency="high">
 			<description>
@@ -260,7 +232,7 @@
 					<li>Fix issues with windows installer when msvc is missing</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.21.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.20.1" date="2025-03-07" urgency="low">
 			<description>
@@ -271,7 +243,7 @@
 					<li>Feature: Prevent Windows binaries running if MSVC runtime too old</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.20.1</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.20.0" date="2025-03-03" urgency="high">
 			<description>
@@ -287,7 +259,7 @@
 					<li>Win32: Fix clear settings</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.20.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.19.0" date="2025-01-31" urgency="high">
 			<description>
@@ -307,7 +279,7 @@
 					<li>Lots of Internal Cleanup</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.19.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.18.0" date="2024-12-26" urgency="high">
 			<description>
@@ -326,7 +298,7 @@
 					<li>Update the windows clipboard format listener to monitor the clipboard</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.18.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.17.2" date="2024-11-20" urgency="medium">
 			<description>
@@ -380,7 +352,7 @@
 					<li>ci: build flatpaks</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.17.2</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.17.1" date="2024-11-07" urgency="high">
 			<description>
@@ -497,15 +469,15 @@
 					<li>ci: adjust pacakge script to use the names we would like when in cpack</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.17.1</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 		<release version="1.17.0" date="2024-10-02" urgency="low">
 			<description>
-				<p>This is the first Deskflow release.</p>
+				<p>This is the first Lightning Desk release.</p>
 				<ul>
-					<li>Use Deskflow Name</li>
+					<li>Use Lightning Desk Name</li>
 					<li>fix: windows build typos</li>
-					<li>Fix broken CI caused by renaming project to Deskflow</li>
+					<li>Fix broken CI caused by renaming project to Lightning Desk</li>
 					<li>fix: protocol compatibility with Synergy</li>
 					<li>Remove Google Drive upload and always upload to GitHub</li>
 					<li>fix: stuck keys on leave</li>
@@ -522,11 +494,11 @@
 					<li>build: script to create Python virtual env</li>
 					<li>build: set BUILD_DATE instead of using __DATE__</li>
 					<li>ci: delete ChangeLog because it's redundant</li>
-					<li>feat: use new Deskflow graphics</li>
+					<li>feat: use new Lightning Desk graphics</li>
 					<li>fix: various typos found by unit193</li>
 					<li>docs: add new logo to readme and update screenshot</li>
 					<li>ci: use workflow_run to comment on PRs</li>
-					<li>feat: change most domains to Deskflow</li>
+					<li>feat: change most domains to Lightning Desk</li>
 					<li>feat: ask for permission before update check</li>
 					<li>ci: remove restore-keys for vcpkg and use local bootstrap</li>
 					<li>ci: add pr comment based on ci result</li>
@@ -547,7 +519,7 @@
 					<li>Use sonarsource/sonarcloud-github-c-cpp</li>
 				</ul>
 			</description>
-			<url>https://github.com/deskflow/deskflow/releases/tag/v1.17.0</url>
+			<url>https://github.com/cynthiaschomp/lightning-desk</url>
 		</release>
 	</releases>
 </component>

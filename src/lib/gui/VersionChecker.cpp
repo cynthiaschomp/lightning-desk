@@ -29,8 +29,8 @@ void VersionChecker::checkLatest() const
   auto request = QNetworkRequest(url);
   auto userAgent = QString("%1 %2 on %3").arg(kAppName, kVersion, QSysInfo::prettyProductName());
   request.setHeader(QNetworkRequest::UserAgentHeader, userAgent);
-  request.setRawHeader("X-Deskflow-Version", kVersion);
-  request.setRawHeader("X-Deskflow-Language", qPrintable(QLocale::system().name()));
+  request.setRawHeader("X-LightningDesk-Version", kVersion);
+  request.setRawHeader("X-LightningDesk-Language", qPrintable(QLocale::system().name()));
   m_network->get(request);
 }
 

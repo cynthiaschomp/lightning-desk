@@ -94,8 +94,8 @@ void ClientApp::parseArgs()
 const char *ClientApp::daemonName() const
 {
   if (deskflow::platform::isWindows())
-    return "Deskflow Client";
-  return "deskflow-client";
+    return "Lightning Desk Client";
+  return "lightning-desk-client";
 }
 
 deskflow::Computer *ClientApp::createComputer()

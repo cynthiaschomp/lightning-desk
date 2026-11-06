@@ -532,6 +532,20 @@ void CoreProcess::stop(std::optional<ProcessMode> processModeOption)
   setConnectionState(ConnectionState::Disconnected);
 }
 
+bool CoreProcess::reloadServerConfig()
+{
+  if (m_mode != Settings::CoreMode::Server || m_processState != ProcessState::Started)
+    return false;
+  if (!m_coreIpcClient || !m_coreIpcClient->isConnected())
+    return false;
+  const auto [readable, configFilename] = persistServerConfig();
+  if (!readable || configFilename.isEmpty())
+    return false;
+  qInfo("asking core to reload server config: %s", qPrintable(configFilename));
+  m_coreIpcClient->sendReload();
+  return true;
+}
+
 void CoreProcess::restart()
 {
   qDebug("restarting core process");

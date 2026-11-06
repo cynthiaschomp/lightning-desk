@@ -43,6 +43,10 @@ public:
   void start(std::optional<ProcessMode> processMode = std::nullopt);
   void stop(std::optional<ProcessMode> processMode = std::nullopt);
   void restart();
+  /// Rewrite the server config and ask a running server core to re-read it
+  /// without disconnecting clients. Returns false if that is not possible
+  /// (not running, not a server, or no IPC yet); callers then restart().
+  bool reloadServerConfig();
   void cleanup();
   void applyLogLevel();
   void clearSettings();

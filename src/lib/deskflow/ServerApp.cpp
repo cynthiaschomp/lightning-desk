@@ -592,8 +592,8 @@ int ServerApp::start()
 const char *ServerApp::daemonName() const
 {
   if (deskflow::platform::isWindows())
-    return "Deskflow Server";
-  return "deskflow-server";
+    return "Lightning Desk Server";
+  return "lightning-desk-server";
 }
 
 void ServerApp::startNode()
