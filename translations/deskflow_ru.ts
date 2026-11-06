@@ -1396,6 +1396,258 @@ Enabling this setting will disable the server config GUI.</source>
     </message>
 </context>
 <context>
+    <name>deskflow::gui::SetupWizard</name>
+    <message>
+        <source>Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One mouse. One keyboard.
+Every computer on your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move your cursor off the edge of one screen and it appears on the next. Copy on one computer, paste on another. Drag a file straight across. No cables, no extra gear.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About 2 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing to type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows, Mac &amp; Linux</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which computer is this?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick the one that matches the computer you&apos;re sitting at right now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is my main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The mouse and keyboard I want to use are plugged into this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Most people start here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is an extra screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A laptop or second computer I want to control from my main one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set up the main computer first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What should we call it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the name you&apos;ll see when you arrange your desk. We filled in a suggestion.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it simple, like &lt;b&gt;desk&lt;/b&gt; or &lt;b&gt;silver-laptop&lt;/b&gt;. You can rename it anytime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On each laptop, open Lightning Desk, choose &lt;b&gt;This is an extra screen&lt;/b&gt;, and type this code. That&apos;s it — no addresses, no certificates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YOUR DESK CODE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only works on your Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main computer&apos;s code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type it exactly as shown on the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where does it sit on your desk?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Making sure everything works</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We check the things that usually go wrong and fix them for you. Nothing to do here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;re all set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp;amp; paste works across them &amp;nbsp;·&amp;nbsp; Drag files across too</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Имя</translation>
+    </message>
+    <message>
+        <source>Link computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrange desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I&apos;ve linked them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>STEP %1 OF %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap the side of your main screen where &lt;b&gt;%1&lt;/b&gt; physically is. Your cursor will cross over on that edge.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the other computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try it now: slide your mouse off the &lt;b&gt;%1&lt;/b&gt; edge of your main screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fixed for you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs on your desktop, not as a hidden service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection is private and encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computers trust each other from the desk code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Firewall lets your computers talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule limited to your own network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts by itself when you open Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy, paste and drag files across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>i18n</name>
     <message>
         <source>LocalizedName</source>
