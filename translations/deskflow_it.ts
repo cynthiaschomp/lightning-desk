@@ -1476,10 +1476,6 @@ Every computer on your desk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep it simple, like &lt;b&gt;desk&lt;/b&gt; or &lt;b&gt;silver-laptop&lt;/b&gt;. You can rename it anytime.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Link your other computers</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1880,6 +1876,10 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Almost there. The main computer is making room for this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it simple, like &lt;b&gt;DESK&lt;/b&gt; or &lt;b&gt;SILVER-LAPTOP&lt;/b&gt;. You can rename it anytime.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
