@@ -14,6 +14,7 @@
 #include "common/VersionInfo.h"
 #include "gui/Diagnostic.h"
 #include "gui/MainWindow.h"
+#include "gui/wizard/SetupWizard.h"
 #include "gui/Messages.h"
 #include "gui/StyleUtils.h"
 
@@ -148,6 +149,14 @@ int main(int argc, char *argv[])
   // --no-reset
   if (parser.isSet(resetOption)) {
     diagnostic::clearSettings(false);
+  }
+
+  // Lightning Desk: plain-language first-run setup before the main window.
+  if (deskflow::gui::SetupWizard::isFirstRun()) {
+    deskflow::gui::SetupWizard wizard;
+    if (wizard.exec() != QDialog::Accepted) {
+      return 0;
+    }
   }
 
   MainWindow mainWindow;

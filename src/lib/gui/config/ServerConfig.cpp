@@ -262,6 +262,23 @@ void ServerConfig::addClient(const QString &clientName)
   m_computers.addComputerByPriority(Computer(clientName));
 }
 
+void ServerConfig::placeClient(const QString &clientName, int gridIndex)
+{
+  const auto serverName = Settings::value(Settings::Core::ComputerName).toString();
+  const int centre = (m_rows / 2) * m_columns + (m_columns / 2);
+  if (gridIndex < 0 || gridIndex >= m_computers.size() || gridIndex == centre)
+    return;
+
+  // Clear any previous placement of either name so the layout stays consistent.
+  for (auto &computer : m_computers) {
+    if (computer.name() == clientName || computer.name() == serverName)
+      computer = Computer();
+  }
+  m_computers[centre] = Computer(serverName);
+  m_computers[centre].markAsServer();
+  m_computers[gridIndex] = Computer(clientName);
+}
+
 void ServerConfig::setConfigFile(const QString &configFile) const
 {
   Settings::setValue(Settings::Server::ExternalConfigFile, configFile);
