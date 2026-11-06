@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: (C) 2024 Deskflow Developers
 # SPDX-License-Identifier: MIT
-# Maintainer: Deskflow Developers
+# Maintainer: Schomp Technologies <support@schomp.ai>
 
 _basename=@CMAKE_PROJECT_NAME@
 pkgname=${_basename}-git

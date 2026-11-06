@@ -97,19 +97,23 @@ endif()
 
 #Define our project
 project(
-  deskflow
+  lightning-desk
   VERSION "${DESKFLOW_VERSION_MAJOR}.${DESKFLOW_VERSION_MINOR}.${DESKFLOW_VERSION_PATCH}.${DESKFLOW_VERSION_TWEAK}"
-  DESCRIPTION "Keyboard and mouse sharing utility"
-  HOMEPAGE_URL "https://deskflow.org"
+  DESCRIPTION "One mouse and keyboard for every computer on your desk"
+  HOMEPAGE_URL "https://github.com/cynthiaschomp/lightning-desk"
   LANGUAGES C CXX
 )
 
 # Define Additional "PROJECT" vars for packaging and metadata
-set(CMAKE_PROJECT_PROPER_NAME "Deskflow")
-set(CMAKE_PROJECT_VENDOR "${CMAKE_PROJECT_PROPER_NAME} Devs")
-set(CMAKE_PROJECT_COPYRIGHT "(C) 2024-2026 ${CMAKE_PROJECT_VENDOR}")
-set(CMAKE_PROJECT_CONTACT "${CMAKE_PROJECT_PROPER_NAME} <maintainers@deskflow.org>")
-set(CMAKE_PROJECT_REV_FQDN "org.deskflow.deskflow")
+# Lightning Desk is a modified version of Deskflow (GPL-2.0).
+# PROPER_NAME: space-free name for targets, the macOS bundle and file names.
+# DISPLAY_NAME: the name people see.
+set(CMAKE_PROJECT_PROPER_NAME "LightningDesk")
+set(CMAKE_PROJECT_DISPLAY_NAME "Lightning Desk")
+set(CMAKE_PROJECT_VENDOR "Schomp Technologies")
+set(CMAKE_PROJECT_COPYRIGHT "(C) 2026 Schomp Technologies LLC")
+set(CMAKE_PROJECT_CONTACT "Schomp Technologies <support@schomp.ai>")
+set(CMAKE_PROJECT_REV_FQDN "ai.schomp.lightningdesk")
 
 #Unset the vars used in the project call
 unset(DESKFLOW_VERSION_MAJOR)

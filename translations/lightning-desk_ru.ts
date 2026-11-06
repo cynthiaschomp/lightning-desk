@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="ru_RU" sourcelanguage="en_US">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Deskflow</source>
-        <translation type="unfinished">Acerca de Deskflow</translation>
+        <translation type="vanished">О Deskflow</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -13,19 +13,19 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;License: GNU GPL Version 2&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Licencia: GNU GPL Versión 2&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Лицензия: GNU GPL версии 2&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Version: </source>
-        <translation>Versión: </translation>
+        <translation>Версия: </translation>
     </message>
     <message>
         <source>Copy version info</source>
-        <translation type="unfinished">Copiar información de la versión</translation>
+        <translation>Скопировать сведения о версии</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -33,168 +33,172 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/deskflow/deskflow/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Code Contributors&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/deskflow/deskflow/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Colaboradores del código&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/deskflow/deskflow/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Авторы кода&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icons from &lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;KDE Breeze&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Iconos de &lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;KDE Breeze&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Иконки &lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;KDE Breeze&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Important Developers</source>
-        <translation type="unfinished">Desarrolladores importantes</translation>
+        <translation>Ключевые разработчики</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Cerrar</translation>
+        <translation>&amp;Закрыть</translation>
+    </message>
+    <message>
+        <source>About Lightning Desk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ActionDialog</name>
     <message>
         <source>Configure Action</source>
-        <translation type="unfinished">Configurar acción</translation>
+        <translation>Настроить действие</translation>
     </message>
     <message>
         <source>When the hotkey is pressed</source>
-        <translation type="unfinished">Cuando se presiona la tecla de acceso rápido</translation>
+        <translation>При нажатии горячей клавиши</translation>
     </message>
     <message>
         <source>When the hotkey is released</source>
-        <translation type="unfinished">Cuando se suelta la tecla de acceso rápido</translation>
+        <translation>При отпускании горячей клавиши</translation>
     </message>
     <message>
         <source>Press key(s)</source>
-        <translation type="unfinished">Presione la(s) tecla(s)</translation>
+        <translation>Нажать клавишу(и)</translation>
     </message>
     <message>
         <source>Release key(s)</source>
-        <translation type="unfinished">Tecla(s) de liberación</translation>
+        <translation>Отпустить клавишу(и)</translation>
     </message>
     <message>
         <source>Press and release key(s)</source>
-        <translation type="unfinished">Presione y suelte la(s) tecla(s)</translation>
+        <translation>Нажать и отпустить клавишу(и)</translation>
     </message>
     <message>
         <source>Switch to a computer</source>
-        <translation type="unfinished">Cambiar a una computadora</translation>
+        <translation>Переключиться на компьютер</translation>
     </message>
     <message>
         <source>Switch in a direction</source>
-        <translation type="unfinished">Cambiar de dirección</translation>
+        <translation>Перейти в направлении</translation>
     </message>
     <message>
         <source>Switch to next computer</source>
-        <translation type="unfinished">Cambiar a la siguiente computadora</translation>
+        <translation>Переключиться на следующий компьютер</translation>
     </message>
     <message>
         <source>Modify the cursor lock</source>
-        <translation type="unfinished">Modificar el bloqueo del cursor</translation>
+        <translation>Изменить блокировку курсора</translation>
     </message>
     <message>
         <source>Restart the server</source>
-        <translation type="unfinished">Reiniciar el servidor</translation>
+        <translation>Перезапустить сервер</translation>
     </message>
     <message>
         <source>Switch to the computer on the left</source>
-        <translation type="unfinished">Cambiar a la computadora de la izquierda</translation>
+        <translation>Переключиться на компьютер слева</translation>
     </message>
     <message>
         <source>Switch to the computer on the right</source>
-        <translation type="unfinished">Cambiar a la computadora de la derecha</translation>
+        <translation>Переключиться на компьютер справа</translation>
     </message>
     <message>
         <source>Switch to the computer above</source>
-        <translation type="unfinished">Cambiar a la computadora de arriba</translation>
+        <translation>Переключиться на компьютер выше</translation>
     </message>
     <message>
         <source>Switch to the computer below</source>
-        <translation type="unfinished">Cambie a la computadora de abajo</translation>
+        <translation>Переключиться на компьютер ниже</translation>
     </message>
     <message>
         <source>Toggle the cursor lock</source>
-        <translation type="unfinished">Activar o desactivar el bloqueo del cursor</translation>
+        <translation>Переключить блокировку курсора</translation>
     </message>
     <message>
         <source>Enable the cursor lock</source>
-        <translation type="unfinished">Habilitar el bloqueo del cursor</translation>
+        <translation>Включить блокировку курсора</translation>
     </message>
     <message>
         <source>Disable the cursor lock</source>
-        <translation type="unfinished">Desactivar el bloqueo del cursor</translation>
+        <translation>Выключить блокировку курсора</translation>
     </message>
     <message>
         <source>Computers to receive this event</source>
-        <translation type="unfinished">Computadoras para recibir este evento</translation>
+        <translation>Компьютеры, получающие это событие</translation>
     </message>
     <message>
         <source>Switch to %1</source>
-        <translation type="unfinished">Cambiar a %1</translation>
+        <translation>Переключиться на %1</translation>
     </message>
 </context>
 <context>
     <name>ClientConfigDialog</name>
     <message>
         <source>Client Configuration</source>
-        <translation type="unfinished">Configuración del cliente</translation>
+        <translation type="unfinished">Конфигурация клиента</translation>
     </message>
     <message>
         <source>Use server&apos;s keyboard language on this computer</source>
-        <translation type="unfinished">Utilice el idioma del teclado del servidor en esta computadora</translation>
+        <translation type="unfinished">Использовать язык клавиатуры сервера на этом компьютере</translation>
     </message>
     <message>
         <source>Scroll Modifiers</source>
-        <translation type="unfinished">Modificadores de desplazamiento</translation>
+        <translation type="unfinished">Модификаторы прокрутки</translation>
     </message>
     <message>
         <source>Invert</source>
-        <translation type="unfinished">Invertir</translation>
+        <translation type="unfinished">Инвертировать</translation>
     </message>
     <message>
         <source>Horizontal Scroll</source>
-        <translation type="unfinished">Desplazamiento horizontal</translation>
+        <translation type="unfinished">Горизонтальная прокрутка</translation>
     </message>
     <message>
         <source>Vertical Scroll</source>
-        <translation type="unfinished">Desplazamiento vertical</translation>
+        <translation type="unfinished">Вертикальная прокрутка</translation>
     </message>
     <message>
         <source>Scale</source>
-        <translation type="unfinished">Escala</translation>
+        <translation type="unfinished">Шкала</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Allow the client to slow the rate it attempts to reconnect to the server when connections attempts are failing. The delay between connection attempts will  start at 1 second intervals and can be a maxium of 5 minutes between connection attempts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permite que el cliente reduzca la frecuencia con la que intenta reconectarse al servidor cuando los intentos de conexión fallan. El intervalo entre intentos de conexión comenzará en 1 segundo y podrá alcanzar un máximo de 5 minutos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Позволить клиенту замедлять частоту попыток повторного подключения к серверу в случае неудачных попыток соединения. Интервал между попытками подключения будет начинаться с 1 секунды и может достигать максимума в 5 минут.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Use dynamic reconnection time based on connection attempts</source>
-        <translation type="unfinished">Utilizar un tiempo de reconexión dinámico basado en los intentos de conexión</translation>
+        <translation type="unfinished">Использовать динамическое время переподключения в зависимости от попыток подключения</translation>
     </message>
     <message>
         <source>Clear Server History</source>
-        <translation>Borrar historial de servidores</translation>
+        <translation type="unfinished">Очистить историю серверов</translation>
     </message>
 </context>
 <context>
     <name>ComputerSettingsDialog</name>
     <message>
         <source>Computer settings</source>
-        <translation type="unfinished">Información de la computadora</translation>
+        <translation type="unfinished">Настройки компьютера</translation>
     </message>
     <message>
         <source>Computer Info</source>
-        <translation type="unfinished">Información de la computadora</translation>
+        <translation type="unfinished">Информация о компьютере</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation type="unfinished">Имя</translation>
     </message>
     <message>
         <source>Modifier Keys</source>
-        <translation type="unfinished">Teclas modificadoras</translation>
+        <translation type="unfinished">Клавиши-модификаторы</translation>
     </message>
     <message>
         <source>M&amp;eta</source>
@@ -206,7 +210,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>S&amp;uper</source>
-        <translation type="unfinished">S&amp;úper</translation>
+        <translation type="unfinished">S&amp;uper</translation>
     </message>
     <message>
         <source>Al&amp;t</source>
@@ -230,7 +234,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Super</source>
-        <translation type="unfinished">Súper</translation>
+        <translation type="unfinished">Super</translation>
     </message>
     <message>
         <source>Alt Gr</source>
@@ -238,7 +242,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation type="unfinished">Нет</translation>
     </message>
     <message>
         <source>&amp;Shift</source>
@@ -250,373 +254,337 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Dead Corners</source>
-        <translation type="unfinished">Esquinas muertas</translation>
+        <translation type="unfinished">Мертвые зоны в углах</translation>
     </message>
     <message>
         <source>Top Left</source>
-        <translation type="unfinished">Arriba a la izquierda</translation>
+        <translation type="unfinished">Сверху слева</translation>
     </message>
     <message>
         <source>Top Right</source>
-        <translation type="unfinished">Arriba a la derecha</translation>
+        <translation type="unfinished">Сверху справа</translation>
     </message>
     <message>
         <source>Corner si&amp;ze</source>
-        <translation type="unfinished">Tamaño de la e&amp;squina</translation>
+        <translation type="unfinished">Разм&amp;ер угла</translation>
     </message>
     <message>
         <source>Bottom Left</source>
-        <translation type="unfinished">Abajo a la izquierda</translation>
+        <translation type="unfinished">Снизу слева</translation>
     </message>
     <message>
         <source>Bottom Right</source>
-        <translation type="unfinished">Abajo a la derecha</translation>
+        <translation type="unfinished">Снизу справа</translation>
     </message>
     <message>
         <source>Fixes</source>
-        <translation type="unfinished">Correcciones</translation>
+        <translation type="unfinished">Исправления</translation>
     </message>
     <message>
         <source>SCROLL LOCK key</source>
-        <translation type="unfinished">Tecla BLOQ DESPLAZAMIENTO</translation>
+        <translation type="unfinished">Клавиша SCROLL LOCK</translation>
     </message>
     <message>
         <source>CAPS LOCK key</source>
-        <translation type="unfinished">Tecla BLOQ MAYÚS</translation>
+        <translation type="unfinished">Клавиша CAPS LOCK</translation>
     </message>
     <message>
         <source>NUM LOCK key</source>
-        <translation type="unfinished">Tecla BLOQ NUM</translation>
+        <translation type="unfinished">Клавиша NUM LOCK</translation>
     </message>
     <message>
         <source>XTest for Xinerama</source>
-        <translation type="unfinished">XTest para Xinerama</translation>
+        <translation type="unfinished">XTest для Xinerama</translation>
     </message>
     <message>
         <source>X11 computers Only, When enabled the client will not give focus to its focused window as soon as the client is switched to. This can help prevent unwanted focus stealing with some X11 setups.</source>
-        <translation type="unfinished">Solo para equipos con X11: al activar esta opción, el cliente no otorgará el foco a su ventana activa inmediatamente después de cambiar a él. Esto puede ayudar a evitar el robo de foco no deseado en algunas configuraciones de X11.</translation>
+        <translation type="unfinished">Только для систем X11: если эта функция включена, клиент не будет автоматически передавать фокус своему активному окну сразу после переключения на этот клиент. Это помогает предотвратить нежелательный перехват фокуса в некоторых конфигурациях X11.</translation>
     </message>
     <message>
         <source>Weaken X11 Focus</source>
-        <translation type="unfinished">Debilitar el foco de X11</translation>
+        <translation type="unfinished">Ослабить фокус X11</translation>
     </message>
     <message>
         <source>Aliases</source>
-        <translation type="unfinished">Alias</translation>
+        <translation type="unfinished">Псевдонимы</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Agregar</translation>
+        <translation type="unfinished">&amp;Добавить</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">Elimina&amp;r</translation>
+        <translation type="unfinished">&amp;Удалить</translation>
     </message>
     <message>
         <source>Computer name is empty</source>
-        <translation type="unfinished">El nombre del equipo está vacío.</translation>
+        <translation type="unfinished">Имя компьютера не указано</translation>
     </message>
     <message>
         <source>The computer name cannot be empty. Please either fill in a name or cancel the dialog.</source>
-        <translation type="unfinished">El nombre del equipo no puede estar vacío. Por favor, introduzca un nombre o cancele el cuadro de diálogo.</translation>
+        <translation type="unfinished">Имя компьютера не может быть пустым. Введите имя или отмените диалог.</translation>
     </message>
     <message>
         <source>Computer name matches alias</source>
-        <translation type="unfinished">El nombre del equipo coincide con el alias.</translation>
+        <translation type="unfinished">Имя компьютера совпадает с псевдонимом</translation>
     </message>
     <message>
         <source>The computer name cannot be the same as an alias. Please either remove the alias or change the computer name.</source>
-        <translation type="unfinished">El nombre del equipo no puede ser igual a un alias. Elimine el alias o cambie el nombre del equipo.</translation>
+        <translation type="unfinished">Имя компьютера не может совпадать с псевдонимом. Удалите псевдоним или измените имя компьютера.</translation>
     </message>
 </context>
 <context>
     <name>ComputerSetupModel</name>
     <message>
         <source>&lt;center&gt;Computer: &lt;b&gt;%1&lt;/b&gt;&lt;/center&gt;&lt;br&gt;Double click to edit settings&lt;br&gt;Drag computer to the trashcan to remove it</source>
-        <translation type="unfinished">&lt;center&gt;Equipo: &lt;b&gt;%1&lt;/b&gt;&lt;/center&gt;&lt;br&gt;Haz doble clic para editar la configuración&lt;br&gt;Arrastra el equipo a la papelera para eliminarlo</translation>
+        <translation type="unfinished">&lt;center&gt;Компьютер: &lt;b&gt;%1&lt;/b&gt;&lt;/center&gt;&lt;br&gt;Дважды щелкните, чтобы изменить настройки&lt;br&gt;Перетащите компьютер в корзину, чтобы удалить его</translation>
     </message>
 </context>
 <context>
     <name>FingerprintDialog</name>
     <message>
         <source>Local Fingerprints</source>
-        <translation type="unfinished">Huellas dactilares locales</translation>
+        <translation>Локальные отпечатки</translation>
     </message>
     <message>
         <source>Local computer&apos;s fingerprint</source>
-        <translation type="unfinished">Huella digital de la computadora local</translation>
+        <translation>Отпечаток локального компьютера</translation>
     </message>
     <message>
         <source>Compare the fingerprints in this dialog to those on the %1.
 Only connect if they match!</source>
-        <translation type="unfinished">Compara las huellas dactilares de este diálogo con las de %1.
-¡Conéctate solo si coinciden!</translation>
+        <translation>Сравните отпечатки в этом окне с отпечатками на %1. 
+Подключайтесь только в случае их совпадения!</translation>
     </message>
     <message>
         <source>New client connecting</source>
-        <translation type="unfinished">Nuevo cliente conectándose</translation>
+        <translation>Подключение нового клиента</translation>
     </message>
     <message>
         <source>client</source>
-        <translation type="unfinished">cliente</translation>
-    </message>
-    <message>
-        <source>Connecting to a new server</source>
-        <translation type="unfinished">Conectarse a un nuevo servidor</translation>
-    </message>
-    <message>
-        <source>server</source>
-        <translation type="unfinished">servidor</translation>
+        <translation>клиент</translation>
     </message>
     <message>
         <source>
 Trust client and allow connection?
 </source>
-        <translation type="unfinished">
-¿Confiar en el cliente y permitir la conexión?
+        <translation>
+Доверять клиенту и разрешить подключение?
 </translation>
+    </message>
+    <message>
+        <source>Connecting to a new server</source>
+        <translation>Подключение к новому серверу</translation>
+    </message>
+    <message>
+        <source>server</source>
+        <translation>сервер</translation>
     </message>
     <message>
         <source>
 Do you want to connect to the server?
 </source>
-        <translation type="unfinished">
-¿Quieres conectarte al servidor?
+        <translation>
+Вы хотите подключиться к серверу?
 </translation>
     </message>
     <message>
         <source>Server Fingerprint</source>
-        <translation type="unfinished">Huella del servidor</translation>
+        <translation>Отпечаток сервера</translation>
     </message>
     <message>
         <source>Client Fingerprint</source>
-        <translation type="unfinished">Huella digital del cliente</translation>
+        <translation>Отпечаток клиента</translation>
     </message>
     <message>
         <source>Show image</source>
-        <translation type="unfinished">Mostrar imagen</translation>
+        <translation>Показать изображение</translation>
     </message>
     <message>
         <source>Show hash</source>
-        <translation type="unfinished">Mostrar hash</translation>
+        <translation>Показать хэш</translation>
     </message>
     <message>
         <source>Display the fingerprint as an image</source>
-        <translation type="unfinished">Mostrar la huella digital como una imagen</translation>
+        <translation>Показать отпечаток как изображение</translation>
     </message>
     <message>
         <source>Display the fingerprint as a hash</source>
-        <translation type="unfinished">Mostrar la huella digital como un hash</translation>
+        <translation>Показать отпечаток как хэш</translation>
     </message>
 </context>
 <context>
     <name>FingerprintPreview</name>
     <message>
         <source>Invalid hash format</source>
-        <translation type="unfinished">Formato hash no válido</translation>
+        <translation>Неверный формат хэша</translation>
     </message>
 </context>
 <context>
     <name>HelpDialog</name>
     <message>
         <source>%1 Help</source>
-        <translation type="unfinished">%1 Ayuda</translation>
+        <translation type="unfinished">%1 Справка</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished">Cerca</translation>
+        <translation type="unfinished">Закрывать</translation>
     </message>
 </context>
 <context>
     <name>HotkeyDialog</name>
     <message>
         <source>Hotkey</source>
-        <translation type="unfinished">Tecla de acceso rápido</translation>
+        <translation>Горячая клавиша</translation>
     </message>
     <message>
         <source>Enter the specification for the hotkey:</source>
-        <translation type="unfinished">Introduzca la especificación de la tecla de acceso rápido:</translation>
+        <translation>Введите сочетание для горячей клавиши:</translation>
     </message>
 </context>
 <context>
     <name>LogDock</name>
     <message>
         <source>Log</source>
-        <translation type="unfinished">Registro</translation>
+        <translation>Журнал</translation>
     </message>
     <message>
         <source>Detach from window</source>
-        <translation type="unfinished">Separar de la ventana</translation>
+        <translation>Открепить от окна</translation>
     </message>
     <message>
         <source>Close Log</source>
-        <translation type="unfinished">Cerrar registro</translation>
+        <translation>Закрыть журнал</translation>
     </message>
     <message>
         <source>Attach to window</source>
-        <translation type="unfinished">Adjuntar a la ventana</translation>
+        <translation>Прикрепить к окну</translation>
     </message>
 </context>
 <context>
     <name>LogLevel</name>
     <message>
         <source>Fatal</source>
-        <translation type="unfinished">Fatal</translation>
+        <translation type="unfinished">Критический</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Error</translation>
+        <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished">Advertencia</translation>
+        <translation type="unfinished">Предупреждение</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished">Información</translation>
+        <translation type="unfinished">Инфо</translation>
     </message>
     <message>
         <source>Debug</source>
-        <translation type="unfinished">Depurar</translation>
+        <translation type="unfinished">Отладка</translation>
     </message>
     <message>
         <source>Verbose</source>
-        <translation type="unfinished">Verboso</translation>
+        <translation type="unfinished">Многословный</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
+        <source>This computer&apos;s name:</source>
+        <translation>Имя этого компьютера:</translation>
+    </message>
+    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Name can&apos;t have have spaces or special characters&lt;/p&gt;&lt;p&gt;Use Enter to save the name change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;El nombre no puede tener espacios ni caracteres especiales&lt;/p&gt;&lt;p&gt;Use Enter para guardar el cambio de nombre.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Имя не может содержать пробелы или специальные символы.&lt;/p&gt;&lt;p&gt;Нажмите Enter, чтобы сохранить изменения.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Edit Computer Name</source>
-        <translation type="unfinished">Editar el nombre de la computadora</translation>
+        <translation>Изменить имя компьютера</translation>
     </message>
     <message>
         <source>Use this computer&apos;s keyboard and mouse
 (make this computer the server)</source>
-        <translation type="unfinished">Utilizar el teclado y el ratón de esta computadora
-(convertir esta computadora en servidor)</translation>
+        <translation>Использовать мышь и клавиатуру этого компьютера
+(сделать этот компьютер сервером)</translation>
     </message>
     <message>
         <source>Use another computer’s mouse and keyboard
 (make this computer the client)</source>
-        <translation type="unfinished">Usar el ratón y el teclado de otra computadora
-(convertir esta computadora en cliente)</translation>
+        <translation>Использовать мышь и клавиатуру другого компьютера
+(сделать этот компьютер клиентом)</translation>
     </message>
     <message>
         <source>&amp;Configure Server</source>
-        <translation type="unfinished">&amp;Configurar el servidor</translation>
+        <translation>&amp;Настроить сервер</translation>
     </message>
     <message>
         <source>Export server configuration</source>
-        <translation type="unfinished">Exportar configuración del servidor</translation>
+        <translation>Экспортировать конфигурацию сервера</translation>
     </message>
     <message>
         <source>You must select a mode</source>
-        <translation type="unfinished">Debes seleccionar un modo</translation>
+        <translation>Необходимо выбрать режим</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished">&amp;Comenzar</translation>
+        <translation>&amp;Запуск</translation>
     </message>
     <message>
         <source>Restart</source>
-        <translation type="unfinished">Reanudar</translation>
-    </message>
-    <message>
-        <source>&amp;Minimize to tray</source>
-        <translation type="unfinished">&amp;Minimizar a la bandeja</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation type="unfinished">Abando&amp;nar</translation>
-    </message>
-    <message>
-        <source>&amp;Open %1</source>
-        <extracomment>%1 will be the replaced with the appname</extracomment>
-        <translation>Abr&amp;ir %1</translation>
-    </message>
-    <message>
-        <source>&amp;Preferences</source>
-        <translation type="unfinished">&amp;Preferencias</translation>
-    </message>
-    <message>
-        <source>Rest&amp;art</source>
-        <translation type="unfinished">Reanud&amp;ar</translation>
-    </message>
-    <message>
-        <source>S&amp;top</source>
-        <translation type="unfinished">De&amp;tener</translation>
-    </message>
-    <message>
-        <source>About %1...</source>
-        <extracomment>%1 will be the replaced with the appname</extracomment>
-        <translation type="unfinished">Acerca de %1...</translation>
-    </message>
-    <message>
-        <source>View &amp;Help</source>
-        <translation type="unfinished">Ver &amp;ayuda</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <extracomment>start / restart core shortcut</extracomment>
-        <translation type="unfinished">Ctrl+S</translation>
-    </message>
-    <message>
-        <source>Ctrl+T</source>
-        <extracomment>stop core shortcut</extracomment>
-        <translation type="unfinished">Ctrl+T</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Failed to connect to the server &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Error al conectar con el servidor &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</translation>
+        <translation>Перезапуск</translation>
     </message>
     <message>
         <source>Your current TLS key is smaller than the minimum allowed size, A new key 2048-bit key will be generated.</source>
-        <translation type="unfinished">Su clave TLS actual es más pequeña que el tamaño mínimo permitido. Se generará una nueva clave de 2048 bits.</translation>
+        <translation>Текущий ключ TLS меньше минимально допустимого размера. Будет создан новый 2048-битный ключ.</translation>
+    </message>
+    <message>
+        <source>invalid certificate, generating a new one</source>
+        <translation>недействительный сертификат, создание нового</translation>
     </message>
     <message>
         <source>Address missing</source>
-        <translation type="unfinished">Dirección faltante</translation>
+        <translation>Адрес не указан</translation>
     </message>
     <message>
         <source>Please enter the hostname or IP address of the other computer.</source>
-        <translation type="unfinished">Introduzca el nombre de host o la dirección IP de la otra computadora.</translation>
+        <translation>Пожалуйста, введите имя хоста или IP-адрес другого компьютера.</translation>
     </message>
     <message>
         <source>Save server configuration as...</source>
-        <translation type="unfinished">Guardar la configuración del servidor como...</translation>
+        <translation>Сохранить конфигурацию сервера как...</translation>
     </message>
     <message>
         <source>Save failed</source>
-        <translation type="unfinished">Error al guardar</translation>
+        <translation>Ошибка сохранения</translation>
     </message>
     <message>
         <source>Could not save server configuration to file.</source>
-        <translation type="unfinished">No se pudo guardar la configuración del servidor en el archivo.</translation>
+        <translation>Не удалось сохранить файл конфигурации сервера.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished">Comenzar</translation>
+        <translation>Запуск</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished">Detener</translation>
+        <translation>Стоп</translation>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished">Conectar</translation>
+        <translation>Подключиться</translation>
     </message>
     <message>
         <source>Disconnect</source>
-        <translation type="unfinished">Desconectar</translation>
+        <translation>Отключиться</translation>
     </message>
     <message>
-        <source>%1 Connection Error</source>
-        <translation>%1 Error de conexión</translation>
+        <source>&lt;p&gt;Failed to connect to the server &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;Не удалось подключиться к серверу &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;Клиент с таким именем уже подключен к серверу.&lt;/p&gt;Убедитесь, что вы используете уникальное имя и запущен только один процесс клиента.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>View &amp;Help</source>
+        <translation type="unfinished">Просмотр &amp;справки</translation>
     </message>
     <message>
         <source>Invalid Computer Name</source>
@@ -628,62 +596,94 @@ Do you want to connect to the server?
     </message>
     <message>
         <source>No IP Detected</source>
-        <translation type="unfinished">No se detectó ninguna IP</translation>
+        <translation>IP-адрес не обнаружен</translation>
     </message>
     <message>
         <source>Unable to detect an IP address. Check your network connection is active.</source>
-        <translation type="unfinished">No se puede detectar una dirección IP. Compruebe que su conexión de red esté activa.</translation>
+        <translation>Не удалось определить IP-адрес. Проверьте сетевое соединение.</translation>
     </message>
     <message>
         <source>Using IP: </source>
-        <translation type="unfinished">Usando IP: </translation>
-    </message>
-    <message>
-        <source>Suggested IP: </source>
-        <translation type="unfinished">IP sugerida: </translation>
+        <translation>Использование IP-адреса: </translation>
     </message>
     <message>
         <source>&lt;p&gt;If connecting via the hostname fails, try %1&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Si falla la conexión a través del nombre de host, intente %1&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Если подключение по имени хоста не удается, попробуйте %1&lt;/p&gt;</translation>
     </message>
     <message>
         <source>the suggested IP.</source>
-        <translation type="unfinished">la IP sugerida.</translation>
+        <translation>рекомендуемый IP-адрес.</translation>
     </message>
     <message>
         <source>one of the following IPs:&lt;br/&gt;%1</source>
-        <translation type="unfinished">una de las siguientes IP:&lt;br/&gt;%1</translation>
+        <translation>один из следующих IP-адресов:&lt;br/&gt;%1</translation>
     </message>
     <message>
         <source>
 A bound IP is now invalid, you may need to restart the server.</source>
-        <translation type="unfinished">
-La dirección IP asignada ahora no es válida; es posible que deba reiniciar el servidor.</translation>
+        <translation>
+Привязанный IP-адрес стал недействительным. Возможно требуется перезапуск сервера.</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished">&amp;Archivo</translation>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Edición</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished">menú &amp;Ver</translation>
+        <translation>&amp;Вид</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished">&amp;Ayuda</translation>
+        <translation>&amp;Справка</translation>
     </message>
     <message>
-        <source>invalid certificate, generating a new one</source>
-        <translation type="unfinished">certificado no válido, generando uno nuevo</translation>
+        <source>&amp;Minimize to tray</source>
+        <translation>&amp;Свернуть в трей</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Выход</translation>
+    </message>
+    <message>
+        <source>&amp;Open %1</source>
+        <extracomment>%1 will be the replaced with the appname</extracomment>
+        <translation>&amp;Открыть %1</translation>
+    </message>
+    <message>
+        <source>&amp;Preferences</source>
+        <translation>&amp;Настройки</translation>
+    </message>
+    <message>
+        <source>Rest&amp;art</source>
+        <translation>Переза&amp;пуск</translation>
+    </message>
+    <message>
+        <source>S&amp;top</source>
+        <translation>Ос&amp;тановить</translation>
+    </message>
+    <message>
+        <source>About %1...</source>
+        <extracomment>%1 will be the replaced with the appname</extracomment>
+        <translation>О %1...</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <extracomment>start / restart core shortcut</extracomment>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <extracomment>stop core shortcut</extracomment>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
         <extracomment>Quit shortcut</extracomment>
-        <translation type="unfinished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>The name you have chosen is invalid.
@@ -692,48 +692,52 @@ Valid names:
 • Use letters and numbers
 • May also use _ or -
 • Are between 1 and 255 characters</source>
-        <translation type="unfinished">El nombre que ha elegido no es válido.
+        <translation>Выбранное имя недопустимо.
 
-Nombres válidos:
-• Use letras y números
-• También puede usar _ o -
-• Tengan entre 1 y 255 caracteres</translation>
+Требования:
+• Используйте буквы и цифры
+• Можно использовать _ или -
+• Длина от 1 до 255 символов</translation>
     </message>
     <message>
-        <source>This computer&apos;s name:</source>
-        <translation type="unfinished">Nombre de esta computadora:</translation>
+        <source>%1 Connection Error</source>
+        <translation>Ошибка соединения %1</translation>
+    </message>
+    <message>
+        <source>Suggested IP: </source>
+        <translation>Рекомендуемый IP-адрес: </translation>
     </message>
     <message>
         <source>&amp;Configure Client</source>
-        <translation type="unfinished">&amp;Configurar cliente</translation>
+        <translation type="unfinished">&amp;Настройка клиента</translation>
     </message>
     <message>
         <source>Connect to:</source>
-        <translation type="unfinished">Conectarse a:</translation>
+        <translation type="unfinished">Подключиться к:</translation>
     </message>
     <message>
         <source>&lt;html&gt;Hostname or IP address of the server computer.&lt;br/&gt;May contain a comma seperated list.&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;Nombre de host o dirección IP del servidor.&lt;br/&gt;Puede contener una lista separada por comas.&lt;/html&gt;</translation>
+        <translation type="unfinished">&lt;html&gt;Имя хоста или IP-адрес серверного компьютера.&lt;br/&gt;Может содержать список, разделенный запятыми.&lt;/html&gt;</translation>
     </message>
     <message>
         <source>read</source>
-        <translation type="unfinished">leer</translation>
+        <translation type="unfinished">прочитать</translation>
     </message>
     <message>
         <source>read and write</source>
-        <translation type="unfinished">leer y escribir</translation>
+        <translation type="unfinished">читать и записывать</translation>
     </message>
     <message>
         <source>The Core executable could not be started.
 Please check if you have sufficient permissions to run %1.</source>
-        <translation type="unfinished">No se pudo iniciar el ejecutable Core.
-Verifique si tiene permisos suficientes para ejecutar %1.</translation>
+        <translation type="unfinished">Не удалось запустить исполняемый файл Core.
+Проверьте, достаточно ли у вас прав для запуска %1.</translation>
     </message>
     <message>
         <source>
 Additionally, check you are able to %1 the server config file: %2</source>
         <translation type="unfinished">
-Además, verifique que puede %1 el archivo de configuración del servidor: %2</translation>
+Также убедитесь, что вы можете %1 файл конфигурации сервера: %2</translation>
     </message>
     <message>
         <source>Don&apos;t show this again</source>
@@ -753,82 +757,82 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
     <message>
         <source>Unnamed</source>
         <extracomment>Used as the hostname. Translation may not contain spaces</extracomment>
-        <translation type="unfinished">Sin-nombre</translation>
+        <translation type="unfinished">Без_имени</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>fatal error</source>
-        <translation type="unfinished">error fatal</translation>
+        <translation>критическая ошибка</translation>
     </message>
     <message>
         <source>error</source>
-        <translation type="unfinished">error</translation>
+        <translation>ошибка</translation>
     </message>
     <message>
         <source>&lt;p&gt;Sorry, a fatal error has occurred and the application must now exit.&lt;/p&gt;
 </source>
-        <translation type="unfinished">&lt;p&gt;Lo sentimos, se ha producido un error fatal y la aplicación debe salir ahora.&lt;/p&gt;
+        <translation>&lt;p&gt;К сожалению, произошла критическая ошибка, приложение будет закрыто.&lt;/p&gt;
 </translation>
     </message>
     <message>
         <source>&lt;p&gt;Sorry, a critical error has occurred.&lt;/p&gt;
 </source>
-        <translation type="unfinished">&lt;p&gt;Lo sentimos, se ha producido un error crítico.&lt;/p&gt;
+        <translation>&lt;p&gt;К сожалению, произошла критическая ошибка.&lt;/p&gt;
 </translation>
     </message>
     <message>
         <source>&lt;p&gt;%1 will continue to run in the background and can be accessed via the %1 icon in your system notifications area. This setting can be disabled.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;%1 seguirá ejecutándose en segundo plano y se podrá acceder a él mediante el icono %1 en el área de notificaciones del sistema. Esta configuración se puede desactivar.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;%1 продолжит работу в фоновом режиме. Доступ к нему можно получить через иконку в области уведомлений. Эту настройку можно отключить.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;Please &lt;a href=&quot;%1&quot;&gt;report a bug&lt;/a&gt; and copy/paste the following error:&lt;/p&gt;&lt;pre&gt;v%2
 %3
 %4&lt;/pre&gt;</source>
-        <translation>&lt;p&gt;Por favor, &lt;a href=&quot;%1&quot;&gt;informa de un error&lt;/a&gt; y copia y pega el siguiente error:&lt;/p&gt;&lt;pre&gt;v%2
+        <translation>&lt;p&gt;Пожалуйста, &lt;a href=&quot;%1&quot;&gt;сообщите об ошибке&lt;/a&gt; и приложите следующий текст:&lt;/p&gt;&lt;pre&gt;v%2
 %3
 %4&lt;/pre&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;On Linux systems using GNOME 3, the notification area might be disabled. You may need to &lt;a href=&quot;%1&quot;&gt;enable an extension&lt;/a&gt; to see the %2 tray icon.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;En sistemas Linux que usan GNOME 3, el área de notificaciones podría estar deshabilitada. Quizás necesite &lt;a href=&quot;%1&quot;&gt;habilitar una extensión&lt;/a&gt; para ver el icono de la bandeja %2.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;В системах Linux с GNOME 3 область уведомлений может быть отключена. Возможно, потребуется &lt;a href=&quot;%1&quot;&gt;включить расширение&lt;/a&gt;, чтобы видеть иконку %2.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>%1 Server</source>
-        <translation type="unfinished">Servidor %1</translation>
+        <translation>Сервер %1</translation>
     </message>
     <message>
         <source>&lt;p&gt;Great, the %1 server is now running.&lt;/p&gt;&lt;p&gt;Now you can connect your client computers to this server. You should see a prompt here on the server when a new client tries to connect.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Genial, el servidor %1 ya está en funcionamiento.&lt;/p&gt;&lt;p&gt;Ahora puedes conectar tus equipos cliente a este servidor. Deberías ver un aviso aquí en el servidor cuando un nuevo cliente intente conectarse.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Сервер %1 запущен.&lt;/p&gt;&lt;p&gt;Теперь вы можете подключить клиентские компьютеры к этому серверу. При попытке подключения нового клиента на сервере появится соответствующий запрос.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;%1 is now connected!&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;¡%1 ahora está conectado!&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;%1 подключен!&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;Try moving your mouse to your other computer. Once there, go ahead and type something.&lt;/p&gt;&lt;p&gt;Don&apos;t forget, you can copy and paste between computers too.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Intenta mover el ratón a tu otra computadora. Una vez allí, escribe algo.&lt;/p&gt;&lt;p&gt;Recuerda que también puedes copiar y pegar entre computadoras.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Попробуйте переместить курсор на другой компьютер и что-нибудь напечатать.&lt;/p&gt;&lt;p&gt;Не забывайте, что вы также можете использовать общий буфер обмена.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;Try controlling this computer remotely.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Intenta controlar esta computadora de forma remota.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Попробуйте управлять этим компьютером удаленно.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;As you do not have the setting enabled to keep %1 running in the background, you&apos;ll need to keep this window open or minimized to keep %1 running.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Como no tiene habilitada la configuración para mantener %1 ejecutándose en segundo plano, deberá mantener esta ventana abierta o minimizada para mantener %1 ejecutándose.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Так как работа в фоновом режиме отключена, необходимо держать это окно открытым или свернутым для работы %1.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;You can now close this window and %1 will continue to run in the background. This setting can be disabled.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Ahora puede cerrar esta ventana y %1 seguirá ejecutándose en segundo plano. Esta configuración se puede desactivar.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Теперь вы можете закрыть это окно, %1 продолжит работу в фоне. Эту настройку можно отключить.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>%1 Connected</source>
-        <translation type="unfinished">%1 Conectado</translation>
+        <translation>%1 подключено</translation>
     </message>
     <message>
         <source>%1 - New Client</source>
-        <translation type="unfinished">%1 - Nuevo cliente</translation>
+        <translation>%1 - Новый клиент</translation>
     </message>
     <message>
         <source>A new client called &apos;%1&apos; has been accepted. You&apos;ll need to add it to your server&apos;s computer layout.</source>
@@ -836,66 +840,66 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
     </message>
     <message>
         <source>Ignore</source>
-        <translation type="unfinished">Ignorar</translation>
+        <translation>Игнорировать</translation>
     </message>
     <message>
         <source>Add client</source>
-        <translation type="unfinished">Agregar cliente</translation>
+        <translation>Добавить клиента</translation>
     </message>
     <message>
         <source>A new client called &apos;%1&apos; wants to connect</source>
-        <translation type="unfinished">Un nuevo cliente llamado &apos;%1&apos; quiere conectarse</translation>
+        <translation>Новый клиент &apos;%1&apos; хочет подключиться</translation>
     </message>
     <message>
         <source>No thanks</source>
-        <translation type="unfinished">No, gracias</translation>
+        <translation>Нет, спасибо</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished">Buscar actualizaciones</translation>
+        <translation>Проверить обновления</translation>
     </message>
     <message>
         <source>&lt;p&gt;Would you like to check for updates when %1 starts?&lt;/p&gt;&lt;p&gt;Checking for updates requires an Internet connection.&lt;/p&gt;&lt;p&gt;URL: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;¿Desea comprobar si hay actualizaciones cuando se inicie %1?&lt;/p&gt;&lt;p&gt;Para comprobar si hay actualizaciones se requiere una conexión a Internet.&lt;/p&gt;&lt;p&gt;URL: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Проверять наличие обновлений при запуске %1?&lt;/p&gt;&lt;p&gt;Для проверки обновлений требуется интернет-соединение.&lt;/p&gt;&lt;p&gt;URL: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Background service offline</source>
-        <translation type="unfinished">Servicio en segundo plano sin conexión</translation>
+        <translation>Фоновая служба отключена</translation>
     </message>
     <message>
         <source>Retry</source>
-        <translation type="unfinished">Reintentar</translation>
+        <translation>Повторить</translation>
     </message>
     <message>
         <source>Disable</source>
-        <translation type="unfinished">Desactivar</translation>
+        <translation>Отключить</translation>
     </message>
     <message>
         <source>&lt;p&gt;There was a problem finding the %1 background service (daemon).&lt;/p&gt;&lt;p&gt;The background service makes %1 work with UAC prompts and the login screen.&lt;/p&gt;&lt;p&gt;If don&apos;t want to use the background service and intentionally stopped it, you can prevent it&apos;s use by disabling this feature.&lt;/p&gt;&lt;p&gt;If you did not stop the background service intentionally, there may be a problem with it. Please retry or try restarting the %1 service from the Windows services program.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;Hubo un problema al encontrar el servicio en segundo plano %1 (daemon).&lt;/p&gt;&lt;p&gt;El servicio en segundo plano hace que %1 funcione con los avisos de UAC y la pantalla de inicio de sesión.&lt;/p&gt;&lt;p&gt;Si no desea usar el servicio en segundo plano y lo detuvo intencionalmente, puede evitar su uso deshabilitando esta función.&lt;/p&gt;&lt;p&gt;Si no detuvo el servicio en segundo plano intencionalmente, es posible que haya un problema. Vuelva a intentarlo o reinicie el servicio %1 desde el programa de servicios de Windows.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Возникла проблема с поиском фоновой службы (демона) %1.&lt;/p&gt;&lt;p&gt;Эта служба позволяет %1 работать с запросами UAC и на экране входа.&lt;/p&gt;&lt;p&gt;Если вы не хотите использовать службу, вы можете отключить эту функцию.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>failed to read key from certificate file: %1</source>
         <extracomment>%1 will be replaced by the certificate path</extracomment>
-        <translation type="unfinished">No se pudo leer la clave del archivo de certificado: %1</translation>
+        <translation>не удалось прочитать ключ из файла сертификата: %1</translation>
     </message>
     <message>
         <source>failed to parse certificate file: %1</source>
         <extracomment>%1 will be replaced by the certificate path</extracomment>
-        <translation type="unfinished">Error al analizar el archivo de certificado: %1</translation>
+        <translation>не удалось разобрать файл сертификата: %1</translation>
     </message>
     <message>
         <source>key detected is the incorrect size</source>
-        <translation type="unfinished">La clave detectada es de tamaño incorrecto</translation>
+        <translation>обнаружен ключ неверного размера</translation>
     </message>
     <message>
         <source>failed to read RSA key from certificate file: %1</source>
         <extracomment>%1 will be replaced by the certificate path</extracomment>
-        <translation type="unfinished">No se pudo leer la clave RSA del archivo de certificado: %1</translation>
+        <translation>не удалось прочитать RSA-ключ из файла сертификата: %1</translation>
     </message>
     <message>
         <source>%1 is already running</source>
-        <translation type="unfinished">%1 ya se está ejecutando</translation>
+        <translation>%1 уже запущен</translation>
     </message>
     <message>
         <source>Alt</source>
@@ -915,7 +919,7 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished">Ninguno</translation>
+        <translation type="unfinished">Нет</translation>
     </message>
     <message>
         <source>Shift</source>
@@ -923,477 +927,476 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
     </message>
     <message>
         <source>Super</source>
-        <translation type="unfinished">Súper</translation>
+        <translation type="unfinished">Super</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Buscar</translation>
+        <translation type="unfinished">Поиск</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished">Buscar siguiente</translation>
+        <translation type="unfinished">Найти следующее</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation type="unfinished">Buscar anterior</translation>
+        <translation type="unfinished">Найти предыдущее</translation>
     </message>
     <message>
         <source>Find...</source>
-        <translation type="unfinished">Buscar...</translation>
+        <translation type="unfinished">Поиск...</translation>
     </message>
 </context>
 <context>
     <name>ServerConfigDialog</name>
     <message>
         <source>Server Configuration</source>
-        <translation type="unfinished">Configuración del servidor</translation>
+        <translation>Конфигурация сервера</translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished">Computadoras</translation>
+        <translation>Компьютеры</translation>
     </message>
     <message>
         <source>Drag a computer from the grid to the trashcan to remove it.</source>
-        <translation type="unfinished">Arrastre una computadora desde la cuadrícula a la papelera para eliminarla.</translation>
+        <translation>Перетащите компьютер в корзину, чтобы удалить его.</translation>
     </message>
     <message>
         <source>Configure the layout of your computer displays by dragging to where you want.</source>
-        <translation type="unfinished">Configura el diseño de las pantallas de tu computadora arrastrándolas hacia donde quieras.</translation>
+        <translation>Настройте расположение мониторов, перетаскивая их в нужные места.</translation>
     </message>
     <message>
         <source>Drag to the grid to add a new computer.</source>
-        <translation type="unfinished">Arrastre a la cuadrícula para agregar una nueva computadora.</translation>
+        <translation>Перетащите на сетку, чтобы добавить компьютер.</translation>
     </message>
     <message>
         <source>Hotkeys</source>
-        <translation type="unfinished">teclas de acceso rápido</translation>
+        <translation>Горячие клавиши</translation>
     </message>
     <message>
         <source>&amp;Hotkeys</source>
-        <translation type="unfinished">tec&amp;las de acceso rápido</translation>
+        <translation>&amp;Горячие клавиши</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation type="unfinished">&amp;Nuevo</translation>
+        <translation>&amp;Создать</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished">&amp;Edición</translation>
+        <translation>&amp;Правка</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">Elimina&amp;r</translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>A&amp;ctions</source>
-        <translation type="unfinished">&amp;Comportamiento</translation>
+        <translation>Дей&amp;ствия</translation>
     </message>
     <message>
         <source>Ne&amp;w</source>
-        <translation type="unfinished">Nue&amp;vo</translation>
+        <translation>Но&amp;вое</translation>
     </message>
     <message>
         <source>E&amp;dit</source>
-        <translation type="unfinished">E&amp;dición</translation>
+        <translation>Реда&amp;ктировать</translation>
     </message>
     <message>
         <source>Re&amp;move</source>
-        <translation type="unfinished">Eli&amp;minar</translation>
+        <translation>Уда&amp;лить</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished">Avanzado</translation>
+        <translation>Расширенные</translation>
     </message>
     <message>
         <source>&amp;Misc</source>
-        <translation type="unfinished">&amp;Misc</translation>
+        <translation>&amp;Разное</translation>
     </message>
     <message>
         <source>Disable lock to computer (scroll lock key)</source>
-        <translation type="unfinished">Desactivar el bloqueo del ordenador (tecla de bloqueo de desplazamiento)</translation>
+        <translation>Отключить привязку к компьютеру (Scroll Lock)</translation>
     </message>
     <message>
         <source>Use &amp;relative mouse movements</source>
-        <translation type="unfinished">Utilice movimientos &amp;relativos del ratón</translation>
+        <translation>Использовать &amp;относительные перемещения мыши</translation>
     </message>
     <message>
         <source>Don&apos;t take &amp;foreground window (Windows only)</source>
-        <translation type="unfinished">No tomar la ventana e&amp;n primer plano (solo Windows)</translation>
+        <translation>Не захватывать &amp;переднее окно (только для Windows)</translation>
     </message>
     <message>
         <source>Enable clipboard sharing</source>
-        <translation type="unfinished">Habilitar el uso compartido del portapapeles</translation>
+        <translation>Включить общий буфер обмена</translation>
     </message>
     <message>
         <source>Limit to:</source>
-        <translation type="unfinished">Limitar a:</translation>
+        <translation>Ограничить до:</translation>
     </message>
     <message>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <source>&amp;Network</source>
-        <translation type="unfinished">&amp;Red</translation>
+        <translation>&amp;Сеть</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the network heartbeat to ping clients every &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; seconds. This may help to diagnose network problems by retrying the connection if the client becomes unresponsive.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permite que el latido de la red envíe ping a los clientes cada &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; segundos. Esto puede ayudar a diagnosticar problemas de red al reintentar la conexión si el cliente deja de responder.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Включает сетевой пульс для проверки клиентов каждые &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; секунд. Это помогает диагностировать проблемы сети.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&amp;Check clients every</source>
-        <translation type="unfinished">Y &amp;consultar a los clientes cada</translation>
+        <translation>&amp;Проверять клиентов каждые</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished">ms</translation>
+        <translation>мс</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables compatibility with programs that use either the Synergy or Barrier protocols:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Synergy 3 uses the Synergy protocol.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Barrier, Input-Leap and Synergy 1 uses the Barrier protocol.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;A Deskflow client will automatically use either the Synergy or Barrier protocol depending on the server protocol.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Habilita la compatibilidad con programas que usan los protocolos Synergy o Barrier:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Synergy 3 usa el protocolo Synergy.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Barrier, Input-Leap y Synergy 1 usan el protocolo Barrier.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Un cliente de Deskflow usará automáticamente el Protocolo Synergy o Barrier según el protocolo del servidor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Включает совместимость с протоколами Synergy или Barrier.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Network protocol</source>
-        <translation type="unfinished">Protocolo de red</translation>
+        <translation>Сетевой протокол</translation>
     </message>
     <message>
         <source>&amp;Switching</source>
-        <translation type="unfinished">Traspue&amp;sta</translation>
+        <translation>&amp;Переключение</translation>
     </message>
     <message>
         <source>Switch &amp;after waiting</source>
-        <translation type="unfinished">Cambiar y después de esper&amp;ar</translation>
+        <translation>Переключать &amp;после задержки</translation>
     </message>
     <message>
         <source>Switch on double &amp;tap within</source>
-        <translation type="unfinished">Activar doble &amp;toque dentro</translation>
+        <translation>Переключать по двойному &amp;касанию за</translation>
     </message>
     <message>
         <source>Use a server config file to create complex computer layouts that are not possible with the simple grid-based computer layout editor.
 
 Enabling this setting will disable the server config GUI.</source>
-        <translation type="unfinished">Utilice un archivo de configuración del servidor para crear diseños de computadora complejos que no son posibles con el editor de diseño de computadora simple basado en cuadrícula.
-
-Al habilitar esta opción, se deshabilitará la interfaz gráfica de usuario (GUI) de configuración del servidor.</translation>
+        <translation>Используйте файл конфигурации для сложных макетов. Включение этой опции отключит графический редактор.</translation>
     </message>
     <message>
         <source>Use a server config file</source>
-        <translation type="unfinished">Utilice un archivo de configuración del servidor</translation>
+        <translation>Использовать файл конфигурации сервера</translation>
     </message>
     <message>
         <source>Config file path</source>
-        <translation type="unfinished">Ruta del archivo de configuración</translation>
+        <translation>Путь к файлу конфигурации</translation>
     </message>
     <message>
         <source>%1 Configurations (*.conf);;All files (*.*)</source>
         <extracomment>%1 is replaced with the application names (*.conf) and (*.*) should not be translated</extracomment>
-        <translation type="unfinished">%1 Configuraciones (*.conf);;Todos los archivos (*.*)</translation>
+        <translation>Конфигурации %1 (*.conf);;Все файлы (*.*)</translation>
     </message>
     <message>
         <source>Browse for a config file</source>
-        <translation type="unfinished">Busque un archivo de configuración</translation>
+        <translation>Выбор файла конфигурации</translation>
     </message>
     <message>
         <source>Enable lock to computer at startup</source>
-        <translation type="unfinished">Activar el bloqueo del ordenador al iniciar</translation>
+        <translation>Включать привязку к компьютеру при запуске</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialog</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished">Preferencias</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>Check for updates on startup</source>
-        <translation type="unfinished">Buscar actualizaciones al iniciar</translation>
+        <translation>Проверять обновления при запуске</translation>
     </message>
     <message>
         <source>Prevent this computer from going to sleep</source>
-        <translation type="unfinished">Evitar que esta computadora entre en modo de suspensión</translation>
+        <translation>Запретить компьютеру переходить в спящий режим</translation>
     </message>
     <message>
         <source>Tray icon style</source>
-        <translation type="unfinished">Estilo de icono de bandeja</translation>
+        <translation>Стиль иконки трея</translation>
     </message>
     <message>
         <source>Colorful</source>
-        <translation type="unfinished">Vistoso</translation>
+        <translation>Цветной</translation>
     </message>
     <message>
         <source>Monocolor</source>
-        <translation type="unfinished">Monocolor</translation>
+        <translation>Монохромный</translation>
     </message>
     <message>
         <source>Enable TLS Encryption</source>
-        <translation type="unfinished">Habilitar el cifrado TLS</translation>
+        <translation>Включить шифрование TLS</translation>
     </message>
     <message>
         <source>Certificate</source>
-        <translation type="unfinished">Certificado</translation>
+        <translation>Сертификат</translation>
     </message>
     <message>
         <source>Key length</source>
-        <translation type="unfinished">Longitud de la clave</translation>
+        <translation>Длина ключа</translation>
     </message>
     <message>
         <source>Regenerate certificate</source>
-        <translation type="unfinished">Regenerar certificado</translation>
+        <translation>Перевыпустить сертификат</translation>
     </message>
     <message>
         <source>Require client certificates</source>
-        <translation type="unfinished">Requerir certificados de cliente</translation>
+        <translation>Требовать сертификаты клиентов</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished">&amp;Avanzado</translation>
+        <translation>&amp;Расширенные</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished">Puerto</translation>
+        <translation>Порт</translation>
     </message>
     <message>
         <source>Network IP</source>
-        <translation type="unfinished">IP de red</translation>
-    </message>
-    <message>
-        <source>Log path</source>
-        <translation type="unfinished">Ruta de registro</translation>
+        <translation>Сетевой IP-адрес</translation>
     </message>
     <message>
         <source>Level</source>
-        <translation type="unfinished">Nivel</translation>
+        <translation>Уровень</translation>
     </message>
     <message>
-        <source>Use background service (daemon)</source>
-        <translation type="unfinished">Utilizar un servicio en segundo plano (daemon)</translation>
-    </message>
-    <message>
-        <source>Always run as system (work at login screen and UAC)</source>
-        <translation type="unfinished">Ejecutar siempre como sistema (funcionar en la pantalla de inicio de sesión y UAC)</translation>
-    </message>
-    <message>
-        <source>%1 Clear Settings</source>
-        <translation type="unfinished">%1 Borrar configuración</translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Are you sure you want to clear all settings and restart %1?&lt;/p&gt; &lt;p&gt;This action cannot be undone.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;p&gt;¿Está seguro de que desea borrar toda la configuración y reiniciar %1?&lt;/p&gt; &lt;p&gt;Esta acción no se puede deshacer.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <source>Required messages</source>
-        <translation type="unfinished">Mensajes obligatorios</translation>
-    </message>
-    <message>
-        <source>Non-fatal errors</source>
-        <translation type="unfinished">Errores no fatales</translation>
-    </message>
-    <message>
-        <source>General warnings</source>
-        <translation type="unfinished">Advertencias generales</translation>
-    </message>
-    <message>
-        <source>General events [Default]</source>
-        <translation type="unfinished">Eventos generales [Predeterminado]</translation>
-    </message>
-    <message>
-        <source>Debug entries</source>
-        <translation type="unfinished">Entradas de depuración</translation>
-    </message>
-    <message>
-        <source>Verbose debug output</source>
-        <translation type="unfinished">Salida de depuración detallada</translation>
-    </message>
-    <message>
-        <source>TLS Certificate Regenerated</source>
-        <translation type="unfinished">Certificado TLS regenerado</translation>
-    </message>
-    <message>
-        <source>TLS certificate regenerated successfully.</source>
-        <translation type="unfinished">Certificado TLS regenerado exitosamente.</translation>
-    </message>
-    <message>
-        <source>Select a TLS certificate to use...</source>
-        <translation type="unfinished">Seleccione un certificado TLS para utilizar...</translation>
-    </message>
-    <message>
-        <source>Save log file to...</source>
-        <translation type="unfinished">Guardar archivo de registro en...</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="unfinished">Idioma</translation>
+        <source>Log path</source>
+        <translation>Путь к журналам</translation>
     </message>
     <message>
         <source>Enable GUI debug messages</source>
-        <translation type="unfinished">Habilitar mensajes de depuración de la interfaz gráfica de usuario</translation>
+        <translation>Включить отладочные сообщения интерфейса</translation>
+    </message>
+    <message>
+        <source>Use background service (daemon)</source>
+        <translation>Использовать фоновую службу (демон)</translation>
+    </message>
+    <message>
+        <source>Always run as system (work at login screen and UAC)</source>
+        <translation>Всегда запускать от имени системы (работает на экране входа и UAC)</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <source>TLS Certificate Regenerated</source>
+        <translation>Сертификат TLS перевыпущен</translation>
+    </message>
+    <message>
+        <source>TLS certificate regenerated successfully.</source>
+        <translation>Сертификат TLS успешно перевыпущен.</translation>
+    </message>
+    <message>
+        <source>Select a TLS certificate to use...</source>
+        <translation>Выберите сертификат TLS...</translation>
+    </message>
+    <message>
+        <source>Save log file to...</source>
+        <translation>Сохранить файл журнала в...</translation>
+    </message>
+    <message>
+        <source>%1 Clear Settings</source>
+        <translation type="unfinished">%1 Сброс настроек</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Are you sure you want to clear all settings and restart %1?&lt;/p&gt; &lt;p&gt;This action cannot be undone.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Вы уверены, что хотите сбросить все настройки и перезапустить %1?&lt;/p&gt; &lt;p&gt;Это действие нельзя отменить.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Required messages</source>
+        <translation>Обязательные сообщения</translation>
+    </message>
+    <message>
+        <source>Non-fatal errors</source>
+        <translation>Не критические ошибки</translation>
+    </message>
+    <message>
+        <source>General warnings</source>
+        <translation>Общие предупреждения</translation>
+    </message>
+    <message>
+        <source>General events [Default]</source>
+        <translation>Общие события [По умолчанию]</translation>
+    </message>
+    <message>
+        <source>Debug entries</source>
+        <translation>Записи отладки</translation>
+    </message>
+    <message>
+        <source>Verbose debug output</source>
+        <translation>Подробный вывод отладки</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished">Automática</translation>
+        <translation>Автоматически</translation>
     </message>
     <message>
         <source>Include version in the window title</source>
-        <translation type="unfinished">Incluir la versión en el título de la ventana</translation>
+        <translation type="unfinished">Включить номер версии в заголовок окна</translation>
     </message>
     <message>
         <source>Log to file</source>
-        <translation>Registrar en archivo</translation>
+        <translation>Записывать в файл</translation>
     </message>
     <message>
         <source>&amp;Logs</source>
-        <translation>&amp;Registro</translation>
+        <translation>&amp;Журнал</translation>
     </message>
     <message>
         <source>&amp;General</source>
-        <translation type="unfinished">&amp;General</translation>
+        <translation type="unfinished">&amp;Общий</translation>
     </message>
     <message>
         <source>&amp;Network</source>
-        <translation>R&amp;ed</translation>
+        <translation>&amp;Сеть</translation>
     </message>
     <message>
         <source>&amp;Window</source>
-        <translation type="unfinished">&amp;Ventana</translation>
+        <translation type="unfinished">&amp;Окно</translation>
     </message>
     <message>
         <source>When the main window is closed</source>
-        <translation type="unfinished">Cuando la ventana principal está cerrada</translation>
+        <translation type="unfinished">Когда главное окно закрыто</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished">Salir</translation>
+        <translation type="unfinished">Выход</translation>
     </message>
     <message>
         <source>Send to background</source>
-        <translation type="unfinished">Enviar a segundo plano</translation>
+        <translation type="unfinished">Отправить в фоновый режим</translation>
     </message>
     <message>
         <source>When the application starts</source>
-        <translation type="unfinished">Cuando se inicia la aplicación</translation>
+        <translation type="unfinished">Когда приложение запускается</translation>
     </message>
     <message>
         <source>Show the main window</source>
-        <translation type="unfinished">Mostrar la ventana principal</translation>
+        <translation type="unfinished">Показать главное окно</translation>
     </message>
     <message>
         <source>Run command on enter</source>
-        <translation type="unfinished">Ejecutar comando al presionar Enter</translation>
+        <translation type="unfinished">Выполнять команду по нажатию Enter</translation>
     </message>
     <message>
         <source>Run command on exit</source>
-        <translation type="unfinished">Ejecutar comando al salir</translation>
+        <translation type="unfinished">Выполнить команду при выходе</translation>
     </message>
     <message>
         <source>Using a log level higher than Info may affect performance.</source>
-        <translation type="unfinished">Utilizar un nivel de registro superior a Info puede afectar el rendimiento.</translation>
+        <translation type="unfinished">Использование уровня логирования выше Info может повлиять на производительность.</translation>
     </message>
     <message>
         <source>Remove all settings</source>
-        <translation type="unfinished">Eliminar todas las configuraciones</translation>
+        <translation type="unfinished">Удалить все настройки</translation>
     </message>
 </context>
 <context>
     <name>SettingsDialogButtonBox</name>
     <message>
         <source>Settings are read only</source>
-        <translation type="unfinished">La configuración es de solo lectura</translation>
+        <translation type="unfinished">Настройки доступны только для чтения</translation>
     </message>
     <message>
         <source>%1 is not writable</source>
-        <translation type="unfinished">%1 no tiene permisos de escritura</translation>
+        <translation type="unfinished">%1 недоступен для записи</translation>
     </message>
     <message>
         <source>Close and save changes</source>
-        <translation type="unfinished">Cerrar y guardar los cambios</translation>
+        <translation type="unfinished">Закрыть и сохранить изменения</translation>
     </message>
     <message>
         <source>Close and forget changes</source>
-        <translation type="unfinished">Cerrar y olvidar los cambios</translation>
+        <translation type="unfinished">Закройте изменения и забудьте о них</translation>
     </message>
     <message>
         <source>Reset to stored values</source>
-        <translation type="unfinished">Restablecer los valores almacenados</translation>
+        <translation type="unfinished">Сбросить до сохраненных значений</translation>
     </message>
     <message>
         <source>Reset to default values</source>
-        <translation type="unfinished">Restablecer valores predeterminados</translation>
+        <translation type="unfinished">Сбросить до значений по умолчанию</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>%1 is not running</source>
-        <translation type="unfinished">%1 no se está ejecutando</translation>
+        <translation>%1 не запущен</translation>
     </message>
     <message>
         <source>%1 is starting...</source>
-        <translation type="unfinished">%1 está iniciando...</translation>
+        <translation>%1 запускается...</translation>
     </message>
     <message>
         <source>%1 will retry in a moment...</source>
-        <translation type="unfinished">%1 lo intentará nuevamente en un momento...</translation>
+        <translation>%1 скоро повторит попытку...</translation>
     </message>
     <message>
         <source>%1 is stopping...</source>
-        <translation type="unfinished">%1 se está deteniendo...</translation>
+        <translation>%1 останавливается...</translation>
     </message>
     <message>
         <source>%1 is waiting for clients</source>
-        <translation type="unfinished">%1 está esperando clientes</translation>
+        <translation>%1 ожидает подключения клиентов</translation>
     </message>
     <message>
         <source>%1 is connected as client of %2</source>
-        <translation type="unfinished">%1 está conectado como cliente de %2</translation>
+        <translation>%1 подключен как клиент к %2</translation>
     </message>
     <message>
         <source>%1 is disconnected</source>
-        <translation type="unfinished">%1 está desconectado</translation>
+        <translation>%1 отключен</translation>
     </message>
     <message numerus="yes">
         <source>%1 is connected, with %n client(s): %2</source>
         <extracomment>Shown when in server mode and at least 1 client is connected %1 is replaced by the app name %2 will be a list of at least one client %n will be replaced by the number of clients (n is &gt;=1), it is not requried to be in the translation</extracomment>
         <translation>
-            <numerusform>%1 está conectado, con un cliente: %2</numerusform>
-            <numerusform>%1 está conectado, con %n clientes: %2</numerusform>
+            <numerusform>%1 подключен к %n клиенту: %2</numerusform>
+            <numerusform>%1 подключен к %n клиентам: %2</numerusform>
+            <numerusform>%1 подключен к %n клиентам: %2</numerusform>
         </translation>
     </message>
     <message>
         <source>Clients:
  %1</source>
-        <translation type="unfinished">Clientes:
+        <translation>Клиенты:
  %1</translation>
     </message>
     <message>
         <source>A new version v%1 is available</source>
-        <translation type="unfinished">Ya está disponible una nueva versión v%1</translation>
+        <translation>Доступна новая версия v%1</translation>
     </message>
     <message>
         <source>View local fingerprint</source>
-        <translation type="unfinished">Ver huella digital local</translation>
+        <translation>Показать локальный отпечаток</translation>
     </message>
     <message>
         <source>Update available</source>
-        <translation type="unfinished">Actualización disponible</translation>
+        <translation>Доступно обновление</translation>
     </message>
     <message>
         <source>%1 is connecting...</source>
-        <translation>%1 se está conectando...</translation>
+        <translation>%1 подключается...</translation>
     </message>
     <message>
         <source>%1 is waiting %2 seconds before the next retry</source>
-        <translation type="unfinished">%1 está esperando %2 segundos antes del siguiente reintento</translation>
+        <translation type="unfinished">%1 ожидает %2 секунд перед следующей попыткой</translation>
     </message>
     <message>
         <source>%1 Encryption Enabled</source>
-        <translation type="unfinished">%1 Cifrado habilitado</translation>
+        <translation>Шифрование %1 включено</translation>
     </message>
     <message>
         <source>Encryption Disabled</source>
-        <translation type="unfinished">Cifrado deshabilitado</translation>
+        <translation>Шифрование отключено</translation>
     </message>
 </context>
 <context>
@@ -1529,7 +1532,7 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nombre</translation>
+        <translation type="unfinished">Имя</translation>
     </message>
     <message>
         <source>Link computers</source>
@@ -1713,7 +1716,7 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Connect</source>
-        <translation type="unfinished">Conectar</translation>
+        <translation type="unfinished">Подключиться</translation>
     </message>
     <message>
         <source>Copy details for support</source>
@@ -1864,6 +1867,7 @@ Every computer on your desk.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
 </context>
@@ -1872,41 +1876,41 @@ Every computer on your desk.</source>
     <message>
         <source>LocalizedName</source>
         <extracomment>Replace with your Language name This is a required string</extracomment>
-        <translation>Español</translation>
+        <translation>Русский</translation>
     </message>
 </context>
 <context>
     <name>validators::AliasValidator</name>
     <message>
         <source>Computer name cannot contain spaces</source>
-        <translation type="unfinished">El nombre de la computadora no puede contener espacios</translation>
+        <translation>Имя компьютера не может содержать пробелы</translation>
     </message>
     <message>
         <source>Aliases may not be ip addresses</source>
-        <translation type="unfinished">Los alias no pueden ser direcciones IP</translation>
+        <translation>Псевдонимы не могут быть IP-адресами</translation>
     </message>
     <message>
         <source>Contains invalid characters or is too long</source>
-        <translation type="unfinished">Contiene caracteres no válidos o es demasiado largo</translation>
+        <translation>Содержит недопустимые символы или слишком длинный</translation>
     </message>
 </context>
 <context>
     <name>validators::ComputerLineNameValidator</name>
     <message>
         <source>Computer name cannot be empty</source>
-        <translation type="unfinished">El nombre de la computadora no puede estar vacío</translation>
+        <translation type="unfinished">Имя компьютера не может быть пустым</translation>
     </message>
     <message>
         <source>Computer name cannot contain spaces</source>
-        <translation type="unfinished">El nombre de la computadora no puede contener espacios</translation>
+        <translation type="unfinished">Имя компьютера не может содержать пробелы</translation>
     </message>
     <message>
         <source>Contains invalid characters or is too long</source>
-        <translation type="unfinished">Contiene caracteres no válidos o es demasiado largo</translation>
+        <translation type="unfinished">Содержит недопустимые символы или слишком длинный</translation>
     </message>
     <message>
         <source>A computer with this name already exists</source>
-        <translation type="unfinished">Ya existe un ordenador con este nombre</translation>
+        <translation type="unfinished">Компьютер с таким именем уже существует</translation>
     </message>
 </context>
 </TS>

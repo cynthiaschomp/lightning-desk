@@ -5,7 +5,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Deskflow</source>
-        <translation>Deskflow 정보</translation>
+        <translation type="vanished">Deskflow 정보</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -50,6 +50,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&amp;Close</source>
         <translation>닫기(&amp;C)</translation>
+    </message>
+    <message>
+        <source>About Lightning Desk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
