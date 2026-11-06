@@ -1864,6 +1864,22 @@ Every computer on your desk.</source>
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Reconnecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer is updating its desk. This takes a moment and nothing needs doing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is adding this computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Almost there. The main computer is making room for this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>i18n</name>
