@@ -55,6 +55,12 @@ if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
       OUTPUT_VARIABLE GIT_SHA_SHORT
       ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+    # Lightning Desk: CI checks out a temporary merge commit for pull requests,
+    # so prefer the real head commit CI passes in GIT_SHA. Every installed build
+    # then reports the exact commit it came from.
+    if(DEFINED ENV{GIT_SHA} AND NOT "$ENV{GIT_SHA}" STREQUAL "")
+      string(SUBSTRING "$ENV{GIT_SHA}" 0 8 GIT_SHA_SHORT)
+    endif()
     execute_process(
       COMMAND ${GIT_EXECUTABLE} describe --long --match v* --always
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
