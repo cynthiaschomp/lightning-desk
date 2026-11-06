@@ -185,7 +185,8 @@ QPushButton *SetupWizard::choiceButton(const QString &heading, const QString &de
   d->setWordWrap(true);
   d->setStyleSheet(QStringLiteral("font-size: 13px; color: %1; background: transparent;").arg(kMuted));
   auto *t = new QLabel(hint, b);
-  t->setStyleSheet(QStringLiteral("font-size: 12px; font-weight: 600; color: %1; background: transparent;").arg(kAccent));
+  t->setStyleSheet(QStringLiteral("font-size: 12px; font-weight: 600; color: %1; background: transparent;").arg(kAccent)
+  );
   for (auto *l : {h, d, t})
     l->setAttribute(Qt::WA_TransparentForMouseEvents);
   lay->addWidget(h);
@@ -221,9 +222,7 @@ QWidget *SetupWizard::buildWelcome()
   icon->setFixedSize(96, 96);
   icon->setAlignment(Qt::AlignCenter);
   icon->setText(QStringLiteral("<span style='font-size:52px;color:%1'>&#9889;</span>").arg(kAccent));
-  icon->setStyleSheet(
-      QStringLiteral("background: #0A0A0A; border: 1px solid %1; border-radius: 24px;").arg(kLine)
-  );
+  icon->setStyleSheet(QStringLiteral("background: #0A0A0A; border: 1px solid %1; border-radius: 24px;").arg(kLine));
   lay->addWidget(icon, 0, Qt::AlignHCenter);
 
   auto *t = title(tr("One mouse. One keyboard.\nEvery computer on your desk."), w);
@@ -294,9 +293,7 @@ QWidget *SetupWizard::buildName()
   auto *lay = new QVBoxLayout(w);
   lay->setSpacing(6);
   lay->addWidget(title(tr("What should we call it?"), w));
-  lay->addWidget(
-      body(tr("This is the name you'll see when you arrange your desk. We filled in a suggestion."), w)
-  );
+  lay->addWidget(body(tr("This is the name you'll see when you arrange your desk. We filled in a suggestion."), w));
   lay->addSpacing(16);
 
   auto *c = card(w);
@@ -404,7 +401,9 @@ QWidget *SetupWizard::buildArrange()
   m_mainTile->setFixedSize(220, 124);
   m_mainTile->setAlignment(Qt::AlignCenter);
   m_mainTile->setStyleSheet(
-      QStringLiteral("background: %1; border: 1px solid #48484A; border-radius: 16px; font-size: 14px; font-weight: 600;")
+      QStringLiteral(
+          "background: %1; border: 1px solid #48484A; border-radius: 16px; font-size: 14px; font-weight: 600;"
+      )
           .arg(kCard2)
   );
 
@@ -475,10 +474,10 @@ void SetupWizard::goTo(int step)
 void SetupWizard::updateChrome()
 {
   const int step = m_pages->currentIndex();
-  static const QStringList names = {tr("Welcome"), tr("Your role"),  tr("Name"), tr("Link computers"),
-                                    tr("Arrange desk"), tr("Checks"), tr("Done")};
+  static const QStringList names = {tr("Welcome"),      tr("Your role"), tr("Name"), tr("Link computers"),
+                                    tr("Arrange desk"), tr("Checks"),    tr("Done")};
   static const QStringList nextText = {tr("Get started"), tr("Continue"), tr("Continue"), tr("I've linked them"),
-                                       tr("Continue"), tr("Continue"), tr("Finish")};
+                                       tr("Continue"),    tr("Continue"), tr("Finish")};
   m_stepLabel->setText(tr("STEP %1 OF %2").arg(step + 1).arg(StepCount));
   m_stepName->setText(names.value(step).toUpper());
   m_progress->setValue(step + 1);
@@ -491,14 +490,13 @@ void SetupWizard::updateChrome()
         tr("Tap the side of your main screen where <b>%1</b> physically is. Your cursor will cross over on that edge.")
             .arg(other.isEmpty() ? tr("the other computer") : other)
     );
-    m_mainTile->setText(
-        QStringLiteral("%1<br><span style='font-size:11px;color:%2;font-weight:400'>%3</span>")
-            .arg(m_role == Role::Main ? m_name : m_otherName, kDim, tr("Main computer"))
-    );
+    m_mainTile->setText(QStringLiteral("%1<br><span style='font-size:11px;color:%2;font-weight:400'>%3</span>")
+                            .arg(m_role == Role::Main ? m_name : m_otherName, kDim, tr("Main computer")));
   }
   if (step == Done) {
     static const QMap<Side, QString> word = {
-        {Side::Above, tr("top")}, {Side::Left, tr("left")}, {Side::Right, tr("right")}, {Side::Below, tr("bottom")}};
+        {Side::Above, tr("top")}, {Side::Left, tr("left")}, {Side::Right, tr("right")}, {Side::Below, tr("bottom")}
+    };
     m_doneHint->setText(
         tr("Try it now: slide your mouse off the <b>%1</b> edge of your main screen.").arg(word.value(m_side))
     );
@@ -597,11 +595,11 @@ void SetupWizard::addCheckRow(const QString &text, const QString &sub, bool fixe
   rl->addWidget(txt, 1);
   if (fixed) {
     auto *badge = new QLabel(tr("Fixed for you"), row);
-    badge->setStyleSheet(
-        QStringLiteral("font-size: 11px; font-weight: 600; color: %1; background: rgba(255,214,10,0.14); "
-                       "border-radius: 10px; padding: 4px 9px;")
-            .arg(kAccent)
-    );
+    badge->setStyleSheet(QStringLiteral(
+                             "font-size: 11px; font-weight: 600; color: %1; background: rgba(255,214,10,0.14); "
+                             "border-radius: 10px; padding: 4px 9px;"
+    )
+                             .arg(kAccent));
     rl->addWidget(badge);
   }
   m_checksLayout->addWidget(row);
@@ -630,7 +628,9 @@ void SetupWizard::runChecks()
   if (TlsUtility::isEnabled() && !TlsUtility::isCertValid()) {
     fixedCert = TlsUtility::generateCertificate();
   }
-  addCheckRow(tr("Connection is private and encrypted"), tr("Computers trust each other from the desk code"), fixedCert);
+  addCheckRow(
+      tr("Connection is private and encrypted"), tr("Computers trust each other from the desk code"), fixedCert
+  );
 
   // 3. Firewall: the installer adds the rule; report it.
   addCheckRow(tr("Firewall lets your computers talk"), tr("Rule limited to your own network"), false);
