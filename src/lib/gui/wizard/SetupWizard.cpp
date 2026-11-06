@@ -8,6 +8,7 @@
 
 #include "common/Enums.h"
 #include "common/Settings.h"
+#include "common/VersionInfo.h"
 #include "gui/TlsUtility.h"
 #include "gui/config/ServerConfig.h"
 #include "gui/core/CoreProcess.h"
@@ -283,6 +284,10 @@ void SetupWizard::buildUi()
   root->addWidget(m_pages, 1);
 
   auto *footer = new QHBoxLayout();
+  // Which build is this? Lets anyone check a machine runs the expected commit.
+  auto *build = new QLabel(QStringLiteral("Lightning Desk %1").arg(QString::fromLatin1(kDisplayVersion)), this);
+  build->setStyleSheet(QStringLiteral("font-size: 10px; color: #636366;"));
+  build->setTextInteractionFlags(Qt::TextSelectableByMouse);
   m_back = new QPushButton(tr("Back"), this);
   m_back->setProperty("role", "back");
   m_back->setCursor(Qt::PointingHandCursor);
@@ -300,6 +305,8 @@ void SetupWizard::buildUi()
   footer->addWidget(m_next);
   root->addSpacing(12);
   root->addLayout(footer);
+  root->addSpacing(4);
+  root->addWidget(build, 0, Qt::AlignHCenter);
 
   connect(m_back, &QPushButton::clicked, this, &SetupWizard::back);
   connect(m_next, &QPushButton::clicked, this, &SetupWizard::next);
