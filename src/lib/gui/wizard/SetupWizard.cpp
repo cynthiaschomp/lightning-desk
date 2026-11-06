@@ -152,11 +152,19 @@ SetupWizard::SetupWizard(QWidget *parent)
 
   m_connectTimeout->setSingleShot(true);
   connect(m_connectTimeout, &QTimer::timeout, this, [this] {
-    if (m_extraState == ExtraState::Connecting)
+    if (m_awaitingAdmission) {
+      m_awaitingAdmission = false;
+      showExtraError(
+          tr("%1 isn't ready for new computers").arg(m_mainName),
+          tr("Open Lightning Desk on <b>%1</b> and go to the <b>Link your other computers</b> step, then try again.")
+              .arg(m_mainName)
+      );
+    } else if (m_extraState == ExtraState::Connecting || m_extraState == ExtraState::Reconnecting) {
       showExtraError(
           tr("Couldn't connect to %1").arg(m_mainName),
           tr("We found it on your network, but it didn't answer within %1 seconds.").arg(kConnectTimeoutMs / 1000)
       );
+    }
   });
 
   connect(m_core.get(), &CoreProcess::connectedClientsChanged, this, &SetupWizard::onConnectedClients);
@@ -172,23 +180,39 @@ SetupWizard::SetupWizard(QWidget *parent)
     }
     if (state == deskflow::core::ConnectionState::Connected) {
       m_connectTimeout->stop();
+      m_awaitingAdmission = false;
       setExtraStatus(
           ExtraState::Connected, tr("Connected to %1").arg(m_mainName),
           tr("This computer is now linked. Your mouse and keyboard will cross over as soon as the main computer "
              "finishes arranging your desk.")
       );
+    } else if (state == deskflow::core::ConnectionState::Disconnected && m_extraState == ExtraState::Connected) {
+      // The main computer briefly restarts its side when the desk changes; the
+      // link comes back by itself within a second or two.
+      setExtraStatus(
+          ExtraState::Reconnecting, tr("Reconnecting to %1…").arg(m_mainName),
+          tr("The main computer is updating its desk. This takes a moment and nothing needs doing.")
+      );
+      m_connectTimeout->start(kConnectTimeoutMs);
     }
+    updateChrome();
   });
   connect(m_core.get(), &CoreProcess::connectionRefused, this, [this](deskflow::core::ConnectionRefusal reason) {
     if (m_role != Role::Extra)
       return;
     switch (reason) {
     case deskflow::core::ConnectionRefusal::UnknownClient:
-      showExtraError(
-          tr("%1 isn't ready for new computers").arg(m_mainName),
-          tr("Open Lightning Desk on <b>%1</b> and go to the <b>Link your other computers</b> step, then try again.")
-              .arg(m_mainName)
-      );
+      // First contact: the main computer has just been told about us and is
+      // adding us to its desk. Our core retries every second; if the main
+      // computer is on its Link step we'll be let in within a few seconds.
+      if (!m_awaitingAdmission) {
+        m_awaitingAdmission = true;
+        setExtraStatus(
+            ExtraState::Connecting, tr("%1 is adding this computer…").arg(m_mainName),
+            tr("Almost there. The main computer is making room for this one.")
+        );
+        m_connectTimeout->start(kConnectTimeoutMs);
+      }
       break;
     case deskflow::core::ConnectionRefusal::AlreadyConnected:
       showExtraError(
@@ -791,7 +815,7 @@ void SetupWizard::updateChrome()
       canGo = !m_everLinked.isEmpty();
     } else {
       canGo = m_extraState == ExtraState::Connected;
-      m_next->setText(tr("Continue"));
+      m_next->setText(m_extraState == ExtraState::Reconnecting ? tr("Reconnecting…") : tr("Continue"));
     }
   }
   m_next->setEnabled(canGo);
@@ -849,8 +873,7 @@ void SetupWizard::next()
       loadArrangeFor(m_arrangeIndex + 1);
       return;
     }
-    if (m_core->isStarted())
-      m_core->restart();
+    applyServerConfig();
     goTo(Checks);
     runChecks();
     return;
@@ -917,8 +940,10 @@ void SetupWizard::enterLink()
                        : tr("If the code doesn't work, type <b>%1</b> on the laptop instead.").arg(addr)
     );
     m_qrLabel->setPixmap(pairingQr());
-    m_mainStatus->setText(tr("Starting…"));
-    startCore(true);
+    if (!(m_core->isStarted() && m_core->mode() == Settings::CoreMode::Server)) {
+      m_mainStatus->setText(tr("Starting…"));
+      startCore(true);
+    }
     refreshClientList();
   } else {
     m_linkStack->setCurrentIndex(1);
@@ -993,7 +1018,18 @@ void SetupWizard::onUnrecognisedClient(const QString &name)
   m_serverConfig->commit();
   m_pending << name;
   refreshClientList();
-  m_core->restart();
+  applyServerConfig();
+}
+
+void SetupWizard::applyServerConfig()
+{
+  // Prefer a live reload: the server keeps every linked computer connected.
+  // Fall back to a restart only when the core can't be reached (clients then
+  // reconnect by themselves within a second).
+  if (!m_core->isStarted())
+    return;
+  if (!m_core->reloadServerConfig())
+    m_core->restart();
 }
 
 void SetupWizard::onPeerFingerprint(const QString &fingerprint)
@@ -1170,6 +1206,7 @@ void SetupWizard::connectToMain()
   }
   m_mainName = code;
   m_recentLog.clear();
+  m_awaitingAdmission = false;
   setExtraStatus(ExtraState::Connecting, tr("Looking for %1…").arg(code), tr("This usually takes a few seconds."));
 
   QHostAddress direct;
@@ -1234,6 +1271,9 @@ void SetupWizard::setExtraStatus(ExtraState state, const QString &heading, const
   case ExtraState::Failed:
     dotCss = QStringLiteral("background: %1; border-radius: 13px; color: #000; font-weight: 700;").arg(kRed);
     glyph = QStringLiteral("!");
+    break;
+  case ExtraState::Reconnecting:
+    dotCss = QStringLiteral("border: 3px solid %1; border-radius: 13px;").arg(kAccent);
     break;
   default:
     dotCss = QStringLiteral("border: 3px solid %1; border-top-color: %2; border-radius: 13px;").arg(kLine, kAccent);
