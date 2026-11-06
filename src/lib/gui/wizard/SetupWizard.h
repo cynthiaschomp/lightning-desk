@@ -111,7 +111,8 @@ private:
   QWidget *card(QWidget *parent = nullptr) const;
   QLabel *title(const QString &text, QWidget *parent = nullptr) const;
   QLabel *body(const QString &text, QWidget *parent = nullptr) const;
-  QPushButton *choiceButton(const QString &heading, const QString &detail, const QString &hint) const;
+  QPushButton *
+  choiceButton(const QString &heading, const QString &detail, const QString &hint, bool extra = false) const;
   QPushButton *sideButton(const QString &text, Side side);
   QWidget *statusRow(const QString &dotStyle, const QString &name, const QString &state) const;
 
