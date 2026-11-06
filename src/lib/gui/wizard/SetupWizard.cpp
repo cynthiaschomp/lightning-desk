@@ -17,6 +17,9 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QMap>
+#include <QPainter>
+#include <QPixmap>
+#include <QPolygonF>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QRegularExpression>
@@ -62,6 +65,29 @@ QPushButton[role="side"] { background: %2; color: #E5E5EA; border: 2px solid %8;
 QPushButton[role="side"]:checked { background: rgba(255,214,10,0.14); color: %4; border-color: %4; }
 )")
                            .arg(kBg, kCard, kCard2, kAccent, kText, kMuted, kDim, kLine, kPurple);
+
+/// Flat yellow lightning bolt drawn with QPainter (no emoji, no SVG module needed).
+QPixmap boltPixmap(int size, qreal dpr)
+{
+  QPixmap pm(QSize(size, size) * dpr);
+  pm.setDevicePixelRatio(dpr);
+  pm.fill(Qt::transparent);
+  QPainter p(&pm);
+  p.setRenderHint(QPainter::Antialiasing);
+  p.scale(size / 24.0, size / 24.0);
+  const QPolygonF bolt{{13, 2}, {4, 14}, {11, 14}, {10, 22}, {19, 10}, {12, 10}, {13, 2}};
+  p.setPen(Qt::NoPen);
+  p.setBrush(QColor(kAccent));
+  p.drawPolygon(bolt);
+  return pm;
+}
+
+/// Word-wrapped label at a fixed width, tall enough that no line is clipped.
+void fitWidth(QLabel *label, int width)
+{
+  label->setFixedWidth(width);
+  label->setMinimumHeight(label->heightForWidth(width));
+}
 
 } // namespace
 
@@ -221,7 +247,7 @@ QWidget *SetupWizard::buildWelcome()
   auto *icon = new QLabel(w);
   icon->setFixedSize(96, 96);
   icon->setAlignment(Qt::AlignCenter);
-  icon->setText(QStringLiteral("<span style='font-size:52px;color:%1'>&#9889;</span>").arg(kAccent));
+  icon->setPixmap(boltPixmap(52, devicePixelRatioF()));
   icon->setStyleSheet(QStringLiteral("background: #0A0A0A; border: 1px solid %1; border-radius: 24px;").arg(kLine));
   lay->addWidget(icon, 0, Qt::AlignHCenter);
 
@@ -237,7 +263,7 @@ QWidget *SetupWizard::buildWelcome()
       w
   );
   b->setAlignment(Qt::AlignCenter);
-  b->setMaximumWidth(500);
+  fitWidth(b, 500);
   lay->addWidget(b, 0, Qt::AlignHCenter);
 
   auto *pills = new QHBoxLayout();
@@ -450,7 +476,7 @@ QWidget *SetupWizard::buildDone()
   lay->addWidget(t);
   m_doneHint = body(QString(), w);
   m_doneHint->setAlignment(Qt::AlignCenter);
-  m_doneHint->setMaximumWidth(460);
+  m_doneHint->setFixedWidth(460);
   lay->addWidget(m_doneHint, 0, Qt::AlignHCenter);
   auto *feats = body(tr("Copy &amp; paste works across them &nbsp;·&nbsp; Drag files across too"), w);
   feats->setAlignment(Qt::AlignCenter);
@@ -500,6 +526,7 @@ void SetupWizard::updateChrome()
     m_doneHint->setText(
         tr("Try it now: slide your mouse off the <b>%1</b> edge of your main screen.").arg(word.value(m_side))
     );
+    fitWidth(m_doneHint, 460);
   }
 }
 
