@@ -2,6 +2,6 @@
     "ai.schomp.lightningdesk": [
         "appstream-external-screenshot-url",
         "appstream-screenshots-not-mirrored-in-ostree",
-        "appstream-missing-screenshots"
+        "metainfo-missing-screenshots"
     ]
 }
