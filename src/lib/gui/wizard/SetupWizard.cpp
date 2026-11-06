@@ -30,6 +30,7 @@
 #include <QLineEdit>
 #include <QNetworkInterface>
 #include <QPainter>
+#include <QPen>
 #include <QPixmap>
 #include <QPlainTextEdit>
 #include <QPolygonF>
@@ -108,6 +109,31 @@ QPixmap boltPixmap(int size, qreal dpr)
   return pm;
 }
 
+/// Simple monitor (main) or laptop (extra screen) outline in the given tint.
+QPixmap devicePixmap(bool laptop, int size, qreal dpr, const QString &tint)
+{
+  QPixmap pm(QSize(size, size) * dpr);
+  pm.setDevicePixelRatio(dpr);
+  pm.fill(Qt::transparent);
+  QPainter p(&pm);
+  p.setRenderHint(QPainter::Antialiasing);
+  p.scale(size / 24.0, size / 24.0);
+  QPen pen(QColor(tint), 2.0);
+  pen.setCapStyle(Qt::RoundCap);
+  pen.setJoinStyle(Qt::RoundJoin);
+  p.setPen(pen);
+  p.setBrush(Qt::NoBrush);
+  if (laptop) {
+    p.drawRoundedRect(QRectF(3, 4, 18, 12), 2, 2);
+    p.drawLine(QPointF(2, 20), QPointF(22, 20));
+  } else {
+    p.drawRoundedRect(QRectF(2, 3, 20, 14), 2, 2);
+    p.drawLine(QPointF(8, 21), QPointF(16, 21));
+    p.drawLine(QPointF(12, 17), QPointF(12, 21));
+  }
+  return pm;
+}
+
 /// Word-wrapped label at a fixed width, tall enough that no line is clipped.
 void fitWidth(QLabel *label, int width)
 {
@@ -148,7 +174,7 @@ SetupWizard::SetupWizard(QWidget *parent)
 
   m_name = Settings::value(Settings::Core::ComputerName).toString();
   if (m_name.isEmpty())
-    m_name = QHostInfo::localHostName().toLower();
+    m_name = QHostInfo::localHostName().toUpper();
 
   m_connectTimeout->setSingleShot(true);
   connect(m_connectTimeout, &QTimer::timeout, this, [this] {
@@ -277,7 +303,7 @@ void SetupWizard::done(int result)
 void SetupWizard::buildUi()
 {
   auto *root = new QVBoxLayout(this);
-  root->setContentsMargins(48, 28, 48, 26);
+  root->setContentsMargins(48, 28, 48, 20);
   root->setSpacing(0);
 
   auto *header = new QHBoxLayout();
@@ -327,9 +353,9 @@ void SetupWizard::buildUi()
   footer->addWidget(m_skip);
   footer->addSpacing(8);
   footer->addWidget(m_next);
-  root->addSpacing(12);
+  root->addSpacing(16);
   root->addLayout(footer);
-  root->addSpacing(4);
+  root->addSpacing(18);
   root->addWidget(build, 0, Qt::AlignHCenter);
 
   connect(m_back, &QPushButton::clicked, this, &SetupWizard::back);
@@ -363,26 +389,42 @@ QLabel *SetupWizard::body(const QString &text, QWidget *parent) const
   return l;
 }
 
-QPushButton *SetupWizard::choiceButton(const QString &heading, const QString &detail, const QString &hint) const
+QPushButton *
+SetupWizard::choiceButton(const QString &heading, const QString &detail, const QString &hint, bool extra) const
 {
   auto *b = new QPushButton();
   b->setProperty("role", "choice");
   b->setCheckable(true);
   b->setCursor(Qt::PointingHandCursor);
-  b->setMinimumHeight(170);
+  b->setMinimumHeight(196);
+  // Qt ignores stylesheet padding for a button that owns a layout, so the
+  // breathing room has to come from the layout itself.
   auto *lay = new QVBoxLayout(b);
-  lay->setContentsMargins(4, 4, 4, 4);
-  lay->setSpacing(8);
+  lay->setContentsMargins(22, 22, 22, 20);
+  lay->setSpacing(10);
+
+  const auto tint = extra ? kPurple : kAccent;
+  auto *icon = new QLabel(b);
+  icon->setFixedSize(48, 48);
+  icon->setAlignment(Qt::AlignCenter);
+  icon->setStyleSheet(
+      QStringLiteral("background: %1; border-radius: 12px;")
+          .arg(extra ? QStringLiteral("rgba(191,90,242,0.16)") : QStringLiteral("rgba(255,214,10,0.14)"))
+  );
+  icon->setPixmap(devicePixmap(extra, 26, b->devicePixelRatioF(), tint));
+
   auto *h = new QLabel(heading, b);
-  h->setStyleSheet(QStringLiteral("font-size: 16px; font-weight: 600; background: transparent;"));
+  h->setStyleSheet(QStringLiteral("font-size: 17px; font-weight: 600; background: transparent;"));
   auto *d = new QLabel(detail, b);
   d->setWordWrap(true);
-  d->setStyleSheet(QStringLiteral("font-size: 13px; color: %1; background: transparent;").arg(kMuted));
-  auto *t = new QLabel(hint, b);
-  t->setStyleSheet(QStringLiteral("font-size: 12px; font-weight: 600; color: %1; background: transparent;").arg(kAccent)
+  d->setStyleSheet(QStringLiteral("font-size: 13px; color: %1; background: transparent; line-height: 145%;").arg(kMuted)
   );
-  for (auto *l : {h, d, t})
+  auto *t = new QLabel(hint, b);
+  t->setStyleSheet(QStringLiteral("font-size: 12px; font-weight: 600; color: %1; background: transparent;").arg(tint));
+  for (auto *l : {icon, h, d, t})
     l->setAttribute(Qt::WA_TransparentForMouseEvents);
+  lay->addWidget(icon);
+  lay->addSpacing(2);
   lay->addWidget(h);
   lay->addWidget(d);
   lay->addStretch();
@@ -405,7 +447,7 @@ QWidget *SetupWizard::statusRow(const QString &dotStyle, const QString &name, co
   auto *row = new QFrame();
   row->setProperty("role", "card");
   auto *rl = new QHBoxLayout(row);
-  rl->setContentsMargins(16, 10, 16, 10);
+  rl->setContentsMargins(18, 12, 18, 12);
   rl->setSpacing(12);
   auto *d = new QLabel(row);
   d->setStyleSheet(dot(dotStyle));
@@ -484,7 +526,7 @@ QWidget *SetupWizard::buildWhichComputer()
   );
   m_extraChoice = choiceButton(
       tr("This is an extra screen"), tr("A laptop or second computer I want to control from my main one."),
-      tr("Set up the main computer first")
+      tr("Set up the main computer first"), true
   );
   m_extraChoice->setProperty("variant", "extra");
   m_mainChoice->setChecked(true);
@@ -511,20 +553,30 @@ QWidget *SetupWizard::buildName()
 
   auto *c = card(w);
   auto *cl = new QHBoxLayout(c);
-  cl->setContentsMargins(18, 4, 18, 4);
+  cl->setContentsMargins(20, 8, 20, 8);
   auto *label = new QLabel(tr("Computer name"), c);
   label->setStyleSheet(QStringLiteral("font-size: 14px; font-weight: 500; background: transparent;"));
   label->setFixedWidth(130);
-  m_nameEdit = new QLineEdit(m_name, c);
+  m_nameEdit = new QLineEdit(m_name.toUpper(), c);
   m_nameEdit->setValidator(
       new QRegularExpressionValidator(QRegularExpression(QStringLiteral("[a-zA-Z0-9._-]{1,63}")), m_nameEdit)
   );
+  m_nameEdit->setStyleSheet(QStringLiteral("letter-spacing: 1px; font-weight: 600;"));
+  // Names are always shown in capitals (they double as the desk code), so type them that way.
+  connect(m_nameEdit, &QLineEdit::textEdited, this, [this](const QString &text) {
+    const auto upper = text.toUpper();
+    if (upper == text)
+      return;
+    const int pos = m_nameEdit->cursorPosition();
+    m_nameEdit->setText(upper);
+    m_nameEdit->setCursorPosition(pos);
+  });
   label->setBuddy(m_nameEdit);
   cl->addWidget(label);
   cl->addWidget(m_nameEdit, 1);
   lay->addWidget(c);
 
-  auto *hint = body(tr("Keep it simple, like <b>desk</b> or <b>silver-laptop</b>. You can rename it anytime."), w);
+  auto *hint = body(tr("Keep it simple, like <b>DESK</b> or <b>SILVER-LAPTOP</b>. You can rename it anytime."), w);
   hint->setStyleSheet(
       QStringLiteral("background: rgba(255,214,10,0.10); border-radius: 12px; padding: 12px 14px; color: #F2D36B;")
   );
@@ -632,7 +684,7 @@ QWidget *SetupWizard::buildLinkExtra()
 
   auto *c = card(w);
   auto *cl = new QHBoxLayout(c);
-  cl->setContentsMargins(18, 8, 10, 8);
+  cl->setContentsMargins(20, 10, 12, 10);
   auto *label = new QLabel(tr("Desk code"), c);
   label->setStyleSheet(QStringLiteral("font-size: 14px; font-weight: 500; background: transparent;"));
   label->setFixedWidth(100);
@@ -919,9 +971,9 @@ void SetupWizard::applyStep(int step)
     );
     break;
   case Name:
-    m_name = m_nameEdit->text().trimmed();
+    m_name = m_nameEdit->text().trimmed().toUpper();
     if (m_name.isEmpty())
-      m_name = QHostInfo::localHostName().toLower();
+      m_name = QHostInfo::localHostName().toUpper();
     Settings::setValue(Settings::Core::ComputerName, m_name);
     break;
   default:
