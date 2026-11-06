@@ -1079,7 +1079,8 @@ int SetupWizard::nextFreeCell() const
 {
   // 5 x 3 grid, main computer in the centre (index 7).
   static const int order[] = {8, 6, 2, 12, 9, 5, 3, 1, 13, 11, 0, 4, 10, 14};
-  const auto &computers = m_serverConfig->computers();
+  const ServerConfig &config = *m_serverConfig;
+  const auto &computers = config.computers();
   for (int i : order) {
     if (i < computers.size() && computers[i].isNull())
       return i;
@@ -1099,7 +1100,7 @@ QString SetupWizard::lanAddress() const
   for (const auto &iface : interfaces) {
     const auto flags = iface.flags();
     if (!(flags & QNetworkInterface::IsUp) || !(flags & QNetworkInterface::IsRunning) ||
-        (flags & QNetworkInterface::IsLoopback))
+        (flags & QNetworkInterface::IsLoopBack))
       continue;
     const auto label = iface.humanReadableName().toLower();
     bool virtualIface = false;

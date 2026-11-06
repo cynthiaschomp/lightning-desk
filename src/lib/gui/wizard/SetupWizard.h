@@ -21,11 +21,11 @@ class QStackedWidget;
 class QButtonGroup;
 class QTimer;
 class QVBoxLayout;
+class ServerConfig;
 
 namespace deskflow::gui {
 
 class CoreProcess;
-class ServerConfig;
 
 /**
  * @brief Lightning Desk first-run setup wizard.
