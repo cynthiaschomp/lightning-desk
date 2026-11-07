@@ -127,7 +127,7 @@ private:
   void setupDeskView();
   void refreshDeskView();
   void toggleClassicView(bool classic);
-  void addComputerFromDesk();
+  void addComputerFromDesk(int cell = -1);
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);
   void handleMissingKeyboardLayouts(const QString &layouts);

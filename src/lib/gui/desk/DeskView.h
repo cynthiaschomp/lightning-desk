@@ -31,15 +31,6 @@ class DeskView : public QWidget
   Q_OBJECT
 
 public:
-  enum class Side
-  {
-    Above,
-    Left,
-    Right,
-    Below
-  };
-  Q_ENUM(Side)
-
   explicit DeskView(QWidget *parent = nullptr);
 
   /// Server mode: lay out this computer in the middle and the configured computers around it.
@@ -54,8 +45,11 @@ public:
 
 Q_SIGNALS:
   void sharingToggled(bool on);
-  void addComputerRequested(Side side);
+  /// Add a computer into grid cell @p cell (the setup wizard places it there once linked).
+  void addComputerRequested(int cell);
   void computerClicked(const QString &name);
+  void moveRequested(const QString &name, int cell);
+  void forgetRequested(const QString &name);
   void settingsRequested();
   void shortcutsRequested();
   void helpRequested();
@@ -64,6 +58,7 @@ Q_SIGNALS:
 
 protected:
   bool eventFilter(QObject *watched, QEvent *event) override;
+  void resizeEvent(QResizeEvent *event) override;
 
 private:
   struct Card;
@@ -72,21 +67,31 @@ private:
   QWidget *buildGrid();
   QWidget *buildConveniences();
   Card *makeCard(QWidget *parent);
-  QWidget *makeEmptyCell(Side side, QWidget *parent);
+  QWidget *makeEmptyCell(int cell, QWidget *parent);
   void fillCard(Card *card, const QString &name, const QString &subtitle, bool isMain);
   void relayout();
   QString statusFor(const QString &name) const;
+  QString placeLabel(int cell) const;
+  bool occupied(int cell) const;
+  bool nextToOccupied(int cell) const;
+  int firstFreeNearMain() const;
+  void showCardMenu(const QString &name, const QPoint &globalPos);
 
   // state
   bool m_serverMode = true;
   bool m_sharing = false;
   QString m_mainName;
   QString m_thisName;
-  QHash<Side, QString> m_bySide;
+  int m_columns = 5;
+  int m_rows = 3;
+  int m_mainCell = 7;
+  QHash<int, QString> m_cells; // grid index -> computer name (main included)
   QHash<QObject *, QString> m_cardNames;
   QStringList m_connected;
   deskflow::core::ConnectionState m_state = deskflow::core::ConnectionState::Disconnected;
   int m_trusted = 0;
+  int m_cardW = 160;
+  int m_shownColumns = 0;
 
   // widgets
   QLabel *m_railStatusDot = nullptr;

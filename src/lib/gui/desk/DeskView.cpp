@@ -15,11 +15,17 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QMenu>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QResizeEvent>
 #include <QScrollArea>
 #include <QSizePolicy>
+#include <QToolButton>
+
 #include <QVBoxLayout>
+#include <algorithm>
 
 using namespace deskflow::gui::brand;
 using deskflow::core::ConnectionState;
@@ -28,9 +34,11 @@ namespace deskflow::gui {
 
 namespace {
 
-constexpr int kCardW = 188;
-constexpr int kCardH = 128;
-constexpr int kArrow = 28;
+constexpr int kCardWMax = 160;
+constexpr int kCardWMin = 132;
+constexpr int kCardH = 116;
+constexpr int kEmptyH = 64;
+constexpr int kArrow = 22;
 
 QString pillStyle(const QString &fg, const QString &bg)
 {
@@ -67,6 +75,7 @@ struct DeskView::Card
   QFrame *frame = nullptr;
   QLabel *icon = nullptr;
   QLabel *pill = nullptr;
+  QToolButton *menu = nullptr;
   QLabel *name = nullptr;
   QLabel *sub = nullptr;
 };
@@ -219,7 +228,7 @@ QWidget *DeskView::buildHeader()
                                  "font-size:12px;font-weight:700;}QPushButton:hover{background:#FFE14D;}"
   )
                                  .arg(kBg, kAccent));
-  connect(m_addButton, &QPushButton::clicked, this, [this] { Q_EMIT addComputerRequested(Side::Right); });
+  connect(m_addButton, &QPushButton::clicked, this, [this] { Q_EMIT addComputerRequested(firstFreeNearMain()); });
   h->addSpacing(10);
   h->addWidget(m_addButton, 0, Qt::AlignTop);
   return w;
@@ -300,7 +309,7 @@ DeskView::Card *DeskView::makeCard(QWidget *parent)
   auto *c = new Card;
   c->frame = new QFrame(parent);
   c->frame->setObjectName(QStringLiteral("deskCard"));
-  c->frame->setFixedSize(kCardW, kCardH);
+  c->frame->setFixedSize(m_cardW, kCardH);
   c->frame->setCursor(Qt::PointingHandCursor);
   c->frame->installEventFilter(this);
   auto *v = new QVBoxLayout(c->frame);
@@ -313,6 +322,18 @@ DeskView::Card *DeskView::makeCard(QWidget *parent)
   top->addStretch();
   c->pill = new QLabel(c->frame);
   top->addWidget(c->pill, 0, Qt::AlignTop);
+  c->menu = new QToolButton(c->frame);
+  c->menu->setText(QStringLiteral("\u22EF"));
+  c->menu->setToolTip(tr("Move or forget this computer"));
+  c->menu->setCursor(Qt::PointingHandCursor);
+  c->menu->setFixedSize(24, 22);
+  c->menu->setStyleSheet(QStringLiteral(
+                             "QToolButton{color:%1;background:transparent;border:none;border-radius:6px;font-size:16px;"
+                             "font-weight:700;padding-bottom:6px;}QToolButton:hover{background:%2;color:#FFFFFF;}"
+  )
+                             .arg(kDim, kCard2));
+  top->addSpacing(4);
+  top->addWidget(c->menu, 0, Qt::AlignTop);
   v->addLayout(top);
   v->addStretch();
   c->name = label(QString(), QStringLiteral("#FFFFFF"), 14, 600, c->frame);
@@ -323,21 +344,22 @@ DeskView::Card *DeskView::makeCard(QWidget *parent)
   return c;
 }
 
-QWidget *DeskView::makeEmptyCell(Side side, QWidget *parent)
+QWidget *DeskView::makeEmptyCell(int cell, QWidget *parent)
 {
   auto *b = new QPushButton(parent);
-  b->setFixedSize(kCardW, kCardH);
+  b->setFixedSize(m_cardW, kEmptyH);
   b->setCursor(Qt::PointingHandCursor);
   b->setIcon(QIcon(icon(Icon::Plus, 20, devicePixelRatioF(), kDim)));
   b->setText(tr("Add here"));
+  b->setToolTip(placeLabel(cell));
   b->setStyleSheet(
       QStringLiteral(
-          "QPushButton{color:%1;background:transparent;border:1px dashed %2;border-radius:14px;font-size:12px;}"
+          "QPushButton{color:%1;background:transparent;border:1px dashed %2;border-radius:12px;font-size:12px;}"
           "QPushButton:hover{border-color:%3;color:%3;}"
       )
           .arg(kDim, kLine, kAccent)
   );
-  connect(b, &QPushButton::clicked, this, [this, side] { Q_EMIT addComputerRequested(side); });
+  connect(b, &QPushButton::clicked, this, [this, cell] { Q_EMIT addComputerRequested(cell); });
   return b;
 }
 
@@ -351,6 +373,10 @@ void DeskView::fillCard(Card *card, const QString &name, const QString &subtitle
   card->name->setText(name);
   card->sub->setText(subtitle);
   m_cardNames.insert(card->frame, name);
+  card->menu->setVisible(!isMain && m_serverMode);
+  connect(card->menu, &QToolButton::clicked, this, [this, name, btn = card->menu] {
+    showCardMenu(name, btn->mapToGlobal(QPoint(0, btn->height())));
+  });
 
   if (isMain) {
     card->frame->setStyleSheet(
@@ -386,6 +412,103 @@ QString DeskView::statusFor(const QString &name) const
   return tr("Reconnecting…");
 }
 
+bool DeskView::occupied(int cell) const
+{
+  return m_cells.contains(cell);
+}
+
+bool DeskView::nextToOccupied(int cell) const
+{
+  const int r = cell / m_columns;
+  const int c = cell % m_columns;
+  const auto has = [&](int rr, int cc) {
+    return rr >= 0 && rr < m_rows && cc >= 0 && cc < m_columns && occupied(rr * m_columns + cc);
+  };
+  return has(r - 1, c) || has(r + 1, c) || has(r, c - 1) || has(r, c + 1);
+}
+
+int DeskView::firstFreeNearMain() const
+{
+  const int r = m_mainCell / m_columns;
+  const int c = m_mainCell % m_columns;
+  const int order[][2] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {0, 2}, {0, -2}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+  for (const auto &d : order) {
+    const int rr = r + d[0];
+    const int cc = c + d[1];
+    if (rr < 0 || rr >= m_rows || cc < 0 || cc >= m_columns)
+      continue;
+    const int cell = rr * m_columns + cc;
+    if (!occupied(cell) && nextToOccupied(cell))
+      return cell;
+  }
+  for (int cell = 0; cell < m_columns * m_rows; ++cell)
+    if (!occupied(cell))
+      return cell;
+  return -1;
+}
+
+QString DeskView::placeLabel(int cell) const
+{
+  const int dr = cell / m_columns - m_mainCell / m_columns;
+  const int dc = cell % m_columns - m_mainCell % m_columns;
+  QString v;
+  if (dr < 0)
+    v = tr("Above");
+  else if (dr > 0)
+    v = tr("Below");
+  QString h;
+  if (dc == -1)
+    h = tr("Left");
+  else if (dc == 1)
+    h = tr("Right");
+  else if (dc < -1)
+    h = tr("Far left");
+  else if (dc > 1)
+    h = tr("Far right");
+  if (!v.isEmpty() && !h.isEmpty())
+    return tr("%1, %2 of %3").arg(v, h.toLower(), m_mainName);
+  if (!v.isEmpty())
+    return tr("%1 %2").arg(v, m_mainName);
+  return tr("%1 of %2").arg(h, m_mainName);
+}
+
+void DeskView::showCardMenu(const QString &name, const QPoint &globalPos)
+{
+  QMenu menu(this);
+  menu.setStyleSheet(
+      QStringLiteral(
+          "QMenu{background:%1;color:#FFFFFF;border:1px solid %2;border-radius:10px;padding:6px;}"
+          "QMenu::item{padding:7px 14px;border-radius:6px;font-size:13px;}"
+          "QMenu::item:selected{background:%3;}QMenu::separator{height:1px;background:%2;margin:4px 8px;}"
+      )
+          .arg(kCard, kLine, kCard2)
+  );
+  auto *moveTo = menu.addMenu(tr("Move to"));
+  moveTo->setStyleSheet(menu.styleSheet());
+  for (int cell = 0; cell < m_columns * m_rows; ++cell) {
+    if (occupied(cell) || !nextToOccupied(cell))
+      continue;
+    auto *a = moveTo->addAction(placeLabel(cell));
+    connect(a, &QAction::triggered, this, [this, name, cell] { Q_EMIT moveRequested(name, cell); });
+  }
+  moveTo->setEnabled(!moveTo->actions().isEmpty());
+  menu.addSeparator();
+  auto *forget = menu.addAction(tr("Forget %1").arg(name));
+  connect(forget, &QAction::triggered, this, [this, name] {
+    QMessageBox box(this);
+    box.setIcon(QMessageBox::NoIcon);
+    box.setWindowTitle(QStringLiteral("Lightning Desk"));
+    box.setText(tr("Forget %1?").arg(name));
+    box.setInformativeText(tr("It comes off your desk and will have to be allowed again to rejoin."));
+    auto *yes = box.addButton(tr("Forget"), QMessageBox::DestructiveRole);
+    box.addButton(tr("Keep it"), QMessageBox::RejectRole);
+    box.exec();
+    if (box.clickedButton() == yes)
+      Q_EMIT forgetRequested(name);
+  });
+  menu.exec(globalPos);
+}
+
 void DeskView::relayout()
 {
   // Clear the grid.
@@ -401,7 +524,7 @@ void DeskView::relayout()
   }
   m_cardNames.clear();
 
-  // 5x5 layout: cards on even rows/cols, arrows on the odd ones between them.
+  // Cards on even rows/cols, arrows on the odd ones between adjacent computers.
   auto arrow = [&](Icon ic, int r, int c) {
     auto *l = new QLabel(m_gridHost);
     l->setPixmap(icon(ic, kArrow, devicePixelRatioF(), kLine));
@@ -409,60 +532,82 @@ void DeskView::relayout()
     l->setStyleSheet(QStringLiteral("background:transparent;"));
     m_grid->addWidget(l, r, c, Qt::AlignCenter);
   };
-
-  const auto sideSub = [&](Side side) {
-    switch (side) {
-    case Side::Above:
-      return tr("Above");
-    case Side::Left:
-      return tr("Left");
-    case Side::Right:
-      return tr("Right");
-    case Side::Below:
-      return tr("Below");
-    }
-    return QString();
+  auto spacer = [&](int r, int c, int w, int h) {
+    auto *s = new QWidget(m_gridHost);
+    s->setFixedSize(w, h);
+    s->setAttribute(Qt::WA_TransparentForMouseEvents);
+    m_grid->addWidget(s, r, c, Qt::AlignCenter);
   };
 
-  auto place = [&](Side side, int r, int c) {
-    const auto name = m_bySide.value(side);
-    if (name.isEmpty()) {
-      m_grid->addWidget(makeEmptyCell(side, m_gridHost), r, c, Qt::AlignCenter);
-      return;
-    }
-    auto *card = makeCard(m_gridHost);
-    fillCard(card, name, sideSub(side), false);
-    m_grid->addWidget(card->frame, r, c, Qt::AlignCenter);
-    delete card; // widgets are owned by the grid host; the struct is only a handle
-  };
-
-  if (m_serverMode) {
-    place(Side::Above, 0, 2);
-    arrow(Icon::ArrowUp, 1, 2);
-    place(Side::Left, 2, 0);
-    arrow(Icon::ArrowLeft, 2, 1);
-    auto *main = makeCard(m_gridHost);
-    fillCard(main, m_mainName, tr("Mouse & keyboard are here"), true);
-    m_grid->addWidget(main->frame, 2, 2, Qt::AlignCenter);
-    delete main;
-    arrow(Icon::ArrowRight, 2, 3);
-    place(Side::Right, 2, 4);
-    arrow(Icon::ArrowDown, 3, 2);
-    place(Side::Below, 4, 2);
-  } else {
+  if (!m_serverMode) {
     auto *main = makeCard(m_gridHost);
     fillCard(main, m_mainName, tr("Mouse & keyboard are there"), true);
-    m_grid->addWidget(main->frame, 2, 0, Qt::AlignCenter);
+    m_grid->addWidget(main->frame, 0, 0, Qt::AlignCenter);
     delete main;
-    arrow(Icon::ArrowRight, 2, 1);
+    arrow(Icon::ArrowRight, 0, 1);
     auto *me = makeCard(m_gridHost);
     const auto status =
         m_state == ConnectionState::Connected
             ? tr("This computer · linked")
             : (m_state == ConnectionState::Connecting ? tr("This computer · connecting…") : tr("This computer · off"));
     fillCard(me, m_thisName, status, false);
-    m_grid->addWidget(me->frame, 2, 2, Qt::AlignCenter);
+    m_grid->addWidget(me->frame, 0, 2, Qt::AlignCenter);
     delete me;
+    return;
+  }
+
+  // Only draw the rows/columns that have something in them (or a free cell beside something),
+  // so a two-computer desk doesn't sprawl across a 5 x 3 field.
+  int minR = m_rows, maxR = -1, minC = m_columns, maxC = -1;
+  for (int cell = 0; cell < m_columns * m_rows; ++cell) {
+    if (!occupied(cell) && !nextToOccupied(cell))
+      continue;
+    minR = std::min(minR, cell / m_columns);
+    maxR = std::max(maxR, cell / m_columns);
+    minC = std::min(minC, cell % m_columns);
+    maxC = std::max(maxC, cell % m_columns);
+  }
+  if (maxR < 0)
+    return;
+
+  // Fit the visible columns to the window: shrink cards a little before scrolling.
+  m_shownColumns = maxC - minC + 1;
+  const int avail = std::max(0, width() - 176 - 48 - 16);
+  const int perCol = (avail - (m_shownColumns - 1) * (kArrow + 12)) / std::max(1, m_shownColumns);
+  m_cardW = std::clamp(perCol, kCardWMin, kCardWMax);
+
+  for (int r = minR; r <= maxR; ++r) {
+    for (int c = minC; c <= maxC; ++c) {
+      const int cell = r * m_columns + c;
+      const int gr = (r - minR) * 2;
+      const int gc = (c - minC) * 2;
+      if (occupied(cell)) {
+        auto *card = makeCard(m_gridHost);
+        const bool isMain = cell == m_mainCell;
+        fillCard(card, m_cells.value(cell), isMain ? tr("Mouse & keyboard are here") : placeLabel(cell), isMain);
+        m_grid->addWidget(card->frame, gr, gc, Qt::AlignCenter);
+        delete card;
+      } else if (nextToOccupied(cell)) {
+        m_grid->addWidget(makeEmptyCell(cell, m_gridHost), gr, gc, Qt::AlignCenter);
+      } else {
+        spacer(gr, gc, m_cardW, kEmptyH);
+      }
+      // Arrows to the right and below when both cells hold computers.
+      if (c < maxC) {
+        const int right = cell + 1;
+        if (occupied(cell) && occupied(right))
+          arrow(Icon::ArrowRight, gr, gc + 1);
+        else
+          spacer(gr, gc + 1, kArrow, 4);
+      }
+      if (r < maxR) {
+        const int below = cell + m_columns;
+        if (occupied(cell) && occupied(below))
+          arrow(Icon::ArrowDown, gr + 1, gc);
+        else
+          spacer(gr + 1, gc, 4, kArrow);
+      }
+    }
   }
 }
 
@@ -470,41 +615,27 @@ void DeskView::setDesk(const QString &mainName, const ServerConfig &config)
 {
   m_serverMode = true;
   m_mainName = mainName;
-  m_bySide.clear();
+  m_columns = config.columns();
+  m_rows = config.rows();
+  m_cells.clear();
 
   const auto &list = config.computers();
   int mainIdx = -1;
   for (int i = 0; i < list.size(); ++i) {
-    if (!list[i].isNull() && list[i].name() == mainName) {
-      mainIdx = i;
-      break;
-    }
-  }
-  if (mainIdx < 0 && config.centreIndex() < list.size() && !list[config.centreIndex()].isNull())
-    mainIdx = config.centreIndex();
-
-  if (mainIdx >= 0) {
-    m_bySide.insert(Side::Above, config.neighbourName(mainIdx, 0, -1));
-    m_bySide.insert(Side::Left, config.neighbourName(mainIdx, -1, 0));
-    m_bySide.insert(Side::Right, config.neighbourName(mainIdx, 1, 0));
-    m_bySide.insert(Side::Below, config.neighbourName(mainIdx, 0, 1));
-  }
-
-  // Anything configured but not adjacent still deserves a slot: fill empty sides in order.
-  QStringList placed = m_bySide.values();
-  for (const auto &computer : list) {
-    if (computer.isNull() || computer.name() == mainName || placed.contains(computer.name()))
+    if (list[i].isNull())
       continue;
-    for (auto side : {Side::Right, Side::Left, Side::Below, Side::Above}) {
-      if (m_bySide.value(side).isEmpty()) {
-        m_bySide.insert(side, computer.name());
-        placed << computer.name();
-        break;
-      }
-    }
+    if (list[i].name() == mainName)
+      mainIdx = i;
+    m_cells.insert(i, list[i].name());
   }
+  if (mainIdx < 0) {
+    // Not placed yet: the main computer lives in the centre.
+    mainIdx = config.centreIndex();
+    m_cells.insert(mainIdx, mainName);
+  }
+  m_mainCell = mainIdx;
 
-  m_subtitle->setText(tr("Move the mouse off an edge to switch computers. Drag a card to change where it sits."));
+  m_subtitle->setText(tr("Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it."));
   m_addButton->setVisible(true);
   m_sharingPill->setVisible(true);
   relayout();
@@ -515,7 +646,7 @@ void DeskView::setLinkedTo(const QString &thisName, const QString &mainName)
   m_serverMode = false;
   m_thisName = thisName;
   m_mainName = mainName;
-  m_bySide.clear();
+  m_cells.clear();
   m_subtitle->setText(tr("This computer is an extra screen of %1. Its mouse and keyboard reach here.").arg(mainName));
   m_addButton->setVisible(false);
   m_sharingPill->setVisible(true);
@@ -587,6 +718,17 @@ void DeskView::refreshConveniences()
     m_encryptionValue->setText(tr("Always on"));
   else
     m_encryptionValue->setText(tr("Always on · %n trusted", "", m_trusted));
+}
+
+void DeskView::resizeEvent(QResizeEvent *event)
+{
+  QWidget::resizeEvent(event);
+  if (!m_serverMode || m_shownColumns == 0)
+    return;
+  const int avail = std::max(0, width() - 176 - 48 - 16);
+  const int perCol = (avail - (m_shownColumns - 1) * (kArrow + 12)) / std::max(1, m_shownColumns);
+  if (std::clamp(perCol, kCardWMin, kCardWMax) != m_cardW)
+    relayout();
 }
 
 bool DeskView::eventFilter(QObject *watched, QEvent *event)

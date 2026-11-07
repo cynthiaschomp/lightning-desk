@@ -58,6 +58,10 @@ public:
   void addClient(const QString &clientName);
   /// Lightning Desk: put the main computer in the centre cell and a client in a chosen grid cell.
   void placeClient(const QString &clientName, int gridIndex);
+  /// Lightning Desk: take a computer off the desk (keeps the main computer where it is).
+  void removeClient(const QString &clientName);
+  /// Lightning Desk: move a placed computer to another free cell; false if the cell is taken.
+  bool moveClient(const QString &clientName, int gridIndex);
   /// Lightning Desk: re-read the stored layout (after the wizard or a dialog changed it).
   void reload();
   int columns() const

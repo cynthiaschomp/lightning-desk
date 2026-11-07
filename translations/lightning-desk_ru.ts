@@ -1589,6 +1589,58 @@ Enabling this setting will disable the server config GUI.</source>
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Move or forget this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1, %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It comes off your desk and will have to be allowed again to rejoin.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>deskflow::gui::PlaceDialog</name>

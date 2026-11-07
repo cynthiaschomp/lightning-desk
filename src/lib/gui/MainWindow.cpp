@@ -191,7 +191,7 @@ void MainWindow::restoreWindow()
     if (classic)
       adjustSize();
     else
-      resize(1000, 720);
+      resize(1080, 720);
     windowGeometry = geometry();
   } else {
     setGeometry(windowGeometry);
@@ -704,7 +704,23 @@ void MainWindow::setupDeskView()
     else
       stopCore();
   });
-  connect(m_deskView, &DeskView::addComputerRequested, this, [this](DeskView::Side) { addComputerFromDesk(); });
+  connect(m_deskView, &DeskView::addComputerRequested, this, &MainWindow::addComputerFromDesk);
+  connect(m_deskView, &DeskView::moveRequested, this, [this](const QString &name, int cell) {
+    if (!m_serverConfig.moveClient(name, cell))
+      return;
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(m_deskView, &DeskView::forgetRequested, this, [this](const QString &name) {
+    m_serverConfig.removeClient(name);
+    m_serverConfig.commit();
+    m_ignoredClients.remove(name);
+    refreshDeskView();
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart(); // drops the live connection; it has to be allowed again
+  });
   connect(m_deskView, &DeskView::computerClicked, this, [this](const QString &) { showConfigureServer(""); });
   connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::openSettings);
   connect(m_deskView, &DeskView::shortcutsRequested, this, [this] { showConfigureServer(""); });
@@ -734,9 +750,9 @@ void MainWindow::toggleClassicView(bool classic)
   }
   // The Desk screen is a real window: resizable, with room for the grid.
   setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
-  setMinimumSize(880, 620);
-  if (width() < 1000 || height() < 680)
-    resize(1000, 700);
+  setMinimumSize(960, 620);
+  if (width() < 1080 || height() < 700)
+    resize(1080, 720);
   if (!Settings::value(Settings::Gui::LogExpanded).toBool())
     m_logDock->hide();
 }
@@ -764,16 +780,31 @@ void MainWindow::refreshDeskView()
   m_deskView->refreshConveniences();
 }
 
-void MainWindow::addComputerFromDesk()
+void MainWindow::addComputerFromDesk(int cell)
 {
   const bool wasRunning = m_coreProcess.isStarted();
   if (wasRunning)
     stopCore();
 
+  QStringList before;
+  for (const auto &computer : std::as_const(m_serverConfig).computers())
+    if (!computer.isNull())
+      before << computer.name();
+
   auto *wizard = new deskflow::gui::SetupWizard(this);
   wizard->setAttribute(Qt::WA_DeleteOnClose);
-  connect(wizard, &QDialog::finished, this, [this, wasRunning](int) {
+  connect(wizard, &QDialog::finished, this, [this, wasRunning, before, cell](int) {
     m_serverConfig.reload();
+    // The wizard drops a new computer into the next free cell; move it to the one that was clicked.
+    if (cell >= 0) {
+      for (const auto &computer : std::as_const(m_serverConfig).computers()) {
+        if (!computer.isNull() && !before.contains(computer.name())) {
+          if (m_serverConfig.moveClient(computer.name(), cell))
+            m_serverConfig.commit();
+          break;
+        }
+      }
+    }
     refreshDeskView();
     if (wasRunning || Settings::value(Settings::Gui::AutoStartCore).toBool())
       startCore();
