@@ -164,7 +164,7 @@ void CoreProcess::checkExistingProcess()
     m_retryTimer.start(kRetryDelay);
   });
   connect(client, &ipc::CoreIpcClient::connectionFailed, this, [client] {
-    qCritical("could not contact existing core");
+    qWarning("could not contact existing core (it may have just exited)");
     client->deleteLater();
   });
   client->connectToServer();

@@ -50,6 +50,8 @@ public:
 
   /// Re-enter at the "Link your other computers" step.
   void openAtLink();
+  /// Run inside another widget's page stack instead of as a window (nothing pops over anything).
+  void embedInto(QWidget *host);
 
   enum class Role
   {
@@ -207,6 +209,7 @@ private:
   QStringList m_trusted;    // fingerprints auto-trusted this session
   QStringList m_recentLog;
   bool m_waiting = true;
+  bool m_linkOnly = false; ///< opened from the desk at Link: Back there means "never mind"
   bool m_fixedMode = false;
   bool m_fixedCert = false;
 

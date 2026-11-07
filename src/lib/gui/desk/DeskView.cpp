@@ -719,6 +719,22 @@ bool DeskView::onComputerPage() const
   return m_pages->currentIndex() == 6;
 }
 
+void DeskView::showPage(QWidget *page)
+{
+  m_navDesk->setChecked(true);
+  if (m_pages->indexOf(page) < 0)
+    m_pages->addWidget(page);
+  m_pages->setCurrentWidget(page);
+}
+
+void DeskView::removePage(QWidget *page)
+{
+  if (m_pages->indexOf(page) >= 0)
+    m_pages->removeWidget(page);
+  if (m_pages->currentIndex() < 0 || m_pages->currentIndex() >= 7)
+    showDeskPage();
+}
+
 NoticeCard *DeskView::notice()
 {
   dismissNotice();

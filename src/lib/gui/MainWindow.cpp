@@ -159,10 +159,8 @@ MainWindow::MainWindow()
   // Force generation of a certificate on the host
   if (TlsUtility::isEnabled()) {
     if (Settings::value(Settings::Security::KeySize).toInt() < 2048) {
-      QMessageBox::information(
-          this, kAppName,
-          tr("Your current TLS key is smaller than the minimum allowed size, A new key 2048-bit key will be generated.")
-      );
+      // Nothing pops over anything: just do it and say so in the log / Checks activity.
+      qInfo("TLS key is smaller than the minimum allowed size; generating a new 2048-bit key");
       Settings::setValue(Settings::Security::KeySize, 2048);
     }
     if (!TlsUtility::isCertValid()) {
@@ -957,6 +955,23 @@ void MainWindow::setupDeskView()
       m_coreProcess.restart();
   });
 
+  // Critical errors become an inline notice instead of a message box.
+  messages::setCriticalSink([this](const QString &message, const QString &fileLine) {
+    auto *card = deskNotice();
+    if (!card) {
+      messages::setCriticalSink(nullptr); // classic view: fall back to the box
+      return;
+    }
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+        ->setTitle(tr("Something went wrong"))
+        ->setBody(tr("%1\n\nIf it keeps happening, copy a report from Help › Something not working? and send it to %2.")
+                      .arg(message, kUrlSupportMail))
+        ->setButtons({tr("OK")});
+    Q_UNUSED(fileLine); // it's in the log and the Checks report
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+  });
+
   toggleClassicView(m_actionClassicView->isChecked());
   refreshDeskView();
 }
@@ -1182,7 +1197,17 @@ void MainWindow::addComputerFromDesk(int cell)
 
   auto *wizard = new deskflow::gui::SetupWizard(this);
   wizard->setAttribute(Qt::WA_DeleteOnClose);
-  connect(wizard, &QDialog::finished, this, [this, wasRunning, before, cell](int) {
+  const bool inline_ = m_deskView && m_actionClassicView && !m_actionClassicView->isChecked();
+  if (inline_) {
+    // Nothing pops over anything: the link flow runs as a page inside the Desk screen.
+    wizard->embedInto(m_deskView);
+    m_deskView->showPage(wizard);
+  }
+  connect(wizard, &QDialog::finished, this, [this, wasRunning, before, cell, wizard, inline_](int) {
+    if (inline_) {
+      m_deskView->removePage(wizard);
+      m_deskView->showDeskPage();
+    }
     m_serverConfig.reload();
     // The wizard drops a new computer into the next free cell; move it to the one that was clicked.
     if (cell >= 0) {

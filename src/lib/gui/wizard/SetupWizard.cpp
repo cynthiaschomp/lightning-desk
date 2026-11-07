@@ -288,8 +288,21 @@ bool SetupWizard::isFirstRun()
 
 void SetupWizard::openAtLink()
 {
+  m_linkOnly = true;
   goTo(Link);
-  open();
+  if (windowFlags().testFlag(Qt::Window))
+    open();
+  else
+    show();
+}
+
+void SetupWizard::embedInto(QWidget *host)
+{
+  setParent(host, Qt::Widget);
+  setModal(false);
+  setMinimumSize(0, 0);
+  setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+  setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 }
 
 void SetupWizard::done(int result)
@@ -952,6 +965,10 @@ void SetupWizard::next()
 void SetupWizard::back()
 {
   const int step = m_pages->currentIndex();
+  if (m_linkOnly && step == Link) {
+    reject();
+    return;
+  }
   if (step == Arrange && m_arrangeIndex > 0) {
     loadArrangeFor(m_arrangeIndex - 1);
     return;

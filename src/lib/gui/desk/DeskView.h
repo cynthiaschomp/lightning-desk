@@ -85,6 +85,9 @@ public:
   /// Open one computer's page (replaces the old Computer sheet and the ⋯ menu).
   void showComputerPage(const Computer &computer, const QString &status, bool linked);
   bool onComputerPage() const;
+  /// Show an arbitrary widget as a page (used for the add-a-computer flow); removePage() when done.
+  void showPage(QWidget *page);
+  void removePage(QWidget *page);
   void showDeskPage();
   /// Show an inline notice at the top of the Desk page (replaces every dialog). The card is
   /// deleted when answered or when dismissNotice() is called; only one is shown at a time.
