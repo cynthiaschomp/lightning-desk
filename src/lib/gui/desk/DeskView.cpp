@@ -9,6 +9,7 @@
 #include "common/Settings.h"
 #include "desk/AboutView.h"
 #include "desk/BrandIcons.h"
+#include "desk/ChecksView.h"
 #include "desk/NoticeCard.h"
 #include "desk/PlanView.h"
 #include "desk/SettingsView.h"
@@ -127,13 +128,16 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   m_settings = new SettingsView(this);
   m_about = new AboutView(this);
   m_plan = new PlanView(this);
+  m_checks = new ChecksView(this);
   m_pages = new QStackedWidget(this);
   m_pages->addWidget(scroll);
   m_pages->addWidget(m_shortcuts);
   m_pages->addWidget(m_settings);
   m_pages->addWidget(m_about);
   m_pages->addWidget(m_plan);
+  m_pages->addWidget(m_checks);
   connect(m_plan, &PlanView::backRequested, this, &DeskView::showSettingsPage);
+  connect(m_checks, &ChecksView::backRequested, this, &DeskView::showAboutPage);
   outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
@@ -454,7 +458,7 @@ QString DeskView::statusFor(const QString &name) const
     return tr("Linked");
   if (!m_sharing || m_state == ConnectionState::Disconnected)
     return tr("Off");
-  return tr("Reconnecting…");
+  return tr("Waiting");
 }
 
 bool DeskView::occupied(int cell) const
@@ -706,6 +710,13 @@ void DeskView::showPlanPage()
   // Plan lives under Settings in the rail.
   m_navSettings->setChecked(true);
   m_pages->setCurrentIndex(4);
+}
+
+void DeskView::showChecksPage()
+{
+  // Checks live under Help in the rail.
+  m_navHelp->setChecked(true);
+  m_pages->setCurrentIndex(5);
 }
 
 NoticeCard *DeskView::notice()

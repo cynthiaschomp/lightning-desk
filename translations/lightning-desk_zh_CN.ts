@@ -683,7 +683,7 @@ Do you want to connect to the server?
     </message>
     <message>
         <location filename="../src/lib/gui/MainWindow.ui" line="486"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1605"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1858"/>
         <source>&amp;Start</source>
         <translation>启动(&amp;S)</translation>
     </message>
@@ -693,192 +693,192 @@ Do you want to connect to the server?
         <translation>重启</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="160"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="163"/>
         <source>Your current TLS key is smaller than the minimum allowed size, A new key 2048-bit key will be generated.</source>
         <translation>您当前的 TLS 密钥长度小于允许的最小值，将生成一个新的 2048 位密钥。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="384"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="387"/>
         <source>invalid certificate, generating a new one</source>
         <translation type="unfinished">证书无效，正在生成新证书</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="424"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="427"/>
         <source>Address missing</source>
         <translation>缺少地址</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="424"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="427"/>
         <source>Please enter the hostname or IP address of the other computer.</source>
         <translation>请输入另一台计算机的主机名或 IP 地址。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="496"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="499"/>
         <source>Save server configuration as...</source>
         <translation>另存服务器配置为...</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="499"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="502"/>
         <source>Save failed</source>
         <translation>保存失败</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="499"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="502"/>
         <source>Could not save server configuration to file.</source>
         <translation>无法将服务器配置保存到文件。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="611"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="614"/>
         <source>Start</source>
         <translation>启动</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="612"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="615"/>
         <source>Stop</source>
         <translation>停止</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="616"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="619"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="617"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="620"/>
         <source>Disconnect</source>
         <translation>断开</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1611"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1864"/>
         <source>View &amp;Help</source>
         <translation type="unfinished">查看帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1708"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1961"/>
         <source>Invalid Computer Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1711"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1964"/>
         <source>Computer name already exists</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1813"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2070"/>
         <source>No IP Detected</source>
         <translation>未检测到 IP</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1814"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2071"/>
         <source>Unable to detect an IP address. Check your network connection is active.</source>
         <translation>无法检测到 IP 地址。请检查您的网络连接是否正常。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1818"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2075"/>
         <source>Using IP: </source>
         <translation type="unfinished">使用IP地址： </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1819"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2076"/>
         <source>&lt;p&gt;If connecting via the hostname fails, try %1&lt;/p&gt;</source>
         <translation>&lt;p&gt;如果通过主机名连接失败，请尝试 %1&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1839"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2096"/>
         <source>the suggested IP.</source>
         <translation>建议的 IP 地址。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1841"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2098"/>
         <source>one of the following IPs:&lt;br/&gt;%1</source>
         <translation>以下 IP 地址之一：&lt;br/&gt;%1</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1835"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2092"/>
         <source>
 A bound IP is now invalid, you may need to restart the server.</source>
         <translation type="unfinished">
 绑定的IP地址现在无效，您可能需要重启服务器。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1594"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1847"/>
         <source>&amp;File</source>
         <translation>文件(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1595"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1848"/>
         <source>&amp;Edit</source>
         <translation>编辑(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1596"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1849"/>
         <source>&amp;View</source>
         <translation>视图(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1597"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1850"/>
         <source>&amp;Help</source>
         <translation>帮助(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1599"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1852"/>
         <source>&amp;Minimize to tray</source>
         <translation>最小化到托盘(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1600"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1601"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1853"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1854"/>
         <source>&amp;Quit</source>
         <translation>退出(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1603"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1856"/>
         <source>&amp;Open %1</source>
         <extracomment>%1 will be the replaced with the appname</extracomment>
         <translation>打开 %1(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1604"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1857"/>
         <source>&amp;Preferences</source>
         <translation>首选项(&amp;P)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1606"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1859"/>
         <source>Rest&amp;art</source>
         <translation>重启(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1607"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1860"/>
         <source>S&amp;top</source>
         <translation>停止(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1609"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1862"/>
         <source>About %1...</source>
         <extracomment>%1 will be the replaced with the appname</extracomment>
         <translation>关于 %1...</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1614"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1615"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1867"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1868"/>
         <source>Ctrl+S</source>
         <extracomment>start / restart core shortcut</extracomment>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1618"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1871"/>
         <source>Ctrl+T</source>
         <extracomment>stop core shortcut</extracomment>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1622"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1623"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1875"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1876"/>
         <source>Ctrl+Q</source>
         <extracomment>Quit shortcut</extracomment>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1714"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1967"/>
         <source>The name you have chosen is invalid.
 
 Valid names:
@@ -893,12 +893,12 @@ Valid names:
 • 长度在 1 到 255 个字符之间</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1269"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1514"/>
         <source>%1 Connection Error</source>
         <translation>%1 连接错误</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1818"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2075"/>
         <source>Suggested IP: </source>
         <translation type="unfinished">建议 IP： </translation>
     </message>
@@ -918,365 +918,591 @@ Valid names:
         <translation type="unfinished">&lt;html&gt;服务器计算机的主机名或 IP 地址。&lt;br/&gt;可以包含以逗号分隔的列表。&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="434"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="437"/>
         <source>read</source>
         <translation type="unfinished">读取</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="434"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="437"/>
         <source>read and write</source>
         <translation type="unfinished">读取和写入</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="428"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="431"/>
         <source>The Core executable could not be started.
 Please check if you have sufficient permissions to run %1.</source>
         <translation type="unfinished">无法启动Core可执行文件。
 请检查您是否有足够的权限来运行%1。</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="435"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="438"/>
         <source>
 Additionally, check you are able to %1 the server config file: %2</source>
         <translation type="unfinished">
 另外，请检查您是否能够%1服务器配置文件：%2</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1310"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1555"/>
         <source>Don&apos;t show this again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1288"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1533"/>
         <source>Missing Keyboard Layouts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1289"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1534"/>
         <source>&lt;p&gt;Keyboard layout support requires matching layouts on all computers. The following layouts from the other computer are not installed on this computer:&lt;/p&gt;&lt;p&gt;&lt;b&gt;%1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please install them to enable support for these layouts.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1138"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1155"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1383"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1400"/>
         <source>Room for one more?</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1156"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1401"/>
         <source>%1 tried to join, but your %2 plan links this computer and %n other(s).</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1143"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1157"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1388"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1402"/>
         <source>Free</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1159"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1404"/>
         <source>Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1144"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1162"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1259"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1389"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1407"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1504"/>
         <source>See Plus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1144"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1163"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1212"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1384"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1389"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1408"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1457"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1629"/>
         <source>Not now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1270"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1515"/>
         <source>&lt;p&gt;The main computer at &apos;%1&apos; turned this computer away.&lt;/p&gt;&lt;p&gt;Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five).&lt;/p&gt;&lt;p&gt;Give this computer a different name, or &lt;a href=&quot;%2&quot;&gt;see Plus&lt;/a&gt;.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="742"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="745"/>
         <source>Classic view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="800"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="803"/>
         <source>Plus is on</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="801"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="804"/>
         <source>This desk now links this computer and up to %n more. Licensed to %1.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="804"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="807"/>
         <source>Great</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="906"/>
+        <source>Report copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="907"/>
+        <source>Paste it into your email to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="926"/>
+        <source>Getting %1 back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="928"/>
+        <source>1. Wake it up and make sure it&apos;s on the same Wi‑Fi or network.
+2. Open Lightning Desk on it. It should say it&apos;s linked to %1.
+3. If it asks to trust this computer, check the security code matches the one on the Help page.
+4. Still nothing? Forget it from Your desk and add it again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1049"/>
+        <source>Sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1049"/>
+        <source>On from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1051"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1240"/>
+        <source>Sharing is off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1051"/>
+        <source>Other computers can&apos;t join until it&apos;s on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1053"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1114"/>
+        <source>Turn on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1057"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1242"/>
+        <source>Linked to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1057"/>
+        <source>Keyboard and mouse come from there</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1061"/>
+        <source>Looking for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1062"/>
+        <source>Make sure Lightning Desk is open and sharing is on over there, and both computers are on the same network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1067"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1244"/>
+        <source>Not linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1067"/>
+        <source>This computer isn&apos;t looking for %1 right now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1069"/>
+        <source>Link now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1076"/>
+        <source>Not on a network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1076"/>
+        <source>Connect to Wi‑Fi or plug in a cable, then run the checks again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1080"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1080"/>
+        <source>This computer is reachable at %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1088"/>
+        <source>Connection port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1089"/>
+        <source>Other computers connect on port %1. If a firewall asks, allow Lightning Desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1090"/>
+        <source>Other computers connect to %1 on port %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1099"/>
+        <source>Encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1099"/>
+        <source>Connections between your computers are encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1102"/>
+        <source>Security key missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1103"/>
+        <source>We can make a new one. Other computers will ask you to trust it again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1110"/>
+        <source>Encryption is off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1111"/>
+        <source>Anyone on your network could read what you type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1125"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1256"/>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1128"/>
+        <source>%1 isn&apos;t answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1129"/>
+        <source>It may be asleep, or Lightning Desk may have been closed on it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1132"/>
+        <source>How to fix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1136"/>
+        <source>Waiting for sharing to turn on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1211"/>
+        <source>Add a computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1240"/>
+        <source>Sharing from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1244"/>
+        <source>Looking for %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1256"/>
+        <source>Not answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1256"/>
+        <source>Waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1276"/>
+        <source>Pause sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1276"/>
+        <source>Resume sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1278"/>
+        <source>Unlink for now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1278"/>
+        <source>Link again</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1139"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1384"/>
         <source>%1 tried to join, but your %2 plan links this computer and %n other(s). Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1201"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1446"/>
         <source>Above</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1201"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1446"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1202"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1447"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1202"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1447"/>
         <source>Below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1203"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1448"/>
         <source>Far left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1203"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1448"/>
         <source>Far right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1207"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1452"/>
         <source>%1 wants to join your desk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1208"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1453"/>
         <source>Pick the edge of %1&apos;s screen it sits next to. Move the mouse off that edge and it appears there. You can move it later from its card.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1212"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1457"/>
         <source>Add %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1368"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1613"/>
         <source>this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1371"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1616"/>
         <source>Link to %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1371"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1616"/>
         <source>A new computer wants to join</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1373"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1618"/>
         <source>Your mouse and keyboard will reach this computer from %1. If that&apos;s not your main computer, say no.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1376"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1621"/>
         <source>If this is one of your computers, allow it and it joins your desk. If you weren&apos;t expecting anything, say no — nothing connects until you do.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1380"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1625"/>
         <source>This is %1&apos;s security code. It never changes unless %1 makes a new key, so you&apos;ll only be asked once.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1384"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1629"/>
         <source>Yes, link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1384"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1629"/>
         <source>Allow it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1384"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1629"/>
         <source>Allow %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="813"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="816"/>
         <source>Make a new security key?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="814"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="817"/>
         <source>Every linked computer will ask you to allow this one again the next time it connects.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="815"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="818"/>
         <source>Keep the current key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="815"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="818"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1106"/>
         <source>Make a new key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="965"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1016"/>
         <source>Lightning Desk %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="966"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1017"/>
         <source>Until %1 · this computer + up to %n more</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="967"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1018"/>
         <source>This computer + up to %n more</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="968"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1019"/>
         <source>Trial</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="968"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1019"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="972"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1023"/>
         <source>Lightning Desk Free</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/MainWindow.cpp" line="972"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1023"/>
         <source>This computer + %n more · Plus links up to five</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="414"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="417"/>
         <source>Which computer is the main one?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="416"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="419"/>
         <source>This computer is set up as an extra screen but doesn&apos;t know the main computer&apos;s name yet. Run setup again from Add a computer, or pick the main computer in Settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="419"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="442"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="887"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1259"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1302"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="422"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="445"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="890"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="908"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="934"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1504"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1547"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="440"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="443"/>
         <source>Lightning Desk couldn&apos;t start sharing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="442"/>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1768"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="445"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2025"/>
         <source>Try again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="695"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="698"/>
         <source>Tell you when an update is ready?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="697"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="700"/>
         <source>Lightning Desk checks schomp.ai now and then. Nothing installs without you; you can change this in Settings any time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="700"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="703"/>
         <source>No thanks</source>
         <translation type="unfinished">不，谢谢</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="700"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="703"/>
         <source>Yes, tell me</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="885"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="888"/>
         <source>Diagnostics copied</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="886"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="889"/>
         <source>Paste them into your email to %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1253"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1498"/>
         <source>%1 turned this computer away</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1255"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1500"/>
         <source>Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five). Give this computer a different name in Settings, or see Plus.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1298"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1543"/>
         <source>A keyboard layout is missing here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1299"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1544"/>
         <source>The other computer types with %1, which isn&apos;t installed on this one. Typing still works; install the layout to match it exactly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1302"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="1547"/>
         <source>Don&apos;t tell me again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1763"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2020"/>
         <source>The background service isn&apos;t answering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1765"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2022"/>
         <source>Lightning Desk&apos;s background service keeps sharing going when you&apos;re not logged in. It may still be starting. Try again in a moment, or restart this computer if it keeps happening.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/MainWindow.cpp" line="1768"/>
+        <location filename="../src/lib/gui/MainWindow.cpp" line="2025"/>
         <source>Later</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2171,376 +2397,587 @@ Enabling this setting will disable the server config GUI.</source>
     </message>
     <message>
         <location filename="../src/lib/gui/desk/AboutView.cpp" line="154"/>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="292"/>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="301"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="328"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="337"/>
         <source>Check for updates</source>
         <translation type="unfinished">检查更新</translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="181"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="182"/>
+        <source>Something not working?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="184"/>
+        <source>Run the checks. We fix what we can and show the rest in plain language.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="217"/>
         <source>This computer&apos;s security code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="183"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="219"/>
         <source>Other computers show it when this one asks to join. It only changes if you make a new key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="204"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="240"/>
         <source>Made by</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="209"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="245"/>
         <source>Release notes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="209"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="245"/>
         <source>What changed in each version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="211"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="247"/>
         <source>Report a problem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="211"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="247"/>
         <source>Copy diagnostics first, then paste them into the email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="220"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="256"/>
         <source>Credits &amp; license</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="222"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="258"/>
         <source>Based on Deskflow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="222"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="258"/>
         <source>© 2024–2026 Deskflow Developers and earlier Synergy contributors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="226"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="262"/>
         <source>GNU GPL v2.0 with OpenSSL exception</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="226"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="262"/>
         <source>You can view and change the source code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="230"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="266"/>
         <source>Open-source components</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="242"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="278"/>
         <source>Copy diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="243"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="279"/>
         <source>Show log folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="249"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="285"/>
         <source>© 2026 Schomp Technologies LLC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="279"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="315"/>
         <source>Checking…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="289"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="325"/>
         <source>Couldn&apos;t reach schomp.ai to check. Try again later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="297"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="333"/>
         <source>✓ You&apos;re up to date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="305"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="341"/>
         <source>Version %1 is ready. Nothing installs until you say so.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/AboutView.cpp" line="309"/>
+        <location filename="../src/lib/gui/desk/AboutView.cpp" line="345"/>
         <source>Get %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::ChecksView</name>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="129"/>
+        <source>‹ Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="134"/>
+        <source>Something not working?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="136"/>
+        <source>We run the usual checks and fix what we can. Anything left needs a hand from you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="139"/>
+        <source>Run checks again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="161"/>
+        <source>Recent activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="162"/>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="277"/>
+        <source>Plain language ·</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="164"/>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="276"/>
+        <source>show the raw log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="168"/>
+        <source>Copy report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="177"/>
+        <source>Nothing yet. Turn sharing on and this fills in as things happen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="276"/>
+        <source>show plain language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="277"/>
+        <source>Raw log ·</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="340"/>
+        <source>%1 linked up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="341"/>
+        <source>%1 left the desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="342"/>
+        <source>%1 stopped answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="344"/>
+        <source>%1 asked to join but the plan is full</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="346"/>
+        <source>The main computer turned this one away (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="348"/>
+        <source>Another computer is already using the name %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="349"/>
+        <source>Moved from %1 to %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="350"/>
+        <source>Sharing started on this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="351"/>
+        <source>Turning sharing on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="352"/>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="359"/>
+        <source>Looking for the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="354"/>
+        <source>Asking the background service to start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="355"/>
+        <source>Stopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="356"/>
+        <source>Stopped (code %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="357"/>
+        <source>A computer is connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="358"/>
+        <source>Sharing stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="360"/>
+        <source>Stopped looking for the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="361"/>
+        <source>Linked to the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="362"/>
+        <source>Lost the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="363"/>
+        <source>The main computer stopped answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="365"/>
+        <source>Couldn&apos;t reach the main computer (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="366"/>
+        <source>Connection is encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="368"/>
+        <source>Encryption handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="370"/>
+        <source>Cursor locked to this computer (Scroll Lock)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="372"/>
+        <source>Cursor is locked to this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="374"/>
+        <source>Keyboard layouts missing here: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="376"/>
+        <source>Sharing stopped with an error (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="377"/>
+        <source>Background service is stopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/ChecksView.cpp" line="390"/>
+        <source>Problem:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>deskflow::gui::DeskView</name>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="160"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="164"/>
         <source>Lightning Desk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="184"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="188"/>
         <source>Desk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="185"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="189"/>
         <source>Shortcuts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="186"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="190"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="211"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="215"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="227"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="760"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="231"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="771"/>
         <source>On</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="244"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="248"/>
         <source>Your desk</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="246"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="250"/>
         <source>Move the mouse off an edge to switch computers. Drag a card to change where it sits.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="264"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="787"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="268"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="798"/>
         <source>Sharing on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="264"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="787"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="268"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="798"/>
         <source>Sharing off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="269"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="273"/>
         <source>+ Add a computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="325"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="329"/>
         <source>Copy &amp; paste</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="325"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="329"/>
         <source>Between every computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="336"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="340"/>
         <source>Drag files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="336"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="340"/>
         <source>Coming soon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="340"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="344"/>
         <source>Dragging files between computers isn&apos;t ready yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="344"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="348"/>
         <source>Encryption</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="344"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="809"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="348"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="820"/>
         <source>Always on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="398"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="402"/>
         <source>Add here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="431"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="435"/>
         <source>Main</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="442"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="454"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="760"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="446"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="458"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="771"/>
         <source>Linked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="444"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="456"/>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="773"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="448"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="460"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="784"/>
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="457"/>
-        <source>Reconnecting…</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="501"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="505"/>
         <source>Above</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="506"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="510"/>
         <source>Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="508"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="512"/>
         <source>Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="503"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="507"/>
         <source>Below</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="632"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="636"/>
         <source>Mouse &amp; keyboard are here</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="589"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="593"/>
         <source>Mouse &amp; keyboard are there</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="596"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="600"/>
         <source>This computer · linked</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="597"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="601"/>
         <source>This computer · connecting…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="597"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="601"/>
         <source>This computer · off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="741"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="752"/>
         <source>This computer is an extra screen of %1. Its mouse and keyboard reach here.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="764"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="775"/>
         <source>On · waiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="768"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="779"/>
         <source>Starting…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="805"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="816"/>
         <source>Off · turn on in Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="811"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="822"/>
         <source>Always on · %n trusted</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="372"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="376"/>
         <source>Move or forget this computer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="510"/>
-        <source>Far left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="512"/>
-        <source>Far right</source>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="461"/>
+        <source>Waiting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lib/gui/desk/DeskView.cpp" line="514"/>
-        <source>%1, %2 of %3</source>
+        <source>Far left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lib/gui/desk/DeskView.cpp" line="516"/>
+        <source>Far right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="518"/>
+        <source>%1, %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="520"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="517"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="521"/>
         <source>%1 of %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="531"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="535"/>
         <source>Move to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="541"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="545"/>
         <source>Forget %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="545"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="549"/>
         <source>Forget %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="546"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="550"/>
         <source>It comes off your desk and will have to be allowed again to rejoin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="547"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="551"/>
         <source>Forget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="547"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="551"/>
         <source>Keep it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/lib/gui/desk/DeskView.cpp" line="683"/>
+        <location filename="../src/lib/gui/desk/DeskView.cpp" line="687"/>
         <source>Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it.</source>
         <translation type="unfinished"></translation>
     </message>

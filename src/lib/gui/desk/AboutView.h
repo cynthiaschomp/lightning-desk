@@ -34,6 +34,7 @@ Q_SIGNALS:
   void getUpdateRequested();
   void openLogsRequested();
   void copyDiagnosticsRequested();
+  void checksRequested();
 
 private:
   QLabel *m_updateLine = nullptr;

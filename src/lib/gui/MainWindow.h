@@ -120,6 +120,7 @@ private:
 
   void createMenuBar();
   void setupTrayIcon();
+  void refreshTrayMenu();
   void applyConfig();
   void setTrayIcon();
   void handleUnrecognisedClient(const QString &clientName);
@@ -127,6 +128,7 @@ private:
   // Lightning Desk branded main screen
   void setupDeskView();
   void refreshDeskView();
+  void refreshChecks();
   void toggleClassicView(bool classic);
   void addComputerFromDesk(int cell = -1);
   deskflow::gui::NoticeCard *deskNotice();
@@ -191,6 +193,7 @@ private:
   bool m_serverConfigDialogVisible = false;
   QSize m_expandedSize = QSize();
   QStringList m_checkedClients;
+  QStringList m_connectedClients;
   QStringList m_checkedServers;
   QSystemTrayIcon *m_trayIcon = nullptr;
   QLocalServer *m_guiDupeChecker = nullptr;
@@ -204,6 +207,9 @@ private:
   QMenu *m_menuEdit = nullptr;
   QMenu *m_menuView = nullptr;
   QMenu *m_menuHelp = nullptr;
+  QMenu *m_trayMenu = nullptr;
+  QAction *m_actionTrayToggle = nullptr;
+  QAction *m_actionTrayAdd = nullptr;
 
   // Window Actions
   QAction *m_actionAbout = nullptr;

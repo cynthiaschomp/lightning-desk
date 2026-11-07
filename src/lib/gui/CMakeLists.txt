@@ -99,6 +99,8 @@ add_library(${target} STATIC
   desk/AboutView.h
   desk/BrandIcons.cpp
   desk/BrandIcons.h
+  desk/ChecksView.cpp
+  desk/ChecksView.h
   desk/DeskView.cpp
   desk/DeskView.h
   desk/NoticeCard.cpp

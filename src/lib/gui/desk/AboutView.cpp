@@ -161,6 +161,42 @@ AboutView::AboutView(QWidget *parent) : QWidget(parent)
   hh->addWidget(m_updateButton, 0, Qt::AlignTop);
   col->addWidget(hero);
 
+  // Something not working? -> Checks page (inline, never a window)
+  auto *trouble = new QPushButton(content);
+  trouble->setCursor(Qt::PointingHandCursor);
+  trouble->setStyleSheet(QStringLiteral(
+                             "QPushButton{background:%1;border:1px solid %2;border-radius:12px;text-align:left;"
+                             "padding:0;}QPushButton:hover{background:%3;}"
+  )
+                             .arg(kCard, kLine, kCard2));
+  auto *th = new QHBoxLayout(trouble);
+  th->setContentsMargins(16, 12, 14, 12);
+  th->setSpacing(14);
+  auto *ticon = new QLabel(trouble);
+  ticon->setPixmap(tile(Icon::Help, 36, devicePixelRatioF(), kCard2, kAccent));
+  ticon->setStyleSheet(QStringLiteral("background:transparent;"));
+  ticon->setAttribute(Qt::WA_TransparentForMouseEvents);
+  th->addWidget(ticon);
+  auto *tt = new QVBoxLayout();
+  tt->setSpacing(2);
+  auto *t1 = text(tr("Something not working?"), kText, 13, 600, trouble);
+  auto *t2 =
+      text(tr("Run the checks. We fix what we can and show the rest in plain language."), kDim, 11, 400, trouble);
+  for (auto *l : {t1, t2}) {
+    l->setWordWrap(false);
+    l->setTextInteractionFlags(Qt::NoTextInteraction);
+    l->setAttribute(Qt::WA_TransparentForMouseEvents);
+    tt->addWidget(l);
+  }
+  th->addLayout(tt, 1);
+  auto *tchev = text(QStringLiteral("›"), kDim, 18, 400, trouble);
+  tchev->setAttribute(Qt::WA_TransparentForMouseEvents);
+  th->addWidget(tchev);
+  trouble->setMinimumHeight(th->sizeHint().height());
+  trouble->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+  connect(trouble, &QPushButton::clicked, this, &AboutView::checksRequested);
+  col->addWidget(trouble);
+
   // Security code card
   auto *code = new QFrame(content);
   code->setObjectName(QStringLiteral("codeCard"));
