@@ -1591,6 +1591,49 @@ Enabling this setting will disable the server config GUI.</source>
     </message>
 </context>
 <context>
+    <name>deskflow::gui::PlaceDialog</name>
+    <message>
+        <source>Where does %1 sit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relative to %1, the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick the edge of %1&apos;s screen that %2 is next to. Move the mouse off that edge and it appears there.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can move it later by dragging its card on your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>deskflow::gui::SetupWizard</name>
     <message>
         <source>Lightning Desk</source>
@@ -2087,6 +2130,61 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::TrustDialog</name>
+    <message>
+        <source>this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new computer wants to join</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link to %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Found on your network · its name shows once you allow it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 · found on your network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is the main computer for this desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this is one of your computers, allow it and it joins your desk. If you weren&apos;t expecting anything, say no — nothing connects until you do.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your mouse and keyboard will reach this computer from %1. If that&apos;s not your main computer, say no.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is %1&apos;s security code. It never changes unless %1 makes a new key, so you&apos;ll only be asked once.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, link</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

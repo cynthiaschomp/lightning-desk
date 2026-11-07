@@ -27,6 +27,7 @@
 #include "gui/Messages.h"
 #include "gui/TlsUtility.h"
 #include "gui/core/CoreProcess.h"
+#include "gui/desk/DeskDialogs.h"
 #include "gui/desk/DeskView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
@@ -939,6 +940,29 @@ void MainWindow::handleUnrecognisedClient(const QString &clientName)
 
   showAndActivate();
 
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    // Desk screen: ask where the new computer sits and place it straight away.
+    QList<int> taken;
+    const auto &list = std::as_const(m_serverConfig).computers();
+    for (int i = 0; i < list.size(); ++i)
+      if (!list[i].isNull())
+        taken << i;
+    deskflow::gui::PlaceDialog dialog(
+        this, clientName, Settings::value(Settings::Core::ComputerName).toString(), taken
+    );
+    if (dialog.exec() == QDialog::Accepted && dialog.cell() >= 0) {
+      m_serverConfig.placeClient(clientName, dialog.cell());
+      m_serverConfig.commit();
+      refreshDeskView();
+      if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+        m_coreProcess.restart();
+    } else {
+      m_ignoredClients.insert(clientName);
+    }
+    m_newClientPromptShowing = false;
+    return;
+  }
+
   if (deskflow::gui::messages::showNewClientPrompt(this, clientName)) {
     serverConnectionConfigureClient(clientName);
   } else {
@@ -1022,10 +1046,24 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
     m_checkedClients.append(sha256Text);
   }
 
-  auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
-  FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
+  bool accepted = false;
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    using deskflow::gui::TrustDialog;
+    // The server learns the client's name only after the TLS handshake, so on this side the
+    // dialog shows the security code without a name.
+    const auto peerName = isClient ? Settings::value(Settings::Client::RemoteHost).toString() : QString();
+    TrustDialog dialog(
+        this, isClient ? TrustDialog::Who::MainComputer : TrustDialog::Who::NewComputer, peerName, sha256Text
+    );
+    showAndActivate();
+    accepted = dialog.exec() == QDialog::Accepted;
+  } else {
+    auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
+    FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
+    accepted = fingerprintDialog.exec() == QDialog::Accepted;
+  }
 
-  if (fingerprintDialog.exec() == QDialog::Accepted) {
+  if (accepted) {
     db.addTrusted(sha256);
     if (!db.write(trustedFingerprintDatabase())) {
       qCritical().noquote() << "unable to write fingerprint to db:" << trustedFingerprintDatabase();
