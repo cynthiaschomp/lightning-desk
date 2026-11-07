@@ -30,6 +30,7 @@
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
 #include "net/FingerprintDatabase.h"
+#include "net/License.h"
 #include "widgets/StatusBar.h"
 
 #include <QCheckBox>
@@ -276,6 +277,7 @@ void MainWindow::connectSlots()
 
   connect(&m_coreProcess, &CoreProcess::connectedClientsChanged, this, &MainWindow::serverClientsChanged);
   connect(&m_coreProcess, &CoreProcess::unrecognisedClient, this, &MainWindow::handleUnrecognisedClient);
+  connect(&m_coreProcess, &CoreProcess::clientLimitReached, this, &MainWindow::handleClientLimitReached);
   connect(&m_coreProcess, &CoreProcess::connectionRefused, this, &MainWindow::handleConnectionRefused);
   connect(&m_coreProcess, &CoreProcess::retryIn, this, &MainWindow::updateTimeoutDelay);
   connect(&m_coreProcess, &CoreProcess::peerFingerprint, this, &MainWindow::handlePeerFingerprint);
@@ -772,6 +774,32 @@ void MainWindow::handleLogLine(const QString &line)
   m_logDock->appendLine(line);
 }
 
+void MainWindow::handleClientLimitReached(const QString &clientName)
+{
+  // One prompt per computer per session; the core keeps refusing quietly in the meantime.
+  if (m_limitPromptedClients.contains(clientName))
+    return;
+  m_limitPromptedClients.insert(clientName);
+
+  const auto &license = deskflow::License::current(true);
+  const auto allowed = license.maxExtraComputers();
+  QMessageBox box(this);
+  box.setIcon(QMessageBox::Information);
+  box.setWindowTitle(tr("Room for one more?"));
+  box.setText(tr("%1 tried to join, but your %2 plan links this computer and %n other(s).", "", allowed)
+                  .arg(clientName, license.isLicensed() ? license.tier() : tr("Free")));
+  box.setInformativeText(
+      tr("Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. "
+         "Nothing else about Free changes.")
+  );
+  auto *learn = box.addButton(tr("See Plus"), QMessageBox::AcceptRole);
+  box.addButton(tr("Not now"), QMessageBox::RejectRole);
+  box.exec();
+  if (box.clickedButton() == learn) {
+    QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+  }
+}
+
 void MainWindow::handleUnrecognisedClient(const QString &clientName)
 {
   if (m_ignoredClients.contains(clientName)) {
@@ -815,11 +843,12 @@ void MainWindow::handleConnectionRefused(deskflow::core::ConnectionRefusal reaso
   const auto address = Settings::value(Settings::Client::RemoteHost).toString();
   QMessageBox::warning(
       this, tr("%1 Connection Error").arg(kAppName),
-      tr("<p>Failed to connect to the server '%1'.</p>"
-         "<p>A Client with your name is already connected to the server.</p>"
-         "Please ensure that you're using a unique name and that only a "
-         "single instance of the client process is running.</p>")
-          .arg(address)
+      tr("<p>The main computer at '%1' turned this computer away.</p>"
+         "<p>Either another computer with this name is already linked, or the main computer's plan "
+         "already has as many computers as it allows (Free links the main computer and one other; "
+         "Plus links up to five).</p>"
+         "<p>Give this computer a different name, or <a href=\"%2\">see Plus</a>.</p>")
+          .arg(address, kUrlPlus)
   );
 
   m_clientErrorVisible = false;

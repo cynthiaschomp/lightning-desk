@@ -576,7 +576,7 @@ Do you want to connect to the server?
     </message>
     <message>
         <source>&lt;p&gt;Failed to connect to the server &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Error al conectar con el servidor &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;Error al conectar con el servidor &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Your current TLS key is smaller than the minimum allowed size, A new key 2048-bit key will be generated.</source>
@@ -749,6 +749,37 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
     </message>
     <message>
         <source>&lt;p&gt;Keyboard layout support requires matching layouts on all computers. The following layouts from the other computer are not installed on this computer:&lt;/p&gt;&lt;p&gt;&lt;b&gt;%1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please install them to enable support for these layouts.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Room for one more?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s).</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See Plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;The main computer at &apos;%1&apos; turned this computer away.&lt;/p&gt;&lt;p&gt;Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five).&lt;/p&gt;&lt;p&gt;Give this computer a different name, or &lt;a href=&quot;%2&quot;&gt;see Plus&lt;/a&gt;.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1636,14 +1667,6 @@ Every computer on your desk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This name is already taken</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Another computer called &lt;b&gt;%1&lt;/b&gt; is already linked. Go back one step and give this computer a different name.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Versions don&apos;t match</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1884,6 +1907,25 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Keep it simple, like &lt;b&gt;DESK&lt;/b&gt; or &lt;b&gt;SILVER-LAPTOP&lt;/b&gt;. You can rename it anytime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer turned this one away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Either another computer called &lt;b&gt;%1&lt;/b&gt; is already linked (go back a step and pick a different name), or the main computer is on the Free plan, which links it and one other computer. &lt;a style=&apos;color:%2&apos; href=&apos;%3&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 wants to join, but %2 links this computer and %n other(s). &lt;a style=&apos;color:%3&apos; href=&apos;%4&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

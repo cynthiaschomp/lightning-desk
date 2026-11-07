@@ -2,6 +2,16 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>MainWindow</name>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s).</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>StatusBar</name>
     <message numerus="yes">
         <source>%1 is connected, with %n client(s): %2</source>
@@ -16,6 +26,13 @@
     <name>deskflow::gui::SetupWizard</name>
     <message numerus="yes">
         <source>%n computer(s) linked</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 wants to join, but %2 links this computer and %n other(s). &lt;a style=&apos;color:%3&apos; href=&apos;%4&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>

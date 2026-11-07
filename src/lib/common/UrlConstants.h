@@ -16,7 +16,8 @@ const auto kOrgDomain = QStringLiteral("schomp.ai");
 const auto kUrlSourceQuery = QStringLiteral("source=gui");
 const auto kUrlApp = QStringLiteral("https://github.com/cynthiaschomp/lightning-desk");
 const auto kUrlHelp = QStringLiteral("%1#readme").arg(kUrlApp);
-const auto kUrlDownload = QStringLiteral("%1/releases").arg(kUrlApp);
+const auto kUrlDownload = QStringLiteral("https://schomp.ai/lightning-desk/");
+const auto kUrlPlus = QStringLiteral("https://schomp.ai/lightning-desk/#plus");
 const auto kUrlWiki = QStringLiteral("%1#readme").arg(kUrlApp);
 // Lightning Desk: our own update feed arrives with the updater (roadmap Phase 4).
 // Until then update checks are off by default (Settings.h) and never reach deskflow.org.

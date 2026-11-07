@@ -660,6 +660,8 @@ void CoreProcess::onCoreIpcMessageReceived(const QString &command, const QString
     }
   } else if (command == "unrecognisedClient") {
     Q_EMIT unrecognisedClient(args);
+  } else if (command == "clientLimitReached") {
+    Q_EMIT clientLimitReached(args);
   } else if (command == "connectionRefused") {
     const auto metaEnum = QMetaEnum::fromType<deskflow::core::ConnectionRefusal>();
     bool ok = false;

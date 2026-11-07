@@ -21,6 +21,8 @@ add_library(net STATIC
   IDataSocket.cpp
   IDataSocket.h
   IListenSocket.h
+  License.cpp
+  License.h
   ISocket.h
   ISocketFactory.h
   ISocketMultiplexerJob.h

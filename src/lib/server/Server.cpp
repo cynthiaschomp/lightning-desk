@@ -19,6 +19,7 @@
 #include "deskflow/ProtocolTypes.h"
 #include "deskflow/StreamChunker.h"
 #include "deskflow/ipc/CoreIpc.h"
+#include "net/License.h"
 #include "net/TCPSocket.h"
 #include "server/ClientListener.h"
 #include "server/ClientProxy.h"
@@ -257,6 +258,22 @@ void Server::adoptClient(BaseClientProxy *client)
     ipcSendToClient("unrecognisedClient", QString::fromStdString(client->getName()));
     closeClient(client, kMsgEUnknown);
     return;
+  }
+
+  // Free links the main computer and one other; a license raises the limit. Reconnects of a
+  // computer that is already on the desk are not new computers, so they are exempt.
+  if (m_clients.find(getName(client)) == m_clients.end()) {
+    const auto &license = deskflow::License::current(true);
+    const auto extras = static_cast<int>(m_clients.size()) - 1 + static_cast<int>(m_oldClients.size());
+    if (extras >= license.maxExtraComputers()) {
+      LOG_WARN(
+          "client \"%s\" refused: %s plan allows %d other computer(s)", getName(client).c_str(),
+          license.tier().toStdString().c_str(), license.maxExtraComputers()
+      );
+      ipcSendToClient("clientLimitReached", QString::fromStdString(getName(client)));
+      closeClient(client, kMsgEBusy);
+      return;
+    }
   }
 
   // add client to client list

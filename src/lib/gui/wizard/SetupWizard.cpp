@@ -8,12 +8,14 @@
 
 #include "common/Enums.h"
 #include "common/Settings.h"
+#include "common/UrlConstants.h"
 #include "common/VersionInfo.h"
 #include "gui/TlsUtility.h"
 #include "gui/config/ServerConfig.h"
 #include "gui/core/CoreProcess.h"
 #include "net/Fingerprint.h"
 #include "net/FingerprintDatabase.h"
+#include "net/License.h"
 
 #include <QApplication>
 #include <QButtonGroup>
@@ -195,6 +197,7 @@ SetupWizard::SetupWizard(QWidget *parent)
 
   connect(m_core.get(), &CoreProcess::connectedClientsChanged, this, &SetupWizard::onConnectedClients);
   connect(m_core.get(), &CoreProcess::unrecognisedClient, this, &SetupWizard::onUnrecognisedClient);
+  connect(m_core.get(), &CoreProcess::clientLimitReached, this, &SetupWizard::onClientLimitReached);
   connect(m_core.get(), &CoreProcess::peerFingerprint, this, &SetupWizard::onPeerFingerprint);
   connect(m_core.get(), &CoreProcess::logLine, this, &SetupWizard::onLogLine);
   connect(m_core.get(), &CoreProcess::connectionStateChanged, this, [this](deskflow::core::ConnectionState state) {
@@ -242,10 +245,11 @@ SetupWizard::SetupWizard(QWidget *parent)
       break;
     case deskflow::core::ConnectionRefusal::AlreadyConnected:
       showExtraError(
-          tr("This name is already taken"),
-          tr("Another computer called <b>%1</b> is already linked. Go back one step and give this computer a "
-             "different name.")
-              .arg(m_name)
+          tr("The main computer turned this one away"),
+          tr("Either another computer called <b>%1</b> is already linked (go back a step and pick a different "
+             "name), or the main computer is on the Free plan, which links it and one other computer. "
+             "<a style='color:%2' href='%3'>Plus links up to five</a>.")
+              .arg(m_name, kAccent, kUrlPlus)
       );
       break;
     case deskflow::core::ConnectionRefusal::IncompatibleVersion:
@@ -653,6 +657,8 @@ QWidget *SetupWizard::buildLinkMain()
   auto *listEye = new QLabel(tr("LINKED SO FAR"), w);
   listEye->setProperty("role", "eyebrow");
   m_mainStatus = new QLabel(w);
+  m_mainStatus->setOpenExternalLinks(true);
+  m_mainStatus->setTextFormat(Qt::RichText);
   m_mainStatus->setStyleSheet(QStringLiteral("font-size: 11px; color: %1;").arg(kDim));
   listHead->addWidget(listEye);
   listHead->addStretch();
@@ -720,6 +726,7 @@ QWidget *SetupWizard::buildLinkExtra()
   m_extraStatusDetail = body(QString(), status);
   m_extraStatusDetail->setStyleSheet(QStringLiteral("background: transparent;"));
   m_extraStatusDetail->setTextFormat(Qt::RichText);
+  m_extraStatusDetail->setOpenExternalLinks(true);
   sl->addWidget(m_extraStatusDetail);
   m_extraDetails = new QPlainTextEdit(status);
   m_extraDetails->setReadOnly(true);
@@ -1056,6 +1063,21 @@ void SetupWizard::onConnectedClients(const QStringList &clients)
   }
   refreshClientList();
   updateChrome();
+}
+
+void SetupWizard::onClientLimitReached(const QString &name)
+{
+  if (m_role != Role::Main)
+    return;
+  const auto &license = deskflow::License::current(true);
+  m_mainStatus->setText(QStringLiteral("<span style='color:%1'>&#9679;</span>&nbsp; %2")
+                            .arg(
+                                kAccent,
+                                tr("%1 wants to join, but %2 links this computer and %n other(s). "
+                                   "<a style='color:%3' href='%4'>Plus links up to five</a>.",
+                                   "", license.maxExtraComputers())
+                                    .arg(name, license.isLicensed() ? license.tier() : tr("Free"), kAccent, kUrlPlus)
+                            ));
 }
 
 void SetupWizard::onUnrecognisedClient(const QString &name)

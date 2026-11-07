@@ -131,6 +131,7 @@ private:
   void prepareMachine();
   void onConnectedClients(const QStringList &clients);
   void onUnrecognisedClient(const QString &name);
+  void onClientLimitReached(const QString &name);
   void onPeerFingerprint(const QString &fingerprint);
   void onLogLine(const QString &line);
 
