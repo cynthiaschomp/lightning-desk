@@ -64,7 +64,6 @@ const auto kGreen = QStringLiteral("#34C759");
 const auto kRed = QStringLiteral("#FF453A");
 const auto kPurple = QStringLiteral("#BF5AF2");
 
-const auto kWizardCompletedKey = QStringLiteral("gui/wizardCompleted");
 const int kConnectTimeoutMs = 25000;
 
 const QString kStyle = QStringLiteral(R"(
@@ -284,7 +283,7 @@ SetupWizard::~SetupWizard()
 
 bool SetupWizard::isFirstRun()
 {
-  return !Settings::value(kWizardCompletedKey).toBool();
+  return !Settings::value(Settings::Gui::WizardCompleted).toBool();
 }
 
 void SetupWizard::openAtLink()
@@ -939,7 +938,7 @@ void SetupWizard::next()
   }
 
   case Done:
-    Settings::setValue(kWizardCompletedKey, true);
+    Settings::setValue(Settings::Gui::WizardCompleted, true);
     Q_EMIT finishedSetup(m_role);
     accept();
     return;

@@ -279,6 +279,24 @@ void ServerConfig::placeClient(const QString &clientName, int gridIndex)
   m_computers[gridIndex] = Computer(clientName);
 }
 
+void ServerConfig::reload()
+{
+  recall();
+}
+
+int ServerConfig::centreIndex() const
+{
+  return (m_rows / 2) * m_columns + (m_columns / 2);
+}
+
+QString ServerConfig::neighbourName(int idx, int deltaColumn, int deltaRow) const
+{
+  const int n = adjacentComputerIndex(idx, deltaColumn, deltaRow);
+  if (n < 0 || n >= m_computers.size())
+    return {};
+  return m_computers[n].isNull() ? QString() : m_computers[n].name();
+}
+
 void ServerConfig::setConfigFile(const QString &configFile) const
 {
   Settings::setValue(Settings::Server::ExternalConfigFile, configFile);

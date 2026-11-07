@@ -27,8 +27,10 @@
 #include "gui/Messages.h"
 #include "gui/TlsUtility.h"
 #include "gui/core/CoreProcess.h"
+#include "gui/desk/DeskView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
+#include "gui/wizard/SetupWizard.h"
 #include "net/FingerprintDatabase.h"
 #include "net/License.h"
 #include "widgets/StatusBar.h"
@@ -51,6 +53,7 @@
 #include <QScreen>
 #include <QScrollBar>
 #include <QSignalBlocker>
+#include <QStackedWidget>
 
 #include <memory>
 
@@ -138,6 +141,7 @@ MainWindow::MainWindow()
   setupTrayIcon();
   updateComputerName();
   setHelpFilePath();
+  setupDeskView();
 
   qDebug().noquote() << "active settings path:" << Settings::settingsPath();
 
@@ -181,8 +185,12 @@ void MainWindow::restoreWindow()
 {
   auto windowGeometry = Settings::value(Settings::Gui::WindowGeometry).toRect();
   const auto totalGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+  const bool classic = m_actionClassicView && m_actionClassicView->isChecked();
   if (!windowGeometry.isValid()) {
-    adjustSize();
+    if (classic)
+      adjustSize();
+    else
+      resize(1000, 720);
     windowGeometry = geometry();
   } else {
     setGeometry(windowGeometry);
@@ -194,7 +202,7 @@ void MainWindow::restoreWindow()
     move(screenGeometry.center() - rect().center());
   }
 
-  if (!Settings::value(Settings::Gui::LogExpanded).toBool())
+  if (!Settings::value(Settings::Gui::LogExpanded).toBool() && classic)
     setFixedSize(size());
 }
 
@@ -358,6 +366,10 @@ void MainWindow::settingsChanged(const QString &key)
   if (key == Settings::Core::ComputerName)
     updateComputerName();
 
+  if (key == Settings::Core::CoreMode || key == Settings::Client::RemoteHost ||
+      key == Settings::Server::EnableClipboard || key == Settings::Security::TlsEnabled)
+    refreshDeskView();
+
   if ((key == Settings::Security::Certificate) || (key == Settings::Security::KeySize) ||
       (key == Settings::Security::TlsEnabled) || (key == Settings::Security::CheckPeers)) {
     if (TlsUtility::isEnabled()) {
@@ -376,6 +388,7 @@ void MainWindow::settingsChanged(const QString &key)
 void MainWindow::serverConfigSaving()
 {
   m_serverConfig.commit();
+  refreshDeskView();
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -659,6 +672,112 @@ void MainWindow::open()
       return;
     startCore();
   }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Lightning Desk: branded main screen
+//////////////////////////////////////////////////////////////////////////////
+
+void MainWindow::setupDeskView()
+{
+  using deskflow::gui::DeskView;
+
+  m_deskView = new DeskView(this);
+  m_classicCentral = takeCentralWidget();
+  m_centralStack = new QStackedWidget(this);
+  m_centralStack->addWidget(m_deskView);
+  if (m_classicCentral)
+    m_centralStack->addWidget(m_classicCentral);
+  setCentralWidget(m_centralStack);
+
+  // The classic (inherited) window stays one toggle away while the new screens land.
+  m_actionClassicView = new QAction(tr("Classic view"), this);
+  m_actionClassicView->setCheckable(true);
+  m_actionClassicView->setChecked(Settings::value(Settings::Gui::ClassicView).toBool());
+  m_menuView->addAction(m_actionClassicView);
+  connect(m_actionClassicView, &QAction::toggled, this, &MainWindow::toggleClassicView);
+
+  connect(m_deskView, &DeskView::sharingToggled, this, [this](bool on) {
+    if (on)
+      startCore();
+    else
+      stopCore();
+  });
+  connect(m_deskView, &DeskView::addComputerRequested, this, [this](DeskView::Side) { addComputerFromDesk(); });
+  connect(m_deskView, &DeskView::computerClicked, this, [this](const QString &) { showConfigureServer(""); });
+  connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::openSettings);
+  connect(m_deskView, &DeskView::shortcutsRequested, this, [this] { showConfigureServer(""); });
+  connect(m_deskView, &DeskView::helpRequested, this, &MainWindow::showHelpViewer);
+  connect(m_deskView, &DeskView::clipboardToggled, this, [this](bool) {
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart();
+  });
+
+  toggleClassicView(m_actionClassicView->isChecked());
+  refreshDeskView();
+}
+
+void MainWindow::toggleClassicView(bool classic)
+{
+  Settings::setValue(Settings::Gui::ClassicView, classic);
+  if (classic && m_classicCentral)
+    m_centralStack->setCurrentWidget(m_classicCentral);
+  else
+    m_centralStack->setCurrentWidget(m_deskView);
+  if (menuBar())
+    menuBar()->setVisible(classic);
+  m_statusBar->setVisible(classic);
+  if (classic) {
+    setMinimumSize(0, 0);
+    return;
+  }
+  // The Desk screen is a real window: resizable, with room for the grid.
+  setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+  setMinimumSize(880, 620);
+  if (width() < 1000 || height() < 680)
+    resize(1000, 700);
+  if (!Settings::value(Settings::Gui::LogExpanded).toBool())
+    m_logDock->hide();
+}
+
+void MainWindow::refreshDeskView()
+{
+  if (!m_deskView)
+    return;
+  const auto thisName = Settings::value(Settings::Core::ComputerName).toString();
+  if (Settings::value(Settings::Core::CoreMode).value<Settings::CoreMode>() == Settings::CoreMode::Client) {
+    m_deskView->setLinkedTo(thisName, Settings::value(Settings::Client::RemoteHost).toString());
+  } else {
+    m_deskView->setDesk(thisName, m_serverConfig);
+  }
+  m_deskView->setSharing(m_coreProcess.isStarted());
+  m_deskView->setConnectionState(m_coreProcess.connectionState());
+
+  int trusted = 0;
+  if (TlsUtility::isEnabled()) {
+    FingerprintDatabase db;
+    db.read(trustedFingerprintDatabase());
+    trusted = static_cast<int>(db.fingerprints().size());
+  }
+  m_deskView->setTrustedCount(trusted);
+  m_deskView->refreshConveniences();
+}
+
+void MainWindow::addComputerFromDesk()
+{
+  const bool wasRunning = m_coreProcess.isStarted();
+  if (wasRunning)
+    stopCore();
+
+  auto *wizard = new deskflow::gui::SetupWizard(this);
+  wizard->setAttribute(Qt::WA_DeleteOnClose);
+  connect(wizard, &QDialog::finished, this, [this, wasRunning](int) {
+    m_serverConfig.reload();
+    refreshDeskView();
+    if (wasRunning || Settings::value(Settings::Gui::AutoStartCore).toBool())
+      startCore();
+  });
+  wizard->openAtLink();
 }
 
 void MainWindow::createMenuBar()
@@ -963,6 +1082,8 @@ void MainWindow::showFirstConnectedMessage()
 {
   if (Settings::value(Settings::Gui::ShownFirstConnectedMessage).toBool())
     return;
+  if (m_actionClassicView && !m_actionClassicView->isChecked())
+    return; // the Desk screen shows the link state itself
   Settings::setValue(Settings::Gui::ShownFirstConnectedMessage, true);
   messages::showFirstConnectedMessage(this);
 }
@@ -987,7 +1108,8 @@ void MainWindow::coreProcessStateChanged(ProcessState state)
   if (state == Started) {
     qDebug() << "recording that core has started";
     Settings::setValue(Settings::Gui::AutoStartCore, true);
-    if (m_coreProcess.mode() == CoreMode::Server &&
+    const bool classicView = m_actionClassicView && m_actionClassicView->isChecked();
+    if (classicView && m_coreProcess.mode() == CoreMode::Server &&
         !Settings::value(Settings::Gui::ShownServerFirstStartMessage).toBool()) {
       qDebug() << "starting core server for first time";
       messages::showFirstServerStartMessage(this);
@@ -1025,6 +1147,12 @@ void MainWindow::coreConnectionStateChanged(ConnectionState state)
   qDebug() << "core connection state changed:" << static_cast<int>(state);
 
   updateStatus();
+  if (m_deskView) {
+    m_deskView->setConnectionState(state);
+    m_deskView->setSharing(m_coreProcess.isStarted());
+    if (state == ConnectionState::Disconnected)
+      m_deskView->setConnectedClients({});
+  }
 
   // always assume connection is not secure when connection changes
   // to anything except connected. the only way the padlock shows is
@@ -1264,6 +1392,8 @@ void MainWindow::serverClientsChanged(const QStringList &clients)
   if (m_coreProcess.mode() != CoreMode::Server || !m_coreProcess.isStarted())
     return;
   m_statusBar->setServerClients(clients);
+  if (m_deskView)
+    m_deskView->setConnectedClients(clients);
 }
 
 void MainWindow::daemonIpcClientConnectionFailed()

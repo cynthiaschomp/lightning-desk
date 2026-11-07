@@ -95,6 +95,10 @@ add_library(${target} STATIC
   validators/ValidationError.h
   validators/IpAddressValidator.cpp
   validators/IpAddressValidator.h
+  desk/BrandIcons.cpp
+  desk/BrandIcons.h
+  desk/DeskView.cpp
+  desk/DeskView.h
   wizard/SetupWizard.cpp
   wizard/SetupWizard.h
   wizard/qrcodegen.cpp

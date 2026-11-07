@@ -23,6 +23,16 @@
     </message>
 </context>
 <context>
+    <name>deskflow::gui::DeskView</name>
+    <message numerus="yes">
+        <source>Always on · %n trusted</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>deskflow::gui::SetupWizard</name>
     <message numerus="yes">
         <source>%n computer(s) linked</source>

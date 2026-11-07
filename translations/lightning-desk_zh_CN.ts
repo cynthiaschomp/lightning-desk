@@ -781,6 +781,10 @@ Additionally, check you are able to %1 the server config file: %2</source>
         <source>&lt;p&gt;The main computer at &apos;%1&apos; turned this computer away.&lt;/p&gt;&lt;p&gt;Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five).&lt;/p&gt;&lt;p&gt;Give this computer a different name, or &lt;a href=&quot;%2&quot;&gt;see Plus&lt;/a&gt;.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Classic view</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewComputerWidget</name>
@@ -1429,6 +1433,159 @@ Enabling this setting will disable the server config GUI.</source>
     <message>
         <source>Encryption Disabled</source>
         <translation>加密已禁用</translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::DeskView</name>
+    <message>
+        <source>Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move the mouse off an edge to switch computers. Drag a card to change where it sits.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+ Add a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp; paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Between every computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coming soon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dragging files between computers isn&apos;t ready yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse &amp; keyboard are here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse &amp; keyboard are there</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · connecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is an extra screen of %1. Its mouse and keyboard reach here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On · waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off · turn on in Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Always on · %n trusted</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
     </message>
 </context>
 <context>

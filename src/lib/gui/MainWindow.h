@@ -31,6 +31,10 @@ class QMenu;
 class QLocalServer;
 
 class DeskflowApplication;
+class QStackedWidget;
+namespace deskflow::gui {
+class DeskView;
+}
 class LogDock;
 class StatusBar;
 
@@ -119,6 +123,11 @@ private:
   void setTrayIcon();
   void handleUnrecognisedClient(const QString &clientName);
   void handleClientLimitReached(const QString &clientName);
+  // Lightning Desk branded main screen
+  void setupDeskView();
+  void refreshDeskView();
+  void toggleClassicView(bool classic);
+  void addComputerFromDesk();
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);
   void handleMissingKeyboardLayouts(const QString &layouts);
@@ -208,6 +217,10 @@ private:
 
   // Network monitoring
   NetworkMonitor *m_networkMonitor = nullptr;
+  deskflow::gui::DeskView *m_deskView = nullptr;
+  QStackedWidget *m_centralStack = nullptr;
+  QWidget *m_classicCentral = nullptr;
+  QAction *m_actionClassicView = nullptr;
   QString m_currentIpAddress;
 
   // Server IP strategy optimization

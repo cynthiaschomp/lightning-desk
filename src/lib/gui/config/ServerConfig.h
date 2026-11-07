@@ -58,6 +58,20 @@ public:
   void addClient(const QString &clientName);
   /// Lightning Desk: put the main computer in the centre cell and a client in a chosen grid cell.
   void placeClient(const QString &clientName, int gridIndex);
+  /// Lightning Desk: re-read the stored layout (after the wizard or a dialog changed it).
+  void reload();
+  int columns() const
+  {
+    return m_columns;
+  }
+  int rows() const
+  {
+    return m_rows;
+  }
+  /// Lightning Desk: grid index of the centre cell (where the main computer lives).
+  int centreIndex() const;
+  /// Lightning Desk: name of the computer one step from @p idx, or empty if none/out of grid.
+  QString neighbourName(int idx, int deltaColumn, int deltaRow) const;
 
 private:
   void recall();
