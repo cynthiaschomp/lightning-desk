@@ -103,6 +103,8 @@ add_library(${target} STATIC
   desk/DeskView.h
   desk/NoticeCard.cpp
   desk/NoticeCard.h
+  desk/PlanView.cpp
+  desk/PlanView.h
   desk/SettingsView.cpp
   desk/SettingsView.h
   desk/ShortcutsView.cpp

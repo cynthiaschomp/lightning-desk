@@ -30,6 +30,7 @@
 #include "gui/desk/AboutView.h"
 #include "gui/desk/DeskView.h"
 #include "gui/desk/NoticeCard.h"
+#include "gui/desk/PlanView.h"
 #include "gui/desk/SettingsView.h"
 #include "gui/desk/ShortcutsView.h"
 #include "gui/ipc/DaemonIpcClient.h"
@@ -782,8 +783,28 @@ void MainWindow::setupDeskView()
   connect(settingsPage, &SettingsView::openLogsRequested, this, [] {
     QDesktopServices::openUrl(QUrl::fromLocalFile(Settings::settingsPath()));
   });
-  connect(settingsPage, &SettingsView::planClicked, this, [] {
+  connect(settingsPage, &SettingsView::planClicked, this, [this] {
+    refreshDeskView();
+    m_deskView->showPlanPage();
+  });
+  using deskflow::gui::PlanView;
+  connect(m_deskView->plan(), &PlanView::getPlusRequested, this, [] {
     QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+  });
+  connect(m_deskView->plan(), &PlanView::licenseSaved, this, [this] {
+    refreshDeskView();
+    using deskflow::gui::NoticeCard;
+    const auto &lic = deskflow::License::current(true);
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Plus is on"))
+        ->setBody(tr("This desk now links this computer and up to %n more. Licensed to %1.", "",
+                     lic.maxExtraComputers())
+                      .arg(lic.email()))
+        ->setButtons({tr("Great")});
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart(); // the server re-reads the license on start
   });
   connect(settingsPage, &SettingsView::newKeyRequested, this, [this] {
     using deskflow::gui::NoticeCard;
@@ -953,6 +974,7 @@ void MainWindow::refreshDeskView()
   }
   m_deskView->settings()->setTrusted(trusted, names.mid(1));
   m_deskView->settings()->reload();
+  m_deskView->plan()->reload(names.size());
 }
 
 void MainWindow::addComputerFromDesk(int cell)

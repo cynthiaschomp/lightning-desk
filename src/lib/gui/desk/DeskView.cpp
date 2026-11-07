@@ -10,6 +10,7 @@
 #include "desk/AboutView.h"
 #include "desk/BrandIcons.h"
 #include "desk/NoticeCard.h"
+#include "desk/PlanView.h"
 #include "desk/SettingsView.h"
 #include "desk/ShortcutsView.h"
 #include "gui/config/ServerConfig.h"
@@ -125,11 +126,14 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   m_shortcuts = new ShortcutsView(this);
   m_settings = new SettingsView(this);
   m_about = new AboutView(this);
+  m_plan = new PlanView(this);
   m_pages = new QStackedWidget(this);
   m_pages->addWidget(scroll);
   m_pages->addWidget(m_shortcuts);
   m_pages->addWidget(m_settings);
   m_pages->addWidget(m_about);
+  m_pages->addWidget(m_plan);
+  connect(m_plan, &PlanView::backRequested, this, &DeskView::showSettingsPage);
   outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
@@ -695,6 +699,13 @@ void DeskView::showSettingsPage()
 void DeskView::showAboutPage()
 {
   m_navHelp->click();
+}
+
+void DeskView::showPlanPage()
+{
+  // Plan lives under Settings in the rail.
+  m_navSettings->setChecked(true);
+  m_pages->setCurrentIndex(4);
 }
 
 NoticeCard *DeskView::notice()
