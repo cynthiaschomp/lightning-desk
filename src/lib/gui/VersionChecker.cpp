@@ -29,8 +29,8 @@ void VersionChecker::checkLatest() const
   auto request = QNetworkRequest(url);
   auto userAgent = QString("%1 %2 on %3").arg(kAppName, kVersion, QSysInfo::prettyProductName());
   request.setHeader(QNetworkRequest::UserAgentHeader, userAgent);
-  request.setRawHeader("X-Deskflow-Version", kVersion);
-  request.setRawHeader("X-Deskflow-Language", qPrintable(QLocale::system().name()));
+  request.setRawHeader("X-LightningDesk-Version", kVersion);
+  request.setRawHeader("X-LightningDesk-Language", qPrintable(QLocale::system().name()));
   m_network->get(request);
 }
 
@@ -41,6 +41,7 @@ void VersionChecker::replyFinished(QNetworkReply *reply)
     qWarning("version check server error: %s", qPrintable(reply->errorString()));
     qWarning("version check server response: %s", qPrintable(QString(reply->readAll())));
     qWarning("error checking for updates, http status: %d", httpStatus);
+    Q_EMIT checkFinished(false, false, QString());
     return;
   }
 
@@ -52,6 +53,7 @@ void VersionChecker::replyFinished(QNetworkReply *reply)
 
   if (newestVersion.isEmpty()) {
     qWarning() << "version check is response is empty";
+    Q_EMIT checkFinished(false, false, QString());
     return;
   }
 
@@ -59,8 +61,10 @@ void VersionChecker::replyFinished(QNetworkReply *reply)
     qWarning().noquote() //
         << QStringLiteral("current version %1 out of date, update available: %2").arg(kVersion, newestVersion);
     Q_EMIT updateFound(newestVersion);
+    Q_EMIT checkFinished(true, false, newestVersion.trimmed());
   } else {
     qDebug().noquote() << QStringLiteral("current version %1 is upto date").arg(kVersion);
+    Q_EMIT checkFinished(true, true, newestVersion.trimmed());
   }
 }
 

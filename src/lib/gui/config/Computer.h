@@ -22,12 +22,16 @@
 class QSettings;
 class QTextStream;
 class ComputerSettingsDialog;
+namespace deskflow::gui {
+class ComputerView;
+}
 
 class Computer : public ComputerConfig
 {
   friend class ComputerSettingsDialog;
   friend class ComputerSetupModel;
   friend class ComputerSetupView;
+  friend class deskflow::gui::ComputerView;
 
   friend QDataStream &operator<<(QDataStream &outStream, const Computer &computer)
   {

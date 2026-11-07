@@ -86,6 +86,10 @@ public:
     inline static const auto ShownServerFirstStartMessage = QStringLiteral("gui/shownServerFirstStartMessage");
     inline static const auto ShowVersionInTitle = QStringLiteral("gui/showVersionInTitle");
     inline static const auto IgnoreMissingKeyboardLayouts = QStringLiteral("gui/ignoreMissingKeyboardLayouts");
+    /// Lightning Desk: the first-run setup has been completed on this machine.
+    inline static const auto WizardCompleted = QStringLiteral("gui/wizardCompleted");
+    /// Lightning Desk: show the inherited (classic) main window instead of the Desk screen.
+    inline static const auto ClassicView = QStringLiteral("gui/classicView");
   };
   struct Log
   {
@@ -233,6 +237,9 @@ private:
    * This method is run when settings is created before cleaning the settings and when you change settings files
    * It does not remove any keys, only copies the old value to the new setings key
    */
+  /// Lightning Desk: copy settings, certificates and trusted computers from a
+  /// previous Deskflow install the first time Lightning Desk starts.
+  static void migrateFromDeskflow();
   void upgradeSettings();
   void cleanSettings();
   void cleanStateSettings();
@@ -316,6 +323,8 @@ private:
     , Gui::ShownServerFirstStartMessage
     , Gui::ShowVersionInTitle
     , Gui::IgnoreMissingKeyboardLayouts
+    , Gui::WizardCompleted
+    , Gui::ClassicView
     , Security::Certificate
     , Security::CheckPeers
     , Security::KeySize

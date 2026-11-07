@@ -262,6 +262,82 @@ void ServerConfig::addClient(const QString &clientName)
   m_computers.addComputerByPriority(Computer(clientName));
 }
 
+void ServerConfig::placeClient(const QString &clientName, int gridIndex)
+{
+  const auto serverName = Settings::value(Settings::Core::ComputerName).toString();
+  const int centre = (m_rows / 2) * m_columns + (m_columns / 2);
+  if (gridIndex < 0 || gridIndex >= m_computers.size() || gridIndex == centre)
+    return;
+
+  // Clear any previous placement of either name so the layout stays consistent.
+  for (auto &computer : m_computers) {
+    if (computer.name() == clientName || computer.name() == serverName)
+      computer = Computer();
+  }
+  m_computers[centre] = Computer(serverName);
+  m_computers[centre].markAsServer();
+  m_computers[gridIndex] = Computer(clientName);
+}
+
+void ServerConfig::removeClient(const QString &clientName)
+{
+  for (auto &computer : m_computers) {
+    if (!computer.isNull() && computer.name() == clientName && !computer.isServer())
+      computer = Computer();
+  }
+}
+
+bool ServerConfig::updateClient(const Computer &computer)
+{
+  for (auto &c : m_computers) {
+    if (!c.isNull() && c.name() == computer.name()) {
+      c = computer;
+      return true;
+    }
+  }
+  return false;
+}
+
+int ServerConfig::indexOf(const QString &name) const
+{
+  for (int i = 0; i < m_computers.size(); ++i)
+    if (!m_computers[i].isNull() && m_computers[i].name() == name)
+      return i;
+  return -1;
+}
+
+bool ServerConfig::moveClient(const QString &clientName, int gridIndex)
+{
+  if (gridIndex < 0 || gridIndex >= m_computers.size() || !m_computers[gridIndex].isNull())
+    return false;
+  for (int i = 0; i < m_computers.size(); ++i) {
+    if (!m_computers[i].isNull() && m_computers[i].name() == clientName && !m_computers[i].isServer()) {
+      m_computers[gridIndex] = m_computers[i];
+      m_computers[i] = Computer();
+      return true;
+    }
+  }
+  return false;
+}
+
+void ServerConfig::reload()
+{
+  recall();
+}
+
+int ServerConfig::centreIndex() const
+{
+  return (m_rows / 2) * m_columns + (m_columns / 2);
+}
+
+QString ServerConfig::neighbourName(int idx, int deltaColumn, int deltaRow) const
+{
+  const int n = adjacentComputerIndex(idx, deltaColumn, deltaRow);
+  if (n < 0 || n >= m_computers.size())
+    return {};
+  return m_computers[n].isNull() ? QString() : m_computers[n].name();
+}
+
 void ServerConfig::setConfigFile(const QString &configFile) const
 {
   Settings::setValue(Settings::Server::ExternalConfigFile, configFile);

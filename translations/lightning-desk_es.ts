@@ -1,0 +1,3454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="es_ES">
+<context>
+    <name>AboutDialog</name>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;License: GNU GPL Version 2&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Licencia: GNU GPL Versión 2&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Version: </source>
+        <translation>Versión: </translation>
+    </message>
+    <message>
+        <source>Copy version info</source>
+        <translation type="unfinished">Copiar información de la versión</translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/deskflow/deskflow/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Code Contributors&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/deskflow/deskflow/graphs/contributors&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#508ed8;&quot;&gt;Colaboradores del código&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icons from &lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;KDE Breeze&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Iconos de &lt;a href=&quot;https://develop.kde.org/frameworks/breeze-icons/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;KDE Breeze&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Important Developers</source>
+        <translation type="unfinished">Desarrolladores importantes</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Cerrar</translation>
+    </message>
+    <message>
+        <source>About Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ActionDialog</name>
+    <message>
+        <source>Configure Action</source>
+        <translation type="unfinished">Configurar acción</translation>
+    </message>
+    <message>
+        <source>When the hotkey is pressed</source>
+        <translation type="unfinished">Cuando se presiona la tecla de acceso rápido</translation>
+    </message>
+    <message>
+        <source>When the hotkey is released</source>
+        <translation type="unfinished">Cuando se suelta la tecla de acceso rápido</translation>
+    </message>
+    <message>
+        <source>Press key(s)</source>
+        <translation type="unfinished">Presione la(s) tecla(s)</translation>
+    </message>
+    <message>
+        <source>Release key(s)</source>
+        <translation type="unfinished">Tecla(s) de liberación</translation>
+    </message>
+    <message>
+        <source>Press and release key(s)</source>
+        <translation type="unfinished">Presione y suelte la(s) tecla(s)</translation>
+    </message>
+    <message>
+        <source>Switch to a computer</source>
+        <translation type="unfinished">Cambiar a una computadora</translation>
+    </message>
+    <message>
+        <source>Switch in a direction</source>
+        <translation type="unfinished">Cambiar de dirección</translation>
+    </message>
+    <message>
+        <source>Switch to next computer</source>
+        <translation type="unfinished">Cambiar a la siguiente computadora</translation>
+    </message>
+    <message>
+        <source>Modify the cursor lock</source>
+        <translation type="unfinished">Modificar el bloqueo del cursor</translation>
+    </message>
+    <message>
+        <source>Restart the server</source>
+        <translation type="unfinished">Reiniciar el servidor</translation>
+    </message>
+    <message>
+        <source>Switch to the computer on the left</source>
+        <translation type="unfinished">Cambiar a la computadora de la izquierda</translation>
+    </message>
+    <message>
+        <source>Switch to the computer on the right</source>
+        <translation type="unfinished">Cambiar a la computadora de la derecha</translation>
+    </message>
+    <message>
+        <source>Switch to the computer above</source>
+        <translation type="unfinished">Cambiar a la computadora de arriba</translation>
+    </message>
+    <message>
+        <source>Switch to the computer below</source>
+        <translation type="unfinished">Cambie a la computadora de abajo</translation>
+    </message>
+    <message>
+        <source>Toggle the cursor lock</source>
+        <translation type="unfinished">Activar o desactivar el bloqueo del cursor</translation>
+    </message>
+    <message>
+        <source>Enable the cursor lock</source>
+        <translation type="unfinished">Habilitar el bloqueo del cursor</translation>
+    </message>
+    <message>
+        <source>Disable the cursor lock</source>
+        <translation type="unfinished">Desactivar el bloqueo del cursor</translation>
+    </message>
+    <message>
+        <source>Computers to receive this event</source>
+        <translation type="unfinished">Computadoras para recibir este evento</translation>
+    </message>
+    <message>
+        <source>Switch to %1</source>
+        <translation type="unfinished">Cambiar a %1</translation>
+    </message>
+</context>
+<context>
+    <name>ClientConfigDialog</name>
+    <message>
+        <source>Client Configuration</source>
+        <translation type="unfinished">Configuración del cliente</translation>
+    </message>
+    <message>
+        <source>Use server&apos;s keyboard language on this computer</source>
+        <translation type="unfinished">Utilice el idioma del teclado del servidor en esta computadora</translation>
+    </message>
+    <message>
+        <source>Scroll Modifiers</source>
+        <translation type="unfinished">Modificadores de desplazamiento</translation>
+    </message>
+    <message>
+        <source>Invert</source>
+        <translation type="unfinished">Invertir</translation>
+    </message>
+    <message>
+        <source>Horizontal Scroll</source>
+        <translation type="unfinished">Desplazamiento horizontal</translation>
+    </message>
+    <message>
+        <source>Vertical Scroll</source>
+        <translation type="unfinished">Desplazamiento vertical</translation>
+    </message>
+    <message>
+        <source>Scale</source>
+        <translation type="unfinished">Escala</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Allow the client to slow the rate it attempts to reconnect to the server when connections attempts are failing. The delay between connection attempts will  start at 1 second intervals and can be a maxium of 5 minutes between connection attempts.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permite que el cliente reduzca la frecuencia con la que intenta reconectarse al servidor cuando los intentos de conexión fallan. El intervalo entre intentos de conexión comenzará en 1 segundo y podrá alcanzar un máximo de 5 minutos.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Use dynamic reconnection time based on connection attempts</source>
+        <translation type="unfinished">Utilizar un tiempo de reconexión dinámico basado en los intentos de conexión</translation>
+    </message>
+    <message>
+        <source>Clear Server History</source>
+        <translation>Borrar historial de servidores</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSettingsDialog</name>
+    <message>
+        <source>Computer settings</source>
+        <translation type="unfinished">Información de la computadora</translation>
+    </message>
+    <message>
+        <source>Computer Info</source>
+        <translation type="unfinished">Información de la computadora</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
+    </message>
+    <message>
+        <source>Modifier Keys</source>
+        <translation type="unfinished">Teclas modificadoras</translation>
+    </message>
+    <message>
+        <source>M&amp;eta</source>
+        <translation type="unfinished">M&amp;eta</translation>
+    </message>
+    <message>
+        <source>&amp;Ctrl</source>
+        <translation type="unfinished">&amp;Ctrl</translation>
+    </message>
+    <message>
+        <source>S&amp;uper</source>
+        <translation type="unfinished">S&amp;úper</translation>
+    </message>
+    <message>
+        <source>Al&amp;t</source>
+        <translation type="unfinished">Al&amp;t</translation>
+    </message>
+    <message>
+        <source>Shift</source>
+        <translation type="unfinished">Shift</translation>
+    </message>
+    <message>
+        <source>Ctrl</source>
+        <translation type="unfinished">Ctrl</translation>
+    </message>
+    <message>
+        <source>Alt</source>
+        <translation type="unfinished">Alt</translation>
+    </message>
+    <message>
+        <source>Meta</source>
+        <translation type="unfinished">Meta</translation>
+    </message>
+    <message>
+        <source>Super</source>
+        <translation type="unfinished">Súper</translation>
+    </message>
+    <message>
+        <source>Alt Gr</source>
+        <translation type="unfinished">Alt Gr</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished">Ninguno</translation>
+    </message>
+    <message>
+        <source>&amp;Shift</source>
+        <translation type="unfinished">&amp;Shift</translation>
+    </message>
+    <message>
+        <source>Alt &amp;Gr</source>
+        <translation type="unfinished">Alt &amp;Gr</translation>
+    </message>
+    <message>
+        <source>Dead Corners</source>
+        <translation type="unfinished">Esquinas muertas</translation>
+    </message>
+    <message>
+        <source>Top Left</source>
+        <translation type="unfinished">Arriba a la izquierda</translation>
+    </message>
+    <message>
+        <source>Top Right</source>
+        <translation type="unfinished">Arriba a la derecha</translation>
+    </message>
+    <message>
+        <source>Corner si&amp;ze</source>
+        <translation type="unfinished">Tamaño de la e&amp;squina</translation>
+    </message>
+    <message>
+        <source>Bottom Left</source>
+        <translation type="unfinished">Abajo a la izquierda</translation>
+    </message>
+    <message>
+        <source>Bottom Right</source>
+        <translation type="unfinished">Abajo a la derecha</translation>
+    </message>
+    <message>
+        <source>Fixes</source>
+        <translation type="unfinished">Correcciones</translation>
+    </message>
+    <message>
+        <source>SCROLL LOCK key</source>
+        <translation type="unfinished">Tecla BLOQ DESPLAZAMIENTO</translation>
+    </message>
+    <message>
+        <source>CAPS LOCK key</source>
+        <translation type="unfinished">Tecla BLOQ MAYÚS</translation>
+    </message>
+    <message>
+        <source>NUM LOCK key</source>
+        <translation type="unfinished">Tecla BLOQ NUM</translation>
+    </message>
+    <message>
+        <source>XTest for Xinerama</source>
+        <translation type="unfinished">XTest para Xinerama</translation>
+    </message>
+    <message>
+        <source>X11 computers Only, When enabled the client will not give focus to its focused window as soon as the client is switched to. This can help prevent unwanted focus stealing with some X11 setups.</source>
+        <translation type="unfinished">Solo para equipos con X11: al activar esta opción, el cliente no otorgará el foco a su ventana activa inmediatamente después de cambiar a él. Esto puede ayudar a evitar el robo de foco no deseado en algunas configuraciones de X11.</translation>
+    </message>
+    <message>
+        <source>Weaken X11 Focus</source>
+        <translation type="unfinished">Debilitar el foco de X11</translation>
+    </message>
+    <message>
+        <source>Aliases</source>
+        <translation type="unfinished">Alias</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished">&amp;Agregar</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">Elimina&amp;r</translation>
+    </message>
+    <message>
+        <source>Computer name is empty</source>
+        <translation type="unfinished">El nombre del equipo está vacío.</translation>
+    </message>
+    <message>
+        <source>The computer name cannot be empty. Please either fill in a name or cancel the dialog.</source>
+        <translation type="unfinished">El nombre del equipo no puede estar vacío. Por favor, introduzca un nombre o cancele el cuadro de diálogo.</translation>
+    </message>
+    <message>
+        <source>Computer name matches alias</source>
+        <translation type="unfinished">El nombre del equipo coincide con el alias.</translation>
+    </message>
+    <message>
+        <source>The computer name cannot be the same as an alias. Please either remove the alias or change the computer name.</source>
+        <translation type="unfinished">El nombre del equipo no puede ser igual a un alias. Elimine el alias o cambie el nombre del equipo.</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerSetupModel</name>
+    <message>
+        <source>&lt;center&gt;Computer: &lt;b&gt;%1&lt;/b&gt;&lt;/center&gt;&lt;br&gt;Double click to edit settings&lt;br&gt;Drag computer to the trashcan to remove it</source>
+        <translation type="unfinished">&lt;center&gt;Equipo: &lt;b&gt;%1&lt;/b&gt;&lt;/center&gt;&lt;br&gt;Haz doble clic para editar la configuración&lt;br&gt;Arrastra el equipo a la papelera para eliminarlo</translation>
+    </message>
+</context>
+<context>
+    <name>FingerprintDialog</name>
+    <message>
+        <source>Local Fingerprints</source>
+        <translation type="unfinished">Huellas dactilares locales</translation>
+    </message>
+    <message>
+        <source>Local computer&apos;s fingerprint</source>
+        <translation type="unfinished">Huella digital de la computadora local</translation>
+    </message>
+    <message>
+        <source>Compare the fingerprints in this dialog to those on the %1.
+Only connect if they match!</source>
+        <translation type="unfinished">Compara las huellas dactilares de este diálogo con las de %1.
+¡Conéctate solo si coinciden!</translation>
+    </message>
+    <message>
+        <source>New client connecting</source>
+        <translation type="unfinished">Nuevo cliente conectándose</translation>
+    </message>
+    <message>
+        <source>client</source>
+        <translation type="unfinished">cliente</translation>
+    </message>
+    <message>
+        <source>Connecting to a new server</source>
+        <translation type="unfinished">Conectarse a un nuevo servidor</translation>
+    </message>
+    <message>
+        <source>server</source>
+        <translation type="unfinished">servidor</translation>
+    </message>
+    <message>
+        <source>
+Trust client and allow connection?
+</source>
+        <translation type="unfinished">
+¿Confiar en el cliente y permitir la conexión?
+</translation>
+    </message>
+    <message>
+        <source>
+Do you want to connect to the server?
+</source>
+        <translation type="unfinished">
+¿Quieres conectarte al servidor?
+</translation>
+    </message>
+    <message>
+        <source>Server Fingerprint</source>
+        <translation type="unfinished">Huella del servidor</translation>
+    </message>
+    <message>
+        <source>Client Fingerprint</source>
+        <translation type="unfinished">Huella digital del cliente</translation>
+    </message>
+    <message>
+        <source>Show image</source>
+        <translation type="unfinished">Mostrar imagen</translation>
+    </message>
+    <message>
+        <source>Show hash</source>
+        <translation type="unfinished">Mostrar hash</translation>
+    </message>
+    <message>
+        <source>Display the fingerprint as an image</source>
+        <translation type="unfinished">Mostrar la huella digital como una imagen</translation>
+    </message>
+    <message>
+        <source>Display the fingerprint as a hash</source>
+        <translation type="unfinished">Mostrar la huella digital como un hash</translation>
+    </message>
+</context>
+<context>
+    <name>FingerprintPreview</name>
+    <message>
+        <source>Invalid hash format</source>
+        <translation type="unfinished">Formato hash no válido</translation>
+    </message>
+</context>
+<context>
+    <name>HelpDialog</name>
+    <message>
+        <source>%1 Help</source>
+        <translation type="unfinished">%1 Ayuda</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Cerca</translation>
+    </message>
+</context>
+<context>
+    <name>HotkeyDialog</name>
+    <message>
+        <source>Hotkey</source>
+        <translation type="unfinished">Tecla de acceso rápido</translation>
+    </message>
+    <message>
+        <source>Enter the specification for the hotkey:</source>
+        <translation type="unfinished">Introduzca la especificación de la tecla de acceso rápido:</translation>
+    </message>
+</context>
+<context>
+    <name>LogDock</name>
+    <message>
+        <source>Log</source>
+        <translation type="unfinished">Registro</translation>
+    </message>
+    <message>
+        <source>Detach from window</source>
+        <translation type="unfinished">Separar de la ventana</translation>
+    </message>
+    <message>
+        <source>Close Log</source>
+        <translation type="unfinished">Cerrar registro</translation>
+    </message>
+    <message>
+        <source>Attach to window</source>
+        <translation type="unfinished">Adjuntar a la ventana</translation>
+    </message>
+</context>
+<context>
+    <name>LogLevel</name>
+    <message>
+        <source>Fatal</source>
+        <translation type="unfinished">Fatal</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Error</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished">Advertencia</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished">Información</translation>
+    </message>
+    <message>
+        <source>Debug</source>
+        <translation type="unfinished">Depurar</translation>
+    </message>
+    <message>
+        <source>Verbose</source>
+        <translation type="unfinished">Verboso</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Name can&apos;t have have spaces or special characters&lt;/p&gt;&lt;p&gt;Use Enter to save the name change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;El nombre no puede tener espacios ni caracteres especiales&lt;/p&gt;&lt;p&gt;Use Enter para guardar el cambio de nombre.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Edit Computer Name</source>
+        <translation type="unfinished">Editar el nombre de la computadora</translation>
+    </message>
+    <message>
+        <source>Use this computer&apos;s keyboard and mouse
+(make this computer the server)</source>
+        <translation type="unfinished">Utilizar el teclado y el ratón de esta computadora
+(convertir esta computadora en servidor)</translation>
+    </message>
+    <message>
+        <source>Use another computer’s mouse and keyboard
+(make this computer the client)</source>
+        <translation type="unfinished">Usar el ratón y el teclado de otra computadora
+(convertir esta computadora en cliente)</translation>
+    </message>
+    <message>
+        <source>&amp;Configure Server</source>
+        <translation type="unfinished">&amp;Configurar el servidor</translation>
+    </message>
+    <message>
+        <source>Export server configuration</source>
+        <translation type="unfinished">Exportar configuración del servidor</translation>
+    </message>
+    <message>
+        <source>You must select a mode</source>
+        <translation type="unfinished">Debes seleccionar un modo</translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation type="unfinished">&amp;Comenzar</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation type="unfinished">Reanudar</translation>
+    </message>
+    <message>
+        <source>&amp;Minimize to tray</source>
+        <translation type="unfinished">&amp;Minimizar a la bandeja</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation type="unfinished">Abando&amp;nar</translation>
+    </message>
+    <message>
+        <source>&amp;Open %1</source>
+        <extracomment>%1 will be the replaced with the appname</extracomment>
+        <translation>Abr&amp;ir %1</translation>
+    </message>
+    <message>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished">&amp;Preferencias</translation>
+    </message>
+    <message>
+        <source>Rest&amp;art</source>
+        <translation type="unfinished">Reanud&amp;ar</translation>
+    </message>
+    <message>
+        <source>S&amp;top</source>
+        <translation type="unfinished">De&amp;tener</translation>
+    </message>
+    <message>
+        <source>About %1...</source>
+        <extracomment>%1 will be the replaced with the appname</extracomment>
+        <translation type="unfinished">Acerca de %1...</translation>
+    </message>
+    <message>
+        <source>View &amp;Help</source>
+        <translation type="unfinished">Ver &amp;ayuda</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <extracomment>start / restart core shortcut</extracomment>
+        <translation type="unfinished">Ctrl+S</translation>
+    </message>
+    <message>
+        <source>Ctrl+T</source>
+        <extracomment>stop core shortcut</extracomment>
+        <translation type="unfinished">Ctrl+T</translation>
+    </message>
+    <message>
+        <source>Address missing</source>
+        <translation type="unfinished">Dirección faltante</translation>
+    </message>
+    <message>
+        <source>Please enter the hostname or IP address of the other computer.</source>
+        <translation type="unfinished">Introduzca el nombre de host o la dirección IP de la otra computadora.</translation>
+    </message>
+    <message>
+        <source>Save server configuration as...</source>
+        <translation type="unfinished">Guardar la configuración del servidor como...</translation>
+    </message>
+    <message>
+        <source>Save failed</source>
+        <translation type="unfinished">Error al guardar</translation>
+    </message>
+    <message>
+        <source>Could not save server configuration to file.</source>
+        <translation type="unfinished">No se pudo guardar la configuración del servidor en el archivo.</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Comenzar</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Detener</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished">Conectar</translation>
+    </message>
+    <message>
+        <source>Disconnect</source>
+        <translation type="unfinished">Desconectar</translation>
+    </message>
+    <message>
+        <source>Plus is on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>This desk now links this computer and up to %n more. Licensed to %1.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Great</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste it into your email to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Getting %1 back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1. Wake it up and make sure it&apos;s on the same Wi‑Fi or network.
+2. Open Lightning Desk on it. It should say it&apos;s linked to %1.
+3. If it asks to trust this computer, check the security code matches the one on the Help page.
+4. Still nothing? Forget it from Your desk and add it again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Something went wrong</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1
+
+If it keeps happening, copy a report from Help › Something not working? and send it to %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing is off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers can&apos;t join until it&apos;s on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turn on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyboard and mouse come from there</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make sure Lightning Desk is open and sharing is on over there, and both computers are on the same network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer isn&apos;t looking for %1 right now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not on a network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to Wi‑Fi or plug in a cable, then run the checks again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is reachable at %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection port</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers connect on port %1. If a firewall asks, allow Lightning Desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers connect to %1 on port %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections between your computers are encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security key missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We can make a new one. Other computers will ask you to trust it again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption is off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anyone on your network could read what you type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 isn&apos;t answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It may be asleep, or Lightning Desk may have been closed on it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How to fix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for sharing to turn on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlink for now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Connection Error</source>
+        <translation>%1 Error de conexión</translation>
+    </message>
+    <message>
+        <source>Invalid Computer Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name already exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No IP Detected</source>
+        <translation type="unfinished">No se detectó ninguna IP</translation>
+    </message>
+    <message>
+        <source>Unable to detect an IP address. Check your network connection is active.</source>
+        <translation type="unfinished">No se puede detectar una dirección IP. Compruebe que su conexión de red esté activa.</translation>
+    </message>
+    <message>
+        <source>Using IP: </source>
+        <translation type="unfinished">Usando IP: </translation>
+    </message>
+    <message>
+        <source>Suggested IP: </source>
+        <translation type="unfinished">IP sugerida: </translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;If connecting via the hostname fails, try %1&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Si falla la conexión a través del nombre de host, intente %1&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>the suggested IP.</source>
+        <translation type="unfinished">la IP sugerida.</translation>
+    </message>
+    <message>
+        <source>one of the following IPs:&lt;br/&gt;%1</source>
+        <translation type="unfinished">una de las siguientes IP:&lt;br/&gt;%1</translation>
+    </message>
+    <message>
+        <source>
+A bound IP is now invalid, you may need to restart the server.</source>
+        <translation type="unfinished">
+La dirección IP asignada ahora no es válida; es posible que deba reiniciar el servidor.</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished">&amp;Archivo</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Edición</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished">menú &amp;Ver</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation type="unfinished">&amp;Ayuda</translation>
+    </message>
+    <message>
+        <source>invalid certificate, generating a new one</source>
+        <translation type="unfinished">certificado no válido, generando uno nuevo</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <extracomment>Quit shortcut</extracomment>
+        <translation type="unfinished">Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>The name you have chosen is invalid.
+
+Valid names:
+• Use letters and numbers
+• May also use _ or -
+• Are between 1 and 255 characters</source>
+        <translation type="unfinished">El nombre que ha elegido no es válido.
+
+Nombres válidos:
+• Use letras y números
+• También puede usar _ o -
+• Tengan entre 1 y 255 caracteres</translation>
+    </message>
+    <message>
+        <source>This computer&apos;s name:</source>
+        <translation type="unfinished">Nombre de esta computadora:</translation>
+    </message>
+    <message>
+        <source>&amp;Configure Client</source>
+        <translation type="unfinished">&amp;Configurar cliente</translation>
+    </message>
+    <message>
+        <source>Connect to:</source>
+        <translation type="unfinished">Conectarse a:</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;Hostname or IP address of the server computer.&lt;br/&gt;May contain a comma seperated list.&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;Nombre de host o dirección IP del servidor.&lt;br/&gt;Puede contener una lista separada por comas.&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>read</source>
+        <translation type="unfinished">leer</translation>
+    </message>
+    <message>
+        <source>read and write</source>
+        <translation type="unfinished">leer y escribir</translation>
+    </message>
+    <message>
+        <source>The Core executable could not be started.
+Please check if you have sufficient permissions to run %1.</source>
+        <translation type="unfinished">No se pudo iniciar el ejecutable Core.
+Verifique si tiene permisos suficientes para ejecutar %1.</translation>
+    </message>
+    <message>
+        <source>
+Additionally, check you are able to %1 the server config file: %2</source>
+        <translation type="unfinished">
+Además, verifique que puede %1 el archivo de configuración del servidor: %2</translation>
+    </message>
+    <message>
+        <source>Don&apos;t show this again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing Keyboard Layouts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Keyboard layout support requires matching layouts on all computers. The following layouts from the other computer are not installed on this computer:&lt;/p&gt;&lt;p&gt;&lt;b&gt;%1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please install them to enable support for these layouts.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Room for one more?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s).</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See Plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;The main computer at &apos;%1&apos; turned this computer away.&lt;/p&gt;&lt;p&gt;Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five).&lt;/p&gt;&lt;p&gt;Give this computer a different name, or &lt;a href=&quot;%2&quot;&gt;see Plus&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Classic view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s). Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 wants to join your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick the edge of %1&apos;s screen it sits next to. Move the mouse off that edge and it appears there. You can move it later from its card.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link to %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new computer wants to join</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your mouse and keyboard will reach this computer from %1. If that&apos;s not your main computer, say no.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If this is one of your computers, allow it and it joins your desk. If you weren&apos;t expecting anything, say no — nothing connects until you do.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is %1&apos;s security code. It never changes unless %1 makes a new key, so you&apos;ll only be asked once.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make a new security key?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every linked computer will ask you to allow this one again the next time it connects.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep the current key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make a new key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Until %1 · this computer + up to %n more</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>This computer + up to %n more</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Trial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>This computer + %n more · Plus links up to five</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Which computer is the main one?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is set up as an extra screen but doesn&apos;t know the main computer&apos;s name yet. Run setup again from Add a computer, or pick the main computer in Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk couldn&apos;t start sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tell you when an update is ready?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk checks schomp.ai now and then. Nothing installs without you; you can change this in Settings any time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No thanks</source>
+        <translation type="unfinished">No, gracias</translation>
+    </message>
+    <message>
+        <source>Yes, tell me</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diagnostics copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste them into your email to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 turned this computer away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five). Give this computer a different name in Settings, or see Plus.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A keyboard layout is missing here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The other computer types with %1, which isn&apos;t installed on this one. Typing still works; install the layout to match it exactly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t tell me again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The background service isn&apos;t answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk&apos;s background service keeps sharing going when you&apos;re not logged in. It may still be starting. Try again in a moment, or restart this computer if it keeps happening.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Later</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewComputerWidget</name>
+    <message>
+        <source>Unnamed</source>
+        <extracomment>Used as the hostname. Translation may not contain spaces</extracomment>
+        <translation type="unfinished">Sin-nombre</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>fatal error</source>
+        <translation type="unfinished">error fatal</translation>
+    </message>
+    <message>
+        <source>error</source>
+        <translation type="unfinished">error</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Sorry, a fatal error has occurred and the application must now exit.&lt;/p&gt;
+</source>
+        <translation type="unfinished">&lt;p&gt;Lo sentimos, se ha producido un error fatal y la aplicación debe salir ahora.&lt;/p&gt;
+</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Sorry, a critical error has occurred.&lt;/p&gt;
+</source>
+        <translation type="unfinished">&lt;p&gt;Lo sentimos, se ha producido un error crítico.&lt;/p&gt;
+</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;%1 will continue to run in the background and can be accessed via the %1 icon in your system notifications area. This setting can be disabled.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;%1 seguirá ejecutándose en segundo plano y se podrá acceder a él mediante el icono %1 en el área de notificaciones del sistema. Esta configuración se puede desactivar.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Please &lt;a href=&quot;%1&quot;&gt;report a bug&lt;/a&gt; and copy/paste the following error:&lt;/p&gt;&lt;pre&gt;v%2
+%3
+%4&lt;/pre&gt;</source>
+        <translation>&lt;p&gt;Por favor, &lt;a href=&quot;%1&quot;&gt;informa de un error&lt;/a&gt; y copia y pega el siguiente error:&lt;/p&gt;&lt;pre&gt;v%2
+%3
+%4&lt;/pre&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;On Linux systems using GNOME 3, the notification area might be disabled. You may need to &lt;a href=&quot;%1&quot;&gt;enable an extension&lt;/a&gt; to see the %2 tray icon.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;En sistemas Linux que usan GNOME 3, el área de notificaciones podría estar deshabilitada. Quizás necesite &lt;a href=&quot;%1&quot;&gt;habilitar una extensión&lt;/a&gt; para ver el icono de la bandeja %2.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>%1 Server</source>
+        <translation type="unfinished">Servidor %1</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Great, the %1 server is now running.&lt;/p&gt;&lt;p&gt;Now you can connect your client computers to this server. You should see a prompt here on the server when a new client tries to connect.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Genial, el servidor %1 ya está en funcionamiento.&lt;/p&gt;&lt;p&gt;Ahora puedes conectar tus equipos cliente a este servidor. Deberías ver un aviso aquí en el servidor cuando un nuevo cliente intente conectarse.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;%1 is now connected!&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;¡%1 ahora está conectado!&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Try moving your mouse to your other computer. Once there, go ahead and type something.&lt;/p&gt;&lt;p&gt;Don&apos;t forget, you can copy and paste between computers too.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Intenta mover el ratón a tu otra computadora. Una vez allí, escribe algo.&lt;/p&gt;&lt;p&gt;Recuerda que también puedes copiar y pegar entre computadoras.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Try controlling this computer remotely.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Intenta controlar esta computadora de forma remota.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;As you do not have the setting enabled to keep %1 running in the background, you&apos;ll need to keep this window open or minimized to keep %1 running.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Como no tiene habilitada la configuración para mantener %1 ejecutándose en segundo plano, deberá mantener esta ventana abierta o minimizada para mantener %1 ejecutándose.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;You can now close this window and %1 will continue to run in the background. This setting can be disabled.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Ahora puede cerrar esta ventana y %1 seguirá ejecutándose en segundo plano. Esta configuración se puede desactivar.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>%1 Connected</source>
+        <translation type="unfinished">%1 Conectado</translation>
+    </message>
+    <message>
+        <source>%1 - New Client</source>
+        <translation type="unfinished">%1 - Nuevo cliente</translation>
+    </message>
+    <message>
+        <source>A new client called &apos;%1&apos; has been accepted. You&apos;ll need to add it to your server&apos;s computer layout.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="unfinished">Ignorar</translation>
+    </message>
+    <message>
+        <source>Add client</source>
+        <translation type="unfinished">Agregar cliente</translation>
+    </message>
+    <message>
+        <source>A new client called &apos;%1&apos; wants to connect</source>
+        <translation type="unfinished">Un nuevo cliente llamado &apos;%1&apos; quiere conectarse</translation>
+    </message>
+    <message>
+        <source>No thanks</source>
+        <translation type="unfinished">No, gracias</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished">Buscar actualizaciones</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Would you like to check for updates when %1 starts?&lt;/p&gt;&lt;p&gt;Checking for updates requires an Internet connection.&lt;/p&gt;&lt;p&gt;URL: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;¿Desea comprobar si hay actualizaciones cuando se inicie %1?&lt;/p&gt;&lt;p&gt;Para comprobar si hay actualizaciones se requiere una conexión a Internet.&lt;/p&gt;&lt;p&gt;URL: &lt;pre&gt;%2&lt;/pre&gt;&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Background service offline</source>
+        <translation type="unfinished">Servicio en segundo plano sin conexión</translation>
+    </message>
+    <message>
+        <source>Retry</source>
+        <translation type="unfinished">Reintentar</translation>
+    </message>
+    <message>
+        <source>Disable</source>
+        <translation type="unfinished">Desactivar</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;There was a problem finding the %1 background service (daemon).&lt;/p&gt;&lt;p&gt;The background service makes %1 work with UAC prompts and the login screen.&lt;/p&gt;&lt;p&gt;If don&apos;t want to use the background service and intentionally stopped it, you can prevent it&apos;s use by disabling this feature.&lt;/p&gt;&lt;p&gt;If you did not stop the background service intentionally, there may be a problem with it. Please retry or try restarting the %1 service from the Windows services program.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;Hubo un problema al encontrar el servicio en segundo plano %1 (daemon).&lt;/p&gt;&lt;p&gt;El servicio en segundo plano hace que %1 funcione con los avisos de UAC y la pantalla de inicio de sesión.&lt;/p&gt;&lt;p&gt;Si no desea usar el servicio en segundo plano y lo detuvo intencionalmente, puede evitar su uso deshabilitando esta función.&lt;/p&gt;&lt;p&gt;Si no detuvo el servicio en segundo plano intencionalmente, es posible que haya un problema. Vuelva a intentarlo o reinicie el servicio %1 desde el programa de servicios de Windows.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>failed to read key from certificate file: %1</source>
+        <extracomment>%1 will be replaced by the certificate path</extracomment>
+        <translation type="unfinished">No se pudo leer la clave del archivo de certificado: %1</translation>
+    </message>
+    <message>
+        <source>failed to parse certificate file: %1</source>
+        <extracomment>%1 will be replaced by the certificate path</extracomment>
+        <translation type="unfinished">Error al analizar el archivo de certificado: %1</translation>
+    </message>
+    <message>
+        <source>key detected is the incorrect size</source>
+        <translation type="unfinished">La clave detectada es de tamaño incorrecto</translation>
+    </message>
+    <message>
+        <source>failed to read RSA key from certificate file: %1</source>
+        <extracomment>%1 will be replaced by the certificate path</extracomment>
+        <translation type="unfinished">No se pudo leer la clave RSA del archivo de certificado: %1</translation>
+    </message>
+    <message>
+        <source>Alt</source>
+        <translation type="unfinished">Alt</translation>
+    </message>
+    <message>
+        <source>AltGr</source>
+        <translation type="unfinished">AltGr</translation>
+    </message>
+    <message>
+        <source>Ctrl</source>
+        <translation type="unfinished">Ctrl</translation>
+    </message>
+    <message>
+        <source>Meta</source>
+        <translation type="unfinished">Meta</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished">Ninguno</translation>
+    </message>
+    <message>
+        <source>Shift</source>
+        <translation type="unfinished">Shift</translation>
+    </message>
+    <message>
+        <source>Super</source>
+        <translation type="unfinished">Súper</translation>
+    </message>
+    <message>
+        <source>Does nothing yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Return to the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moves the cursor there instantly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moves the cursor to the next computer that way</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cycles through the computers on your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stay on this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stops the mouse crossing edges until you press it again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BEST FOR 3+</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Buscar</translation>
+    </message>
+    <message>
+        <source>Find next</source>
+        <translation type="unfinished">Buscar siguiente</translation>
+    </message>
+    <message>
+        <source>Find previous</source>
+        <translation type="unfinished">Buscar anterior</translation>
+    </message>
+    <message>
+        <source>Find...</source>
+        <translation type="unfinished">Buscar...</translation>
+    </message>
+</context>
+<context>
+    <name>ServerConfigDialog</name>
+    <message>
+        <source>Server Configuration</source>
+        <translation type="unfinished">Configuración del servidor</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation type="unfinished">Computadoras</translation>
+    </message>
+    <message>
+        <source>Drag a computer from the grid to the trashcan to remove it.</source>
+        <translation type="unfinished">Arrastre una computadora desde la cuadrícula a la papelera para eliminarla.</translation>
+    </message>
+    <message>
+        <source>Configure the layout of your computer displays by dragging to where you want.</source>
+        <translation type="unfinished">Configura el diseño de las pantallas de tu computadora arrastrándolas hacia donde quieras.</translation>
+    </message>
+    <message>
+        <source>Drag to the grid to add a new computer.</source>
+        <translation type="unfinished">Arrastre a la cuadrícula para agregar una nueva computadora.</translation>
+    </message>
+    <message>
+        <source>Hotkeys</source>
+        <translation type="unfinished">teclas de acceso rápido</translation>
+    </message>
+    <message>
+        <source>&amp;Hotkeys</source>
+        <translation type="unfinished">tec&amp;las de acceso rápido</translation>
+    </message>
+    <message>
+        <source>&amp;New</source>
+        <translation type="unfinished">&amp;Nuevo</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished">&amp;Edición</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished">Elimina&amp;r</translation>
+    </message>
+    <message>
+        <source>A&amp;ctions</source>
+        <translation type="unfinished">&amp;Comportamiento</translation>
+    </message>
+    <message>
+        <source>Ne&amp;w</source>
+        <translation type="unfinished">Nue&amp;vo</translation>
+    </message>
+    <message>
+        <source>E&amp;dit</source>
+        <translation type="unfinished">E&amp;dición</translation>
+    </message>
+    <message>
+        <source>Re&amp;move</source>
+        <translation type="unfinished">Eli&amp;minar</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished">Avanzado</translation>
+    </message>
+    <message>
+        <source>&amp;Misc</source>
+        <translation type="unfinished">&amp;Misc</translation>
+    </message>
+    <message>
+        <source>Disable lock to computer (scroll lock key)</source>
+        <translation type="unfinished">Desactivar el bloqueo del ordenador (tecla de bloqueo de desplazamiento)</translation>
+    </message>
+    <message>
+        <source>Use &amp;relative mouse movements</source>
+        <translation type="unfinished">Utilice movimientos &amp;relativos del ratón</translation>
+    </message>
+    <message>
+        <source>Don&apos;t take &amp;foreground window (Windows only)</source>
+        <translation type="unfinished">No tomar la ventana e&amp;n primer plano (solo Windows)</translation>
+    </message>
+    <message>
+        <source>Enable clipboard sharing</source>
+        <translation type="unfinished">Habilitar el uso compartido del portapapeles</translation>
+    </message>
+    <message>
+        <source>Limit to:</source>
+        <translation type="unfinished">Limitar a:</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation type="unfinished">MB</translation>
+    </message>
+    <message>
+        <source>&amp;Network</source>
+        <translation type="unfinished">&amp;Red</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables the network heartbeat to ping clients every &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; seconds. This may help to diagnose network problems by retrying the connection if the client becomes unresponsive.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Permite que el latido de la red envíe ping a los clientes cada &lt;span style=&quot; font-style:italic;&quot;&gt;n&lt;/span&gt; segundos. Esto puede ayudar a diagnosticar problemas de red al reintentar la conexión si el cliente deja de responder.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Check clients every</source>
+        <translation type="unfinished">Y &amp;consultar a los clientes cada</translation>
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished">ms</translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enables compatibility with programs that use either the Synergy or Barrier protocols:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Synergy 3 uses the Synergy protocol.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Barrier, Input-Leap and Synergy 1 uses the Barrier protocol.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;A Deskflow client will automatically use either the Synergy or Barrier protocol depending on the server protocol.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Habilita la compatibilidad con programas que usan los protocolos Synergy o Barrier:&lt;/p&gt;&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Synergy 3 usa el protocolo Synergy.&lt;/li&gt;&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Barrier, Input-Leap y Synergy 1 usan el protocolo Barrier.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Un cliente de Deskflow usará automáticamente el Protocolo Synergy o Barrier según el protocolo del servidor.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <source>Network protocol</source>
+        <translation type="unfinished">Protocolo de red</translation>
+    </message>
+    <message>
+        <source>&amp;Switching</source>
+        <translation type="unfinished">Traspue&amp;sta</translation>
+    </message>
+    <message>
+        <source>Switch &amp;after waiting</source>
+        <translation type="unfinished">Cambiar y después de esper&amp;ar</translation>
+    </message>
+    <message>
+        <source>Switch on double &amp;tap within</source>
+        <translation type="unfinished">Activar doble &amp;toque dentro</translation>
+    </message>
+    <message>
+        <source>Use a server config file to create complex computer layouts that are not possible with the simple grid-based computer layout editor.
+
+Enabling this setting will disable the server config GUI.</source>
+        <translation type="unfinished">Utilice un archivo de configuración del servidor para crear diseños de computadora complejos que no son posibles con el editor de diseño de computadora simple basado en cuadrícula.
+
+Al habilitar esta opción, se deshabilitará la interfaz gráfica de usuario (GUI) de configuración del servidor.</translation>
+    </message>
+    <message>
+        <source>Use a server config file</source>
+        <translation type="unfinished">Utilice un archivo de configuración del servidor</translation>
+    </message>
+    <message>
+        <source>Config file path</source>
+        <translation type="unfinished">Ruta del archivo de configuración</translation>
+    </message>
+    <message>
+        <source>%1 Configurations (*.conf);;All files (*.*)</source>
+        <extracomment>%1 is replaced with the application names (*.conf) and (*.*) should not be translated</extracomment>
+        <translation type="unfinished">%1 Configuraciones (*.conf);;Todos los archivos (*.*)</translation>
+    </message>
+    <message>
+        <source>Browse for a config file</source>
+        <translation type="unfinished">Busque un archivo de configuración</translation>
+    </message>
+    <message>
+        <source>Enable lock to computer at startup</source>
+        <translation type="unfinished">Activar el bloqueo del ordenador al iniciar</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished">Preferencias</translation>
+    </message>
+    <message>
+        <source>Check for updates on startup</source>
+        <translation type="unfinished">Buscar actualizaciones al iniciar</translation>
+    </message>
+    <message>
+        <source>Prevent this computer from going to sleep</source>
+        <translation type="unfinished">Evitar que esta computadora entre en modo de suspensión</translation>
+    </message>
+    <message>
+        <source>Tray icon style</source>
+        <translation type="unfinished">Estilo de icono de bandeja</translation>
+    </message>
+    <message>
+        <source>Colorful</source>
+        <translation type="unfinished">Vistoso</translation>
+    </message>
+    <message>
+        <source>Monocolor</source>
+        <translation type="unfinished">Monocolor</translation>
+    </message>
+    <message>
+        <source>Enable TLS Encryption</source>
+        <translation type="unfinished">Habilitar el cifrado TLS</translation>
+    </message>
+    <message>
+        <source>Certificate</source>
+        <translation type="unfinished">Certificado</translation>
+    </message>
+    <message>
+        <source>Key length</source>
+        <translation type="unfinished">Longitud de la clave</translation>
+    </message>
+    <message>
+        <source>Regenerate certificate</source>
+        <translation type="unfinished">Regenerar certificado</translation>
+    </message>
+    <message>
+        <source>Require client certificates</source>
+        <translation type="unfinished">Requerir certificados de cliente</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation type="unfinished">&amp;Avanzado</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished">Puerto</translation>
+    </message>
+    <message>
+        <source>Network IP</source>
+        <translation type="unfinished">IP de red</translation>
+    </message>
+    <message>
+        <source>Log path</source>
+        <translation type="unfinished">Ruta de registro</translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation type="unfinished">Nivel</translation>
+    </message>
+    <message>
+        <source>Use background service (daemon)</source>
+        <translation type="unfinished">Utilizar un servicio en segundo plano (daemon)</translation>
+    </message>
+    <message>
+        <source>Always run as system (work at login screen and UAC)</source>
+        <translation type="unfinished">Ejecutar siempre como sistema (funcionar en la pantalla de inicio de sesión y UAC)</translation>
+    </message>
+    <message>
+        <source>%1 Clear Settings</source>
+        <translation type="unfinished">%1 Borrar configuración</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Are you sure you want to clear all settings and restart %1?&lt;/p&gt; &lt;p&gt;This action cannot be undone.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;p&gt;¿Está seguro de que desea borrar toda la configuración y reiniciar %1?&lt;/p&gt; &lt;p&gt;Esta acción no se puede deshacer.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Required messages</source>
+        <translation type="unfinished">Mensajes obligatorios</translation>
+    </message>
+    <message>
+        <source>Non-fatal errors</source>
+        <translation type="unfinished">Errores no fatales</translation>
+    </message>
+    <message>
+        <source>General warnings</source>
+        <translation type="unfinished">Advertencias generales</translation>
+    </message>
+    <message>
+        <source>General events [Default]</source>
+        <translation type="unfinished">Eventos generales [Predeterminado]</translation>
+    </message>
+    <message>
+        <source>Debug entries</source>
+        <translation type="unfinished">Entradas de depuración</translation>
+    </message>
+    <message>
+        <source>Verbose debug output</source>
+        <translation type="unfinished">Salida de depuración detallada</translation>
+    </message>
+    <message>
+        <source>TLS Certificate Regenerated</source>
+        <translation type="unfinished">Certificado TLS regenerado</translation>
+    </message>
+    <message>
+        <source>TLS certificate regenerated successfully.</source>
+        <translation type="unfinished">Certificado TLS regenerado exitosamente.</translation>
+    </message>
+    <message>
+        <source>Select a TLS certificate to use...</source>
+        <translation type="unfinished">Seleccione un certificado TLS para utilizar...</translation>
+    </message>
+    <message>
+        <source>Save log file to...</source>
+        <translation type="unfinished">Guardar archivo de registro en...</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Idioma</translation>
+    </message>
+    <message>
+        <source>Enable GUI debug messages</source>
+        <translation type="unfinished">Habilitar mensajes de depuración de la interfaz gráfica de usuario</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished">Automática</translation>
+    </message>
+    <message>
+        <source>Include version in the window title</source>
+        <translation type="unfinished">Incluir la versión en el título de la ventana</translation>
+    </message>
+    <message>
+        <source>Log to file</source>
+        <translation>Registrar en archivo</translation>
+    </message>
+    <message>
+        <source>&amp;Logs</source>
+        <translation>&amp;Registro</translation>
+    </message>
+    <message>
+        <source>&amp;General</source>
+        <translation type="unfinished">&amp;General</translation>
+    </message>
+    <message>
+        <source>&amp;Network</source>
+        <translation>R&amp;ed</translation>
+    </message>
+    <message>
+        <source>&amp;Window</source>
+        <translation type="unfinished">&amp;Ventana</translation>
+    </message>
+    <message>
+        <source>When the main window is closed</source>
+        <translation type="unfinished">Cuando la ventana principal está cerrada</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished">Salir</translation>
+    </message>
+    <message>
+        <source>Send to background</source>
+        <translation type="unfinished">Enviar a segundo plano</translation>
+    </message>
+    <message>
+        <source>When the application starts</source>
+        <translation type="unfinished">Cuando se inicia la aplicación</translation>
+    </message>
+    <message>
+        <source>Show the main window</source>
+        <translation type="unfinished">Mostrar la ventana principal</translation>
+    </message>
+    <message>
+        <source>Run command on enter</source>
+        <translation type="unfinished">Ejecutar comando al presionar Enter</translation>
+    </message>
+    <message>
+        <source>Run command on exit</source>
+        <translation type="unfinished">Ejecutar comando al salir</translation>
+    </message>
+    <message>
+        <source>Using a log level higher than Info may affect performance.</source>
+        <translation type="unfinished">Utilizar un nivel de registro superior a Info puede afectar el rendimiento.</translation>
+    </message>
+    <message>
+        <source>Remove all settings</source>
+        <translation type="unfinished">Eliminar todas las configuraciones</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsDialogButtonBox</name>
+    <message>
+        <source>Settings are read only</source>
+        <translation type="unfinished">La configuración es de solo lectura</translation>
+    </message>
+    <message>
+        <source>%1 is not writable</source>
+        <translation type="unfinished">%1 no tiene permisos de escritura</translation>
+    </message>
+    <message>
+        <source>Close and save changes</source>
+        <translation type="unfinished">Cerrar y guardar los cambios</translation>
+    </message>
+    <message>
+        <source>Close and forget changes</source>
+        <translation type="unfinished">Cerrar y olvidar los cambios</translation>
+    </message>
+    <message>
+        <source>Reset to stored values</source>
+        <translation type="unfinished">Restablecer los valores almacenados</translation>
+    </message>
+    <message>
+        <source>Reset to default values</source>
+        <translation type="unfinished">Restablecer valores predeterminados</translation>
+    </message>
+</context>
+<context>
+    <name>StatusBar</name>
+    <message>
+        <source>%1 is not running</source>
+        <translation type="unfinished">%1 no se está ejecutando</translation>
+    </message>
+    <message>
+        <source>%1 is starting...</source>
+        <translation type="unfinished">%1 está iniciando...</translation>
+    </message>
+    <message>
+        <source>%1 will retry in a moment...</source>
+        <translation type="unfinished">%1 lo intentará nuevamente en un momento...</translation>
+    </message>
+    <message>
+        <source>%1 is stopping...</source>
+        <translation type="unfinished">%1 se está deteniendo...</translation>
+    </message>
+    <message>
+        <source>%1 is waiting for clients</source>
+        <translation type="unfinished">%1 está esperando clientes</translation>
+    </message>
+    <message>
+        <source>%1 is connected as client of %2</source>
+        <translation type="unfinished">%1 está conectado como cliente de %2</translation>
+    </message>
+    <message>
+        <source>%1 is disconnected</source>
+        <translation type="unfinished">%1 está desconectado</translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 is connected, with %n client(s): %2</source>
+        <extracomment>Shown when in server mode and at least 1 client is connected %1 is replaced by the app name %2 will be a list of at least one client %n will be replaced by the number of clients (n is &gt;=1), it is not requried to be in the translation</extracomment>
+        <translation>
+            <numerusform>%1 está conectado, con un cliente: %2</numerusform>
+            <numerusform>%1 está conectado, con %n clientes: %2</numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Clients:
+ %1</source>
+        <translation type="unfinished">Clientes:
+ %1</translation>
+    </message>
+    <message>
+        <source>A new version v%1 is available</source>
+        <translation type="unfinished">Ya está disponible una nueva versión v%1</translation>
+    </message>
+    <message>
+        <source>View local fingerprint</source>
+        <translation type="unfinished">Ver huella digital local</translation>
+    </message>
+    <message>
+        <source>Update available</source>
+        <translation type="unfinished">Actualización disponible</translation>
+    </message>
+    <message>
+        <source>%1 is connecting...</source>
+        <translation>%1 se está conectando...</translation>
+    </message>
+    <message>
+        <source>%1 is waiting %2 seconds before the next retry</source>
+        <translation type="unfinished">%1 está esperando %2 segundos antes del siguiente reintento</translation>
+    </message>
+    <message>
+        <source>%1 Encryption Enabled</source>
+        <translation type="unfinished">%1 Cifrado habilitado</translation>
+    </message>
+    <message>
+        <source>Encryption Disabled</source>
+        <translation type="unfinished">Cifrado deshabilitado</translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::AboutView</name>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1 &lt;span style=&apos;color:%2&apos;&gt;(%3)&lt;/span&gt; · %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updates are checked when you turn them on in Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished">Buscar actualizaciones</translation>
+    </message>
+    <message>
+        <source>Something not working?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run the checks. We fix what we can and show the rest in plain language.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer&apos;s security code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers show it when this one asks to join. It only changes if you make a new key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Made by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What changed in each version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a problem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy diagnostics first, then paste them into the email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits &amp; license</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Based on Deskflow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>© 2024–2026 Deskflow Developers and earlier Synergy contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GNU GPL v2.0 with OpenSSL exception</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can view and change the source code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open-source components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show log folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>© 2026 Schomp Technologies LLC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t reach schomp.ai to check. Try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>✓ You&apos;re up to date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1 is ready. Nothing installs until you say so.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::ChecksView</name>
+    <message>
+        <source>‹ Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Something not working?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We run the usual checks and fix what we can. Anything left needs a hand from you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run checks again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plain language ·</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>show the raw log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing yet. Turn sharing on and this fills in as things happen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>show plain language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Raw log ·</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 linked up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 left the desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 stopped answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 asked to join but the plan is full</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer turned this one away (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Another computer is already using the name %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moved from %1 to %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing started on this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turning sharing on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Asking the background service to start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopped (code %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A computer is connecting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing stopped</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopped looking for the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lost the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer stopped answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t reach the main computer (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connection is encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption handshake failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor locked to this computer (Scroll Lock)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cursor is locked to this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keyboard layouts missing here: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing stopped with an error (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Background service is stopping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Problem:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::ComputerView</name>
+    <message>
+        <source>‹ Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where it sits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick a spot next to a computer that&apos;s already on the desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Another name this computer uses (its hostname, for example)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also answers to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key fixes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Caps, Num and Scroll Lock get stuck or flip twice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Turn on if a lock key on this computer only sends one signal (some Mac keyboards do)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse lands on the wrong monitor (Linux X11)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only for old X11 setups with several monitors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t switch in the corners</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lets you reach close buttons and menus in the corners without jumping computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Corner size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Also %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No other names yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::DeskView</name>
+    <message>
+        <source>Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move the mouse off an edge to switch computers. Drag a card to change where it sits.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+ Add a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp; paste</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Between every computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coming soon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dragging files between computers isn&apos;t ready yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse &amp; keyboard are here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse &amp; keyboard are there</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · connecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer · off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is an extra screen of %1. Its mouse and keyboard reach here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On · waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off · turn on in Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Always on · %n trusted</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Move or forget this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Far right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1, %2 of %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 of %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget %1?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It comes off your desk and will have to be allowed again to rejoin.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::NewShortcutPanel</name>
+    <message>
+        <source>New shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1. What should it do?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back to %1 (the main computer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stay on this computer until I press it again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2. Press the keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse button </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click here, then press the keys you want</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a modifier such as Ctrl or Alt so it doesn&apos;t fire while you type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::PlanView</name>
+    <message>
+        <source>‹ Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your plan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your main computer and one more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse, keyboard, copy &amp; paste, file drag</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encrypted, on your own Wi-Fi, no account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up to 5 computers on one desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link computers on different networks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>iPad and iPhone as extra screens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Priority support from a person</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>forever · 2 computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>/year · 1 desk · up to 5 computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;re on Free. Nothing to do.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get Plus →</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>14 days free when you first turn it on. Cancel any time; Free keeps working.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ALREADY HAVE A LICENSE?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste the license from your email below. It&apos;s checked here on this computer; nothing is sent anywhere.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Activate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>✓ Valid %1 license for %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>That doesn&apos;t look like a Lightning Desk license.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t save the license to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 · %2 of %n computers on your desk</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source> · until %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TRIAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ACTIVE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plus is on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 on your desk · Free links %n at a time</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 of %n computers on your desk</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>FREE</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::SettingsView</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YOUR PLAN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep sharing when Lightning Desk opens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your desk is live as soon as the app starts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing the window keeps it running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It stays in the menu bar / tray; sharing carries on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start hidden in the tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the window from the tray icon when you need it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tell me when an update is ready</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing installs without you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Idioma</translation>
+    </message>
+    <message>
+        <source>Dragging files between computers isn&apos;t ready yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text, images and files on the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag files across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coming soon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instantly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a short pause (¼ s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a pause (½ s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a long pause (1 s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch when the mouse touches an edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A short pause avoids accidental switches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double-tap the edge to switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stops you drifting onto the wrong screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Let Scroll Lock keep the mouse on one computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press it again to release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prevent this computer from sleeping while linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trusted computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allowed to connect to this desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy &amp; security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections are encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always on. Only computers you&apos;ve allowed can connect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New security key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers will ask you to allow them again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced  ›</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open log folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Everything back to defaults, including linked computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset everything</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished">Puerto</translation>
+    </message>
+    <message>
+        <source>Other computers connect to this number. Change it only if something else is using it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which of this computer&apos;s addresses to listen on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For a bug report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced  ⌄</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any address (recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::SetupWizard</name>
+    <message>
+        <source>Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One mouse. One keyboard.
+Every computer on your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move your cursor off the edge of one screen and it appears on the next. Copy on one computer, paste on another. Drag a file straight across. No cables, no extra gear.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About 2 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing to type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows, Mac &amp; Linux</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which computer is this?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick the one that matches the computer you&apos;re sitting at right now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is my main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The mouse and keyboard I want to use are plugged into this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Most people start here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is an extra screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A laptop or second computer I want to control from my main one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set up the main computer first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What should we call it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the name you&apos;ll see when you arrange your desk. We filled in a suggestion.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YOUR DESK CODE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only works on your Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Making sure everything works</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We check the things that usually go wrong and fix them for you. Nothing to do here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;re all set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Nombre</translation>
+    </message>
+    <message>
+        <source>Link computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrange desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I&apos;ve linked them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>STEP %1 OF %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fixed for you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs on your desktop, not as a hidden service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Firewall lets your computers talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule limited to your own network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts by itself when you open Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy, paste and drag files across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t connect to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We found it on your network, but it didn&apos;t answer within %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready — waiting for your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is now linked. Your mouse and keyboard will cross over as soon as the main computer finishes arranging your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 isn&apos;t ready for new computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Lightning Desk on &lt;b&gt;%1&lt;/b&gt; and go to the &lt;b&gt;Link your other computers&lt;/b&gt; step, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Versions don&apos;t match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Lightning Desk on both computers to the same version, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Something went wrong while linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two computers couldn&apos;t agree on how to talk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No desk code was entered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk couldn&apos;t start its connection on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t start linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip for now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On each laptop, open Lightning Desk, choose &lt;b&gt;This is an extra screen&lt;/b&gt;, and type this code. Tablets can scan the QR code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trouble linking?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scan with a tablet to add it as a screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINKED SO FAR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+  Add another computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to your main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type the desk code shown on your main computer&apos;s screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For example CYN-01</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished">Conectar</translation>
+    </message>
+    <message>
+        <source>Copy details for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste works across them  ·  Drag files across too</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is linked to &lt;b&gt;%1&lt;/b&gt;. Slide the mouse off the edge of %1&apos;s screen to reach it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When you&apos;re ready, open Lightning Desk on a laptop and choose &lt;b&gt;This is an extra screen&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slide your mouse off the &lt;b&gt;%1&lt;/b&gt; edge to reach &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try it now:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No network found. Check this computer is on Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the code doesn&apos;t work, type &lt;b&gt;%1&lt;/b&gt; on the laptop instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t save the secure link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer couldn&apos;t write its list of trusted computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for the next computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the desk code first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;ll find it on the main computer&apos;s Link step.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This usually takes a few seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting up a private, encrypted link.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find %1 on your network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computer with that desk code answered on this Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;ul style=&apos;margin-left:-20px&apos;&gt;&lt;li&gt;On &lt;b&gt;%1&lt;/b&gt;, open Lightning Desk and stay on the &lt;b&gt;Link your other computers&lt;/b&gt; step.&lt;/li&gt;&lt;li&gt;Make sure both computers are on the same Wi‑Fi.&lt;/li&gt;&lt;li&gt;Check the desk code is typed exactly as shown.&lt;/li&gt;&lt;li&gt;Still stuck? On the main computer click &lt;b&gt;Trouble linking?&lt;/b&gt; and type the backup code here.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address tried: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where does &lt;b&gt;%1&lt;/b&gt; sit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer %1 of %2. Tap the side of your main screen where it physically is.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap the side of your main screen where it physically is. Your cursor will cross over on that edge.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private and encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready for other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n computer(s) linked</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Reconnecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer is updating its desk. This takes a moment and nothing needs doing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is adding this computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Almost there. The main computer is making room for this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it simple, like &lt;b&gt;DESK&lt;/b&gt; or &lt;b&gt;SILVER-LAPTOP&lt;/b&gt;. You can rename it anytime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer turned this one away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Either another computer called &lt;b&gt;%1&lt;/b&gt; is already linked (go back a step and pick a different name), or the main computer is on the Free plan, which links it and one other computer. &lt;a style=&apos;color:%2&apos; href=&apos;%3&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 wants to join, but %2 links this computer and %n other(s). &lt;a style=&apos;color:%3&apos; href=&apos;%4&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::ShortcutsView</name>
+    <message>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump between computers or pause sharing from the keyboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+ New shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No shortcuts yet. Add one to jump straight to a computer, or to keep the mouse on this screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts work on every computer in your desk, whichever one you&apos;re typing on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove this shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished">Cerca</translation>
+    </message>
+    <message>
+        <source>Your shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suggested · press + to add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add this shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>i18n</name>
+    <message>
+        <source>LocalizedName</source>
+        <extracomment>Replace with your Language name This is a required string</extracomment>
+        <translation>Español</translation>
+    </message>
+</context>
+<context>
+    <name>validators::AliasValidator</name>
+    <message>
+        <source>Computer name cannot contain spaces</source>
+        <translation type="unfinished">El nombre de la computadora no puede contener espacios</translation>
+    </message>
+    <message>
+        <source>Aliases may not be ip addresses</source>
+        <translation type="unfinished">Los alias no pueden ser direcciones IP</translation>
+    </message>
+    <message>
+        <source>Contains invalid characters or is too long</source>
+        <translation type="unfinished">Contiene caracteres no válidos o es demasiado largo</translation>
+    </message>
+</context>
+<context>
+    <name>validators::ComputerLineNameValidator</name>
+    <message>
+        <source>Computer name cannot be empty</source>
+        <translation type="unfinished">El nombre de la computadora no puede estar vacío</translation>
+    </message>
+    <message>
+        <source>Computer name cannot contain spaces</source>
+        <translation type="unfinished">El nombre de la computadora no puede contener espacios</translation>
+    </message>
+    <message>
+        <source>Contains invalid characters or is too long</source>
+        <translation type="unfinished">Contiene caracteres no válidos o es demasiado largo</translation>
+    </message>
+    <message>
+        <source>A computer with this name already exists</source>
+        <translation type="unfinished">Ya existe un ordenador con este nombre</translation>
+    </message>
+</context>
+</TS>

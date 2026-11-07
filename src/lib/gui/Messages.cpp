@@ -28,6 +28,17 @@ struct Errors
 std::unique_ptr<QMessageBox> Errors::s_criticalMessage;
 QStringList Errors::s_ignoredErrors;
 
+CriticalSink &criticalSink()
+{
+  static CriticalSink sink;
+  return sink;
+}
+
+void setCriticalSink(CriticalSink sink)
+{
+  criticalSink() = std::move(sink);
+}
+
 void raiseCriticalDialog()
 {
   if (Errors::s_criticalMessage) {
@@ -50,6 +61,14 @@ void showErrorDialog(const QString &message, const QString &fileLine, QtMsgType 
     // create a blocking message box for fatal errors, as we want to wait
     // until the dialog is dismissed before aborting the app.
     QMessageBox::critical(nullptr, title, text, QMessageBox::Abort);
+    return;
+  }
+
+  if (criticalSink()) {
+    if (!Errors::s_ignoredErrors.contains(message)) {
+      Errors::s_ignoredErrors.append(message); // once per distinct message, like the Ignore button
+      criticalSink()(message, fileLine);
+    }
     return;
   }
 
