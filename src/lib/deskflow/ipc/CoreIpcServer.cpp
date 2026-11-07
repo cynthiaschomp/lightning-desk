@@ -1,5 +1,6 @@
 /*
  * Deskflow -- mouse and keyboard sharing utility
+ * SPDX-FileCopyrightText: (C) 2026 Schomp Technologies LLC
  * SPDX-FileCopyrightText: (C) 2025-2026 Synergy App Ltd
  * SPDX-License-Identifier: GPL-2.0-only WITH LicenseRef-OpenSSL-Exception
  */
@@ -35,6 +36,13 @@ void CoreIpcServer::processCommand(QLocalSocket *clientSocket, const QString &co
     writeToClientSocket(clientSocket, QStringLiteral("ok"));
     broadcastCommand(QStringLiteral("bye"));
     Q_EMIT stopProcessRequested();
+    return;
+  }
+  if (command == QStringLiteral("reload")) {
+    // Re-read the server config without dropping connected clients.
+    LOG_DEBUG("core ipc server got reload message");
+    writeToClientSocket(clientSocket, QStringLiteral("ok"));
+    Q_EMIT reloadConfigRequested();
     return;
   }
   LOG_WARN("core ipc server got unknown command: %s", command.toUtf8().constData());

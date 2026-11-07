@@ -56,6 +56,8 @@ public:
   QString configFile() const;
   bool useExternalConfig() const;
   void addClient(const QString &clientName);
+  /// Lightning Desk: put the main computer in the centre cell and a client in a chosen grid cell.
+  void placeClient(const QString &clientName, int gridIndex);
 
 private:
   void recall();

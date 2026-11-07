@@ -233,6 +233,9 @@ private:
    * This method is run when settings is created before cleaning the settings and when you change settings files
    * It does not remove any keys, only copies the old value to the new setings key
    */
+  /// Lightning Desk: copy settings, certificates and trusted computers from a
+  /// previous Deskflow install the first time Lightning Desk starts.
+  static void migrateFromDeskflow();
   void upgradeSettings();
   void cleanSettings();
   void cleanStateSettings();

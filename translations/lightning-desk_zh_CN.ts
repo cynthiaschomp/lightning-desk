@@ -5,7 +5,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Deskflow</source>
-        <translation>关于 Deskflow</translation>
+        <translation type="vanished">关于 Deskflow</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -50,6 +50,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>&amp;Close</source>
         <translation>关闭(&amp;C)</translation>
+    </message>
+    <message>
+        <source>About Lightning Desk</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -576,7 +580,7 @@ Do you want to connect to the server?
     </message>
     <message>
         <source>&lt;p&gt;Failed to connect to the server &apos;%1&apos;.&lt;/p&gt;&lt;p&gt;A Client with your name is already connected to the server.&lt;/p&gt;Please ensure that you&apos;re using a unique name and that only a single instance of the client process is running.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;连接到服务器“%1”失败。&lt;/p&gt;&lt;p&gt;一个同名的客户端已连接到服务器。&lt;/p&gt;请确保您使用的名称唯一，且只有一个客户端进程实例在运行。&lt;/p&gt;</translation>
+        <translation type="vanished">&lt;p&gt;连接到服务器“%1”失败。&lt;/p&gt;&lt;p&gt;一个同名的客户端已连接到服务器。&lt;/p&gt;请确保您使用的名称唯一，且只有一个客户端进程实例在运行。&lt;/p&gt;</translation>
     </message>
     <message>
         <source>View &amp;Help</source>
@@ -745,6 +749,36 @@ Additionally, check you are able to %1 the server config file: %2</source>
     </message>
     <message>
         <source>&lt;p&gt;Keyboard layout support requires matching layouts on all computers. The following layouts from the other computer are not installed on this computer:&lt;/p&gt;&lt;p&gt;&lt;b&gt;%1&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Please install them to enable support for these layouts.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Room for one more?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s).</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See Plus</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;The main computer at &apos;%1&apos; turned this computer away.&lt;/p&gt;&lt;p&gt;Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five).&lt;/p&gt;&lt;p&gt;Give this computer a different name, or &lt;a href=&quot;%2&quot;&gt;see Plus&lt;/a&gt;.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1395,6 +1429,502 @@ Enabling this setting will disable the server config GUI.</source>
     <message>
         <source>Encryption Disabled</source>
         <translation>加密已禁用</translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::SetupWizard</name>
+    <message>
+        <source>Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One mouse. One keyboard.
+Every computer on your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Move your cursor off the edge of one screen and it appears on the next. Copy on one computer, paste on another. Drag a file straight across. No cables, no extra gear.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About 2 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing to type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Windows, Mac &amp; Linux</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which computer is this?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pick the one that matches the computer you&apos;re sitting at right now.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is my main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The mouse and keyboard I want to use are plugged into this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Most people start here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is an extra screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A laptop or second computer I want to control from my main one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set up the main computer first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What should we call it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This is the name you&apos;ll see when you arrange your desk. We filled in a suggestion.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YOUR DESK CODE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only works on your Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Above</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Below</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Making sure everything works</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We check the things that usually go wrong and fix them for you. Nothing to do here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;re all set</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Welcome</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">名称</translation>
+    </message>
+    <message>
+        <source>Link computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arrange desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Done</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I&apos;ve linked them</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>STEP %1 OF %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fixed for you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs on your desktop, not as a hidden service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Firewall lets your computers talk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rule limited to your own network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts by itself when you open Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy, paste and drag files across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t connect to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>We found it on your network, but it didn&apos;t answer within %1 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready — waiting for your other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connected to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is now linked. Your mouse and keyboard will cross over as soon as the main computer finishes arranging your desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 isn&apos;t ready for new computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Lightning Desk on &lt;b&gt;%1&lt;/b&gt; and go to the &lt;b&gt;Link your other computers&lt;/b&gt; step, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Versions don&apos;t match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update Lightning Desk on both computers to the same version, then try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Something went wrong while linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The two computers couldn&apos;t agree on how to talk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No desk code was entered.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk couldn&apos;t start its connection on this computer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t start linking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Skip for now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On each laptop, open Lightning Desk, choose &lt;b&gt;This is an extra screen&lt;/b&gt;, and type this code. Tablets can scan the QR code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trouble linking?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Scan with a tablet to add it as a screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LINKED SO FAR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+  Add another computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect to your main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type the desk code shown on your main computer&apos;s screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For example CYN-01</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation type="unfinished">连接</translation>
+    </message>
+    <message>
+        <source>Copy details for support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste works across them  ·  Drag files across too</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is linked to &lt;b&gt;%1&lt;/b&gt;. Slide the mouse off the edge of %1&apos;s screen to reach it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When you&apos;re ready, open Lightning Desk on a laptop and choose &lt;b&gt;This is an extra screen&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Slide your mouse off the &lt;b&gt;%1&lt;/b&gt; edge to reach &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try it now:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No network found. Check this computer is on Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If the code doesn&apos;t work, type &lt;b&gt;%1&lt;/b&gt; on the laptop instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t save the secure link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer couldn&apos;t write its list of trusted computers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reconnecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for the next computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the desk code first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You&apos;ll find it on the main computer&apos;s Link step.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Looking for %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This usually takes a few seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting up a private, encrypted link.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t find %1 on your network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computer with that desk code answered on this Wi‑Fi.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;ul style=&apos;margin-left:-20px&apos;&gt;&lt;li&gt;On &lt;b&gt;%1&lt;/b&gt;, open Lightning Desk and stay on the &lt;b&gt;Link your other computers&lt;/b&gt; step.&lt;/li&gt;&lt;li&gt;Make sure both computers are on the same Wi‑Fi.&lt;/li&gt;&lt;li&gt;Check the desk code is typed exactly as shown.&lt;/li&gt;&lt;li&gt;Still stuck? On the main computer click &lt;b&gt;Trouble linking?&lt;/b&gt; and type the backup code here.&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Desk code: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address tried: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Where does &lt;b&gt;%1&lt;/b&gt; sit?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer %1 of %2. Tap the side of your main screen where it physically is.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tap the side of your main screen where it physically is. Your cursor will cross over on that edge.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private and encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready for other computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n computer(s) linked</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Reconnecting to %1…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer is updating its desk. This takes a moment and nothing needs doing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is adding this computer…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Almost there. The main computer is making room for this one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep it simple, like &lt;b&gt;DESK&lt;/b&gt; or &lt;b&gt;SILVER-LAPTOP&lt;/b&gt;. You can rename it anytime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The main computer turned this one away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Either another computer called &lt;b&gt;%1&lt;/b&gt; is already linked (go back a step and pick a different name), or the main computer is on the Free plan, which links it and one other computer. &lt;a style=&apos;color:%2&apos; href=&apos;%3&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%1 wants to join, but %2 links this computer and %n other(s). &lt;a style=&apos;color:%3&apos; href=&apos;%4&apos;&gt;Plus links up to five&lt;/a&gt;.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Free</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

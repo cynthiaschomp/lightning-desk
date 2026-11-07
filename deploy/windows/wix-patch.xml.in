@@ -1,9 +1,9 @@
 <CPackWiXPatch>
-  <CPackWiXFragment Id="CM_CP_deskflow_daemon.exe">
+  <CPackWiXFragment Id="CM_CP_lightning_desk_daemon.exe">
     <ServiceInstall
       Id="ServiceInstall"
-      Name="Deskflow"
-      DisplayName="Deskflow"
+      Name="@CMAKE_PROJECT_PROPER_NAME@"
+      DisplayName="@CMAKE_PROJECT_DISPLAY_NAME@"
       Description="Runs the Core process on secure desktops (UAC prompts, login screen, etc)."
       ErrorControl="normal"
       Start="auto"
@@ -16,16 +16,30 @@
         ThirdFailureActionType="none"
       />
     </ServiceInstall>
-    <ServiceControl Id="ServiceControl" Name="Deskflow" Remove="uninstall" Start="install" Stop="both"/>
-    <RemoveFile Id="RmOldLog" On="install" Name="deskflow-daemon.log"/>
+    <ServiceControl Id="ServiceControl" Name="@CMAKE_PROJECT_PROPER_NAME@" Remove="uninstall" Start="install" Stop="both"/>
+    <RemoveFile Id="RmOldLog" On="install" Name="lightning-desk-daemon.log"/>
+    <!--
+      Lightning Desk: the shared settings folder (C:\ProgramData\Lightning Desk) holds the
+      TLS certificate, trusted computers and the server config the app rewrites on
+      every start. Create it at install time and let standard users change files in
+      it; otherwise the folder is created by SYSTEM/admin and the app cannot start.
+      SDDL: SYSTEM + Administrators full control, Users modify, inherited by children.
+    -->
+    <CreateFolder Directory="LIGHTNING_DESK_PROGRAMDATA">
+      <PermissionEx Sddl="D:PAI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1301bf;;;BU)"/>
+    </CreateFolder>
   </CPackWiXFragment>
 
-  <CPackWiXFragment Id="CM_CP_deskflow_core.exe">
-    <firewall:FirewallException Id="ServerFirewallException" Name="Deskflow Server" Program="[INSTALL_ROOT]deskflow-core.exe" Scope="any"/>
-    <firewall:FirewallException Id="ClientFirewallException" Name="Deskflow Client" Program="[INSTALL_ROOT]deskflow-core.exe" Scope="any"/>
+  <CPackWiXFragment Id="CM_CP_lightning_desk_core.exe">
+    <firewall:FirewallException Id="ServerFirewallException" Name="Lightning Desk Server" Program="[INSTALL_ROOT]lightning-desk-core.exe" Scope="any"/>
+    <firewall:FirewallException Id="ClientFirewallException" Name="Lightning Desk Client" Program="[INSTALL_ROOT]lightning-desk-core.exe" Scope="any"/>
   </CPackWiXFragment>
 
   <CPackWiXFragment Id="#PRODUCT">
+    <StandardDirectory Id="CommonAppDataFolder">
+      <Directory Id="LIGHTNING_DESK_PROGRAMDATA" Name="@CMAKE_PROJECT_DISPLAY_NAME@"/>
+    </StandardDirectory>
+
     <Property Id="VC_REDIST_INSTALLED">
       <RegistrySearch
         Id="FindVCRedist"
@@ -38,33 +52,33 @@
     <Binary Id="CustomDLL" SourceFile="@CMAKE_CURRENT_BINARY_DIR@/wix-custom.dll" />
 
     <!--
-      Close any running Deskflow processes before file replacement so the
+      Close any running Lightning Desk processes before file replacement so the
       installer does not have to schedule files for replace-on-reboot.
-      Legacy names (deskflow-server.exe, deskflow-client.exe) are still
+      Legacy names (lightning-desk-server.exe, lightning-desk-client.exe) are still
       listed so upgrades from pre-1.24 installs (separate server/client
       binaries) also complete without prompting for a reboot.
     -->
     <util:CloseApplication
       Id="CloseDeskflowGui"
-      Target="deskflow.exe"
+      Target="lightning-desk.exe"
       CloseMessage="yes"
       RebootPrompt="no"
       TerminateProcess="10" />
     <util:CloseApplication
       Id="CloseDeskflowCore"
-      Target="deskflow-core.exe"
+      Target="lightning-desk-core.exe"
       CloseMessage="yes"
       RebootPrompt="no"
       TerminateProcess="10" />
     <util:CloseApplication
       Id="CloseDeskflowServer"
-      Target="deskflow-server.exe"
+      Target="lightning-desk-server.exe"
       CloseMessage="yes"
       RebootPrompt="no"
       TerminateProcess="10" />
     <util:CloseApplication
       Id="CloseDeskflowClient"
-      Target="deskflow-client.exe"
+      Target="lightning-desk-client.exe"
       CloseMessage="yes"
       RebootPrompt="no"
       TerminateProcess="10" />
@@ -76,7 +90,7 @@
            Value="RunDeskflow"
            Condition= "WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed" />
        <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
-       <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Run Deskflow when finished" />
+       <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Run Lightning Desk when finished" />
     </UI>
     <CustomAction
       Id="CheckVCRedist"
@@ -90,7 +104,7 @@
 
     <CustomAction
       Id="RunDeskflow"
-      ExeCommand="[INSTALL_ROOT]deskflow.exe"
+      ExeCommand="[INSTALL_ROOT]lightning-desk.exe"
       Directory="INSTALL_ROOT"
       Execute="immediate"
       Impersonate="yes"

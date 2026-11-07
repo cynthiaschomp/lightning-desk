@@ -95,6 +95,10 @@ add_library(${target} STATIC
   validators/ValidationError.h
   validators/IpAddressValidator.cpp
   validators/IpAddressValidator.h
+  wizard/SetupWizard.cpp
+  wizard/SetupWizard.h
+  wizard/qrcodegen.cpp
+  wizard/qrcodegen.hpp
   widgets/ComputerSetupView.cpp
   widgets/ComputerSetupView.h
   widgets/FingerprintPreview.cpp
@@ -116,6 +120,9 @@ add_library(${target} STATIC
   widgets/SettingsDialogButtonBox.cpp
   widgets/SettingsDialogButtonBox.h
 )
+
+# Vendored third-party QR encoder (MIT, Project Nayuki): build without project warnings.
+set_source_files_properties(wizard/qrcodegen.cpp PROPERTIES COMPILE_OPTIONS "$<IF:$<CXX_COMPILER_ID:MSVC>,/W0,-w>")
 
 target_link_libraries(${target}
   PUBLIC

@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QSet>
 #include <QSystemTrayIcon>
 #include <QUrl>
 
@@ -117,6 +118,7 @@ private:
   void applyConfig();
   void setTrayIcon();
   void handleUnrecognisedClient(const QString &clientName);
+  void handleClientLimitReached(const QString &clientName);
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);
   void handleMissingKeyboardLayouts(const QString &layouts);
@@ -173,6 +175,7 @@ private:
   ServerConfig m_serverConfig;
   deskflow::gui::CoreProcess m_coreProcess;
   QSet<QString> m_ignoredClients;
+  QSet<QString> m_limitPromptedClients;
   bool m_newClientPromptShowing = false;
   bool m_serverConfigDialogVisible = false;
   QSize m_expandedSize = QSize();
