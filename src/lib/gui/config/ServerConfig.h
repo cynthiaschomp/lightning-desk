@@ -62,6 +62,16 @@ public:
   void removeClient(const QString &clientName);
   /// Lightning Desk: move a placed computer to another free cell; false if the cell is taken.
   bool moveClient(const QString &clientName, int gridIndex);
+  /// Lightning Desk: shortcuts.
+  void addHotkey(const Hotkey &hotkey)
+  {
+    m_Hotkeys.append(hotkey);
+  }
+  void removeHotkeyAt(int index)
+  {
+    if (index >= 0 && index < m_Hotkeys.size())
+      m_Hotkeys.removeAt(index);
+  }
   /// Lightning Desk: re-read the stored layout (after the wizard or a dialog changed it).
   void reload();
   int columns() const

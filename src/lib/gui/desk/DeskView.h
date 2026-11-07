@@ -16,9 +16,12 @@
 class QLabel;
 class QPushButton;
 class QGridLayout;
+class QStackedWidget;
 class ServerConfig;
 
 namespace deskflow::gui {
+
+class ShortcutsView;
 
 /**
  * @brief The main window's "Your desk" screen: the computers on the desk arranged around the
@@ -42,6 +45,12 @@ public:
   void setSharing(bool on);
   void setTrustedCount(int count);
   void refreshConveniences();
+  /// The Shortcuts page (hosted behind the rail's Shortcuts entry).
+  ShortcutsView *shortcuts() const
+  {
+    return m_shortcuts;
+  }
+  void showDeskPage();
 
 Q_SIGNALS:
   void sharingToggled(bool on);
@@ -101,6 +110,11 @@ private:
   QLabel *m_subtitle = nullptr;
   QGridLayout *m_grid = nullptr;
   QWidget *m_gridHost = nullptr;
+  QStackedWidget *m_pages = nullptr;
+  QWidget *m_deskPage = nullptr;
+  ShortcutsView *m_shortcuts = nullptr;
+  QPushButton *m_navDesk = nullptr;
+  QPushButton *m_navShortcuts = nullptr;
   QLabel *m_encryptionValue = nullptr;
   QPushButton *m_clipboardSwitch = nullptr;
   QPushButton *m_fileSwitch = nullptr;

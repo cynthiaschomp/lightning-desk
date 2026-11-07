@@ -29,6 +29,7 @@
 #include "gui/core/CoreProcess.h"
 #include "gui/desk/DeskDialogs.h"
 #include "gui/desk/DeskView.h"
+#include "gui/desk/ShortcutsView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
 #include "gui/wizard/SetupWizard.h"
@@ -721,9 +722,22 @@ void MainWindow::setupDeskView()
     if (m_coreProcess.isStarted())
       m_coreProcess.restart(); // drops the live connection; it has to be allowed again
   });
-  connect(m_deskView, &DeskView::computerClicked, this, [this](const QString &) { showConfigureServer(""); });
   connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::openSettings);
-  connect(m_deskView, &DeskView::shortcutsRequested, this, [this] { showConfigureServer(""); });
+  connect(m_deskView, &DeskView::shortcutsRequested, this, &MainWindow::refreshDeskView);
+  connect(m_deskView->shortcuts(), &deskflow::gui::ShortcutsView::addRequested, this, [this](const Hotkey &hotkey) {
+    m_serverConfig.addHotkey(hotkey);
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(m_deskView->shortcuts(), &deskflow::gui::ShortcutsView::removeRequested, this, [this](int index) {
+    m_serverConfig.removeHotkeyAt(index);
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
   connect(m_deskView, &DeskView::helpRequested, this, &MainWindow::showHelpViewer);
   connect(m_deskView, &DeskView::clipboardToggled, this, [this](bool) {
     if (m_coreProcess.isStarted())
@@ -778,6 +792,12 @@ void MainWindow::refreshDeskView()
   }
   m_deskView->setTrustedCount(trusted);
   m_deskView->refreshConveniences();
+
+  QStringList names{thisName};
+  for (const auto &computer : std::as_const(m_serverConfig).computers())
+    if (!computer.isNull() && computer.name() != thisName)
+      names << computer.name();
+  m_deskView->shortcuts()->setShortcuts(std::as_const(m_serverConfig).hotkeys(), names, thisName);
 }
 
 void MainWindow::addComputerFromDesk(int cell)

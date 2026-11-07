@@ -964,6 +964,54 @@ Inoltre, verifica di poter %1 il file di configurazione del server: %2</translat
         <source>Super</source>
         <translation type="unfinished">Super</translation>
     </message>
+    <message>
+        <source>Does nothing yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Return to the main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moves the cursor there instantly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Moves the cursor to the next computer that way</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cycles through the computers on your desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stay on this computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stops the mouse crossing edges until you press it again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchWidget</name>
@@ -1642,6 +1690,57 @@ L&apos;abilitazione di questa impostazione disabiliterà l&apos;interfaccia graf
     </message>
 </context>
 <context>
+    <name>deskflow::gui::NewShortcutDialog</name>
+    <message>
+        <source>New shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1. What should it do?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump to a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Back to %1 (the main computer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stay on this computer until I press it again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Next computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2. Press the keys</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse button </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click here, then press the keys you want</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use a modifier such as Ctrl or Alt so it doesn&apos;t fire while you type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>deskflow::gui::PlaceDialog</name>
     <message>
         <source>Where does %1 sit?</source>
@@ -2179,6 +2278,49 @@ Every computer on your desk.</source>
     </message>
     <message>
         <source>Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::ShortcutsView</name>
+    <message>
+        <source>left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jump between computers or pause sharing from the keyboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>+ New shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No shortcuts yet. Add one to jump straight to a computer, or to keep the mouse on this screen.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Shortcuts work on every computer in your desk, whichever one you&apos;re typing on.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove this shortcut</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

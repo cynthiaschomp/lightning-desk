@@ -8,6 +8,7 @@
 
 #include "common/Settings.h"
 #include "desk/BrandIcons.h"
+#include "desk/ShortcutsView.h"
 #include "gui/config/ServerConfig.h"
 
 #include <QEvent>
@@ -22,6 +23,7 @@
 #include <QResizeEvent>
 #include <QScrollArea>
 #include <QSizePolicy>
+#include <QStackedWidget>
 #include <QToolButton>
 
 #include <QVBoxLayout>
@@ -100,7 +102,8 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   col->addStretch(1);
   col->addWidget(buildConveniences());
 
-  auto *scroll = new QScrollArea(this);
+  m_deskPage = new QScrollArea(this);
+  auto *scroll = static_cast<QScrollArea *>(m_deskPage);
   scroll->setFrameShape(QFrame::NoFrame);
   scroll->setWidgetResizable(true);
   scroll->setWidget(content);
@@ -114,7 +117,11 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
                             "QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal{width:0;}"
   )
                             .arg(kBg, kLine));
-  outer->addWidget(scroll, 1);
+  m_shortcuts = new ShortcutsView(this);
+  m_pages = new QStackedWidget(this);
+  m_pages->addWidget(scroll);
+  m_pages->addWidget(m_shortcuts);
+  outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
   refreshConveniences();
@@ -161,10 +168,22 @@ QWidget *DeskView::buildRail()
     v->addWidget(b);
     return b;
   };
-  makeNav(Icon::Monitor, tr("Desk"), true);
-  auto *shortcuts = makeNav(Icon::Keyboard, tr("Shortcuts"), false);
+  m_navDesk = makeNav(Icon::Monitor, tr("Desk"), true);
+  m_navShortcuts = makeNav(Icon::Keyboard, tr("Shortcuts"), false);
   auto *settings = makeNav(Icon::Gear, tr("Settings"), false);
-  connect(shortcuts, &QPushButton::clicked, this, &DeskView::shortcutsRequested);
+  settings->setAutoExclusive(false); // Settings opens a dialog; it never stays "selected"
+  settings->setCheckable(false);
+  connect(m_navDesk, &QPushButton::clicked, this, [this] {
+    m_pages->setCurrentIndex(0);
+    m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), kAccent)));
+    m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), kDim)));
+  });
+  connect(m_navShortcuts, &QPushButton::clicked, this, [this] {
+    m_pages->setCurrentIndex(1);
+    m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), kDim)));
+    m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), kAccent)));
+    Q_EMIT shortcutsRequested();
+  });
   connect(settings, &QPushButton::clicked, this, &DeskView::settingsRequested);
 
   v->addStretch(1);
@@ -641,6 +660,11 @@ void DeskView::setDesk(const QString &mainName, const ServerConfig &config)
   relayout();
 }
 
+void DeskView::showDeskPage()
+{
+  m_navDesk->click();
+}
+
 void DeskView::setLinkedTo(const QString &thisName, const QString &mainName)
 {
   m_serverMode = false;
@@ -737,6 +761,9 @@ bool DeskView::eventFilter(QObject *watched, QEvent *event)
     const auto name = m_cardNames.value(watched);
     if (!name.isEmpty() && static_cast<QMouseEvent *>(event)->button() == Qt::LeftButton) {
       Q_EMIT computerClicked(name);
+      // Until the Computer sheet lands, a click on a card offers the same choices as its "⋯".
+      if (m_serverMode && name != m_mainName)
+        showCardMenu(name, static_cast<QMouseEvent *>(event)->globalPosition().toPoint());
       return true;
     }
   }

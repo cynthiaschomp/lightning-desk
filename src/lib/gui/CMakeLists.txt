@@ -101,6 +101,8 @@ add_library(${target} STATIC
   desk/DeskDialogs.h
   desk/DeskView.cpp
   desk/DeskView.h
+  desk/ShortcutsView.cpp
+  desk/ShortcutsView.h
   wizard/SetupWizard.cpp
   wizard/SetupWizard.h
   wizard/qrcodegen.cpp
