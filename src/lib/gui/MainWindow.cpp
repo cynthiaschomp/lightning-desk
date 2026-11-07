@@ -27,6 +27,7 @@
 #include "gui/Messages.h"
 #include "gui/TlsUtility.h"
 #include "gui/core/CoreProcess.h"
+#include "gui/desk/AboutView.h"
 #include "gui/desk/DeskView.h"
 #include "gui/desk/NoticeCard.h"
 #include "gui/desk/SettingsView.h"
@@ -39,6 +40,7 @@
 #include "widgets/StatusBar.h"
 
 #include <QCheckBox>
+#include <QClipboard>
 #include <QCloseEvent>
 #include <QComboBox>
 #include <QDesktopServices>
@@ -57,6 +59,7 @@
 #include <QScrollBar>
 #include <QSignalBlocker>
 #include <QStackedWidget>
+#include <QSysInfo>
 
 #include <memory>
 
@@ -403,7 +406,19 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::coreProcessError(CoreProcess::Error error)
 {
+  using deskflow::gui::NoticeCard;
   if (error == CoreProcess::Error::AddressMissing) {
+    if (auto *card = deskNotice()) {
+      card->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Danger)
+          ->setTitle(tr("Which computer is the main one?"))
+          ->setBody(
+              tr("This computer is set up as an extra screen but doesn't know the main computer's name yet. "
+                 "Run setup again from Add a computer, or pick the main computer in Settings.")
+          )
+          ->setButtons({tr("OK")});
+      connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+      return;
+    }
     QMessageBox::warning(
         this, tr("Address missing"), tr("Please enter the hostname or IP address of the other computer.")
     );
@@ -418,6 +433,18 @@ void MainWindow::coreProcessError(CoreProcess::Error error)
           Settings::value(Settings::Server::ExternalConfigFile).toBool() ? tr("read") : tr("read and write");
       message.append(tr("\nAdditionally, check you are able to %1 the server config file: %2")
                          .arg(mode, Settings::serverConfigFile()));
+    }
+    if (auto *card = deskNotice()) {
+      card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+          ->setTitle(tr("Lightning Desk couldn't start sharing"))
+          ->setBody(message)
+          ->setButtons({tr("OK"), tr("Try again")});
+      connect(card, &NoticeCard::answered, this, [this](int button, int) {
+        m_deskView->dismissNotice();
+        if (button == 1)
+          startCore();
+      });
+      return;
     }
     QMessageBox::warning(this, kAppName, message);
   }
@@ -661,7 +688,24 @@ void MainWindow::open()
   QTimer::singleShot(kCriticalDialogDelay, this, &messages::raiseCriticalDialog);
 
   if (!Settings::value(Settings::Gui::AutoUpdateCheck).isValid()) {
-    Settings::setValue(Settings::Gui::AutoUpdateCheck, messages::showUpdateCheckOption(this));
+    if (auto *card = deskNotice()) {
+      using deskflow::gui::NoticeCard;
+      card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+          ->setTitle(tr("Tell you when an update is ready?"))
+          ->setBody(
+              tr("Lightning Desk checks schomp.ai now and then. Nothing installs without you; you can change "
+                 "this in Settings any time.")
+          )
+          ->setButtons({tr("No thanks"), tr("Yes, tell me")});
+      connect(card, &NoticeCard::answered, this, [this](int button, int) {
+        m_deskView->dismissNotice();
+        Settings::setValue(Settings::Gui::AutoUpdateCheck, button == 1);
+        if (button == 1)
+          m_versionChecker.checkLatest();
+      });
+    } else {
+      Settings::setValue(Settings::Gui::AutoUpdateCheck, messages::showUpdateCheckOption(this));
+    }
   }
 
   if (Settings::value(Settings::Gui::AutoUpdateCheck).toBool()) {
@@ -789,7 +833,39 @@ void MainWindow::setupDeskView()
     if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
       m_coreProcess.restart();
   });
-  connect(m_deskView, &DeskView::helpRequested, this, &MainWindow::showHelpViewer);
+  connect(m_deskView, &DeskView::helpRequested, this, [this] {
+    m_deskView->about()->setSecurityCode(QString::fromLatin1(m_fingerprint.data.toHex()));
+  });
+  auto *aboutPage = m_deskView->about();
+  using deskflow::gui::AboutView;
+  connect(aboutPage, &AboutView::checkForUpdatesRequested, this, [this] {
+    m_deskView->about()->setChecking();
+    m_versionChecker.checkLatest();
+  });
+  connect(&m_versionChecker, &VersionChecker::checkFinished, aboutPage, &AboutView::setUpdateState);
+  connect(aboutPage, &AboutView::getUpdateRequested, this, &MainWindow::openGetNewVersionUrl);
+  connect(aboutPage, &AboutView::openLogsRequested, this, [] {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(Settings::settingsPath()));
+  });
+  connect(aboutPage, &AboutView::copyDiagnosticsRequested, this, [this] {
+    QStringList lines{
+        QStringLiteral("Lightning Desk %1 (%2)").arg(kVersion, kVersionGitSha), QSysInfo::prettyProductName(),
+        QStringLiteral("mode: %1").arg(Settings::value(Settings::Core::CoreMode).toString()),
+        QStringLiteral("computer: %1").arg(Settings::value(Settings::Core::ComputerName).toString()),
+        QStringLiteral("settings: %1").arg(Settings::settingsPath())
+    };
+    for (const auto &computer : std::as_const(m_serverConfig).computers())
+      if (!computer.isNull())
+        lines << QStringLiteral("desk: %1").arg(computer.name());
+    QGuiApplication::clipboard()->setText(lines.join(QLatin1Char('\n')));
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Clipboard, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Diagnostics copied"))
+        ->setBody(tr("Paste them into your email to %1.").arg(kUrlSupportMail))
+        ->setButtons({tr("OK")});
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+  });
   connect(m_deskView, &DeskView::clipboardToggled, this, [this](bool) {
     if (m_coreProcess.isStarted())
       m_coreProcess.restart();
@@ -797,6 +873,14 @@ void MainWindow::setupDeskView()
 
   toggleClassicView(m_actionClassicView->isChecked());
   refreshDeskView();
+}
+
+deskflow::gui::NoticeCard *MainWindow::deskNotice()
+{
+  if (!m_deskView || !m_actionClassicView || m_actionClassicView->isChecked())
+    return nullptr;
+  showAndActivate();
+  return m_deskView->notice();
 }
 
 void MainWindow::toggleClassicView(bool classic)
@@ -1141,6 +1225,24 @@ void MainWindow::handleConnectionRefused(deskflow::core::ConnectionRefusal reaso
   showAndActivate();
 
   const auto address = Settings::value(Settings::Client::RemoteHost).toString();
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Danger)
+        ->setTitle(tr("%1 turned this computer away").arg(address))
+        ->setBody(
+            tr("Either another computer with this name is already linked, or the main computer's plan "
+               "already has as many computers as it allows (Free links the main computer and one other; "
+               "Plus links up to five). Give this computer a different name in Settings, or see Plus.")
+        )
+        ->setButtons({tr("OK"), tr("See Plus")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      m_clientErrorVisible = false;
+      if (button == 1)
+        QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+    });
+    return;
+  }
   QMessageBox::warning(
       this, tr("%1 Connection Error").arg(kAppName),
       tr("<p>The main computer at '%1' turned this computer away.</p>"
@@ -1168,6 +1270,21 @@ void MainWindow::handleMissingKeyboardLayouts(const QString &layouts)
                     "<p>Please install them to enable support for these layouts.</p>")
                      .arg(layouts));
 
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Keyboard, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("A keyboard layout is missing here"))
+        ->setBody(tr("The other computer types with %1, which isn't installed on this one. Typing still works; "
+                     "install the layout to match it exactly.")
+                      .arg(layouts))
+        ->setButtons({tr("Don't tell me again"), tr("OK")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 0)
+        Settings::setValue(Settings::Gui::IgnoreMissingKeyboardLayouts, true);
+    });
+    return;
+  }
   auto *checkBox = new QCheckBox(tr("Don't show this again"), &msgBox);
   msgBox.setCheckBox(checkBox);
   msgBox.exec();
@@ -1266,7 +1383,9 @@ bool MainWindow::maybeHideToTray()
   }
 
   if (Settings::value(Settings::Gui::CloseReminder).toBool()) {
-    messages::showCloseReminder(this);
+    // Desk mode: no reminder box; the tray icon and the Settings switch explain it.
+    if (!m_actionClassicView || m_actionClassicView->isChecked())
+      messages::showCloseReminder(this);
     Settings::setValue(Settings::Gui::CloseReminder, false);
   }
   Settings::setValue(Settings::Gui::WindowGeometry, geometry());
@@ -1616,6 +1735,22 @@ void MainWindow::serverClientsChanged(const QStringList &clients)
 
 void MainWindow::daemonIpcClientConnectionFailed()
 {
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+        ->setTitle(tr("The background service isn't answering"))
+        ->setBody(
+            tr("Lightning Desk's background service keeps sharing going when you're not logged in. It may "
+               "still be starting. Try again in a moment, or restart this computer if it keeps happening.")
+        )
+        ->setButtons({tr("Later"), tr("Try again")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        m_coreProcess.retryDaemon();
+    });
+    return;
+  }
   if (deskflow::gui::messages::showDaemonOffline(this)) {
     m_coreProcess.retryDaemon();
   }

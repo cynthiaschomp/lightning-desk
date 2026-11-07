@@ -923,6 +923,82 @@ Additionally, check you are able to %1 the server config file: %2</source>
             <numerusform></numerusform>
         </translation>
     </message>
+    <message>
+        <source>Which computer is the main one?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is set up as an extra screen but doesn&apos;t know the main computer&apos;s name yet. Run setup again from Add a computer, or pick the main computer in Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk couldn&apos;t start sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tell you when an update is ready?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk checks schomp.ai now and then. Nothing installs without you; you can change this in Settings any time.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No thanks</source>
+        <translation type="unfinished">Нет, спасибо</translation>
+    </message>
+    <message>
+        <source>Yes, tell me</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Diagnostics copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Paste them into your email to %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 turned this computer away</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Either another computer with this name is already linked, or the main computer&apos;s plan already has as many computers as it allows (Free links the main computer and one other; Plus links up to five). Give this computer a different name in Settings, or see Plus.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A keyboard layout is missing here</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The other computer types with %1, which isn&apos;t installed on this one. Typing still works; install the layout to match it exactly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Don&apos;t tell me again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The background service isn&apos;t answering</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk&apos;s background service keeps sharing going when you&apos;re not logged in. It may still be starting. Try again in a moment, or restart this computer if it keeps happening.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Later</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewComputerWidget</name>
@@ -1071,7 +1147,7 @@ Additionally, check you are able to %1 the server config file: %2</source>
     </message>
     <message>
         <source>%1 is already running</source>
-        <translation>%1 уже запущен</translation>
+        <translation type="vanished">%1 уже запущен</translation>
     </message>
     <message>
         <source>Alt</source>
@@ -1617,6 +1693,109 @@ Enabling this setting will disable the server config GUI.</source>
     <message>
         <source>Encryption Disabled</source>
         <translation>Шифрование отключено</translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::AboutView</name>
+    <message>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1 &lt;span style=&apos;color:%2&apos;&gt;(%3)&lt;/span&gt; · %4</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updates are checked when you turn them on in Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished">Проверить обновления</translation>
+    </message>
+    <message>
+        <source>This computer&apos;s security code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers show it when this one asks to join. It only changes if you make a new key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Made by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What changed in each version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report a problem</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy diagnostics first, then paste them into the email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits &amp; license</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Based on Deskflow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>© 2024–2026 Deskflow Developers and earlier Synergy contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GNU GPL v2.0 with OpenSSL exception</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You can view and change the source code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open-source components</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show log folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>© 2026 Schomp Technologies LLC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checking…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t reach schomp.ai to check. Try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>✓ You&apos;re up to date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Version %1 is ready. Nothing installs until you say so.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

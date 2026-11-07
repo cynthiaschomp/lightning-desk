@@ -19,10 +19,11 @@ const auto kUrlHelp = QStringLiteral("%1#readme").arg(kUrlApp);
 const auto kUrlDownload = QStringLiteral("https://schomp.ai/lightning-desk/");
 const auto kUrlPlus = QStringLiteral("https://schomp.ai/lightning-desk/#plus");
 const auto kUrlWiki = QStringLiteral("%1#readme").arg(kUrlApp);
-// Lightning Desk: our own update feed arrives with the updater (roadmap Phase 4).
-// Until then update checks are off by default (Settings.h) and never reach deskflow.org.
-const auto kUrlUpdateCheck =
-    QStringLiteral("https://api.github.com/repos/cynthiaschomp/lightning-desk/releases/latest");
+// Lightning Desk: a plain-text "newest version" file on schomp.ai (downloads are email-gated, so
+// there are no public GitHub releases to ask). Checks are off by default (Settings.h).
+const auto kUrlUpdateCheck = QStringLiteral("https://schomp.ai/lightning-desk/version.txt");
+const auto kUrlReleaseNotes = QStringLiteral("https://schomp.ai/lightning-desk/#changes");
+const auto kUrlSupportMail = QStringLiteral("support@schomp.ai");
 
 #if defined(Q_OS_LINUX)
 const auto kUrlGnomeTrayFix = QStringLiteral("https://extensions.gnome.org/extension/615/appindicator-support/");

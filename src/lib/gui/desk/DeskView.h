@@ -24,6 +24,7 @@ namespace deskflow::gui {
 
 class ShortcutsView;
 class SettingsView;
+class AboutView;
 class NoticeCard;
 
 /**
@@ -57,7 +58,12 @@ public:
   {
     return m_settings;
   }
+  AboutView *about() const
+  {
+    return m_about;
+  }
   void showSettingsPage();
+  void showAboutPage();
   void showDeskPage();
   /// Show an inline notice at the top of the Desk page (replaces every dialog). The card is
   /// deleted when answered or when dismissNotice() is called; only one is shown at a time.
@@ -129,6 +135,8 @@ private:
   QWidget *m_deskPage = nullptr;
   ShortcutsView *m_shortcuts = nullptr;
   SettingsView *m_settings = nullptr;
+  AboutView *m_about = nullptr;
+  QPushButton *m_navHelp = nullptr;
   QPushButton *m_navSettings = nullptr;
   QPushButton *m_navDesk = nullptr;
   QPushButton *m_navShortcuts = nullptr;

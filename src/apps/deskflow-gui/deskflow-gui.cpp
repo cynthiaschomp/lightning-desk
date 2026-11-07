@@ -112,9 +112,9 @@ int main(int argc, char *argv[])
     QLocalSocket socket;
     socket.connectToServer(shmId, QLocalSocket::ReadOnly);
     if (!socket.waitForConnected()) {
-      // If we can't connect to the other instance tell the user its running.
-      // This should never happen but just incase we should show something
-      QMessageBox::information(nullptr, kAppName, QObject::tr("%1 is already running").arg(kAppName));
+      // Lightning Desk: nothing pops over anything. The running instance was asked to show itself; if it
+      // didn't answer, just log it instead of raising a box the person has to dismiss.
+      qWarning("%s is already running but did not answer", kAppName);
     }
     socket.disconnectFromServer();
     return s_exitDuplicate;

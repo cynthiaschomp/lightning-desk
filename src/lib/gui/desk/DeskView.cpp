@@ -7,6 +7,7 @@
 #include "desk/DeskView.h"
 
 #include "common/Settings.h"
+#include "desk/AboutView.h"
 #include "desk/BrandIcons.h"
 #include "desk/NoticeCard.h"
 #include "desk/SettingsView.h"
@@ -123,10 +124,12 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
                             .arg(kBg, kLine));
   m_shortcuts = new ShortcutsView(this);
   m_settings = new SettingsView(this);
+  m_about = new AboutView(this);
   m_pages = new QStackedWidget(this);
   m_pages->addWidget(scroll);
   m_pages->addWidget(m_shortcuts);
   m_pages->addWidget(m_settings);
+  m_pages->addWidget(m_about);
   outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
@@ -181,6 +184,8 @@ QWidget *DeskView::buildRail()
     m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), page == 0 ? kAccent : kDim)));
     m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), page == 1 ? kAccent : kDim)));
     m_navSettings->setIcon(QIcon(icon(Icon::Gear, 18, devicePixelRatioF(), page == 2 ? kAccent : kDim)));
+    if (m_navHelp)
+      m_navHelp->setIcon(QIcon(icon(Icon::Help, 18, devicePixelRatioF(), page == 3 ? kAccent : kDim)));
   };
   connect(m_navDesk, &QPushButton::clicked, this, [this, paint] {
     m_pages->setCurrentIndex(0);
@@ -199,12 +204,18 @@ QWidget *DeskView::buildRail()
 
   v->addStretch(1);
 
-  auto *help = new QPushButton(tr("Help"), rail);
-  help->setIcon(QIcon(icon(Icon::Help, 18, devicePixelRatioF(), kDim)));
-  help->setCursor(Qt::PointingHandCursor);
-  help->setStyleSheet(navStyle);
-  connect(help, &QPushButton::clicked, this, &DeskView::helpRequested);
-  v->addWidget(help);
+  m_navHelp = new QPushButton(tr("Help"), rail);
+  m_navHelp->setIcon(QIcon(icon(Icon::Help, 18, devicePixelRatioF(), kDim)));
+  m_navHelp->setCheckable(true);
+  m_navHelp->setAutoExclusive(true);
+  m_navHelp->setCursor(Qt::PointingHandCursor);
+  m_navHelp->setStyleSheet(navStyle);
+  connect(m_navHelp, &QPushButton::clicked, this, [this, paint] {
+    m_pages->setCurrentIndex(3);
+    paint(3);
+    Q_EMIT helpRequested();
+  });
+  v->addWidget(m_navHelp);
 
   auto *statusRow = new QHBoxLayout();
   statusRow->setContentsMargins(10, 6, 0, 0);
@@ -679,6 +690,11 @@ void DeskView::showDeskPage()
 void DeskView::showSettingsPage()
 {
   m_navSettings->click();
+}
+
+void DeskView::showAboutPage()
+{
+  m_navHelp->click();
 }
 
 NoticeCard *DeskView::notice()

@@ -34,7 +34,8 @@ class DeskflowApplication;
 class QStackedWidget;
 namespace deskflow::gui {
 class DeskView;
-}
+class NoticeCard;
+} // namespace deskflow::gui
 class LogDock;
 class StatusBar;
 
@@ -128,6 +129,7 @@ private:
   void refreshDeskView();
   void toggleClassicView(bool classic);
   void addComputerFromDesk(int cell = -1);
+  deskflow::gui::NoticeCard *deskNotice();
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);
   void handleMissingKeyboardLayouts(const QString &layouts);

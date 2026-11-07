@@ -95,6 +95,8 @@ add_library(${target} STATIC
   validators/ValidationError.h
   validators/IpAddressValidator.cpp
   validators/IpAddressValidator.h
+  desk/AboutView.cpp
+  desk/AboutView.h
   desk/BrandIcons.cpp
   desk/BrandIcons.h
   desk/DeskView.cpp
