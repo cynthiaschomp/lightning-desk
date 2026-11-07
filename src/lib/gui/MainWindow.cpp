@@ -753,8 +753,8 @@ void MainWindow::toggleClassicView(bool classic)
   setMinimumSize(960, 620);
   if (width() < 1080 || height() < 700)
     resize(1080, 720);
-  if (!Settings::value(Settings::Gui::LogExpanded).toBool())
-    m_logDock->hide();
+  // The log is a classic-view tool; on the Desk screen it only steals the grid's room.
+  m_logDock->hide();
 }
 
 void MainWindow::refreshDeskView()
