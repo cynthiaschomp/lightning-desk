@@ -10,6 +10,13 @@
             <numerusform></numerusform>
         </translation>
     </message>
+    <message numerus="yes">
+        <source>%1 tried to join, but your %2 plan links this computer and %n other(s). Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. Nothing else about Free changes.</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>StatusBar</name>

@@ -16,12 +16,14 @@
 class QLabel;
 class QPushButton;
 class QGridLayout;
+class QVBoxLayout;
 class QStackedWidget;
 class ServerConfig;
 
 namespace deskflow::gui {
 
 class ShortcutsView;
+class NoticeCard;
 
 /**
  * @brief The main window's "Your desk" screen: the computers on the desk arranged around the
@@ -51,6 +53,11 @@ public:
     return m_shortcuts;
   }
   void showDeskPage();
+  /// Show an inline notice at the top of the Desk page (replaces every dialog). The card is
+  /// deleted when answered or when dismissNotice() is called; only one is shown at a time.
+  NoticeCard *notice();
+  bool hasNotice() const;
+  void dismissNotice();
 
 Q_SIGNALS:
   void sharingToggled(bool on);
@@ -111,6 +118,8 @@ private:
   QGridLayout *m_grid = nullptr;
   QWidget *m_gridHost = nullptr;
   QStackedWidget *m_pages = nullptr;
+  QVBoxLayout *m_noticeHost = nullptr;
+  NoticeCard *m_notice = nullptr;
   QWidget *m_deskPage = nullptr;
   ShortcutsView *m_shortcuts = nullptr;
   QPushButton *m_navDesk = nullptr;

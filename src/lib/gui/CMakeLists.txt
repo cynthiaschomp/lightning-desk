@@ -97,10 +97,10 @@ add_library(${target} STATIC
   validators/IpAddressValidator.h
   desk/BrandIcons.cpp
   desk/BrandIcons.h
-  desk/DeskDialogs.cpp
-  desk/DeskDialogs.h
   desk/DeskView.cpp
   desk/DeskView.h
+  desk/NoticeCard.cpp
+  desk/NoticeCard.h
   desk/ShortcutsView.cpp
   desk/ShortcutsView.h
   wizard/SetupWizard.cpp

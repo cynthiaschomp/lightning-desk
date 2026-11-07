@@ -59,6 +59,42 @@ QWidget *keycaps(const QString &sequence, QWidget *parent)
   return w;
 }
 
+KeySequence combo(int key, Qt::KeyboardModifiers mods)
+{
+  KeySequence seq;
+  if (mods & Qt::ControlModifier)
+    seq.appendKey(Qt::Key_Control, Qt::ControlModifier);
+  if (mods & Qt::AltModifier)
+    seq.appendKey(Qt::Key_Alt, mods & (Qt::ControlModifier | Qt::AltModifier));
+  if (mods & Qt::ShiftModifier)
+    seq.appendKey(Qt::Key_Shift, mods & (Qt::ControlModifier | Qt::AltModifier | Qt::ShiftModifier));
+  seq.appendKey(key, mods);
+  return seq;
+}
+
+Hotkey makeHotkey(const KeySequence &seq, Action::Type type, const QString &computer = QString())
+{
+  Action action;
+  action.setType(static_cast<int>(type));
+  if (type == Action::Type::switchToComputer)
+    action.setSwitchComputerName(computer);
+  if (type == Action::Type::lockCursorToComputer)
+    action.setLockCursorMode(static_cast<int>(Action::LockCursorMode::toggle));
+  Hotkey hotkey;
+  hotkey.setKeySequence(seq);
+  hotkey.addAction(action);
+  return hotkey;
+}
+
+bool sameJob(const Hotkey &a, const Hotkey &b)
+{
+  if (a.actions().isEmpty() || b.actions().isEmpty())
+    return false;
+  const auto &x = a.actions().first();
+  const auto &y = b.actions().first();
+  return x.type() == y.type() && x.switchComputerName() == y.switchComputerName();
+}
+
 Icon iconFor(const Hotkey &hotkey)
 {
   if (hotkey.actions().isEmpty())
@@ -130,18 +166,47 @@ ShortcutsView::ShortcutsView(QWidget *parent) : QWidget(parent)
                          "font-size:12px;font-weight:700;}QPushButton:hover{background:#FFE14D;}"
   )
                          .arg(kBg, kAccent));
-  connect(add, &QPushButton::clicked, this, [this] {
-    NewShortcutDialog dialog(this, m_computers, m_mainName);
-    if (dialog.exec() == QDialog::Accepted)
-      Q_EMIT addRequested(dialog.hotkey());
-  });
+  m_addButton = add;
   hdr->addWidget(add, 0, Qt::AlignTop);
   col->addLayout(hdr);
+
+  // The "New shortcut" panel opens inline under the header; nothing pops over the page.
+  m_panelHost = new QWidget(this);
+  m_panelHost->setStyleSheet(QStringLiteral("background:transparent;"));
+  auto *panelLayout = new QVBoxLayout(m_panelHost);
+  panelLayout->setContentsMargins(0, 0, 0, 0);
+  m_panelHost->hide();
+  col->addWidget(m_panelHost);
+  connect(add, &QPushButton::clicked, this, [this, panelLayout] {
+    if (m_panelHost->isVisible()) {
+      m_panelHost->hide();
+      m_addButton->setText(tr("+ New shortcut"));
+      return;
+    }
+    while (auto *item = panelLayout->takeAt(0)) {
+      if (auto *w = item->widget())
+        w->deleteLater();
+      delete item;
+    }
+    auto *panel = new NewShortcutPanel(m_panelHost, m_computers, m_mainName);
+    panelLayout->addWidget(panel);
+    connect(panel, &NewShortcutPanel::done, this, [this](const Hotkey &hotkey) {
+      m_panelHost->hide();
+      m_addButton->setText(tr("+ New shortcut"));
+      Q_EMIT addRequested(hotkey);
+    });
+    connect(panel, &NewShortcutPanel::cancelled, this, [this] {
+      m_panelHost->hide();
+      m_addButton->setText(tr("+ New shortcut"));
+    });
+    m_panelHost->show();
+    m_addButton->setText(tr("Close"));
+  });
 
   m_listHost = new QWidget(this);
   m_listHost->setStyleSheet(QStringLiteral("background:transparent;"));
   m_list = new QVBoxLayout(m_listHost);
-  m_list->setContentsMargins(0, 0, 0, 0);
+  m_list->setContentsMargins(0, 0, 8, 0);
   m_list->setSpacing(0);
 
   auto *scroll = new QScrollArea(this);
@@ -186,18 +251,78 @@ void ShortcutsView::rebuild()
     }
     delete item;
   }
-  for (int i = 0; i < m_hotkeys.size(); ++i)
-    m_list->addWidget(makeRow(i, m_hotkeys[i], i == m_hotkeys.size() - 1));
+  auto sectionLabel = [this](const QString &t, int top) {
+    auto *l = text(t.toUpper(), kDim, 11, 700, m_listHost);
+    l->setContentsMargins(2, top, 0, 8);
+    return l;
+  };
+
+  if (!m_hotkeys.isEmpty()) {
+    m_list->addWidget(sectionLabel(tr("Your shortcuts"), 0));
+    for (int i = 0; i < m_hotkeys.size(); ++i)
+      m_list->addWidget(makeRow(i, m_hotkeys[i], i == 0, i == m_hotkeys.size() - 1, false));
+  }
+
+  const auto ideas = suggestions();
+  if (!ideas.isEmpty()) {
+    m_list->addWidget(sectionLabel(tr("Suggested \u00B7 press + to add"), m_hotkeys.isEmpty() ? 0 : 22));
+    for (int i = 0; i < ideas.size(); ++i)
+      m_list->addWidget(makeRow(i, ideas[i], i == 0, i == ideas.size() - 1, true));
+  }
   m_list->addStretch(1);
-  m_empty->setVisible(m_hotkeys.isEmpty());
+  m_empty->setVisible(m_hotkeys.isEmpty() && ideas.isEmpty());
 }
 
-QWidget *ShortcutsView::makeRow(int index, const Hotkey &hotkey, bool last)
+HotkeyList ShortcutsView::suggestions() const
+{
+  HotkeyList ideas;
+  const auto taken = [this](const KeySequence &seq) {
+    for (const auto &h : m_hotkeys)
+      if (h.keySequence().toString() == seq.toString())
+        return true;
+    return false;
+  };
+  const auto have = [this](const Hotkey &candidate) {
+    for (const auto &h : m_hotkeys)
+      if (sameJob(h, candidate))
+        return true;
+    return false;
+  };
+  const Qt::KeyboardModifiers mods = Qt::ControlModifier | Qt::AltModifier;
+
+  // Jump to each other computer: Ctrl+Alt+1, 2, 3...
+  int digit = 1;
+  for (const auto &name : m_computers) {
+    if (name == m_mainName || have(makeHotkey(KeySequence(), Action::Type::switchToComputer, name)))
+      continue;
+    while (digit <= 9 && taken(combo(Qt::Key_0 + digit, mods)))
+      ++digit;
+    if (digit > 9)
+      break;
+    ideas << makeHotkey(combo(Qt::Key_0 + digit, mods), Action::Type::switchToComputer, name);
+    ++digit;
+  }
+  // Back to the main computer: Ctrl+Alt+0
+  if (const auto h = makeHotkey(combo(Qt::Key_0, mods), Action::Type::switchToComputer, m_mainName);
+      !have(h) && !taken(h.keySequence()))
+    ideas << h;
+  // Stay on this computer: Scroll Lock
+  if (const auto h = makeHotkey(combo(Qt::Key_ScrollLock, Qt::NoModifier), Action::Type::lockCursorToComputer);
+      !have(h) && !taken(h.keySequence()))
+    ideas << h;
+  // Next computer: Ctrl+Alt+Right
+  if (const auto h = makeHotkey(combo(Qt::Key_Right, mods), Action::Type::switchToNextComputer);
+      !have(h) && !taken(h.keySequence()))
+    ideas << h;
+  return ideas;
+}
+
+QWidget *ShortcutsView::makeRow(int index, const Hotkey &hotkey, bool first, bool last, bool suggestion)
 {
   auto *row = new QFrame(m_listHost);
   row->setObjectName(QStringLiteral("scRow"));
-  const QString radius = m_hotkeys.size() == 1 ? QStringLiteral("border-radius:12px;")
-                         : index == 0 ? QStringLiteral("border-top-left-radius:12px;border-top-right-radius:12px;")
+  const QString radius = (first && last) ? QStringLiteral("border-radius:12px;")
+                         : first         ? QStringLiteral("border-top-left-radius:12px;border-top-right-radius:12px;")
                          : last ? QStringLiteral("border-bottom-left-radius:12px;border-bottom-right-radius:12px;")
                                 : QString();
   row->setStyleSheet(QStringLiteral("QFrame#scRow{background:%1;border:1px solid %2;%3%4}QLabel{border:none;}")
@@ -219,6 +344,24 @@ QWidget *ShortcutsView::makeRow(int index, const Hotkey &hotkey, bool last)
 
   h->addWidget(keycaps(hotkey.keySequence().toString(), row));
 
+  if (suggestion) {
+    ic->setPixmap(tile(iconFor(hotkey), 36, devicePixelRatioF(), kCard2, kDim));
+    auto *add = new QToolButton(row);
+    add->setText(QStringLiteral("+"));
+    add->setToolTip(tr("Add this shortcut"));
+    add->setCursor(Qt::PointingHandCursor);
+    add->setFixedSize(30, 30);
+    add->setStyleSheet(QStringLiteral(
+                           "QToolButton{color:%1;background:%2;border:none;border-radius:15px;font-size:18px;"
+                           "font-weight:700;padding-bottom:3px;}QToolButton:hover{background:#FFE14D;}"
+    )
+                           .arg(kBg, kAccent));
+    connect(add, &QToolButton::clicked, this, [this, hotkey] { Q_EMIT addRequested(hotkey); });
+    h->addSpacing(6);
+    h->addWidget(add);
+    return row;
+  }
+
   auto *remove = new QToolButton(row);
   remove->setText(QStringLiteral("✕"));
   remove->setToolTip(tr("Remove this shortcut"));
@@ -237,15 +380,14 @@ QWidget *ShortcutsView::makeRow(int index, const Hotkey &hotkey, bool last)
 
 // ----------------------------------------------------------------------------
 
-NewShortcutDialog::NewShortcutDialog(QWidget *parent, const QStringList &computers, const QString &mainName)
-    : QDialog(parent)
+NewShortcutPanel::NewShortcutPanel(QWidget *parent, const QStringList &computers, const QString &mainName)
+    : QFrame(parent)
 {
-  setModal(true);
-  setWindowTitle(QStringLiteral("Lightning Desk"));
-  setFixedWidth(520);
+  setObjectName(QStringLiteral("newShortcut"));
   setStyleSheet(
       QStringLiteral(
-          "QDialog{background:#111112;}QLabel{color:#FFFFFF;background:transparent;}"
+          "QFrame#newShortcut{background:#111112;border:1px solid rgba(255,214,10,0.4);border-radius:14px;}"
+          "QLabel{color:#FFFFFF;background:transparent;border:none;}"
           "QRadioButton{color:#FFFFFF;font-size:14px;spacing:10px;padding:8px 4px;}"
           "QRadioButton::indicator{width:18px;height:18px;border-radius:9px;border:2px solid "
           "%1;background:transparent;}"
@@ -265,10 +407,10 @@ NewShortcutDialog::NewShortcutDialog(QWidget *parent, const QStringList &compute
   );
 
   auto *v = new QVBoxLayout(this);
-  v->setContentsMargins(26, 26, 26, 22);
-  v->setSpacing(14);
+  v->setContentsMargins(22, 20, 22, 18);
+  v->setSpacing(12);
 
-  v->addWidget(text(tr("New shortcut"), kText, 20, 700, this));
+  v->addWidget(text(tr("New shortcut"), kText, 17, 700, this));
   v->addWidget(text(tr("1. What should it do?"), kDim, 12, 700, this));
 
   auto *group = new QButtonGroup(this);
@@ -323,7 +465,7 @@ NewShortcutDialog::NewShortcutDialog(QWidget *parent, const QStringList &compute
   v->addLayout(buttons);
 
   connect(keys, &KeySequenceWidget::keySequenceChanged, this, [keys, save] { save->setEnabled(keys->valid()); });
-  connect(cancel, &QPushButton::clicked, this, &QDialog::reject);
+  connect(cancel, &QPushButton::clicked, this, &NewShortcutPanel::cancelled);
   connect(save, &QPushButton::clicked, this, [this, group, pick, keys, mainName] {
     Action action;
     switch (group->checkedId()) {
@@ -343,10 +485,10 @@ NewShortcutDialog::NewShortcutDialog(QWidget *parent, const QStringList &compute
       action.setType(static_cast<int>(Action::Type::switchToNextComputer));
       break;
     }
-    m_hotkey = Hotkey();
-    m_hotkey.setKeySequence(keys->keySequence());
-    m_hotkey.addAction(action);
-    accept();
+    Hotkey hotkey;
+    hotkey.setKeySequence(keys->keySequence());
+    hotkey.addAction(action);
+    Q_EMIT done(hotkey);
   });
 }
 

@@ -8,12 +8,13 @@
 
 #include "common/Hotkey.h"
 
-#include <QDialog>
+#include <QFrame>
 #include <QStringList>
 #include <QWidget>
 
 class QVBoxLayout;
 class QLabel;
+class QPushButton;
 
 namespace deskflow::gui {
 
@@ -39,7 +40,10 @@ Q_SIGNALS:
 
 private:
   void rebuild();
-  QWidget *makeRow(int index, const Hotkey &hotkey, bool last);
+  QWidget *makeRow(int index, const Hotkey &hotkey, bool first, bool last, bool suggestion);
+  HotkeyList suggestions() const;
+  QLabel *m_yoursLabel = nullptr;
+  QLabel *m_suggestedLabel = nullptr;
 
   HotkeyList m_hotkeys;
   QStringList m_computers;
@@ -47,21 +51,20 @@ private:
   QVBoxLayout *m_list = nullptr;
   QWidget *m_listHost = nullptr;
   QLabel *m_empty = nullptr;
+  QWidget *m_panelHost = nullptr;
+  QPushButton *m_addButton = nullptr;
 };
 
-/// "New shortcut": pick what it does, then press the keys.
-class NewShortcutDialog : public QDialog
+/// "New shortcut": pick what it does, then press the keys. An inline panel, never a window.
+class NewShortcutPanel : public QFrame
 {
   Q_OBJECT
 public:
-  NewShortcutDialog(QWidget *parent, const QStringList &computers, const QString &mainName);
-  Hotkey hotkey() const
-  {
-    return m_hotkey;
-  }
+  NewShortcutPanel(QWidget *parent, const QStringList &computers, const QString &mainName);
 
-private:
-  Hotkey m_hotkey;
+Q_SIGNALS:
+  void done(const Hotkey &hotkey);
+  void cancelled();
 };
 
 } // namespace deskflow::gui

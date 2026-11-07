@@ -8,6 +8,7 @@
 
 #include "common/Settings.h"
 #include "desk/BrandIcons.h"
+#include "desk/NoticeCard.h"
 #include "desk/ShortcutsView.h"
 #include "gui/config/ServerConfig.h"
 
@@ -17,7 +18,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
-#include <QMessageBox>
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QResizeEvent>
@@ -98,6 +98,9 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   col->setContentsMargins(24, 22, 24, 22);
   col->setSpacing(18);
   col->addWidget(buildHeader());
+  m_noticeHost = new QVBoxLayout();
+  m_noticeHost->setContentsMargins(0, 0, 0, 0);
+  col->addLayout(m_noticeHost);
   col->addWidget(buildGrid(), 1, Qt::AlignHCenter | Qt::AlignTop);
   col->addStretch(1);
   col->addWidget(buildConveniences());
@@ -514,16 +517,16 @@ void DeskView::showCardMenu(const QString &name, const QPoint &globalPos)
   menu.addSeparator();
   auto *forget = menu.addAction(tr("Forget %1").arg(name));
   connect(forget, &QAction::triggered, this, [this, name] {
-    QMessageBox box(this);
-    box.setIcon(QMessageBox::NoIcon);
-    box.setWindowTitle(QStringLiteral("Lightning Desk"));
-    box.setText(tr("Forget %1?").arg(name));
-    box.setInformativeText(tr("It comes off your desk and will have to be allowed again to rejoin."));
-    auto *yes = box.addButton(tr("Forget"), QMessageBox::DestructiveRole);
-    box.addButton(tr("Keep it"), QMessageBox::RejectRole);
-    box.exec();
-    if (box.clickedButton() == yes)
-      Q_EMIT forgetRequested(name);
+    auto *card = notice();
+    card->setIcon(Icon::Laptop, NoticeCard::Tone::Danger)
+        ->setTitle(tr("Forget %1?").arg(name))
+        ->setBody(tr("It comes off your desk and will have to be allowed again to rejoin."))
+        ->setButtons({tr("Keep it"), tr("Forget")}, true);
+    connect(card, &NoticeCard::answered, this, [this, name](int button, int) {
+      dismissNotice();
+      if (button == 1)
+        Q_EMIT forgetRequested(name);
+    });
   });
   menu.exec(globalPos);
 }
@@ -663,6 +666,30 @@ void DeskView::setDesk(const QString &mainName, const ServerConfig &config)
 void DeskView::showDeskPage()
 {
   m_navDesk->click();
+}
+
+NoticeCard *DeskView::notice()
+{
+  dismissNotice();
+  m_notice = new NoticeCard(m_gridHost->parentWidget());
+  m_noticeHost->addWidget(m_notice);
+  showDeskPage();
+  return m_notice;
+}
+
+bool DeskView::hasNotice() const
+{
+  return m_notice != nullptr;
+}
+
+void DeskView::dismissNotice()
+{
+  if (!m_notice)
+    return;
+  m_noticeHost->removeWidget(m_notice);
+  m_notice->hide();
+  m_notice->deleteLater();
+  m_notice = nullptr;
 }
 
 void DeskView::setLinkedTo(const QString &thisName, const QString &mainName)

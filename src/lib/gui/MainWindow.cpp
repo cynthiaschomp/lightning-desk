@@ -27,8 +27,8 @@
 #include "gui/Messages.h"
 #include "gui/TlsUtility.h"
 #include "gui/core/CoreProcess.h"
-#include "gui/desk/DeskDialogs.h"
 #include "gui/desk/DeskView.h"
+#include "gui/desk/NoticeCard.h"
 #include "gui/desk/ShortcutsView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
@@ -954,6 +954,25 @@ void MainWindow::handleClientLimitReached(const QString &clientName)
 
   const auto &license = deskflow::License::current(true);
   const auto allowed = license.maxExtraComputers();
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Room for one more?"))
+        ->setBody(tr("%1 tried to join, but your %2 plan links this computer and %n other(s). "
+                     "Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. "
+                     "Nothing else about Free changes.",
+                     "", allowed)
+                      .arg(clientName, license.isLicensed() ? license.tier() : tr("Free")))
+        ->setButtons({tr("Not now"), tr("See Plus")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+    });
+    showAndActivate();
+    return;
+  }
   QMessageBox box(this);
   box.setIcon(QMessageBox::Information);
   box.setWindowTitle(tr("Room for one more?"));
@@ -992,25 +1011,41 @@ void MainWindow::handleUnrecognisedClient(const QString &clientName)
   showAndActivate();
 
   if (m_actionClassicView && !m_actionClassicView->isChecked()) {
-    // Desk screen: ask where the new computer sits and place it straight away.
+    // Desk screen: ask where the new computer sits, inline, and place it straight away.
+    using deskflow::gui::NoticeCard;
     QList<int> taken;
     const auto &list = std::as_const(m_serverConfig).computers();
     for (int i = 0; i < list.size(); ++i)
       if (!list[i].isNull())
         taken << i;
-    deskflow::gui::PlaceDialog dialog(
-        this, clientName, Settings::value(Settings::Core::ComputerName).toString(), taken
-    );
-    if (dialog.exec() == QDialog::Accepted && dialog.cell() >= 0) {
-      m_serverConfig.placeClient(clientName, dialog.cell());
-      m_serverConfig.commit();
-      refreshDeskView();
-      if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
-        m_coreProcess.restart();
-    } else {
-      m_ignoredClients.insert(clientName);
-    }
-    m_newClientPromptShowing = false;
+    const auto mainName = Settings::value(Settings::Core::ComputerName).toString();
+    // 5 x 3 grid, main computer in the centre (index 7).
+    const QList<NoticeCard::Choice> choices{
+        {tr("Above"), 2, !taken.contains(2)},    {tr("Left"), 6, !taken.contains(6)},
+        {tr("Right"), 8, !taken.contains(8)},    {tr("Below"), 12, !taken.contains(12)},
+        {tr("Far left"), 5, !taken.contains(5)}, {tr("Far right"), 9, !taken.contains(9)}
+    };
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Accent)
+        ->setTitle(tr("%1 wants to join your desk").arg(clientName))
+        ->setBody(tr("Pick the edge of %1's screen it sits next to. Move the mouse off that edge and it appears there. "
+                     "You can move it later from its card.")
+                      .arg(mainName))
+        ->setChoices(choices)
+        ->setButtons({tr("Not now"), tr("Add %1").arg(clientName)});
+    connect(card, &NoticeCard::answered, this, [this, clientName](int button, int cell) {
+      m_deskView->dismissNotice();
+      m_newClientPromptShowing = false;
+      if (button == 1 && cell >= 0) {
+        m_serverConfig.placeClient(clientName, cell);
+        m_serverConfig.commit();
+        refreshDeskView();
+        if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+          m_coreProcess.restart();
+      } else {
+        m_ignoredClients.insert(clientName);
+      }
+    });
     return;
   }
 
@@ -1097,24 +1132,10 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
     m_checkedClients.append(sha256Text);
   }
 
-  bool accepted = false;
-  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
-    using deskflow::gui::TrustDialog;
-    // The server learns the client's name only after the TLS handshake, so on this side the
-    // dialog shows the security code without a name.
-    const auto peerName = isClient ? Settings::value(Settings::Client::RemoteHost).toString() : QString();
-    TrustDialog dialog(
-        this, isClient ? TrustDialog::Who::MainComputer : TrustDialog::Who::NewComputer, peerName, sha256Text
-    );
-    showAndActivate();
-    accepted = dialog.exec() == QDialog::Accepted;
-  } else {
-    auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
-    FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
-    accepted = fingerprintDialog.exec() == QDialog::Accepted;
-  }
-
-  if (accepted) {
+  // Trusting a peer, shared by the inline notice and the classic dialog.
+  const auto trust = [this, sha256, sha256Text, isClient]() {
+    FingerprintDatabase db;
+    db.read(trustedFingerprintDatabase());
     db.addTrusted(sha256);
     if (!db.write(trustedFingerprintDatabase())) {
       qCritical().noquote() << "unable to write fingerprint to db:" << trustedFingerprintDatabase();
@@ -1127,7 +1148,44 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
     } else {
       m_checkedClients.removeAll(sha256Text);
     }
+  };
+
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    using deskflow::gui::NoticeCard;
+    // The server learns the client's name only after the TLS handshake, so on this side the
+    // notice shows the security code without a name.
+    const auto peer = isClient ? Settings::value(Settings::Client::RemoteHost).toString() : QString();
+    const auto shown = peer.isEmpty() ? tr("this computer") : peer;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Accent)
+        ->setTitle(isClient ? tr("Link to %1?").arg(shown) : tr("A new computer wants to join"))
+        ->setBody(
+            isClient ? tr("Your mouse and keyboard will reach this computer from %1. If that's not your main "
+                          "computer, say no.")
+                           .arg(shown)
+                     : tr("If this is one of your computers, allow it and it joins your desk. If you weren't "
+                          "expecting anything, say no — nothing connects until you do.")
+        )
+        ->setCode(sha256Text)
+        ->setFootnote(tr("This is %1's security code. It never changes unless %1 makes a new key, so you'll only "
+                         "be asked once.")
+                          .arg(shown))
+        ->setButtons(
+            {tr("Not now"), isClient ? tr("Yes, link") : (peer.isEmpty() ? tr("Allow it") : tr("Allow %1").arg(peer))}
+        );
+    connect(card, &NoticeCard::answered, this, [this, trust](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        trust();
+    });
+    showAndActivate();
+    return;
   }
+
+  auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
+  FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
+  if (fingerprintDialog.exec() == QDialog::Accepted)
+    trust();
 }
 
 bool MainWindow::maybeHideToTray()
