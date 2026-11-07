@@ -865,6 +865,59 @@ Inoltre, verifica di poter %1 il file di configurazione del server: %2</translat
         <source>Allow %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Make a new security key?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Every linked computer will ask you to allow this one again the next time it connects.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep the current key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Make a new key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>Until %1 · this computer + up to %n more</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source>This computer + up to %n more</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Trial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>This computer + %n more · Plus links up to five</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
 </context>
 <context>
     <name>NewComputerWidget</name>
@@ -1816,6 +1869,229 @@ L&apos;abilitazione di questa impostazione disabiliterà l&apos;interfaccia graf
     </message>
     <message>
         <source>Add shortcut</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>deskflow::gui::SettingsView</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lightning Desk Free</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YOUR PLAN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep sharing when Lightning Desk opens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your desk is live as soon as the app starts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Closing the window keeps it running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It stays in the menu bar / tray; sharing carries on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start hidden in the tray</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open the window from the tray icon when you need it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tell me when an update is ready</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nothing installs without you</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation type="unfinished">Lingua</translation>
+    </message>
+    <message>
+        <source>Dragging files between computers isn&apos;t ready yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sharing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy and paste across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text, images and files on the clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag files across computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Coming soon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instantly</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a short pause (¼ s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a pause (½ s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After a long pause (1 s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switch when the mouse touches an edge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A short pause avoids accidental switches</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Double-tap the edge to switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stops you drifting onto the wrong screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Let Scroll Lock keep the mouse on one computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press it again to release</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prevent this computer from sleeping while linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trusted computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allowed to connect to this desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Privacy &amp; security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connections are encrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always on. Only computers you&apos;ve allowed can connect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New security key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other computers will ask you to allow them again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced  ›</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open log folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset…</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Everything back to defaults, including linked computers?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset everything</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation type="unfinished">Porta</translation>
+    </message>
+    <message>
+        <source>Other computers connect to this number. Change it only if something else is using it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which of this computer&apos;s addresses to listen on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>For a bug report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset Lightning Desk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced  ⌄</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any address (recommended)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

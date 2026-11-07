@@ -9,6 +9,7 @@
 #include "common/Settings.h"
 #include "desk/BrandIcons.h"
 #include "desk/NoticeCard.h"
+#include "desk/SettingsView.h"
 #include "desk/ShortcutsView.h"
 #include "gui/config/ServerConfig.h"
 
@@ -121,9 +122,11 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   )
                             .arg(kBg, kLine));
   m_shortcuts = new ShortcutsView(this);
+  m_settings = new SettingsView(this);
   m_pages = new QStackedWidget(this);
   m_pages->addWidget(scroll);
   m_pages->addWidget(m_shortcuts);
+  m_pages->addWidget(m_settings);
   outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
@@ -173,21 +176,26 @@ QWidget *DeskView::buildRail()
   };
   m_navDesk = makeNav(Icon::Monitor, tr("Desk"), true);
   m_navShortcuts = makeNav(Icon::Keyboard, tr("Shortcuts"), false);
-  auto *settings = makeNav(Icon::Gear, tr("Settings"), false);
-  settings->setAutoExclusive(false); // Settings opens a dialog; it never stays "selected"
-  settings->setCheckable(false);
-  connect(m_navDesk, &QPushButton::clicked, this, [this] {
+  m_navSettings = makeNav(Icon::Gear, tr("Settings"), false);
+  const auto paint = [this](int page) {
+    m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), page == 0 ? kAccent : kDim)));
+    m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), page == 1 ? kAccent : kDim)));
+    m_navSettings->setIcon(QIcon(icon(Icon::Gear, 18, devicePixelRatioF(), page == 2 ? kAccent : kDim)));
+  };
+  connect(m_navDesk, &QPushButton::clicked, this, [this, paint] {
     m_pages->setCurrentIndex(0);
-    m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), kAccent)));
-    m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), kDim)));
+    paint(0);
   });
-  connect(m_navShortcuts, &QPushButton::clicked, this, [this] {
+  connect(m_navShortcuts, &QPushButton::clicked, this, [this, paint] {
     m_pages->setCurrentIndex(1);
-    m_navDesk->setIcon(QIcon(icon(Icon::Monitor, 18, devicePixelRatioF(), kDim)));
-    m_navShortcuts->setIcon(QIcon(icon(Icon::Keyboard, 18, devicePixelRatioF(), kAccent)));
+    paint(1);
     Q_EMIT shortcutsRequested();
   });
-  connect(settings, &QPushButton::clicked, this, &DeskView::settingsRequested);
+  connect(m_navSettings, &QPushButton::clicked, this, [this, paint] {
+    m_pages->setCurrentIndex(2);
+    paint(2);
+    Q_EMIT settingsRequested();
+  });
 
   v->addStretch(1);
 
@@ -666,6 +674,11 @@ void DeskView::setDesk(const QString &mainName, const ServerConfig &config)
 void DeskView::showDeskPage()
 {
   m_navDesk->click();
+}
+
+void DeskView::showSettingsPage()
+{
+  m_navSettings->click();
 }
 
 NoticeCard *DeskView::notice()

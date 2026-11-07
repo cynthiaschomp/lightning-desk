@@ -29,6 +29,7 @@
 #include "gui/core/CoreProcess.h"
 #include "gui/desk/DeskView.h"
 #include "gui/desk/NoticeCard.h"
+#include "gui/desk/SettingsView.h"
 #include "gui/desk/ShortcutsView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
@@ -722,7 +723,57 @@ void MainWindow::setupDeskView()
     if (m_coreProcess.isStarted())
       m_coreProcess.restart(); // drops the live connection; it has to be allowed again
   });
-  connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::openSettings);
+  connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::refreshDeskView);
+  auto *settingsPage = m_deskView->settings();
+  using deskflow::gui::SettingsView;
+  connect(settingsPage, &SettingsView::coreSettingChanged, this, [this] {
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart();
+  });
+  connect(settingsPage, &SettingsView::serverSettingChanged, this, [this] {
+    m_serverConfig.commit();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(settingsPage, &SettingsView::openLogsRequested, this, [] {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(Settings::settingsPath()));
+  });
+  connect(settingsPage, &SettingsView::planClicked, this, [] {
+    QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+  });
+  connect(settingsPage, &SettingsView::newKeyRequested, this, [this] {
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Lock, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Make a new security key?"))
+        ->setBody(tr("Every linked computer will ask you to allow this one again the next time it connects."))
+        ->setButtons({tr("Keep the current key"), tr("Make a new key")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button != 1)
+        return;
+      const bool wasRunning = m_coreProcess.isStarted();
+      if (wasRunning)
+        stopCore();
+      TlsUtility::generateCertificate();
+      m_fingerprint = {QCryptographicHash::Sha256, TlsUtility::certFingerprint()};
+      updateFingerprintButton();
+      if (wasRunning)
+        startCore();
+      refreshDeskView();
+    });
+  });
+  connect(settingsPage, &SettingsView::resetRequested, this, [this] {
+    const bool wasRunning = m_coreProcess.isStarted();
+    if (wasRunning)
+      stopCore();
+    Settings::restoreDefaultSettings();
+    Settings::setValue(Settings::Gui::WizardCompleted, true);
+    m_serverConfig.reload();
+    m_serverConfig.commit();
+    refreshDeskView();
+    m_deskView->showDeskPage();
+  });
   connect(m_deskView, &DeskView::shortcutsRequested, this, &MainWindow::refreshDeskView);
   connect(m_deskView->shortcuts(), &deskflow::gui::ShortcutsView::addRequested, this, [this](const Hotkey &hotkey) {
     m_serverConfig.addHotkey(hotkey);
@@ -798,6 +849,26 @@ void MainWindow::refreshDeskView()
     if (!computer.isNull() && computer.name() != thisName)
       names << computer.name();
   m_deskView->shortcuts()->setShortcuts(std::as_const(m_serverConfig).hotkeys(), names, thisName);
+
+  // Settings page: plan row + trusted computers
+  const auto &license = deskflow::License::current(true);
+  const int extras = license.maxExtraComputers();
+  if (license.isLicensed()) {
+    const auto tier = license.tier();
+    const auto exp = license.expires();
+    m_deskView->settings()->setPlan(
+        tr("Lightning Desk %1").arg(tier.left(1).toUpper() + tier.mid(1)),
+        exp.isValid() ? tr("Until %1 · this computer + up to %n more", "", extras).arg(exp.date().toString(Qt::ISODate))
+                      : tr("This computer + up to %n more", "", extras),
+        tier.compare(QStringLiteral("trial"), Qt::CaseInsensitive) == 0 ? tr("Trial") : tr("Active")
+    );
+  } else {
+    m_deskView->settings()->setPlan(
+        tr("Lightning Desk Free"), tr("This computer + %n more · Plus links up to five", "", extras), QString()
+    );
+  }
+  m_deskView->settings()->setTrusted(trusted, names.mid(1));
+  m_deskView->settings()->reload();
 }
 
 void MainWindow::addComputerFromDesk(int cell)
