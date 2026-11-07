@@ -10,6 +10,7 @@
 #include "desk/AboutView.h"
 #include "desk/BrandIcons.h"
 #include "desk/ChecksView.h"
+#include "desk/ComputerView.h"
 #include "desk/NoticeCard.h"
 #include "desk/PlanView.h"
 #include "desk/SettingsView.h"
@@ -21,7 +22,6 @@
 #include <QGridLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QMenu>
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QResizeEvent>
@@ -129,6 +129,7 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   m_about = new AboutView(this);
   m_plan = new PlanView(this);
   m_checks = new ChecksView(this);
+  m_computer = new ComputerView(this);
   m_pages = new QStackedWidget(this);
   m_pages->addWidget(scroll);
   m_pages->addWidget(m_shortcuts);
@@ -136,8 +137,23 @@ DeskView::DeskView(QWidget *parent) : QWidget(parent)
   m_pages->addWidget(m_about);
   m_pages->addWidget(m_plan);
   m_pages->addWidget(m_checks);
+  m_pages->addWidget(m_computer);
   connect(m_plan, &PlanView::backRequested, this, &DeskView::showSettingsPage);
   connect(m_checks, &ChecksView::backRequested, this, &DeskView::showAboutPage);
+  connect(m_computer, &ComputerView::backRequested, this, &DeskView::showDeskPage);
+  connect(m_computer, &ComputerView::moveRequested, this, &DeskView::moveRequested);
+  connect(m_computer, &ComputerView::forgetRequested, this, [this](const QString &name) {
+    auto *card = notice();
+    card->setIcon(Icon::Laptop, NoticeCard::Tone::Danger)
+        ->setTitle(tr("Forget %1?").arg(name))
+        ->setBody(tr("It comes off your desk and will have to be allowed again to rejoin."))
+        ->setButtons({tr("Keep it"), tr("Forget")}, true);
+    connect(card, &NoticeCard::answered, this, [this, name](int button, int) {
+      dismissNotice();
+      if (button == 1)
+        Q_EMIT forgetRequested(name);
+    });
+  });
   outer->addWidget(m_pages, 1);
 
   setConnectionState(ConnectionState::Disconnected);
@@ -423,9 +439,7 @@ void DeskView::fillCard(Card *card, const QString &name, const QString &subtitle
   card->sub->setText(subtitle);
   m_cardNames.insert(card->frame, name);
   card->menu->setVisible(!isMain && m_serverMode);
-  connect(card->menu, &QToolButton::clicked, this, [this, name, btn = card->menu] {
-    showCardMenu(name, btn->mapToGlobal(QPoint(0, btn->height())));
-  });
+  connect(card->menu, &QToolButton::clicked, this, [this, name] { Q_EMIT computerClicked(name); });
 
   if (isMain) {
     card->frame->setStyleSheet(
@@ -519,43 +533,6 @@ QString DeskView::placeLabel(int cell) const
   if (!v.isEmpty())
     return tr("%1 %2").arg(v, m_mainName);
   return tr("%1 of %2").arg(h, m_mainName);
-}
-
-void DeskView::showCardMenu(const QString &name, const QPoint &globalPos)
-{
-  QMenu menu(this);
-  menu.setStyleSheet(
-      QStringLiteral(
-          "QMenu{background:%1;color:#FFFFFF;border:1px solid %2;border-radius:10px;padding:6px;}"
-          "QMenu::item{padding:7px 14px;border-radius:6px;font-size:13px;}"
-          "QMenu::item:selected{background:%3;}QMenu::separator{height:1px;background:%2;margin:4px 8px;}"
-      )
-          .arg(kCard, kLine, kCard2)
-  );
-  auto *moveTo = menu.addMenu(tr("Move to"));
-  moveTo->setStyleSheet(menu.styleSheet());
-  for (int cell = 0; cell < m_columns * m_rows; ++cell) {
-    if (occupied(cell) || !nextToOccupied(cell))
-      continue;
-    auto *a = moveTo->addAction(placeLabel(cell));
-    connect(a, &QAction::triggered, this, [this, name, cell] { Q_EMIT moveRequested(name, cell); });
-  }
-  moveTo->setEnabled(!moveTo->actions().isEmpty());
-  menu.addSeparator();
-  auto *forget = menu.addAction(tr("Forget %1").arg(name));
-  connect(forget, &QAction::triggered, this, [this, name] {
-    auto *card = notice();
-    card->setIcon(Icon::Laptop, NoticeCard::Tone::Danger)
-        ->setTitle(tr("Forget %1?").arg(name))
-        ->setBody(tr("It comes off your desk and will have to be allowed again to rejoin."))
-        ->setButtons({tr("Keep it"), tr("Forget")}, true);
-    connect(card, &NoticeCard::answered, this, [this, name](int button, int) {
-      dismissNotice();
-      if (button == 1)
-        Q_EMIT forgetRequested(name);
-    });
-  });
-  menu.exec(globalPos);
 }
 
 void DeskView::relayout()
@@ -719,6 +696,29 @@ void DeskView::showChecksPage()
   m_pages->setCurrentIndex(5);
 }
 
+void DeskView::showComputerPage(const Computer &computer, const QString &status, bool linked)
+{
+  // A computer's page lives under Desk in the rail.
+  m_navDesk->setChecked(true);
+  int current = -1;
+  QList<QPair<QString, int>> spots;
+  for (int cell = 0; cell < m_columns * m_rows; ++cell) {
+    if (m_cells.value(cell) == computer.name()) {
+      current = cell;
+      spots << qMakePair(placeLabel(cell), cell);
+    } else if (!occupied(cell) && nextToOccupied(cell)) {
+      spots << qMakePair(placeLabel(cell), cell);
+    }
+  }
+  m_computer->showComputer(computer, spots, current, status, linked);
+  m_pages->setCurrentIndex(6);
+}
+
+bool DeskView::onComputerPage() const
+{
+  return m_pages->currentIndex() == 6;
+}
+
 NoticeCard *DeskView::notice()
 {
   dismissNotice();
@@ -838,10 +838,8 @@ bool DeskView::eventFilter(QObject *watched, QEvent *event)
   if (event->type() == QEvent::MouseButtonRelease) {
     const auto name = m_cardNames.value(watched);
     if (!name.isEmpty() && static_cast<QMouseEvent *>(event)->button() == Qt::LeftButton) {
-      Q_EMIT computerClicked(name);
-      // Until the Computer sheet lands, a click on a card offers the same choices as its "⋯".
       if (m_serverMode && name != m_mainName)
-        showCardMenu(name, static_cast<QMouseEvent *>(event)->globalPosition().toPoint());
+        Q_EMIT computerClicked(name);
       return true;
     }
   }

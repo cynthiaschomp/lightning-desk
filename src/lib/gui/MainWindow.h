@@ -131,6 +131,7 @@ private:
   void refreshChecks();
   void toggleClassicView(bool classic);
   void addComputerFromDesk(int cell = -1);
+  void openComputerPage(const QString &name);
   deskflow::gui::NoticeCard *deskNotice();
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);

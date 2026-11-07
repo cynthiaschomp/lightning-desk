@@ -19,6 +19,7 @@ class QGridLayout;
 class QVBoxLayout;
 class QStackedWidget;
 class ServerConfig;
+class Computer;
 
 namespace deskflow::gui {
 
@@ -27,6 +28,7 @@ class SettingsView;
 class AboutView;
 class PlanView;
 class ChecksView;
+class ComputerView;
 class NoticeCard;
 
 /**
@@ -72,10 +74,17 @@ public:
   {
     return m_checks;
   }
+  ComputerView *computer() const
+  {
+    return m_computer;
+  }
   void showSettingsPage();
   void showAboutPage();
   void showPlanPage();
   void showChecksPage();
+  /// Open one computer's page (replaces the old Computer sheet and the ⋯ menu).
+  void showComputerPage(const Computer &computer, const QString &status, bool linked);
+  bool onComputerPage() const;
   void showDeskPage();
   /// Show an inline notice at the top of the Desk page (replaces every dialog). The card is
   /// deleted when answered or when dismissNotice() is called; only one is shown at a time.
@@ -115,7 +124,6 @@ private:
   bool occupied(int cell) const;
   bool nextToOccupied(int cell) const;
   int firstFreeNearMain() const;
-  void showCardMenu(const QString &name, const QPoint &globalPos);
 
   // state
   bool m_serverMode = true;
@@ -150,6 +158,7 @@ private:
   AboutView *m_about = nullptr;
   PlanView *m_plan = nullptr;
   ChecksView *m_checks = nullptr;
+  ComputerView *m_computer = nullptr;
   QPushButton *m_navHelp = nullptr;
   QPushButton *m_navSettings = nullptr;
   QPushButton *m_navDesk = nullptr;

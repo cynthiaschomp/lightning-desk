@@ -31,6 +31,7 @@
 #include "gui/desk/AboutView.h"
 #include "gui/desk/BrandIcons.h"
 #include "gui/desk/ChecksView.h"
+#include "gui/desk/ComputerView.h"
 #include "gui/desk/DeskView.h"
 #include "gui/desk/NoticeCard.h"
 #include "gui/desk/PlanView.h"
@@ -762,7 +763,20 @@ void MainWindow::setupDeskView()
     refreshDeskView();
     if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
       m_coreProcess.restart();
+    if (m_deskView->onComputerPage())
+      openComputerPage(name); // re-show with the new spot highlighted
   });
+  connect(m_deskView, &DeskView::computerClicked, this, &MainWindow::openComputerPage);
+  connect(
+      m_deskView->computer(), &deskflow::gui::ComputerView::computerChanged, this,
+      [this](const Computer &computer) {
+        if (!m_serverConfig.updateClient(computer))
+          return;
+        m_serverConfig.commit();
+        if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+          m_coreProcess.restart();
+      }
+  );
   connect(m_deskView, &DeskView::forgetRequested, this, [this](const QString &name) {
     m_serverConfig.removeClient(name);
     m_serverConfig.commit();
@@ -1138,6 +1152,21 @@ void MainWindow::refreshChecks()
   }
 
   m_deskView->checks()->setChecks(checks);
+}
+
+void MainWindow::openComputerPage(const QString &name)
+{
+  if (!m_deskView)
+    return;
+  const int idx = m_serverConfig.indexOf(name);
+  if (idx < 0)
+    return;
+  const auto &computer = std::as_const(m_serverConfig).computers().at(idx);
+  if (computer.isServer() || computer.name() == Settings::value(Settings::Core::ComputerName).toString())
+    return;
+  const bool linked = m_connectedClients.contains(name);
+  const QString status = linked ? tr("Linked") : m_coreProcess.isStarted() ? tr("Waiting") : tr("Off");
+  m_deskView->showComputerPage(computer, status, linked);
 }
 
 void MainWindow::addComputerFromDesk(int cell)

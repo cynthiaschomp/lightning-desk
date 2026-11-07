@@ -287,6 +287,25 @@ void ServerConfig::removeClient(const QString &clientName)
   }
 }
 
+bool ServerConfig::updateClient(const Computer &computer)
+{
+  for (auto &c : m_computers) {
+    if (!c.isNull() && c.name() == computer.name()) {
+      c = computer;
+      return true;
+    }
+  }
+  return false;
+}
+
+int ServerConfig::indexOf(const QString &name) const
+{
+  for (int i = 0; i < m_computers.size(); ++i)
+    if (!m_computers[i].isNull() && m_computers[i].name() == name)
+      return i;
+  return -1;
+}
+
 bool ServerConfig::moveClient(const QString &clientName, int gridIndex)
 {
   if (gridIndex < 0 || gridIndex >= m_computers.size() || !m_computers[gridIndex].isNull())

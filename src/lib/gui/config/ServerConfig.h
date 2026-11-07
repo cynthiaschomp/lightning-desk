@@ -62,6 +62,10 @@ public:
   void removeClient(const QString &clientName);
   /// Lightning Desk: move a placed computer to another free cell; false if the cell is taken.
   bool moveClient(const QString &clientName, int gridIndex);
+  /// Replace the computer with the same name (settings edited on its page). Returns false if absent.
+  bool updateClient(const Computer &computer);
+  /// Grid index of @p name, or -1.
+  int indexOf(const QString &name) const;
   /// Lightning Desk: shortcuts.
   void addHotkey(const Hotkey &hotkey)
   {
