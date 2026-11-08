@@ -754,6 +754,7 @@ void MainWindow::setupDeskView()
       stopCore();
   });
   connect(m_deskView, &DeskView::addComputerRequested, this, &MainWindow::addComputerFromDesk);
+  connect(m_deskView, &DeskView::changeMainRequested, this, &MainWindow::changeMainFromDesk);
   connect(m_deskView, &DeskView::moveRequested, this, [this](const QString &name, int cell) {
     if (!m_serverConfig.moveClient(name, cell))
       return;
@@ -1182,6 +1183,70 @@ void MainWindow::openComputerPage(const QString &name)
   const bool linked = m_connectedClients.contains(name);
   const QString status = linked ? tr("Linked") : m_coreProcess.isStarted() ? tr("Waiting") : tr("Off");
   m_deskView->showComputerPage(computer, status, linked);
+}
+
+void MainWindow::changeMainFromDesk()
+{
+  if (!m_deskView)
+    return;
+  const auto mainName = Settings::value(Settings::Client::RemoteHost).toString();
+  if (mainName.isEmpty()) {
+    linkAsExtraFromDesk();
+    return;
+  }
+  using deskflow::gui::NoticeCard;
+  auto *card = m_deskView->notice();
+  card->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Accent)
+      ->setTitle(tr("Linked to %1").arg(mainName))
+      ->setBody(
+          tr("Link this computer to a different main computer, or unlink it so it's on its own again. "
+             "Its mouse and keyboard work normally either way.")
+      )
+      ->setButtons({tr("Keep"), tr("Unlink"), tr("Link to a different computer")});
+  connect(card, &NoticeCard::answered, this, [this, mainName](int button, int) {
+    m_deskView->dismissNotice();
+    if (button == 1) {
+      if (m_coreProcess.isStarted())
+        stopCore();
+      Settings::setValue(Settings::Client::RemoteHost, QString());
+      refreshDeskView();
+      auto *done = m_deskView->notice();
+      using deskflow::gui::NoticeCard;
+      done->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Neutral)
+          ->setTitle(tr("Unlinked from %1").arg(mainName))
+          ->setBody(
+              tr("This computer is on its own now. Press “Link to a computer” whenever you want it back on a desk.")
+          )
+          ->setButtons({tr("OK")});
+      connect(done, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+    } else if (button == 2) {
+      linkAsExtraFromDesk();
+    }
+  });
+}
+
+void MainWindow::linkAsExtraFromDesk()
+{
+  if (m_coreProcess.isStarted())
+    stopCore();
+  auto *wizard = new deskflow::gui::SetupWizard(this);
+  wizard->setAttribute(Qt::WA_DeleteOnClose);
+  const bool inline_ = m_deskView && m_actionClassicView && !m_actionClassicView->isChecked();
+  if (inline_) {
+    wizard->embedInto(m_deskView);
+    m_deskView->showPage(wizard);
+  }
+  connect(wizard, &QDialog::finished, this, [this, wizard, inline_](int result) {
+    if (inline_) {
+      m_deskView->removePage(wizard);
+      m_deskView->showDeskPage();
+    }
+    refreshDeskView();
+    // The wizard's own core stops when it closes; run ours against whatever main is now set.
+    if (result == QDialog::Accepted && !Settings::value(Settings::Client::RemoteHost).toString().isEmpty())
+      startCore();
+  });
+  wizard->openAtLinkAsExtra();
 }
 
 void MainWindow::addComputerFromDesk(int cell)

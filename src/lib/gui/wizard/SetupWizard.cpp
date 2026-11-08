@@ -289,6 +289,25 @@ bool SetupWizard::isFirstRun()
 void SetupWizard::openAtLink()
 {
   m_linkOnly = true;
+  m_progress->setVisible(false);
+  m_stepLabel->setVisible(false);
+  goTo(Link);
+  if (windowFlags().testFlag(Qt::Window))
+    open();
+  else
+    show();
+}
+
+void SetupWizard::openAtLinkAsExtra()
+{
+  m_linkOnly = true;
+  m_role = Role::Extra;
+  m_name = Settings::value(Settings::Core::ComputerName).toString();
+  if (m_name.isEmpty())
+    m_name = QHostInfo::localHostName().toUpper();
+  Settings::setValue(Settings::Core::CoreMode, Settings::CoreMode::Client);
+  m_progress->setVisible(false);
+  m_stepLabel->setVisible(false);
   goTo(Link);
   if (windowFlags().testFlag(Qt::Window))
     open();
@@ -920,6 +939,10 @@ void SetupWizard::next()
 
   switch (step) {
   case Link:
+    if (m_linkOnly && m_role == Role::Extra) {
+      accept(); // linked (Continue only enables once connected); nothing else to set up
+      return;
+    }
     if (m_role == Role::Main && !m_everLinked.isEmpty()) {
       m_arrangeIndex = 0;
       goTo(Arrange);

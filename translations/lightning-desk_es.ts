@@ -1186,6 +1186,30 @@ Además, verifique que puede %1 el archivo de configuración del servidor: %2</t
         <source>Later</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Link this computer to a different main computer, or unlink it so it&apos;s on its own again. Its mouse and keyboard work normally either way.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link to a different computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlinked from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer is on its own now. Press “Link to a computer” whenever you want it back on a desk.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewComputerWidget</name>
@@ -2351,10 +2375,6 @@ Al habilitar esta opción, se deshabilitará la interfaz gráfica de usuario (GU
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mouse &amp; keyboard are there</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This computer · linked</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2435,6 +2455,30 @@ Al habilitar esta opción, se deshabilitará la interfaz gráfica de usuario (GU
     </message>
     <message>
         <source>Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No main computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press “Link to a computer”</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mouse &amp; keyboard are there · click to change</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This computer isn&apos;t linked to a main computer yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Link to a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change main computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

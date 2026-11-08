@@ -293,7 +293,12 @@ QWidget *DeskView::buildHeader()
                                  "font-size:12px;font-weight:700;}QPushButton:hover{background:#FFE14D;}"
   )
                                  .arg(kBg, kAccent));
-  connect(m_addButton, &QPushButton::clicked, this, [this] { Q_EMIT addComputerRequested(firstFreeNearMain()); });
+  connect(m_addButton, &QPushButton::clicked, this, [this] {
+    if (m_serverMode)
+      Q_EMIT addComputerRequested(firstFreeNearMain());
+    else
+      Q_EMIT changeMainRequested();
+  });
   h->addSpacing(10);
   h->addWidget(m_addButton, 0, Qt::AlignTop);
   return w;
@@ -567,7 +572,10 @@ void DeskView::relayout()
 
   if (!m_serverMode) {
     auto *main = makeCard(m_gridHost);
-    fillCard(main, m_mainName, tr("Mouse & keyboard are there"), true);
+    if (m_mainName.isEmpty())
+      fillCard(main, tr("No main computer"), tr("Press “Link to a computer”"), true);
+    else
+      fillCard(main, m_mainName, tr("Mouse & keyboard are there · click to change"), true);
     m_grid->addWidget(main->frame, 0, 0, Qt::AlignCenter);
     delete main;
     arrow(Icon::ArrowRight, 0, 1);
@@ -662,6 +670,7 @@ void DeskView::setDesk(const QString &mainName, const ServerConfig &config)
   m_mainCell = mainIdx;
 
   m_subtitle->setText(tr("Move the mouse off an edge to switch computers. Use ⋯ on a card to move or forget it."));
+  m_addButton->setText(tr("+ Add a computer"));
   m_addButton->setVisible(true);
   m_sharingPill->setVisible(true);
   relayout();
@@ -765,9 +774,13 @@ void DeskView::setLinkedTo(const QString &thisName, const QString &mainName)
   m_thisName = thisName;
   m_mainName = mainName;
   m_cells.clear();
-  m_subtitle->setText(tr("This computer is an extra screen of %1. Its mouse and keyboard reach here.").arg(mainName));
-  m_addButton->setVisible(false);
-  m_sharingPill->setVisible(true);
+  if (mainName.isEmpty())
+    m_subtitle->setText(tr("This computer isn't linked to a main computer yet."));
+  else
+    m_subtitle->setText(tr("This computer is an extra screen of %1. Its mouse and keyboard reach here.").arg(mainName));
+  m_addButton->setText(mainName.isEmpty() ? tr("Link to a computer") : tr("Change main computer"));
+  m_addButton->setVisible(true);
+  m_sharingPill->setVisible(!mainName.isEmpty());
   relayout();
 }
 
@@ -856,6 +869,8 @@ bool DeskView::eventFilter(QObject *watched, QEvent *event)
     if (!name.isEmpty() && static_cast<QMouseEvent *>(event)->button() == Qt::LeftButton) {
       if (m_serverMode && name != m_mainName)
         Q_EMIT computerClicked(name);
+      else if (!m_serverMode && name == m_mainName)
+        Q_EMIT changeMainRequested();
       return true;
     }
   }

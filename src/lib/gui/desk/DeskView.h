@@ -99,6 +99,8 @@ Q_SIGNALS:
   void sharingToggled(bool on);
   /// Add a computer into grid cell @p cell (the setup wizard places it there once linked).
   void addComputerRequested(int cell);
+  /// Extra screen: the person wants to unlink from, or change, the main computer.
+  void changeMainRequested();
   void computerClicked(const QString &name);
   void moveRequested(const QString &name, int cell);
   void forgetRequested(const QString &name);

@@ -50,6 +50,8 @@ public:
 
   /// Re-enter at the "Link your other computers" step.
   void openAtLink();
+  /// Re-enter at the extra-screen "desk code" step to link this computer to a (different) main.
+  void openAtLinkAsExtra();
   /// Run inside another widget's page stack instead of as a window (nothing pops over anything).
   void embedInto(QWidget *host);
 
