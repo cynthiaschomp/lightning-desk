@@ -33,6 +33,7 @@ class QLocalServer;
 class DeskflowApplication;
 class QStackedWidget;
 namespace deskflow::gui {
+class ComputerLog;
 class DeskView;
 class NoticeCard;
 } // namespace deskflow::gui
@@ -196,7 +197,9 @@ private:
   bool m_serverConfigDialogVisible = false;
   QSize m_expandedSize = QSize();
   QStringList m_checkedClients;
+  QString m_pendingFingerprint; ///< code of the client just trusted, attached to the next one that links
   QStringList m_connectedClients;
+  deskflow::gui::ComputerLog *m_computerLog = nullptr;
   QStringList m_checkedServers;
   QSystemTrayIcon *m_trayIcon = nullptr;
   QLocalServer *m_guiDupeChecker = nullptr;

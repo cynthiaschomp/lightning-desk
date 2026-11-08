@@ -337,6 +337,8 @@ QString ChecksView::plainFor(const QString &line)
     QString out; // %1.. captures
   };
   static const QList<Rule> rules{
+      {QRegularExpression(QStringLiteral(R"re(^client "([^"]+)" has connected from ([^,]+), screen (\S+))re")),
+       tr("%1 linked up from %2 (%3)")},
       {QRegularExpression(QStringLiteral(R"re(^client "([^"]+)" has connected)re")), tr("%1 linked up")},
       {QRegularExpression(QStringLiteral(R"re(^client "([^"]+)" has disconnected)re")), tr("%1 left the desk")},
       {QRegularExpression(QStringLiteral(R"re(^client "([^"]+)" is dead)re")), tr("%1 stopped answering")},
@@ -358,6 +360,7 @@ QString ChecksView::plainFor(const QString &line)
       {QRegularExpression(QStringLiteral(R"re(^stopped server)re")), tr("Sharing stopped")},
       {QRegularExpression(QStringLiteral(R"re(^started client)re")), tr("Looking for the main computer")},
       {QRegularExpression(QStringLiteral(R"re(^stopped client)re")), tr("Stopped looking for the main computer")},
+      {QRegularExpression(QStringLiteral(R"re(^connected to server '([^']*)' at (\S+))re")), tr("Linked to %1 at %2")},
       {QRegularExpression(QStringLiteral(R"re(^connected to server)re")), tr("Linked to the main computer")},
       {QRegularExpression(QStringLiteral(R"re(^disconnected from server)re")), tr("Lost the main computer")},
       {QRegularExpression(QStringLiteral(R"re(^server is dead)re")), tr("The main computer stopped answering")},

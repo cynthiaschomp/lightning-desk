@@ -8,6 +8,7 @@
 
 #include "deskflow/ClientApp.h"
 
+#include "arch/Arch.h"
 #include "base/Event.h"
 #include "base/IEventQueue.h"
 #include "base/Log.h"
@@ -169,7 +170,13 @@ void ClientApp::scheduleClientRestart(double retryTime)
 
 void ClientApp::handleClientConnected()
 {
-  LOG_DEBUG("connected to server");
+  {
+    // One line with what the GUI keeps in its connection log.
+    const auto addr = m_client != nullptr ? m_client->getServerAddress() : NetworkAddress();
+    const std::string ip =
+        addr.getAddress() != nullptr ? ARCH->addrToString(addr.getAddress()) : std::string("unknown address");
+    LOG_INFO("connected to server '%s' at %s:%d", addr.getHostname().c_str(), ip.c_str(), addr.getPort());
+  }
   ipcSendConnectionState(deskflow::core::ConnectionState::Connected);
   // Reset server index on successful connection
   m_currentServerIndex = 0;

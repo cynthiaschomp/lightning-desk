@@ -58,6 +58,16 @@
     </message>
 </context>
 <context>
+    <name>deskflow::gui::ComputerView</name>
+    <message numerus="yes">
+        <source>%n time(s) · %1 h %2 min in total</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+</context>
+<context>
     <name>deskflow::gui::DeskView</name>
     <message numerus="yes">
         <source>Always on · %n trusted</source>

@@ -283,7 +283,19 @@ void Server::adoptClient(BaseClientProxy *client)
     closeClient(client, kMsgEBusy);
     return;
   }
-  LOG_DEBUG("client \"%s\" has connected", getName(client).c_str());
+  {
+    // One line with everything the GUI keeps in its connection log.
+    int32_t sx = 0;
+    int32_t sy = 0;
+    int32_t sw = 0;
+    int32_t sh = 0;
+    client->getShape(sx, sy, sw, sh);
+    LOG_INFO(
+        "client \"%s\" has connected from %s, screen %dx%d, protocol %d.%d", getName(client).c_str(),
+        client->peerAddress().empty() ? "unknown address" : client->peerAddress().c_str(), sw, sh,
+        client->protocolMajor(), client->protocolMinor()
+    );
+  }
   ipcSendConnectionState(deskflow::core::ConnectionState::Connected);
   sendConnectedClientsIpc();
 

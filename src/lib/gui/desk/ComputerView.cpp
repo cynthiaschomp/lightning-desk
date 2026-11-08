@@ -8,6 +8,7 @@
 
 #include "desk/BrandIcons.h"
 
+#include <QDateTime>
 #include <QFrame>
 #include <QGridLayout>
 #include <QHBoxLayout>
@@ -276,6 +277,23 @@ ComputerView::ComputerView(QWidget *parent) : QWidget(parent)
       content
   ));
 
+  // Details (from the connection log)
+  {
+    QList<QFrame *> rows;
+    for (const auto &title :
+         {tr("Address"), tr("Screen"), tr("First linked"), tr("Last linked"), tr("Linked"), tr("Security code"),
+          tr("Protocol")}) {
+      auto *value = text(QStringLiteral("—"), kDim, 12, 400, content);
+      value->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+      value->setTextInteractionFlags(Qt::TextSelectableByMouse);
+      auto *r = row(title, QString(), value, content);
+      m_detailRows << qMakePair(static_cast<QLabel *>(nullptr), value);
+      rows << r;
+    }
+    m_details = section(tr("Details"), rows, content);
+    col->addWidget(m_details);
+  }
+
   // Footer
   auto *foot = new QHBoxLayout();
   auto *forget = dangerButton(tr("Forget this computer"), content);
@@ -361,6 +379,34 @@ void ComputerView::showComputer(
   m_cornerSize->setValue(computer.switchCornerSize());
   m_cornerSize->setEnabled(corners);
   m_loading = false;
+}
+
+void ComputerView::setDetails(const ComputerLog::Entry &e)
+{
+  const bool known = !e.name.isEmpty();
+  m_details->setVisible(true);
+  auto fmt = [](const QDateTime &t) {
+    return t.isValid() ? t.toString(QStringLiteral("MMM d, h:mm AP")) : QStringLiteral("—");
+  };
+  QStringList values;
+  values
+      << (e.address.isEmpty()
+              ? QStringLiteral("—")
+              : (e.addresses.size() > 1
+                     ? tr("%1 (before: %2)").arg(e.address, e.addresses.mid(1).join(QStringLiteral(", ")))
+                     : e.address));
+  values << (e.screen.isEmpty() ? QStringLiteral("—") : e.screen);
+  values << fmt(e.firstSeen);
+  values << (e.linkedNow ? tr("Now") : fmt(e.lastLeft.isValid() ? e.lastLeft : e.lastSeen));
+  values
+      << (known ? tr("%n time(s) · %1 h %2 min in total", "", e.timesLinked)
+                      .arg(e.totalSeconds / 3600)
+                      .arg((e.totalSeconds % 3600) / 60)
+                : tr("Never"));
+  values << (e.fingerprint.isEmpty() ? QStringLiteral("—") : e.fingerprint);
+  values << (e.protocol.isEmpty() ? QStringLiteral("—") : e.protocol);
+  for (int i = 0; i < m_detailRows.size() && i < values.size(); ++i)
+    m_detailRows[i].second->setText(values[i]);
 }
 
 void ComputerView::rebuildSpots()

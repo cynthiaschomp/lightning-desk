@@ -22,6 +22,11 @@ class ClientProxyUnknown
 {
 public:
   ClientProxyUnknown(deskflow::IStream *stream, double timeout, Server *server, IEventQueue *events);
+  //! Remember where the socket came from so the real proxy can log it
+  void setPeerAddress(const std::string &address)
+  {
+    m_peerAddress = address;
+  }
   ClientProxyUnknown(ClientProxyUnknown const &) = delete;
   ClientProxyUnknown(ClientProxyUnknown &&) = delete;
   ~ClientProxyUnknown();
@@ -49,6 +54,7 @@ public:
   //@}
 
 private:
+  std::string m_peerAddress;
   void sendSuccess();
   void sendFailure();
   void addStreamHandlers();

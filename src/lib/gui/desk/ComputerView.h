@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "desk/ComputerLog.h"
 #include "gui/config/Computer.h"
 
 #include <QList>
@@ -39,6 +40,8 @@ public:
       const Computer &computer, const QList<QPair<QString, int>> &spots, int currentCell, const QString &status,
       bool linked
   );
+  /// Fill the DETAILS section from the connection log.
+  void setDetails(const ComputerLog::Entry &entry);
   QString computerName() const
   {
     return m_computer.name();
@@ -74,6 +77,8 @@ private:
   QPushButton *m_corners = nullptr;
   QSpinBox *m_cornerSize = nullptr;
   QPushButton *m_xtest = nullptr;
+  QWidget *m_details = nullptr;
+  QList<QPair<QLabel *, QLabel *>> m_detailRows;
 };
 
 } // namespace deskflow::gui

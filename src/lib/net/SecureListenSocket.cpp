@@ -32,9 +32,14 @@ std::unique_ptr<IDataSocket> SecureListenSocket::accept()
 {
   std::unique_ptr<SecureSocket> secureSocket;
   try {
+    ArchNetAddress peer = nullptr;
     secureSocket = std::make_unique<SecureSocket>(
-        events(), socketMultiplexer(), ARCH->acceptSocket(socket(), nullptr), m_securityLevel
+        events(), socketMultiplexer(), ARCH->acceptSocket(socket(), &peer), m_securityLevel
     );
+    if (peer != nullptr) {
+      secureSocket->setPeerAddress(ARCH->addrToString(peer));
+      ARCH->closeAddr(peer);
+    }
     secureSocket->initSsl(true);
 
     setListeningJob();

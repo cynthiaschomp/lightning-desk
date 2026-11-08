@@ -52,6 +52,14 @@ public:
   void shutdownOutput() override;
   bool isReady() const override;
   bool isFatal() const override;
+  std::string peerAddress() const override
+  {
+    return m_peerAddress;
+  }
+  void setPeerAddress(const std::string &address) override
+  {
+    m_peerAddress = address;
+  }
   uint32_t getSize() const override;
 
   // IDataSocket overrides
@@ -147,4 +155,5 @@ private:
   IEventQueue *m_events;
   CondVar<bool> m_flushed;
   SocketMultiplexer *m_socketMultiplexer;
+  std::string m_peerAddress;
 };

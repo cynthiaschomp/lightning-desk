@@ -155,7 +155,10 @@ void ClientListener::handleClientConnecting()
 
 void ClientListener::handleClientAccepted(IDataSocket *socket)
 {
-  LOG_INFO("accepted client connection");
+  LOG_INFO(
+      "accepted client connection from %s",
+      socket->peerAddress().empty() ? "unknown address" : socket->peerAddress().c_str()
+  );
 
   // filter socket messages, including a packetizing filter
   deskflow::IStream *stream = new PacketStreamFilter(m_events, socket, false);
@@ -163,6 +166,7 @@ void ClientListener::handleClientAccepted(IDataSocket *socket)
 
   // create proxy for unknown client
   auto *client = new ClientProxyUnknown(stream, 30.0, m_server, m_events);
+  client->setPeerAddress(socket->peerAddress());
 
   m_newClients.insert(client);
 

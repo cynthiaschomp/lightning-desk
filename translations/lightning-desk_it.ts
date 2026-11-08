@@ -2176,6 +2176,14 @@ L&apos;abilitazione di questa impostazione disabiliterà l&apos;interfaccia graf
         <source>Problem:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%1 linked up from %2 (%3)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked to %1 at %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>deskflow::gui::ComputerView</name>
@@ -2261,6 +2269,57 @@ L&apos;abilitazione di questa impostazione disabiliterà l&apos;interfaccia graf
     </message>
     <message>
         <source>Remove %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Protocol</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 (before: %2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n time(s) · %1 h %2 min in total</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -223,6 +223,7 @@ void ClientProxyUnknown::handleData()
 
     // the proxy is created and now proxy now owns the stream
     LOG_VERBOSE("created proxy for client \"%s\" version %d.%d", name.c_str(), major, minor);
+    m_proxy->setConnectionDetails(m_peerAddress, major, minor);
     m_stream = nullptr;
 
     // wait until the proxy signals that it's ready or has disconnected

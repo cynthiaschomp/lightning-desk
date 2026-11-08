@@ -31,6 +31,7 @@
 #include "gui/desk/AboutView.h"
 #include "gui/desk/BrandIcons.h"
 #include "gui/desk/ChecksView.h"
+#include "gui/desk/ComputerLog.h"
 #include "gui/desk/ComputerView.h"
 #include "gui/desk/DeskView.h"
 #include "gui/desk/NoticeCard.h"
@@ -730,6 +731,11 @@ void MainWindow::open()
 
 void MainWindow::setupDeskView()
 {
+  m_computerLog = new deskflow::gui::ComputerLog(this);
+  connect(m_computerLog, &deskflow::gui::ComputerLog::changed, this, [this](const QString &name) {
+    if (m_deskView && m_deskView->onComputerPage() && m_deskView->computer()->computerName() == name)
+      m_deskView->computer()->setDetails(m_computerLog->entry(name));
+  });
   using deskflow::gui::DeskView;
 
   m_deskView = new DeskView(this);
@@ -912,7 +918,9 @@ void MainWindow::setupDeskView()
   connect(checksPage, &ChecksView::rerunRequested, this, &MainWindow::refreshChecks);
   connect(checksPage, &ChecksView::copyReportRequested, this, [this] {
     refreshChecks();
-    QGuiApplication::clipboard()->setText(m_deskView->checks()->report());
+    QGuiApplication::clipboard()->setText(
+        m_deskView->checks()->report() + QStringLiteral("\n\n") + m_computerLog->report()
+    );
     using deskflow::gui::NoticeCard;
     auto *card = m_deskView->notice();
     card->setIcon(deskflow::gui::brand::Icon::Clipboard, NoticeCard::Tone::Neutral)
@@ -1183,6 +1191,7 @@ void MainWindow::openComputerPage(const QString &name)
   const bool linked = m_connectedClients.contains(name);
   const QString status = linked ? tr("Linked") : m_coreProcess.isStarted() ? tr("Waiting") : tr("Off");
   m_deskView->showComputerPage(computer, status, linked);
+  m_deskView->computer()->setDetails(m_computerLog->entry(name));
 }
 
 void MainWindow::changeMainFromDesk()
@@ -1482,6 +1491,8 @@ void MainWindow::setTrayIcon()
 void MainWindow::handleLogLine(const QString &line)
 {
   m_logDock->appendLine(line);
+  if (m_computerLog)
+    m_computerLog->observe(line);
   if (m_deskView)
     m_deskView->checks()->appendLogLine(line);
 }
@@ -1708,6 +1719,18 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
 
   // Trusting a peer, shared by the inline notice and the classic dialog.
   const auto trust = [this, sha256, sha256Text, isClient]() {
+    // Remember the code in the connection log: a main's under its name, an extra's with the
+    // next computer that links (it connects right after being trusted).
+    QString code;
+    const auto up = sha256Text.toUpper();
+    for (int i = 0; i < 4 && i * 4 + 4 <= up.size(); ++i)
+      code += (i ? QStringLiteral(" ") : QString()) + up.mid(i * 4, 4);
+    if (m_computerLog) {
+      if (isClient)
+        m_computerLog->setFingerprint(Settings::value(Settings::Client::RemoteHost).toString(), code);
+      else
+        m_pendingFingerprint = code;
+    }
     FingerprintDatabase db;
     db.read(trustedFingerprintDatabase());
     db.addTrusted(sha256);
@@ -1879,6 +1902,8 @@ void MainWindow::coreConnectionStateChanged(ConnectionState state)
     m_deskView->setSharing(m_coreProcess.isStarted());
     if (state == ConnectionState::Disconnected) {
       m_connectedClients.clear();
+      if (m_computerLog)
+        m_computerLog->allLeft();
       m_deskView->setConnectedClients({});
     }
     refreshChecks();
@@ -2122,6 +2147,15 @@ void MainWindow::serverClientsChanged(const QStringList &clients)
 {
   if (m_coreProcess.mode() != CoreMode::Server || !m_coreProcess.isStarted())
     return;
+  if (!m_pendingFingerprint.isEmpty() && m_computerLog) {
+    for (const auto &name : clients) {
+      if (!m_connectedClients.contains(name)) {
+        m_computerLog->setFingerprint(name, m_pendingFingerprint);
+        m_pendingFingerprint.clear();
+        break;
+      }
+    }
+  }
   m_connectedClients = clients;
   m_statusBar->setServerClients(clients);
   if (m_deskView) {
