@@ -54,4 +54,14 @@ public:
   void *getEventTarget() const override;
 
   virtual bool isFatal() const = 0;
+
+  //! Address of the other end, as text (empty if unknown)
+  virtual std::string peerAddress() const
+  {
+    return {};
+  }
+  virtual void setPeerAddress(const std::string &)
+  {
+    // optional
+  }
 };

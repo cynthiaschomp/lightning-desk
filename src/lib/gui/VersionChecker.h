@@ -22,6 +22,8 @@ public Q_SLOTS:
   void replyFinished(QNetworkReply *reply);
 Q_SIGNALS:
   void updateFound(const QString &version);
+  /// Lightning Desk: every check ends here. @p ok false when the server couldn't be reached.
+  void checkFinished(bool ok, bool upToDate, const QString &newestVersion);
 
 private:
   static int compareVersions(const QString &left, const QString &right);

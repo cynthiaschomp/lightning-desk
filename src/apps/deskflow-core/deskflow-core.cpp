@@ -9,7 +9,9 @@
 #include "CoreArgParser.h"
 
 #include "arch/Arch.h"
+#include "base/Event.h"
 #include "base/EventQueue.h"
+#include "base/EventTypes.h"
 #include "base/Log.h"
 #include "common/Constants.h"
 #include "common/ExitCodes.h"
@@ -110,7 +112,7 @@ int main(int argc, char **argv)
     sharedMemory.detach();
 
   if (!sharedMemory.create(1) && parser.singleInstanceOnly()) {
-    LOG_WARN("an instance of deskflow core is already running");
+    LOG_WARN("an instance of Lightning Desk core is already running");
     return s_exitDuplicate;
   }
 
@@ -125,6 +127,10 @@ int main(int argc, char **argv)
   QObject::connect(
       ipcServer, &deskflow::core::ipc::IpcServer::stopProcessRequested, coreApp, &App::quit, Qt::DirectConnection
   );
+  QObject::connect(ipcServer, &deskflow::core::ipc::IpcServer::reloadConfigRequested, coreApp, [&events] {
+    // Same path as SIGHUP: the server app re-reads its config on its own thread.
+    events.addEvent(Event(EventTypes::ServerAppReloadConfig, events.getSystemTarget()));
+  });
   ipcServer->listen();
 
   QThread coreThread;

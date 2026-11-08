@@ -1,5 +1,6 @@
 /*
  * Deskflow -- mouse and keyboard sharing utility
+ * SPDX-FileCopyrightText: (C) 2026 Schomp Technologies LLC
  * SPDX-FileCopyrightText: (C) 2024 - 2025 Deskflow Developers
  * SPDX-FileCopyrightText: (C) 2024, 2026 Synergy App Ltd
  * SPDX-FileCopyrightText: (C) 2022 Red Hat, Inc.
@@ -14,6 +15,10 @@
 
 #ifdef HAVE_LIBPORTAL_CLIPBOARD
 #include "platform/PortalClipboard.h"
+#endif
+
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+#include "platform/WlrVirtualInput.h"
 #endif
 
 namespace deskflow {
@@ -45,6 +50,11 @@ PortalRemoteDesktop::~PortalRemoteDesktop()
     g_main_loop_unref(m_glibMainLoop);
     m_glibMainLoop = nullptr;
   }
+
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+  delete m_wlrInput;
+  m_wlrInput = nullptr;
+#endif
 
   if (m_sessionSignalId)
     g_signal_handler_disconnect(m_session, m_sessionSignalId);
@@ -140,6 +150,9 @@ void PortalRemoteDesktop::handleSessionStarted(GObject *object, GAsyncResult *re
   auto fd = -1;
   fd = xdp_session_connect_to_eis(session, &error);
   if (fd < 0) {
+    LOG_WARN("portal remote desktop could not connect to eis: %s", error ? error->message : "unknown error");
+    if (startWlrVirtualInput())
+      return;
     g_main_loop_quit(m_glibMainLoop);
     m_events->addEvent(Event(EventTypes::Quit));
     return;
@@ -157,13 +170,18 @@ void PortalRemoteDesktop::handleInitSession(GObject *object, GAsyncResult *res)
 
   auto session = xdp_portal_create_remote_desktop_session_finish(XDP_PORTAL(object), res, &error);
   if (!session) {
-    LOG_ERR("failed to initialize remote desktop session: %s", error->message);
-    // This was the first attempt to connect to the RD portal - quit if that
-    // fails.
+    // This was the first attempt to connect to the RD portal. Desktops without
+    // that portal (Hyprland and other wlroots compositors) still let us inject
+    // input through their own protocols; only quit if that fails as well.
     if (m_sessionIteration == 0) {
+      LOG_WARN("remote desktop portal unavailable (%s), trying wlroots virtual input", error->message);
+      if (startWlrVirtualInput())
+        return;
+      LOG_ERR("failed to initialize remote desktop session: %s", error->message);
       g_main_loop_quit(m_glibMainLoop);
       m_events->addEvent(Event(EventTypes::Quit));
     } else {
+      LOG_ERR("failed to initialize remote desktop session: %s", error->message);
       this->reconnect(1000);
     }
     return;
@@ -227,8 +245,35 @@ void PortalRemoteDesktop::glibThread(const void *)
   }
 }
 
+bool PortalRemoteDesktop::startWlrVirtualInput()
+{
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+  if (m_wlrInput == nullptr)
+    m_wlrInput = WlrVirtualInput::create(m_computer);
+  if (m_wlrInput == nullptr)
+    return false;
+
+  ++m_sessionIteration;
+  // Socket ownership is transferred to the EiComputer, as with the portal.
+  m_events->addEvent(Event(
+      EventTypes::EIConnected, m_computer->getEventTarget(),
+      EiComputer::EiConnectInfo::alloc(m_wlrInput->takeClientFd())
+  ));
+  return true;
+#else
+  LOG_DEBUG("built without wlroots virtual input support");
+  return false;
+#endif
+}
+
 void PortalRemoteDesktop::claimClipboard() const
 {
+#ifdef HAVE_WLR_VIRTUAL_INPUT
+  if (m_wlrInput) {
+    m_wlrInput->claimClipboard();
+    return;
+  }
+#endif
 #ifdef HAVE_LIBPORTAL_CLIPBOARD
   if (!m_session) {
     LOG_DEBUG("portal remote desktop clipboard claim deferred, no session yet");

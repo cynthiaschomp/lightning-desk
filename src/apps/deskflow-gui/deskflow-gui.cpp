@@ -16,6 +16,7 @@
 #include "gui/MainWindow.h"
 #include "gui/Messages.h"
 #include "gui/StyleUtils.h"
+#include "gui/wizard/SetupWizard.h"
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -111,9 +112,9 @@ int main(int argc, char *argv[])
     QLocalSocket socket;
     socket.connectToServer(shmId, QLocalSocket::ReadOnly);
     if (!socket.waitForConnected()) {
-      // If we can't connect to the other instance tell the user its running.
-      // This should never happen but just incase we should show something
-      QMessageBox::information(nullptr, kAppName, QObject::tr("%1 is already running").arg(kAppName));
+      // Lightning Desk: nothing pops over anything. The running instance was asked to show itself; if it
+      // didn't answer, just log it instead of raising a box the person has to dismiss.
+      qWarning("%s is already running but did not answer", kAppName);
     }
     socket.disconnectFromServer();
     return s_exitDuplicate;
@@ -148,6 +149,14 @@ int main(int argc, char *argv[])
   // --no-reset
   if (parser.isSet(resetOption)) {
     diagnostic::clearSettings(false);
+  }
+
+  // Lightning Desk: plain-language first-run setup before the main window.
+  if (deskflow::gui::SetupWizard::isFirstRun()) {
+    deskflow::gui::SetupWizard wizard;
+    if (wizard.exec() != QDialog::Accepted) {
+      return 0;
+    }
   }
 
   MainWindow mainWindow;

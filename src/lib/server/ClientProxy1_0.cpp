@@ -185,7 +185,7 @@ bool ClientProxy1_0::parseMessage(const uint8_t *code)
 
 void ClientProxy1_0::handleDisconnect()
 {
-  LOG_DEBUG("client \"%s\" has disconnected", getName().c_str());
+  LOG_INFO("client \"%s\" has disconnected", getName().c_str());
   disconnect();
 }
 

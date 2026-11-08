@@ -27,12 +27,26 @@
 #include "gui/Messages.h"
 #include "gui/TlsUtility.h"
 #include "gui/core/CoreProcess.h"
+#include "gui/core/NetworkMonitor.h"
+#include "gui/desk/AboutView.h"
+#include "gui/desk/BrandIcons.h"
+#include "gui/desk/ChecksView.h"
+#include "gui/desk/ComputerLog.h"
+#include "gui/desk/ComputerView.h"
+#include "gui/desk/DeskView.h"
+#include "gui/desk/NoticeCard.h"
+#include "gui/desk/PlanView.h"
+#include "gui/desk/SettingsView.h"
+#include "gui/desk/ShortcutsView.h"
 #include "gui/ipc/DaemonIpcClient.h"
 #include "gui/widgets/LogDock.h"
+#include "gui/wizard/SetupWizard.h"
 #include "net/FingerprintDatabase.h"
+#include "net/License.h"
 #include "widgets/StatusBar.h"
 
 #include <QCheckBox>
+#include <QClipboard>
 #include <QCloseEvent>
 #include <QComboBox>
 #include <QDesktopServices>
@@ -50,6 +64,8 @@
 #include <QScreen>
 #include <QScrollBar>
 #include <QSignalBlocker>
+#include <QStackedWidget>
+#include <QSysInfo>
 
 #include <memory>
 
@@ -137,16 +153,15 @@ MainWindow::MainWindow()
   setupTrayIcon();
   updateComputerName();
   setHelpFilePath();
+  setupDeskView();
 
   qDebug().noquote() << "active settings path:" << Settings::settingsPath();
 
   // Force generation of a certificate on the host
   if (TlsUtility::isEnabled()) {
     if (Settings::value(Settings::Security::KeySize).toInt() < 2048) {
-      QMessageBox::information(
-          this, kAppName,
-          tr("Your current TLS key is smaller than the minimum allowed size, A new key 2048-bit key will be generated.")
-      );
+      // Nothing pops over anything: just do it and say so in the log / Checks activity.
+      qInfo("TLS key is smaller than the minimum allowed size; generating a new 2048-bit key");
       Settings::setValue(Settings::Security::KeySize, 2048);
     }
     if (!TlsUtility::isCertValid()) {
@@ -180,8 +195,12 @@ void MainWindow::restoreWindow()
 {
   auto windowGeometry = Settings::value(Settings::Gui::WindowGeometry).toRect();
   const auto totalGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+  const bool classic = m_actionClassicView && m_actionClassicView->isChecked();
   if (!windowGeometry.isValid()) {
-    adjustSize();
+    if (classic)
+      adjustSize();
+    else
+      resize(1080, 720);
     windowGeometry = geometry();
   } else {
     setGeometry(windowGeometry);
@@ -193,7 +212,7 @@ void MainWindow::restoreWindow()
     move(screenGeometry.center() - rect().center());
   }
 
-  if (!Settings::value(Settings::Gui::LogExpanded).toBool())
+  if (!Settings::value(Settings::Gui::LogExpanded).toBool() && classic)
     setFixedSize(size());
 }
 
@@ -276,6 +295,7 @@ void MainWindow::connectSlots()
 
   connect(&m_coreProcess, &CoreProcess::connectedClientsChanged, this, &MainWindow::serverClientsChanged);
   connect(&m_coreProcess, &CoreProcess::unrecognisedClient, this, &MainWindow::handleUnrecognisedClient);
+  connect(&m_coreProcess, &CoreProcess::clientLimitReached, this, &MainWindow::handleClientLimitReached);
   connect(&m_coreProcess, &CoreProcess::connectionRefused, this, &MainWindow::handleConnectionRefused);
   connect(&m_coreProcess, &CoreProcess::retryIn, this, &MainWindow::updateTimeoutDelay);
   connect(&m_coreProcess, &CoreProcess::peerFingerprint, this, &MainWindow::handlePeerFingerprint);
@@ -356,6 +376,10 @@ void MainWindow::settingsChanged(const QString &key)
   if (key == Settings::Core::ComputerName)
     updateComputerName();
 
+  if (key == Settings::Core::CoreMode || key == Settings::Client::RemoteHost ||
+      key == Settings::Server::EnableClipboard || key == Settings::Security::TlsEnabled)
+    refreshDeskView();
+
   if ((key == Settings::Security::Certificate) || (key == Settings::Security::KeySize) ||
       (key == Settings::Security::TlsEnabled) || (key == Settings::Security::CheckPeers)) {
     if (TlsUtility::isEnabled()) {
@@ -374,6 +398,7 @@ void MainWindow::settingsChanged(const QString &key)
 void MainWindow::serverConfigSaving()
 {
   m_serverConfig.commit();
+  refreshDeskView();
 }
 
 void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
@@ -385,7 +410,19 @@ void MainWindow::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void MainWindow::coreProcessError(CoreProcess::Error error)
 {
+  using deskflow::gui::NoticeCard;
   if (error == CoreProcess::Error::AddressMissing) {
+    if (auto *card = deskNotice()) {
+      card->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Danger)
+          ->setTitle(tr("Which computer is the main one?"))
+          ->setBody(
+              tr("This computer is set up as an extra screen but doesn't know the main computer's name yet. "
+                 "Run setup again from Add a computer, or pick the main computer in Settings.")
+          )
+          ->setButtons({tr("OK")});
+      connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+      return;
+    }
     QMessageBox::warning(
         this, tr("Address missing"), tr("Please enter the hostname or IP address of the other computer.")
     );
@@ -400,6 +437,18 @@ void MainWindow::coreProcessError(CoreProcess::Error error)
           Settings::value(Settings::Server::ExternalConfigFile).toBool() ? tr("read") : tr("read and write");
       message.append(tr("\nAdditionally, check you are able to %1 the server config file: %2")
                          .arg(mode, Settings::serverConfigFile()));
+    }
+    if (auto *card = deskNotice()) {
+      card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+          ->setTitle(tr("Lightning Desk couldn't start sharing"))
+          ->setBody(message)
+          ->setButtons({tr("OK"), tr("Try again")});
+      connect(card, &NoticeCard::answered, this, [this](int button, int) {
+        m_deskView->dismissNotice();
+        if (button == 1)
+          startCore();
+      });
+      return;
     }
     QMessageBox::warning(this, kAppName, message);
   }
@@ -643,7 +692,24 @@ void MainWindow::open()
   QTimer::singleShot(kCriticalDialogDelay, this, &messages::raiseCriticalDialog);
 
   if (!Settings::value(Settings::Gui::AutoUpdateCheck).isValid()) {
-    Settings::setValue(Settings::Gui::AutoUpdateCheck, messages::showUpdateCheckOption(this));
+    if (auto *card = deskNotice()) {
+      using deskflow::gui::NoticeCard;
+      card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+          ->setTitle(tr("Tell you when an update is ready?"))
+          ->setBody(
+              tr("Lightning Desk checks schomp.ai now and then. Nothing installs without you; you can change "
+                 "this in Settings any time.")
+          )
+          ->setButtons({tr("No thanks"), tr("Yes, tell me")});
+      connect(card, &NoticeCard::answered, this, [this](int button, int) {
+        m_deskView->dismissNotice();
+        Settings::setValue(Settings::Gui::AutoUpdateCheck, button == 1);
+        if (button == 1)
+          m_versionChecker.checkLatest();
+      });
+    } else {
+      Settings::setValue(Settings::Gui::AutoUpdateCheck, messages::showUpdateCheckOption(this));
+    }
   }
 
   if (Settings::value(Settings::Gui::AutoUpdateCheck).toBool()) {
@@ -657,6 +723,581 @@ void MainWindow::open()
       return;
     startCore();
   }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Lightning Desk: branded main screen
+//////////////////////////////////////////////////////////////////////////////
+
+void MainWindow::setupDeskView()
+{
+  m_computerLog = new deskflow::gui::ComputerLog(this);
+  connect(m_computerLog, &deskflow::gui::ComputerLog::changed, this, [this](const QString &name) {
+    if (m_deskView && m_deskView->onComputerPage() && m_deskView->computer()->computerName() == name)
+      m_deskView->computer()->setDetails(m_computerLog->entry(name));
+  });
+  using deskflow::gui::DeskView;
+
+  m_deskView = new DeskView(this);
+  m_classicCentral = takeCentralWidget();
+  m_centralStack = new QStackedWidget(this);
+  m_centralStack->addWidget(m_deskView);
+  if (m_classicCentral)
+    m_centralStack->addWidget(m_classicCentral);
+  setCentralWidget(m_centralStack);
+
+  // The classic (inherited) window stays one toggle away while the new screens land.
+  m_actionClassicView = new QAction(tr("Classic view"), this);
+  m_actionClassicView->setCheckable(true);
+  m_actionClassicView->setChecked(Settings::value(Settings::Gui::ClassicView).toBool());
+  m_menuView->addAction(m_actionClassicView);
+  connect(m_actionClassicView, &QAction::toggled, this, &MainWindow::toggleClassicView);
+
+  connect(m_deskView, &DeskView::sharingToggled, this, [this](bool on) {
+    if (on)
+      startCore();
+    else
+      stopCore();
+  });
+  connect(m_deskView, &DeskView::addComputerRequested, this, &MainWindow::addComputerFromDesk);
+  connect(m_deskView, &DeskView::changeMainRequested, this, &MainWindow::changeMainFromDesk);
+  connect(m_deskView, &DeskView::moveRequested, this, [this](const QString &name, int cell) {
+    if (!m_serverConfig.moveClient(name, cell))
+      return;
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+    if (m_deskView->onComputerPage())
+      openComputerPage(name); // re-show with the new spot highlighted
+  });
+  connect(m_deskView, &DeskView::computerClicked, this, &MainWindow::openComputerPage);
+  connect(
+      m_deskView->computer(), &deskflow::gui::ComputerView::computerChanged, this,
+      [this](const Computer &computer) {
+        if (!m_serverConfig.updateClient(computer))
+          return;
+        m_serverConfig.commit();
+        if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+          m_coreProcess.restart();
+      }
+  );
+  connect(m_deskView, &DeskView::forgetRequested, this, [this](const QString &name) {
+    m_serverConfig.removeClient(name);
+    m_serverConfig.commit();
+    m_ignoredClients.remove(name);
+    refreshDeskView();
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart(); // drops the live connection; it has to be allowed again
+  });
+  connect(m_deskView, &DeskView::settingsRequested, this, &MainWindow::refreshDeskView);
+  auto *settingsPage = m_deskView->settings();
+  using deskflow::gui::SettingsView;
+  connect(settingsPage, &SettingsView::coreSettingChanged, this, [this] {
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart();
+  });
+  connect(settingsPage, &SettingsView::serverSettingChanged, this, [this] {
+    m_serverConfig.commit();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(settingsPage, &SettingsView::openLogsRequested, this, [] {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(Settings::settingsPath()));
+  });
+  connect(settingsPage, &SettingsView::planClicked, this, [this] {
+    refreshDeskView();
+    m_deskView->showPlanPage();
+  });
+  using deskflow::gui::PlanView;
+  connect(m_deskView->plan(), &PlanView::getPlusRequested, this, [] {
+    QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+  });
+  connect(m_deskView->plan(), &PlanView::licenseSaved, this, [this] {
+    refreshDeskView();
+    using deskflow::gui::NoticeCard;
+    const auto &lic = deskflow::License::current(true);
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Plus is on"))
+        ->setBody(tr("This desk now links this computer and up to %n more. Licensed to %1.", "",
+                     lic.maxExtraComputers())
+                      .arg(lic.email()))
+        ->setButtons({tr("Great")});
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart(); // the server re-reads the license on start
+  });
+  connect(settingsPage, &SettingsView::newKeyRequested, this, [this] {
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Lock, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Make a new security key?"))
+        ->setBody(tr("Every linked computer will ask you to allow this one again the next time it connects."))
+        ->setButtons({tr("Keep the current key"), tr("Make a new key")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button != 1)
+        return;
+      const bool wasRunning = m_coreProcess.isStarted();
+      if (wasRunning)
+        stopCore();
+      TlsUtility::generateCertificate();
+      m_fingerprint = {QCryptographicHash::Sha256, TlsUtility::certFingerprint()};
+      updateFingerprintButton();
+      if (wasRunning)
+        startCore();
+      refreshDeskView();
+    });
+  });
+  connect(settingsPage, &SettingsView::resetRequested, this, [this] {
+    const bool wasRunning = m_coreProcess.isStarted();
+    if (wasRunning)
+      stopCore();
+    Settings::restoreDefaultSettings();
+    Settings::setValue(Settings::Gui::WizardCompleted, true);
+    m_serverConfig.reload();
+    m_serverConfig.commit();
+    refreshDeskView();
+    m_deskView->showDeskPage();
+  });
+  connect(m_deskView, &DeskView::shortcutsRequested, this, &MainWindow::refreshDeskView);
+  connect(m_deskView->shortcuts(), &deskflow::gui::ShortcutsView::addRequested, this, [this](const Hotkey &hotkey) {
+    m_serverConfig.addHotkey(hotkey);
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(m_deskView->shortcuts(), &deskflow::gui::ShortcutsView::removeRequested, this, [this](int index) {
+    m_serverConfig.removeHotkeyAt(index);
+    m_serverConfig.commit();
+    refreshDeskView();
+    if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+      m_coreProcess.restart();
+  });
+  connect(m_deskView, &DeskView::helpRequested, this, [this] {
+    m_deskView->about()->setSecurityCode(QString::fromLatin1(m_fingerprint.data.toHex()));
+  });
+  auto *aboutPage = m_deskView->about();
+  using deskflow::gui::AboutView;
+  connect(aboutPage, &AboutView::checkForUpdatesRequested, this, [this] {
+    m_deskView->about()->setChecking();
+    m_versionChecker.checkLatest();
+  });
+  connect(&m_versionChecker, &VersionChecker::checkFinished, aboutPage, &AboutView::setUpdateState);
+  connect(aboutPage, &AboutView::getUpdateRequested, this, &MainWindow::openGetNewVersionUrl);
+  connect(aboutPage, &AboutView::openLogsRequested, this, [] {
+    QDesktopServices::openUrl(QUrl::fromLocalFile(Settings::settingsPath()));
+  });
+  connect(aboutPage, &AboutView::copyDiagnosticsRequested, this, [this] {
+    QStringList lines{
+        QStringLiteral("Lightning Desk %1 (%2)").arg(kVersion, kVersionGitSha), QSysInfo::prettyProductName(),
+        QStringLiteral("mode: %1").arg(Settings::value(Settings::Core::CoreMode).toString()),
+        QStringLiteral("computer: %1").arg(Settings::value(Settings::Core::ComputerName).toString()),
+        QStringLiteral("settings: %1").arg(Settings::settingsPath())
+    };
+    for (const auto &computer : std::as_const(m_serverConfig).computers())
+      if (!computer.isNull())
+        lines << QStringLiteral("desk: %1").arg(computer.name());
+    QGuiApplication::clipboard()->setText(lines.join(QLatin1Char('\n')));
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Clipboard, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Diagnostics copied"))
+        ->setBody(tr("Paste them into your email to %1.").arg(kUrlSupportMail))
+        ->setButtons({tr("OK")});
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+  });
+  connect(aboutPage, &AboutView::checksRequested, this, [this] {
+    refreshChecks();
+    m_deskView->showChecksPage();
+  });
+  auto *checksPage = m_deskView->checks();
+  using deskflow::gui::ChecksView;
+  connect(checksPage, &ChecksView::rerunRequested, this, &MainWindow::refreshChecks);
+  connect(checksPage, &ChecksView::copyReportRequested, this, [this] {
+    refreshChecks();
+    QGuiApplication::clipboard()->setText(
+        m_deskView->checks()->report() + QStringLiteral("\n\n") + m_computerLog->report()
+    );
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Clipboard, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Report copied"))
+        ->setBody(tr("Paste it into your email to %1.").arg(kUrlSupportMail))
+        ->setButtons({tr("OK")});
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+  });
+  connect(checksPage, &ChecksView::actionRequested, this, [this](const QString &id) {
+    if (id == QLatin1String("start")) {
+      m_actionStartCore->trigger();
+      m_deskView->showChecksPage();
+    } else if (id == QLatin1String("settings")) {
+      m_deskView->showSettingsPage();
+    } else if (id == QLatin1String("newkey")) {
+      if (generateCertificate() && m_coreProcess.isStarted())
+        m_coreProcess.restart();
+      refreshChecks();
+    } else if (id.startsWith(QLatin1String("howto:"))) {
+      const auto name = id.mid(6);
+      using deskflow::gui::NoticeCard;
+      auto *card = m_deskView->notice();
+      card->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Accent)
+          ->setTitle(tr("Getting %1 back").arg(name))
+          ->setBody(
+              tr("1. Wake it up and make sure it's on the same Wi‑Fi or network.\n"
+                 "2. Open Lightning Desk on it. It should say it's linked to %1.\n"
+                 "3. If it asks to trust this computer, check the security code matches the one on the Help page.\n"
+                 "4. Still nothing? Forget it from Your desk and add it again.")
+                  .arg(Settings::value(Settings::Core::ComputerName).toString())
+          )
+          ->setButtons({tr("OK")});
+      connect(card, &NoticeCard::answered, this, [this](int, int) {
+        m_deskView->dismissNotice();
+        m_deskView->showChecksPage();
+      });
+    }
+  });
+  connect(m_deskView, &DeskView::clipboardToggled, this, [this](bool) {
+    if (m_coreProcess.isStarted())
+      m_coreProcess.restart();
+  });
+
+  // Critical errors become an inline notice instead of a message box.
+  messages::setCriticalSink([this](const QString &message, const QString &fileLine) {
+    auto *card = deskNotice();
+    if (!card) {
+      messages::setCriticalSink(nullptr); // classic view: fall back to the box
+      return;
+    }
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+        ->setTitle(tr("Something went wrong"))
+        ->setBody(tr("%1\n\nIf it keeps happening, copy a report from Help › Something not working? and send it to %2.")
+                      .arg(message, kUrlSupportMail))
+        ->setButtons({tr("OK")});
+    Q_UNUSED(fileLine); // it's in the log and the Checks report
+    connect(card, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+  });
+
+  toggleClassicView(m_actionClassicView->isChecked());
+  refreshDeskView();
+}
+
+deskflow::gui::NoticeCard *MainWindow::deskNotice()
+{
+  if (!m_deskView || !m_actionClassicView || m_actionClassicView->isChecked())
+    return nullptr;
+  showAndActivate();
+  return m_deskView->notice();
+}
+
+void MainWindow::toggleClassicView(bool classic)
+{
+  Settings::setValue(Settings::Gui::ClassicView, classic);
+  if (classic && m_classicCentral)
+    m_centralStack->setCurrentWidget(m_classicCentral);
+  else
+    m_centralStack->setCurrentWidget(m_deskView);
+  if (menuBar())
+    menuBar()->setVisible(classic);
+  m_statusBar->setVisible(classic);
+  if (classic) {
+    setMinimumSize(0, 0);
+    return;
+  }
+  // The Desk screen is a real window: resizable, with room for the grid.
+  setMaximumSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX);
+  setMinimumSize(960, 620);
+  if (width() < 1080 || height() < 700)
+    resize(1080, 720);
+  // The log is a classic-view tool; on the Desk screen it only steals the grid's room.
+  m_logDock->hide();
+}
+
+void MainWindow::refreshDeskView()
+{
+  if (!m_deskView)
+    return;
+  const auto thisName = Settings::value(Settings::Core::ComputerName).toString();
+  if (Settings::value(Settings::Core::CoreMode).value<Settings::CoreMode>() == Settings::CoreMode::Client) {
+    m_deskView->setLinkedTo(thisName, Settings::value(Settings::Client::RemoteHost).toString());
+  } else {
+    m_deskView->setDesk(thisName, m_serverConfig);
+  }
+  m_deskView->setSharing(m_coreProcess.isStarted());
+  m_deskView->setConnectionState(m_coreProcess.connectionState());
+
+  int trusted = 0;
+  if (TlsUtility::isEnabled()) {
+    FingerprintDatabase db;
+    db.read(trustedFingerprintDatabase());
+    trusted = static_cast<int>(db.fingerprints().size());
+  }
+  m_deskView->setTrustedCount(trusted);
+  m_deskView->refreshConveniences();
+
+  QStringList names{thisName};
+  for (const auto &computer : std::as_const(m_serverConfig).computers())
+    if (!computer.isNull() && computer.name() != thisName)
+      names << computer.name();
+  m_deskView->shortcuts()->setShortcuts(std::as_const(m_serverConfig).hotkeys(), names, thisName);
+
+  // Settings page: plan row + trusted computers
+  const auto &license = deskflow::License::current(true);
+  const int extras = license.maxExtraComputers();
+  if (license.isLicensed()) {
+    const auto tier = license.tier();
+    const auto exp = license.expires();
+    m_deskView->settings()->setPlan(
+        tr("Lightning Desk %1").arg(tier.left(1).toUpper() + tier.mid(1)),
+        exp.isValid() ? tr("Until %1 · this computer + up to %n more", "", extras).arg(exp.date().toString(Qt::ISODate))
+                      : tr("This computer + up to %n more", "", extras),
+        tier.compare(QStringLiteral("trial"), Qt::CaseInsensitive) == 0 ? tr("Trial") : tr("Active")
+    );
+  } else {
+    m_deskView->settings()->setPlan(
+        tr("Lightning Desk Free"), tr("This computer + %n more · Plus links up to five", "", extras), QString()
+    );
+  }
+  m_deskView->settings()->setTrusted(trusted, names.mid(1));
+  m_deskView->settings()->reload();
+  m_deskView->plan()->reload(names.size());
+  refreshChecks();
+  refreshTrayMenu();
+}
+
+void MainWindow::refreshChecks()
+{
+  if (!m_deskView)
+    return;
+  using deskflow::gui::ChecksView;
+  using Status = ChecksView::Status;
+  QList<ChecksView::Check> checks;
+  const bool server = m_coreProcess.mode() == CoreMode::Server;
+  const bool running = m_coreProcess.isStarted();
+  const auto state = m_coreProcess.connectionState();
+  const auto thisName = Settings::value(Settings::Core::ComputerName).toString();
+  const auto mainName = Settings::value(Settings::Client::RemoteHost).toString();
+
+  // 1. Sharing / link
+  if (server) {
+    if (running)
+      checks << ChecksView::Check{tr("Sharing"), tr("On from %1").arg(thisName), Status::Ok};
+    else
+      checks << ChecksView::Check{tr("Sharing is off"), tr("Other computers can't join until it's on."),
+                                  Status::Warn,         {},
+                                  tr("Turn on"),        QStringLiteral("start")};
+  } else {
+    if (state == ConnectionState::Connected)
+      checks << ChecksView::Check{
+          tr("Linked to %1").arg(mainName), tr("Keyboard and mouse come from there"), Status::Ok
+      };
+    else if (running)
+      checks << ChecksView::Check{
+          tr("Looking for %1").arg(mainName),
+          tr("Make sure Lightning Desk is open and sharing is on over there, and both computers are on the same "
+             "network."),
+          Status::Warn
+      };
+    else
+      checks << ChecksView::Check{tr("Not linked"), tr("This computer isn't looking for %1 right now.").arg(mainName),
+                                  Status::Warn,     {},
+                                  tr("Link now"),   QStringLiteral("start")};
+  }
+
+  // 2. Network
+  const auto addrs = NetworkMonitor::validAddresses();
+  if (addrs.isEmpty())
+    checks << ChecksView::Check{
+        tr("Not on a network"), tr("Connect to Wi‑Fi or plug in a cable, then run the checks again."), Status::Bad
+    };
+  else
+    checks << ChecksView::Check{
+        tr("Network"), tr("This computer is reachable at %1").arg(addrs.join(QStringLiteral(", "))), Status::Ok
+    };
+
+  // 3. Port (server only)
+  if (server) {
+    const int port = Settings::value(Settings::Core::Port).toInt();
+    const auto iface = Settings::value(Settings::Core::Interface).toString();
+    checks << ChecksView::Check{
+        tr("Connection port"),
+        iface.isEmpty() ? tr("Other computers connect on port %1. If a firewall asks, allow Lightning Desk.").arg(port)
+                        : tr("Other computers connect to %1 on port %2.").arg(iface).arg(port),
+        Status::Info
+    };
+  }
+
+  // 4. Encryption
+  if (TlsUtility::isEnabled()) {
+    const auto cert = Settings::value(Settings::Security::Certificate).toString();
+    if (QFile::exists(cert))
+      checks << ChecksView::Check{tr("Encryption"), tr("Connections between your computers are encrypted"), Status::Ok};
+    else
+      checks << ChecksView::Check{
+          tr("Security key missing"),
+          tr("We can make a new one. Other computers will ask you to trust it again."),
+          Status::Bad,
+          {},
+          tr("Make a new key"),
+          QStringLiteral("newkey")
+      };
+  } else {
+    checks << ChecksView::Check{tr("Encryption is off"),
+                                tr("Anyone on your network could read what you type."),
+                                Status::Warn,
+                                {},
+                                tr("Turn on"),
+                                QStringLiteral("settings")};
+  }
+
+  // 5. Each computer on the desk (server only)
+  if (server) {
+    for (const auto &computer : std::as_const(m_serverConfig).computers()) {
+      if (computer.isNull() || computer.name() == thisName)
+        continue;
+      const auto name = computer.name();
+      if (m_connectedClients.contains(name))
+        checks << ChecksView::Check{name, tr("Linked"), Status::Ok};
+      else if (running)
+        checks << ChecksView::Check{
+            tr("%1 isn't answering").arg(name),
+            tr("It may be asleep, or Lightning Desk may have been closed on it."),
+            Status::Warn,
+            {},
+            tr("How to fix"),
+            QStringLiteral("howto:%1").arg(name)
+        };
+      else
+        checks << ChecksView::Check{name, tr("Waiting for sharing to turn on"), Status::Info};
+    }
+  }
+
+  m_deskView->checks()->setChecks(checks);
+}
+
+void MainWindow::openComputerPage(const QString &name)
+{
+  if (!m_deskView)
+    return;
+  const int idx = m_serverConfig.indexOf(name);
+  if (idx < 0)
+    return;
+  const auto &computer = std::as_const(m_serverConfig).computers().at(idx);
+  if (computer.isServer() || computer.name() == Settings::value(Settings::Core::ComputerName).toString())
+    return;
+  const bool linked = m_connectedClients.contains(name);
+  const QString status = linked ? tr("Linked") : m_coreProcess.isStarted() ? tr("Waiting") : tr("Off");
+  m_deskView->showComputerPage(computer, status, linked);
+  m_deskView->computer()->setDetails(m_computerLog->entry(name));
+}
+
+void MainWindow::changeMainFromDesk()
+{
+  if (!m_deskView)
+    return;
+  const auto mainName = Settings::value(Settings::Client::RemoteHost).toString();
+  if (mainName.isEmpty()) {
+    linkAsExtraFromDesk();
+    return;
+  }
+  using deskflow::gui::NoticeCard;
+  auto *card = m_deskView->notice();
+  card->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Accent)
+      ->setTitle(tr("Linked to %1").arg(mainName))
+      ->setBody(
+          tr("Link this computer to a different main computer, or unlink it so it's on its own again. "
+             "Its mouse and keyboard work normally either way.")
+      )
+      ->setButtons({tr("Keep"), tr("Unlink"), tr("Link to a different computer")});
+  connect(card, &NoticeCard::answered, this, [this, mainName](int button, int) {
+    m_deskView->dismissNotice();
+    if (button == 1) {
+      if (m_coreProcess.isStarted())
+        stopCore();
+      Settings::setValue(Settings::Client::RemoteHost, QString());
+      refreshDeskView();
+      auto *done = m_deskView->notice();
+      using deskflow::gui::NoticeCard;
+      done->setIcon(deskflow::gui::brand::Icon::Monitor, NoticeCard::Tone::Neutral)
+          ->setTitle(tr("Unlinked from %1").arg(mainName))
+          ->setBody(
+              tr("This computer is on its own now. Press “Link to a computer” whenever you want it back on a desk.")
+          )
+          ->setButtons({tr("OK")});
+      connect(done, &NoticeCard::answered, this, [this](int, int) { m_deskView->dismissNotice(); });
+    } else if (button == 2) {
+      linkAsExtraFromDesk();
+    }
+  });
+}
+
+void MainWindow::linkAsExtraFromDesk()
+{
+  if (m_coreProcess.isStarted())
+    stopCore();
+  auto *wizard = new deskflow::gui::SetupWizard(this);
+  wizard->setAttribute(Qt::WA_DeleteOnClose);
+  const bool inline_ = m_deskView && m_actionClassicView && !m_actionClassicView->isChecked();
+  if (inline_) {
+    wizard->embedInto(m_deskView);
+    m_deskView->showPage(wizard);
+  }
+  connect(wizard, &QDialog::finished, this, [this, wizard, inline_](int result) {
+    if (inline_) {
+      m_deskView->removePage(wizard);
+      m_deskView->showDeskPage();
+    }
+    refreshDeskView();
+    // The wizard's own core stops when it closes; run ours against whatever main is now set.
+    if (result == QDialog::Accepted && !Settings::value(Settings::Client::RemoteHost).toString().isEmpty())
+      startCore();
+  });
+  wizard->openAtLinkAsExtra();
+}
+
+void MainWindow::addComputerFromDesk(int cell)
+{
+  const bool wasRunning = m_coreProcess.isStarted();
+  if (wasRunning)
+    stopCore();
+
+  QStringList before;
+  for (const auto &computer : std::as_const(m_serverConfig).computers())
+    if (!computer.isNull())
+      before << computer.name();
+
+  auto *wizard = new deskflow::gui::SetupWizard(this);
+  wizard->setAttribute(Qt::WA_DeleteOnClose);
+  const bool inline_ = m_deskView && m_actionClassicView && !m_actionClassicView->isChecked();
+  if (inline_) {
+    // Nothing pops over anything: the link flow runs as a page inside the Desk screen.
+    wizard->embedInto(m_deskView);
+    m_deskView->showPage(wizard);
+  }
+  connect(wizard, &QDialog::finished, this, [this, wasRunning, before, cell, wizard, inline_](int) {
+    if (inline_) {
+      m_deskView->removePage(wizard);
+      m_deskView->showDeskPage();
+    }
+    m_serverConfig.reload();
+    // The wizard drops a new computer into the next free cell; move it to the one that was clicked.
+    if (cell >= 0) {
+      for (const auto &computer : std::as_const(m_serverConfig).computers()) {
+        if (!computer.isNull() && !before.contains(computer.name())) {
+          if (m_serverConfig.moveClient(computer.name(), cell))
+            m_serverConfig.commit();
+          break;
+        }
+      }
+    }
+    refreshDeskView();
+    if (wasRunning || Settings::value(Settings::Gui::AutoStartCore).toBool())
+      startCore();
+  });
+  wizard->openAtLink();
 }
 
 void MainWindow::createMenuBar()
@@ -685,16 +1326,96 @@ void MainWindow::createMenuBar()
 
 void MainWindow::setupTrayIcon()
 {
-  auto trayMenu = new QMenu(this);
-  trayMenu->addActions(
-      {m_actionStartCore, m_actionRestartCore, m_actionStopCore, m_actionMinimize, m_actionRestore, m_actionTrayQuit}
-  );
-  trayMenu->insertSeparator(m_actionMinimize);
-  trayMenu->insertSeparator(m_actionTrayQuit);
-  m_trayIcon->setContextMenu(trayMenu);
+  // The tray menu is OS-native (the one popup we can't avoid), so it stays short and reads like
+  // the app: what's happening, who's linked, pause/resume, add, open, quit.
+  m_trayMenu = new QMenu(this);
+  m_actionTrayToggle = new QAction(this);
+  connect(m_actionTrayToggle, &QAction::triggered, this, [this] {
+    if (m_coreProcess.isStarted())
+      m_actionStopCore->trigger();
+    else
+      m_actionStartCore->trigger();
+  });
+  m_actionTrayAdd = new QAction(tr("Add a computer…"), this);
+  connect(m_actionTrayAdd, &QAction::triggered, this, [this] {
+    showAndActivate();
+    addComputerFromDesk(-1);
+  });
+  m_trayIcon->setContextMenu(m_trayMenu);
+  refreshTrayMenu();
 
   setTrayIcon();
   m_trayIcon->show();
+}
+
+void MainWindow::refreshTrayMenu()
+{
+  if (!m_trayMenu)
+    return;
+  using namespace deskflow::gui::brand;
+  const auto dpr = devicePixelRatioF();
+  const bool server = m_coreProcess.mode() == CoreMode::Server;
+  const bool running = m_coreProcess.isStarted();
+  const auto state = m_coreProcess.connectionState();
+  const auto thisName = Settings::value(Settings::Core::ComputerName).toString();
+  const auto mainName = Settings::value(Settings::Client::RemoteHost).toString();
+
+  m_trayMenu->clear();
+
+  // Headline (not clickable)
+  QString headline;
+  if (server)
+    headline = running ? tr("Sharing from %1").arg(thisName) : tr("Sharing is off");
+  else if (state == ConnectionState::Connected)
+    headline = tr("Linked to %1").arg(mainName);
+  else
+    headline = running ? tr("Looking for %1…").arg(mainName) : tr("Not linked");
+  auto *head = m_trayMenu->addAction(QIcon(icon(Icon::Bolt, 16, dpr, kAccent)), headline);
+  head->setEnabled(false);
+
+  // Computers on the desk with their state
+  if (server) {
+    bool any = false;
+    for (const auto &computer : std::as_const(m_serverConfig).computers()) {
+      if (computer.isNull() || computer.name() == thisName)
+        continue;
+      any = true;
+      const bool linked = m_connectedClients.contains(computer.name());
+      const QString status = linked ? tr("Linked") : running ? tr("Not answering") : tr("Waiting");
+      auto *a = m_trayMenu->addAction(
+          QIcon(icon(
+              Icon::Monitor, 16, dpr,
+              linked    ? kGreen
+              : running ? kAccent
+                        : kDim
+          )),
+          QStringLiteral("%1 — %2").arg(computer.name(), status)
+      );
+      a->setEnabled(false);
+    }
+    if (any)
+      m_trayMenu->addSeparator();
+  } else {
+    m_trayMenu->addSeparator();
+  }
+
+  // Actions
+  if (server)
+    m_actionTrayToggle->setText(running ? tr("Pause sharing") : tr("Resume sharing"));
+  else
+    m_actionTrayToggle->setText(running ? tr("Unlink for now") : tr("Link again"));
+  m_actionTrayToggle->setIcon(QIcon(icon(running ? Icon::Lock : Icon::Bolt, 16, dpr, kText)));
+  m_trayMenu->addAction(m_actionTrayToggle);
+  if (server) {
+    m_actionTrayAdd->setIcon(QIcon(icon(Icon::Plus, 16, dpr, kText)));
+    m_trayMenu->addAction(m_actionTrayAdd);
+  }
+  m_actionRestore->setIcon(QIcon(icon(Icon::Monitor, 16, dpr, kText)));
+  m_actionRestore->setVisible(true);
+  m_trayMenu->addAction(m_actionRestore);
+  m_trayMenu->addSeparator();
+  m_actionTrayQuit->setIcon(QIcon());
+  m_trayMenu->addAction(m_actionTrayQuit);
 }
 
 void MainWindow::applyConfig()
@@ -770,6 +1491,55 @@ void MainWindow::setTrayIcon()
 void MainWindow::handleLogLine(const QString &line)
 {
   m_logDock->appendLine(line);
+  if (m_computerLog)
+    m_computerLog->observe(line);
+  if (m_deskView)
+    m_deskView->checks()->appendLogLine(line);
+}
+
+void MainWindow::handleClientLimitReached(const QString &clientName)
+{
+  // One prompt per computer per session; the core keeps refusing quietly in the meantime.
+  if (m_limitPromptedClients.contains(clientName))
+    return;
+  m_limitPromptedClients.insert(clientName);
+
+  const auto &license = deskflow::License::current(true);
+  const auto allowed = license.maxExtraComputers();
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    using deskflow::gui::NoticeCard;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("Room for one more?"))
+        ->setBody(tr("%1 tried to join, but your %2 plan links this computer and %n other(s). "
+                     "Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. "
+                     "Nothing else about Free changes.",
+                     "", allowed)
+                      .arg(clientName, license.isLicensed() ? license.tier() : tr("Free")))
+        ->setButtons({tr("Not now"), tr("See Plus")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+    });
+    showAndActivate();
+    return;
+  }
+  QMessageBox box(this);
+  box.setIcon(QMessageBox::Information);
+  box.setWindowTitle(tr("Room for one more?"));
+  box.setText(tr("%1 tried to join, but your %2 plan links this computer and %n other(s).", "", allowed)
+                  .arg(clientName, license.isLicensed() ? license.tier() : tr("Free")));
+  box.setInformativeText(
+      tr("Lightning Desk Plus links up to five computers on one desk, with 14 days free to try. "
+         "Nothing else about Free changes.")
+  );
+  auto *learn = box.addButton(tr("See Plus"), QMessageBox::AcceptRole);
+  box.addButton(tr("Not now"), QMessageBox::RejectRole);
+  box.exec();
+  if (box.clickedButton() == learn) {
+    QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+  }
 }
 
 void MainWindow::handleUnrecognisedClient(const QString &clientName)
@@ -792,6 +1562,45 @@ void MainWindow::handleUnrecognisedClient(const QString &clientName)
 
   showAndActivate();
 
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    // Desk screen: ask where the new computer sits, inline, and place it straight away.
+    using deskflow::gui::NoticeCard;
+    QList<int> taken;
+    const auto &list = std::as_const(m_serverConfig).computers();
+    for (int i = 0; i < list.size(); ++i)
+      if (!list[i].isNull())
+        taken << i;
+    const auto mainName = Settings::value(Settings::Core::ComputerName).toString();
+    // 5 x 3 grid, main computer in the centre (index 7).
+    const QList<NoticeCard::Choice> choices{
+        {tr("Above"), 2, !taken.contains(2)},    {tr("Left"), 6, !taken.contains(6)},
+        {tr("Right"), 8, !taken.contains(8)},    {tr("Below"), 12, !taken.contains(12)},
+        {tr("Far left"), 5, !taken.contains(5)}, {tr("Far right"), 9, !taken.contains(9)}
+    };
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Accent)
+        ->setTitle(tr("%1 wants to join your desk").arg(clientName))
+        ->setBody(tr("Pick the edge of %1's screen it sits next to. Move the mouse off that edge and it appears there. "
+                     "You can move it later from its card.")
+                      .arg(mainName))
+        ->setChoices(choices)
+        ->setButtons({tr("Not now"), tr("Add %1").arg(clientName)});
+    connect(card, &NoticeCard::answered, this, [this, clientName](int button, int cell) {
+      m_deskView->dismissNotice();
+      m_newClientPromptShowing = false;
+      if (button == 1 && cell >= 0) {
+        m_serverConfig.placeClient(clientName, cell);
+        m_serverConfig.commit();
+        refreshDeskView();
+        if (m_coreProcess.isStarted() && !m_coreProcess.reloadServerConfig())
+          m_coreProcess.restart();
+      } else {
+        m_ignoredClients.insert(clientName);
+      }
+    });
+    return;
+  }
+
   if (deskflow::gui::messages::showNewClientPrompt(this, clientName)) {
     serverConnectionConfigureClient(clientName);
   } else {
@@ -813,13 +1622,32 @@ void MainWindow::handleConnectionRefused(deskflow::core::ConnectionRefusal reaso
   showAndActivate();
 
   const auto address = Settings::value(Settings::Client::RemoteHost).toString();
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Danger)
+        ->setTitle(tr("%1 turned this computer away").arg(address))
+        ->setBody(
+            tr("Either another computer with this name is already linked, or the main computer's plan "
+               "already has as many computers as it allows (Free links the main computer and one other; "
+               "Plus links up to five). Give this computer a different name in Settings, or see Plus.")
+        )
+        ->setButtons({tr("OK"), tr("See Plus")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      m_clientErrorVisible = false;
+      if (button == 1)
+        QDesktopServices::openUrl(QUrl(QStringLiteral("%1?%2").arg(kUrlPlus, kUrlSourceQuery)));
+    });
+    return;
+  }
   QMessageBox::warning(
       this, tr("%1 Connection Error").arg(kAppName),
-      tr("<p>Failed to connect to the server '%1'.</p>"
-         "<p>A Client with your name is already connected to the server.</p>"
-         "Please ensure that you're using a unique name and that only a "
-         "single instance of the client process is running.</p>")
-          .arg(address)
+      tr("<p>The main computer at '%1' turned this computer away.</p>"
+         "<p>Either another computer with this name is already linked, or the main computer's plan "
+         "already has as many computers as it allows (Free links the main computer and one other; "
+         "Plus links up to five).</p>"
+         "<p>Give this computer a different name, or <a href=\"%2\">see Plus</a>.</p>")
+          .arg(address, kUrlPlus)
   );
 
   m_clientErrorVisible = false;
@@ -839,6 +1667,21 @@ void MainWindow::handleMissingKeyboardLayouts(const QString &layouts)
                     "<p>Please install them to enable support for these layouts.</p>")
                      .arg(layouts));
 
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Keyboard, NoticeCard::Tone::Neutral)
+        ->setTitle(tr("A keyboard layout is missing here"))
+        ->setBody(tr("The other computer types with %1, which isn't installed on this one. Typing still works; "
+                     "install the layout to match it exactly.")
+                      .arg(layouts))
+        ->setButtons({tr("Don't tell me again"), tr("OK")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 0)
+        Settings::setValue(Settings::Gui::IgnoreMissingKeyboardLayouts, true);
+    });
+    return;
+  }
   auto *checkBox = new QCheckBox(tr("Don't show this again"), &msgBox);
   msgBox.setCheckBox(checkBox);
   msgBox.exec();
@@ -874,10 +1717,22 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
     m_checkedClients.append(sha256Text);
   }
 
-  auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
-  FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
-
-  if (fingerprintDialog.exec() == QDialog::Accepted) {
+  // Trusting a peer, shared by the inline notice and the classic dialog.
+  const auto trust = [this, sha256, sha256Text, isClient]() {
+    // Remember the code in the connection log: a main's under its name, an extra's with the
+    // next computer that links (it connects right after being trusted).
+    QString code;
+    const auto up = sha256Text.toUpper();
+    for (int i = 0; i < 4 && i * 4 + 4 <= up.size(); ++i)
+      code += (i ? QStringLiteral(" ") : QString()) + up.mid(i * 4, 4);
+    if (m_computerLog) {
+      if (isClient)
+        m_computerLog->setFingerprint(Settings::value(Settings::Client::RemoteHost).toString(), code);
+      else
+        m_pendingFingerprint = code;
+    }
+    FingerprintDatabase db;
+    db.read(trustedFingerprintDatabase());
     db.addTrusted(sha256);
     if (!db.write(trustedFingerprintDatabase())) {
       qCritical().noquote() << "unable to write fingerprint to db:" << trustedFingerprintDatabase();
@@ -890,7 +1745,44 @@ void MainWindow::handlePeerFingerprint(const QString &fingerprint)
     } else {
       m_checkedClients.removeAll(sha256Text);
     }
+  };
+
+  if (m_actionClassicView && !m_actionClassicView->isChecked()) {
+    using deskflow::gui::NoticeCard;
+    // The server learns the client's name only after the TLS handshake, so on this side the
+    // notice shows the security code without a name.
+    const auto peer = isClient ? Settings::value(Settings::Client::RemoteHost).toString() : QString();
+    const auto shown = peer.isEmpty() ? tr("this computer") : peer;
+    auto *card = m_deskView->notice();
+    card->setIcon(deskflow::gui::brand::Icon::Laptop, NoticeCard::Tone::Accent)
+        ->setTitle(isClient ? tr("Link to %1?").arg(shown) : tr("A new computer wants to join"))
+        ->setBody(
+            isClient ? tr("Your mouse and keyboard will reach this computer from %1. If that's not your main "
+                          "computer, say no.")
+                           .arg(shown)
+                     : tr("If this is one of your computers, allow it and it joins your desk. If you weren't "
+                          "expecting anything, say no — nothing connects until you do.")
+        )
+        ->setCode(sha256Text)
+        ->setFootnote(tr("This is %1's security code. It never changes unless %1 makes a new key, so you'll only "
+                         "be asked once.")
+                          .arg(shown))
+        ->setButtons(
+            {tr("Not now"), isClient ? tr("Yes, link") : (peer.isEmpty() ? tr("Allow it") : tr("Allow %1").arg(peer))}
+        );
+    connect(card, &NoticeCard::answered, this, [this, trust](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        trust();
+    });
+    showAndActivate();
+    return;
   }
+
+  auto mode = isClient ? FingerprintDialogMode::Client : FingerprintDialogMode::Server;
+  FingerprintDialog fingerprintDialog(this, m_fingerprint, mode, sha256);
+  if (fingerprintDialog.exec() == QDialog::Accepted)
+    trust();
 }
 
 bool MainWindow::maybeHideToTray()
@@ -900,7 +1792,9 @@ bool MainWindow::maybeHideToTray()
   }
 
   if (Settings::value(Settings::Gui::CloseReminder).toBool()) {
-    messages::showCloseReminder(this);
+    // Desk mode: no reminder box; the tray icon and the Settings switch explain it.
+    if (!m_actionClassicView || m_actionClassicView->isChecked())
+      messages::showCloseReminder(this);
     Settings::setValue(Settings::Gui::CloseReminder, false);
   }
   Settings::setValue(Settings::Gui::WindowGeometry, geometry());
@@ -934,6 +1828,8 @@ void MainWindow::showFirstConnectedMessage()
 {
   if (Settings::value(Settings::Gui::ShownFirstConnectedMessage).toBool())
     return;
+  if (m_actionClassicView && !m_actionClassicView->isChecked())
+    return; // the Desk screen shows the link state itself
   Settings::setValue(Settings::Gui::ShownFirstConnectedMessage, true);
   messages::showFirstConnectedMessage(this);
 }
@@ -958,7 +1854,8 @@ void MainWindow::coreProcessStateChanged(ProcessState state)
   if (state == Started) {
     qDebug() << "recording that core has started";
     Settings::setValue(Settings::Gui::AutoStartCore, true);
-    if (m_coreProcess.mode() == CoreMode::Server &&
+    const bool classicView = m_actionClassicView && m_actionClassicView->isChecked();
+    if (classicView && m_coreProcess.mode() == CoreMode::Server &&
         !Settings::value(Settings::Gui::ShownServerFirstStartMessage).toBool()) {
       qDebug() << "starting core server for first time";
       messages::showFirstServerStartMessage(this);
@@ -989,6 +1886,10 @@ void MainWindow::coreProcessStateChanged(ProcessState state)
     m_actionStopCore->setEnabled(false);
   }
   updateModeControlLabels();
+  if (m_deskView)
+    m_deskView->setSharing(m_coreProcess.isStarted());
+  refreshChecks();
+  refreshTrayMenu();
 }
 
 void MainWindow::coreConnectionStateChanged(ConnectionState state)
@@ -996,6 +1897,18 @@ void MainWindow::coreConnectionStateChanged(ConnectionState state)
   qDebug() << "core connection state changed:" << static_cast<int>(state);
 
   updateStatus();
+  if (m_deskView) {
+    m_deskView->setConnectionState(state);
+    m_deskView->setSharing(m_coreProcess.isStarted());
+    if (state == ConnectionState::Disconnected) {
+      m_connectedClients.clear();
+      if (m_computerLog)
+        m_computerLog->allLeft();
+      m_deskView->setConnectedClients({});
+    }
+    refreshChecks();
+  }
+  refreshTrayMenu();
 
   // always assume connection is not secure when connection changes
   // to anything except connected. the only way the padlock shows is
@@ -1234,11 +2147,42 @@ void MainWindow::serverClientsChanged(const QStringList &clients)
 {
   if (m_coreProcess.mode() != CoreMode::Server || !m_coreProcess.isStarted())
     return;
+  if (!m_pendingFingerprint.isEmpty() && m_computerLog) {
+    for (const auto &name : clients) {
+      if (!m_connectedClients.contains(name)) {
+        m_computerLog->setFingerprint(name, m_pendingFingerprint);
+        m_pendingFingerprint.clear();
+        break;
+      }
+    }
+  }
+  m_connectedClients = clients;
   m_statusBar->setServerClients(clients);
+  if (m_deskView) {
+    m_deskView->setConnectedClients(clients);
+    refreshChecks();
+  }
+  refreshTrayMenu();
 }
 
 void MainWindow::daemonIpcClientConnectionFailed()
 {
+  if (auto *card = deskNotice()) {
+    using deskflow::gui::NoticeCard;
+    card->setIcon(deskflow::gui::brand::Icon::Bolt, NoticeCard::Tone::Danger)
+        ->setTitle(tr("The background service isn't answering"))
+        ->setBody(
+            tr("Lightning Desk's background service keeps sharing going when you're not logged in. It may "
+               "still be starting. Try again in a moment, or restart this computer if it keeps happening.")
+        )
+        ->setButtons({tr("Later"), tr("Try again")});
+    connect(card, &NoticeCard::answered, this, [this](int button, int) {
+      m_deskView->dismissNotice();
+      if (button == 1)
+        m_coreProcess.retryDaemon();
+    });
+    return;
+  }
   if (deskflow::gui::messages::showDaemonOffline(this)) {
     m_coreProcess.retryDaemon();
   }

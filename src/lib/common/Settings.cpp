@@ -1,5 +1,6 @@
 /*
  * Deskflow -- mouse and keyboard sharing utility
+ * SPDX-FileCopyrightText: (C) 2026 Schomp Technologies LLC
  * SPDX-FileCopyrightText: (C) 2025 - 2026 Chris Rizzitello <sithlord48@gmail.com>
  * SPDX-License-Identifier: GPL-2.0-only WITH LicenseRef-OpenSSL-Exception
  */
@@ -12,11 +13,115 @@
 #include "common/KeyboardModifier.h"
 
 #include <QCoreApplication>
+#include <QDir>
 #include <QFile>
 #include <QFileSystemWatcher>
 #include <QRect>
 #include <QRegularExpression>
 #include <QStandardPaths>
+
+namespace {
+
+// Names the upstream Deskflow app used for its folders and files.
+const auto kLegacyName = QStringLiteral("Deskflow");
+const auto kLegacyId = QStringLiteral("deskflow");
+
+/// "<parent>/Lightning Desk" -> "<parent>/Deskflow"
+QString legacyPath(const QString &path)
+{
+  const QString name(kAppName);
+  if (!path.endsWith(name))
+    return {};
+  return path.left(path.size() - name.size()) + kLegacyName;
+}
+
+/// Copies a folder tree, renaming Deskflow-named files; never overwrites.
+void copyLegacyTree(const QString &from, const QString &to)
+{
+  const QDir source(from);
+  if (from.isEmpty() || !source.exists())
+    return;
+  QDir().mkpath(to);
+  const auto entries = source.entryInfoList(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden);
+  for (const auto &entry : entries) {
+    QString name = entry.fileName();
+    if (name == kLegacyName + QStringLiteral(".conf"))
+      name = QStringLiteral("%1.conf").arg(kAppName);
+    else if (name.startsWith(kLegacyId + QLatin1Char('.')) || name.startsWith(kLegacyId + QLatin1Char('-')))
+      name = QString(kAppId) + name.mid(kLegacyId.size());
+    const auto target = QStringLiteral("%1/%2").arg(to, name);
+    if (entry.isDir())
+      copyLegacyTree(entry.absoluteFilePath(), target);
+    else if (!QFile::exists(target))
+      QFile::copy(entry.absoluteFilePath(), target);
+  }
+}
+
+/// Points paths stored inside a copied file at the new folders and file names.
+void rewriteLegacyPaths(const QString &file)
+{
+  QFile f(file);
+  if (!f.exists() || !f.open(QIODevice::ReadOnly))
+    return;
+  const QString original = QString::fromUtf8(f.readAll());
+  f.close();
+
+  QString text = original;
+  static const QRegularExpression folder(QStringLiteral(R"(([/\\])Deskflow(?=[/\\]))"));
+  text.replace(folder, QStringLiteral("\\1%1").arg(kAppName));
+  static const QRegularExpression files(QStringLiteral(R"(([/\\])deskflow(?=(\.pem|\.log|-server\.conf|-daemon\.log)))")
+  );
+  text.replace(files, QStringLiteral("\\1%1").arg(kAppId));
+  static const QRegularExpression named(QStringLiteral(R"(([/\\])Deskflow(?=\.(conf|state)\b))"));
+  text.replace(named, QStringLiteral("\\1%1").arg(kAppName));
+
+  if (text != original && f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+    f.write(text.toUtf8());
+}
+
+} // namespace
+
+void Settings::migrateFromDeskflow()
+{
+  if (QString(kAppName) == kLegacyName)
+    return;
+
+  QString userDir = UserDir;
+#ifndef Q_OS_WIN
+  if (const auto xdg = qEnvironmentVariable("XDG_CONFIG_HOME"); !xdg.isEmpty())
+    userDir = QStringLiteral("%1/%2").arg(xdg, kAppName);
+#endif
+  const auto userFile = QStringLiteral("%1/%2.conf").arg(userDir, kAppName);
+
+  // Only ever once: as soon as Lightning Desk has its own settings, stop.
+  if (QFile::exists(userFile) || QFile::exists(SystemSettingFile))
+    return;
+
+  const auto oldUser = legacyPath(userDir);
+  const auto oldSystem = legacyPath(SystemDir);
+  const bool haveUser = QFile::exists(QStringLiteral("%1/%2.conf").arg(oldUser, kLegacyName));
+  const bool haveSystem = QDir(oldSystem).exists();
+  if (!haveUser && !haveSystem)
+    return;
+
+  qInfo().noquote() << "migrating settings from Deskflow:" << oldUser << oldSystem;
+  copyLegacyTree(oldUser, userDir);
+  copyLegacyTree(oldSystem, SystemDir); // may be read-only (e.g. /etc); that's fine
+
+  for (const auto &dir : {userDir, QString(SystemDir)}) {
+    rewriteLegacyPaths(QStringLiteral("%1/%2.conf").arg(dir, kAppName));
+    rewriteLegacyPaths(QStringLiteral("%1/%2-server.conf").arg(dir, kAppId));
+  }
+
+  // Window state (size, position) lives in a separate state file.
+  const auto xdgState = qEnvironmentVariable("XDG_STATE_HOME");
+  const auto stateBase =
+      !xdgState.isEmpty() ? xdgState : QStandardPaths::standardLocations(QStandardPaths::GenericStateLocation).at(0);
+  const auto oldState = QStringLiteral("%1/%2.state").arg(stateBase, kLegacyName);
+  const auto newState = QStringLiteral("%1/%2.state").arg(stateBase, kAppName);
+  if (QFile::exists(oldState) && !QFile::exists(newState))
+    QFile::copy(oldState, newState);
+}
 
 Settings *Settings::instance()
 {
@@ -69,6 +174,8 @@ void Settings::clearState()
 
 Settings::Settings(QObject *parent) : QObject(parent), m_settingsWatcher{new QFileSystemWatcher(this)}
 {
+  migrateFromDeskflow();
+
   QString fileToLoad;
 #ifdef Q_OS_WIN
   const auto portableFile = portableSettingsFile();

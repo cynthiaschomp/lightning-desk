@@ -13,11 +13,18 @@
 
 class QWidget;
 
+#include <functional>
+
 namespace deskflow::gui::messages {
 
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 
 void raiseCriticalDialog();
+
+/// Where non-fatal critical errors go instead of a message box (an inline notice on the Desk
+/// screen). While a sink is set, no window pops up for them. Pass nullptr to restore the box.
+using CriticalSink = std::function<void(const QString &message, const QString &fileLine)>;
+void setCriticalSink(CriticalSink sink);
 
 void showFirstServerStartMessage(QWidget *parent);
 

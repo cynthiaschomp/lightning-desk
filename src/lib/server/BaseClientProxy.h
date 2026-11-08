@@ -42,6 +42,26 @@ public:
   */
   void getJumpCursorPos(int32_t &x, int32_t &y) const;
 
+  //! Where the client connected from and which protocol it speaks (for the connection log)
+  void setConnectionDetails(const std::string &peerAddress, int major, int minor)
+  {
+    m_peerAddress = peerAddress;
+    m_protocolMajor = major;
+    m_protocolMinor = minor;
+  }
+  const std::string &peerAddress() const
+  {
+    return m_peerAddress;
+  }
+  int protocolMajor() const
+  {
+    return m_protocolMajor;
+  }
+  int protocolMinor() const
+  {
+    return m_protocolMinor;
+  }
+
   //! Get cursor position
   /*!
   Return if this proxy is for client or primary.
@@ -84,6 +104,9 @@ public:
   virtual deskflow::IStream *getStream() const = 0;
 
 private:
+  std::string m_peerAddress;
+  int m_protocolMajor = 0;
+  int m_protocolMinor = 0;
   std::string m_name;
   int32_t m_x = 0;
   int32_t m_y = 0;

@@ -12,6 +12,7 @@
 #include <QMainWindow>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QSet>
 #include <QSystemTrayIcon>
 #include <QUrl>
 
@@ -30,6 +31,12 @@ class QMenu;
 class QLocalServer;
 
 class DeskflowApplication;
+class QStackedWidget;
+namespace deskflow::gui {
+class ComputerLog;
+class DeskView;
+class NoticeCard;
+} // namespace deskflow::gui
 class LogDock;
 class StatusBar;
 
@@ -114,9 +121,21 @@ private:
 
   void createMenuBar();
   void setupTrayIcon();
+  void refreshTrayMenu();
   void applyConfig();
   void setTrayIcon();
   void handleUnrecognisedClient(const QString &clientName);
+  void handleClientLimitReached(const QString &clientName);
+  // Lightning Desk branded main screen
+  void setupDeskView();
+  void refreshDeskView();
+  void refreshChecks();
+  void toggleClassicView(bool classic);
+  void addComputerFromDesk(int cell = -1);
+  void openComputerPage(const QString &name);
+  void changeMainFromDesk();
+  void linkAsExtraFromDesk();
+  deskflow::gui::NoticeCard *deskNotice();
   void handleConnectionRefused(deskflow::core::ConnectionRefusal reason);
   void handlePeerFingerprint(const QString &fingerprint);
   void handleMissingKeyboardLayouts(const QString &layouts);
@@ -173,10 +192,14 @@ private:
   ServerConfig m_serverConfig;
   deskflow::gui::CoreProcess m_coreProcess;
   QSet<QString> m_ignoredClients;
+  QSet<QString> m_limitPromptedClients;
   bool m_newClientPromptShowing = false;
   bool m_serverConfigDialogVisible = false;
   QSize m_expandedSize = QSize();
   QStringList m_checkedClients;
+  QString m_pendingFingerprint; ///< code of the client just trusted, attached to the next one that links
+  QStringList m_connectedClients;
+  deskflow::gui::ComputerLog *m_computerLog = nullptr;
   QStringList m_checkedServers;
   QSystemTrayIcon *m_trayIcon = nullptr;
   QLocalServer *m_guiDupeChecker = nullptr;
@@ -190,6 +213,9 @@ private:
   QMenu *m_menuEdit = nullptr;
   QMenu *m_menuView = nullptr;
   QMenu *m_menuHelp = nullptr;
+  QMenu *m_trayMenu = nullptr;
+  QAction *m_actionTrayToggle = nullptr;
+  QAction *m_actionTrayAdd = nullptr;
 
   // Window Actions
   QAction *m_actionAbout = nullptr;
@@ -205,6 +231,10 @@ private:
 
   // Network monitoring
   NetworkMonitor *m_networkMonitor = nullptr;
+  deskflow::gui::DeskView *m_deskView = nullptr;
+  QStackedWidget *m_centralStack = nullptr;
+  QWidget *m_classicCentral = nullptr;
+  QAction *m_actionClassicView = nullptr;
   QString m_currentIpAddress;
 
   // Server IP strategy optimization
