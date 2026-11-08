@@ -177,7 +177,7 @@ void ComputerLog::setFingerprint(const QString &name, const QString &fingerprint
 
 void ComputerLog::forget(const QString &name)
 {
-  if (m_entries.remove(name.toLower()) > 0) {
+  if (m_entries.remove(name.toLower())) {
     save();
     Q_EMIT changed(name);
   }
